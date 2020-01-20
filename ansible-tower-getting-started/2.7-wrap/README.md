@@ -1,6 +1,6 @@
 # Exercise 2.7 - Wrap up
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 # Final Challenge or Putting it all Together
 
@@ -95,7 +95,7 @@ This time we use the power of Ansible to check the results: execute curl to get 
 
 > **Tip**
 >
-> We are using the `ansible_host` variable in the URL to access every node in the inventory group. 
+> We are using the `ansible_host` variable in the URL to access every node in the inventory group.
 
 ```bash
 [student<X>@ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
@@ -135,25 +135,25 @@ Check the results again from your Tower control host. Since we got a warning las
 ```bash
 [student<X>ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
 node3 | SUCCESS => {
-    "accept_ranges": "bytes", 
+    "accept_ranges": "bytes",
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
-    }, 
-    "changed": false, 
-    "connection": "close", 
-    "content": "<body>\n<h1>This is a development webserver, have fun!</h1>\nwerners dev content\n</body>\n",                                                                                         
-    "content_length": "87", 
-    "content_type": "text/html; charset=UTF-8", 
-    "cookies": {}, 
-    "cookies_string": "", 
-    "date": "Tue, 29 Oct 2019 11:14:24 GMT", 
-    "elapsed": 0, 
-    "etag": "\"57-5960ab74fc401\"", 
-    "last_modified": "Tue, 29 Oct 2019 11:14:12 GMT", 
-    "msg": "OK (87 bytes)", 
-    "redirected": false, 
-    "server": "Apache/2.4.6 (Red Hat Enterprise Linux)", 
-    "status": 200, 
+    },
+    "changed": false,
+    "connection": "close",
+    "content": "<body>\n<h1>This is a development webserver, have fun!</h1>\nwerners dev content\n</body>\n",
+    "content_length": "87",
+    "content_type": "text/html; charset=UTF-8",
+    "cookies": {},
+    "cookies_string": "",
+    "date": "Tue, 29 Oct 2019 11:14:24 GMT",
+    "elapsed": 0,
+    "etag": "\"57-5960ab74fc401\"",
+    "last_modified": "Tue, 29 Oct 2019 11:14:12 GMT",
+    "msg": "OK (87 bytes)",
+    "redirected": false,
+    "server": "Apache/2.4.6 (Red Hat Enterprise Linux)",
+    "status": 200,
     "url": "http://18.205.236.208"
 }
 [...]

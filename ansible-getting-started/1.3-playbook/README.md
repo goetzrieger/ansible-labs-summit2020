@@ -1,6 +1,6 @@
 # Exercise 1.3 - Writing Your First Playbook
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 While Ansible ad hoc commands are useful for simple operations, they are not suited for complex configuration management or orchestration scenarios. For such use cases *playbooks* are the way to go.
 
@@ -108,8 +108,8 @@ In the added lines:
 
   - A task is named and the module for the task is referenced. Here it uses the `yum` module.
 
-  - Parameters for the module are added: 
-  
+  - Parameters for the module are added:
+
     - `name:` to identify the package name
     - `state:` to define the wanted state of the package
 

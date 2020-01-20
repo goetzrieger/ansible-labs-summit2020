@@ -1,6 +1,6 @@
 # Exercise 1.4 - Using Variables
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 Previous exercises showed you the basics of Ansible Engine.  In the next few exercises, we are going
 to teach some more advanced Ansible skills that will add flexibility and power to your playbooks.
@@ -182,7 +182,7 @@ Or what about only looking for memory related facts:
 Facts can be used in a Playbook like variables, using the proper naming, of course. Create this Playbook as `facts.yml` in the `~/ansible-files/` directory:
 
 <!-- {% raw %} -->
-```yaml    
+```yaml
 ---
 - name: Output facts within a playbook
   hosts: all
@@ -221,10 +221,10 @@ ok: [ansible] =>
   msg: The default IPv4 address of ansible is 172.16.2.10
 
 PLAY RECAP *********************************************************************
-ansible                    : ok=2    changed=0    unreachable=0    failed=0   
-node1                      : ok=2    changed=0    unreachable=0    failed=0   
-node2                      : ok=2    changed=0    unreachable=0    failed=0   
-node3                      : ok=2    changed=0    unreachable=0    failed=0   
+ansible                    : ok=2    changed=0    unreachable=0    failed=0
+node1                      : ok=2    changed=0    unreachable=0    failed=0
+node2                      : ok=2    changed=0    unreachable=0    failed=0
+node3                      : ok=2    changed=0    unreachable=0    failed=0
 ```
 
 ----

@@ -1,6 +1,6 @@
 # Exercise 2.2 - Inventories, credentials and ad hoc commands
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 ## Create an Inventory
 

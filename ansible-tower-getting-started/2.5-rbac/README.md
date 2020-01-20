@@ -1,6 +1,6 @@
 # Exercise 2.5 - Role-based access control
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 You have already learned how Tower separates credentials from users. Another advantage of Ansible Tower is the user and group rights management.
 
@@ -21,19 +21,19 @@ Let’s create a user:
 - Click the green plus button
 
 - Fill in the values for the new user:
-  
+
     - **FIRST NAME:** Werner
-  
+
     - **LAST NAME:** Web
-  
+
     - **EMAIL:** wweb@example.com
-  
+
     - **USERNAME:** wweb
-  
+
     - **USER TYPE:** Normal User
-  
+
     - **PASSWORD:** ansible
-  
+
     - Confirm password
 
 - Click **SAVE**
@@ -69,13 +69,13 @@ Add the permission to use the template:
 - In the Permissions view of the Team `Web Content` click the green plus button to add permissions.
 
 - A new window opens. You can choose to set permissions for a number of resources.
-  
+
     - Select the resource type **JOB TEMPLATES**
-  
+
     - Choose the `Create index.html` Template by ticking the box next to it.
 
 - The second part of the window opens, here you assign roles to the selected resource.
-  
+
     - Choose **EXECUTE**
 
 - Click **SAVE**

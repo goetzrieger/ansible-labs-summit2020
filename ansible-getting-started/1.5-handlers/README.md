@@ -1,6 +1,6 @@
 # Exercise 1.5 - Conditionals, Handlers and Loops
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 ## Step 5.1 - Conditionals
 
@@ -87,7 +87,7 @@ First we need the file Ansible will deploy, let’s just take the one from node1
 ```bash
 [student<X>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/.
 student<X>@11.22.33.44's password:
-httpd.conf             
+httpd.conf
 ```
 
 Next, create the Playbook `httpd_conf.yml`. Make sure that you are in the directory `~/ansible-files`.
