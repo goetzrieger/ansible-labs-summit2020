@@ -1,4 +1,4 @@
-## Section 1 - Ansible Engine Exercises
+## Section 1 - Ansible Getting Started
 
  - [Exercise 1.1 - Check the Prerequisites](1.1-setup)
  - [Exercise 1.2 - Running Ad-hoc Commands](1.2-adhoc)
