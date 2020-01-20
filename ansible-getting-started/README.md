@@ -8,4 +8,3 @@
  - [Exercise 1.6 - Templates](1.6-templates)
  - [Exercise 1.7 - Roles](1.7-role)
  - [Exercise 1.8 - Bonus Labs](1.8-bonus)
-

@@ -1,5 +1,5 @@
 # ansible-labs-summit2020
 
-[Ansible Getting Started](./ansible-getting-started/README)
+[Ansible Getting Started](./ansible-getting-started/)
 
-[Ansible Tower Getting Started](./ansible-tower-getting-started/ansible-tower-getting-started)
+[Ansible Tower Getting Started](./ansible-tower-getting-started/)
