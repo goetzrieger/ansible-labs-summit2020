@@ -10,10 +10,10 @@ url: https://scotte.github.io/jekyll-clean
 # be the project name.
 # *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
 #     run it like so: jekyll serve --baseurl=''
-baseurl: /jekyll-clean
+baseurl: ''
 
 # These can be '' to hide the Github or Gitlab nav buttons
-github: 'scotte/jekyll-clean'
+github: ''
 gitlab: ''
 
 # Set this to your UA-# value, or '' to disable the block completely
@@ -22,7 +22,7 @@ gaaccount: ''
 # The 'comments' setting enables comments. You'll need to select either
 # disqus or isso below to choose a comment system. Individual posts can
 # override 'comments' to disable on a post-by-post basis.
-comments: true
+comments: false
 
 # Set this to your public isso URL to enable comments via isso. Set to '' to disable isso.
 isso: ''
