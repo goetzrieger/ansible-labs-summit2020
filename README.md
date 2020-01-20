@@ -1,4 +1,4 @@
-# ansible-labs-summit2020
+# Available Labs
 
 [Ansible Getting Started](./ansible-getting-started/)
 
