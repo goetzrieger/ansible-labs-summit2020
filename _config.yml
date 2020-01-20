@@ -1,10 +1,10 @@
 # Jekyll configuration
 
-name: My blog
-description: A jekyll theme
+name: Ansible Workshops
+description: Red Hat Summit 2020
 
 # url is currently only used only for the RSS feed in feed.xml
-url: https://scotte.github.io/jekyll-clean
+url: https://cbolz.github.io/ansible-labs-summit2020/
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
 # be the project name.
