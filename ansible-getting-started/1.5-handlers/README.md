@@ -21,12 +21,12 @@ For more on this, please refer to the documentation: <http://jinja.pocoo.org/doc
 
 As an example you would like to install an FTP server, but only on hosts that are in the "ftpserver" inventory group.
 
-To do that, first edit the inventory to add another group, and place `node2` in it. Make sure that that IP address of `node2` is always the same when `node2` is listed. Edit the inventory `~/lab_inventory/hosts` to look like the following listing:
+To do that, first edit the inventory to add another group, and place `node2` in it. Make sure that the IP address of `node2` is always the same when `node2` is listed. Edit the inventory `~/lab_inventory/hosts` to look like the following listing:
 
 ```ini
 [all:vars]
 ansible_user=student1
-ansible_ssh_pass=ansible
+ansible_ssh_pass=xxx
 ansible_port=22
 
 [web]
