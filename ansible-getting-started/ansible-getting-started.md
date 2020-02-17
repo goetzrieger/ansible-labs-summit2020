@@ -1,3 +1,5 @@
+- SHOULD BE REMOVED -
+
 # Exercise 1.1 - Check the Prerequisites
 
 **Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png)[日本語](README.ja.md).

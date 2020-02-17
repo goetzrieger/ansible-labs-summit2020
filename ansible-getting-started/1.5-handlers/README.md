@@ -1,6 +1,6 @@
 # Exercise 1.5 - Conditionals, Handlers and Loops
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
 
 ## Step 5.1 - Conditionals
 
@@ -21,12 +21,12 @@ For more on this, please refer to the documentation: <http://jinja.pocoo.org/doc
 
 As an example you would like to install an FTP server, but only on hosts that are in the "ftpserver" inventory group.
 
-To do that, first edit the inventory to add another group, and place `node2` in it. Make sure that that IP address of `node2` is always the same when `node2` is listed. Edit the inventory `~/lab_inventory/hosts` to look like the following listing:
+To do that, first edit the inventory to add another group, and place `node2` in it. Make sure that the IP address of `node2` is always the same when `node2` is listed. Edit the inventory `~/lab_inventory/hosts` to look like the following listing:
 
 ```ini
 [all:vars]
 ansible_user=student1
-ansible_ssh_pass=ansible
+ansible_ssh_pass=xxx
 ansible_port=22
 
 [web]
@@ -85,7 +85,7 @@ As a an example, let’s write a Playbook that:
 First we need the file Ansible will deploy, let’s just take the one from node1. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
 
 ```bash
-[student<X>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/.
+[student<X>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
 student<X>@11.22.33.44's password:
 httpd.conf             
 ```
@@ -168,6 +168,10 @@ To show the loops feature we will generate three new users on `node1`. For that,
          - prod_user
 ```
 <!-- {% endraw %} -->
+
+> **Tip**
+>
+> Lines starting with a variable need to be quoted.
 
 Understand the playbook and the output:
 
