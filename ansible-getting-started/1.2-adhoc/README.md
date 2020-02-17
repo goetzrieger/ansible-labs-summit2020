@@ -157,7 +157,7 @@ Get help for a specific module including usage examples:
 
 > **Tip**
 >
-> Mandatory options are marked by a "=" in `ansible-doc`.
+> Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
 
 ## Step 2.5 - Use the command module:
 
