@@ -1,7 +1,7 @@
 = Lab: Ansible Tower for Advanced Users
 :scrollbar:
 :data-uri:
-:toc: left
+#:toc: left
 :numbered:
 :icons: font
 :imagesdir: ./images
@@ -36,22 +36,23 @@ Definitely, the Asciidoc sources are available here:
 
 In this lab you work in a pre-configured lab environment. You will have access to the following hosts:
 
-[cols="v,v,v,v"]
+[cols="v,v,v"]
 |===
-|Role|Hostname External (if applicable)|Hostname Internal|Internal IP
+|Role|Hostname External (if applicable)|Hostname Internal
 
-|Control/Bastion Host, Gitea Repo|control-<GUID>.rhpds.opentlc.com|control.example.com|192.168.0.10
-|Ansible Tower Cluster|\https://tower{1-3}-<GUID>.rhpds.opentlc.com|tower{1-3}.example.com|192.168.0.{4,5,6}0
-|Ansible Tower Database Host||towerdb.example.com|192.168.0.70
-|Managed RHEL7 Host 1||host1.example.com|192.168.0.20
-|Managed RHEL7 Host 2||host2.example.com|192.168.0.30
-|Ansible Tower Isolated Node||isonode.remote.example.com|172.16.0.10
-|Managed Remote Host 1||isohost1.remote.example.com|172.16.0.20
-|Managed Remote Host 2||isohost2.remote.example.com|172.16.0.30
+|Control/Bastion Host, Gitea Repo|bastion.<GUID>.sandbox951.opentlc.com|bastion.<GUID>.internal
+|Ansible Tower Cluster|tower{1-3}.<GUID>.sandbox951.opentlc.com|tower{1-3}.<GUID>.internal
+|Ansible Tower Load Balancer|tower.<GUID>.sandbox951.opentlc.com|
+|Ansible Tower Database Host||towerdb.example.com
+|Managed RHEL7 Host 1||support1.<GUID>.internal
+|Managed RHEL7 Host 2||support1.<GUID>.internal
+|Ansible Tower Isolated Node||worker1.emea.<GUID>.internal
+|Managed Remote Host 1||isosupport1.<GUID>.internal
+|Managed Remote Host 2||isosupport2.<GUID>.internal
 
 |===
 
-TIP: Your lab environment will get a unique *<GUID>*. You will be able to SSH into `control.example.com` using the external hostname `control-<GUID>.rhpds.opentlc.com`, from here you need to SSH into the other hosts to run tasks on the commandline. 
+TIP: Your lab environment will get a unique *<GUID>*. You will be able to SSH into the bastion host using the external hostname `bastion.<GUID>.sandbox951.opentlc.com`, from here you need to SSH into the other hosts to run tasks on the commandline. 
 
 TIP: Ansible Tower has already been installed and licensed for you, the web UI will be reachable over HTTP/HTTPS. 
 
@@ -70,7 +71,7 @@ A diagram says more then a thousand words:
 
 image::adv_tower_diagram.png[align="center"]
 
-TIP: Access to the isolated node and the managed hosts is actually not restricted in the lab environment. Just imagine access is filtered for educational purposes... ;-)
+TIP: Access to the isolated node and the managed hosts is actually not restricted in the lab environment. Just imagine filtered, DMZ-like access rules for educational purposes... ;-)
 
 === Working the Lab
 
@@ -95,7 +96,7 @@ prompt.* :-)
 
 With version 3.1 Ansible Tower introduced clustering, replacing the redundancy solution configured with the active-passive nodes. Clustering is sharing load between Tower nodes/instances. Each Tower instance is able to act as an entry point for UI and API access.
 
-TIP: Using a load balancer in front of the Tower nodes is possible, but optional because an Ansible Tower cluster can be accessed via all Tower instances.
+TIP: Using a load balancer in front of the Tower nodes like in this lab is possible, but optional because an Ansible Tower cluster can be accessed via all Tower instances.
 
 Each instance in a Tower cluster expands the cluster's capacity to execute jobs. Jobs can and will run anywhere rather than be directed on where to run.
 
@@ -110,9 +111,9 @@ For the first contact to your cluster open your browser and login to all three n
 
 WARNING: Replace the *<GUID>* string with your GUID!
 
-* *\https://tower1-<GUID>.rhpds.opentlc.com*
-* *\https://tower2-<GUID>.rhpds.opentlc.com*
-* *\https://tower3-<GUID>.rhpds.opentlc.com*
+* *\https://tower1.<GUID>.sandbox951.opentlc.com*
+* *\https://tower2.<GUID>.sandbox951.opentlc.com*
+* *\https://tower3.<GUID>.sandbox951.opentlc.com*
 
 Just from the web UI you wouldn't know you've got a Tower cluster at your hands here. To learn more about your cluster and it's state, in one of the instances web UI under *ADMINISTRATION* choose *Instance Groups*. Here you will get an overview of the cluster by instance groups. Explore the information provided, of course there is no capacity used yet and no Jobs have run.
 
@@ -125,42 +126,40 @@ To dig deeper, for every group, click on *INSTANCES* to get more information abo
 You can also get information about your cluster on the command line. Open a terminal window and start an SSH session to your control host using the external hostname (replace the <GUID> string, key authentication should work automatically):
 
 ----
-# ssh lab-user@control-<GUID>.rhpds.opentlc.com
+# ssh -i ~/.ssh/toweradvlab.pem ec2-user@bastion.<GUID>.sandbox951.opentlc.com
 ----
 
 Then become root:
 ----
-[lab-user@control-<GUID> ~]$ sudo -i
-[root@control-<GUID> ~]# 
+[ec2-user@bastion 0 ~]$ sudo -i
+[root@bastion 0 ~]#
 ----
 
-TIP: Remember the control host is named *control-<GUID>.rhpds.opentlc.com* when accessed from the outside, inside the lab environment you can use *control.example.com*.
+TIP: Remember the control host is named *bastion.<GUID>.sandbox951.opentlc.com* when accessed from the outside, inside the lab environment you use *bastion.<GUID>.internal*.
 
-WARNING: We'll leave out the *<GUID>* part of the prompt from now on for readability.
-
-From `control.example.com` jump to one of the Tower instances, e.g.:
+From your control host now jump to one of the Tower instances, e.g.:
 
 ----
-[root@control ~]# ssh tower1.example.com
+# ssh tower1.<GUID>.internal
+# sudo -i
 ----
+
+TIP: SSH keys have been distributed for the root user already.
 
 And run the following command:
 
 ----
 [root@tower1 ~]# awx-manage list_instances
-[tower capacity=171]
-	tower2.example.com capacity=57 version=3.4.1 heartbeat="2019-04-05 12:00:38"
-	tower1.example.com capacity=57 version=3.4.1 heartbeat="2019-04-05 11:59:58"
-	tower3.example.com capacity=57 version=3.4.1 heartbeat="2019-04-05 12:00:41"
+[tower capacity=51]
+        tower1.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
+        tower2.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
+        tower3.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
 
-[prod capacity=57]
-	tower3.example.com capacity=57 version=3.4.1 heartbeat="2019-04-05 12:00:41"
-
-[dev capacity=57]
-	tower2.example.com capacity=57 version=3.4.1 heartbeat="2019-04-05 12:00:38"
+[emea capacity=17 controller=tower]
+        worker1.emea.<GUID>.internal capacity=17 version=ansible-runner-1.4.4 last_isolated_check="2020-02-11 16:04:10" heartbeat="2020-02-11 16:04:12"
 ----
 
-So what we've got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 57 is allocated to any of our three nodes. 
+So what we've got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 17 is allocated to any of our three nodes. 
 
 TIP: The *awx-manage* (formerly tower-manage) utility can be used to administer a lot of the more internal aspects of Tower. You can e.g. use it to clean up old data, for token and session management and for cluster management.
 
@@ -168,72 +167,70 @@ TIP: The *awx-manage* (formerly tower-manage) utility can be used to administer 
 
 This is an advanced Tower lab so we don't really want you to use the web UI for everything. Tower's web UI is well done and helps with a lot of tasks, but same as in system administration it's often handy to be able to use the command line or scripts for certain tasks.
 
-We've incorporated different ways to work with Tower in this lab guide and hope you'll find it helpful. The first step we do is install the *tower-cli* utility.
+We've incorporated different ways to work with Tower in this lab guide and hope you'll find it helpful. The first step we do is install the *AWX CLI* utility.
 
-TIP: *tower-cli* is an open source project currently under development and, until a complete implementation occurs, only implements a subset of Tower’s features. Right now you can install `tower-cli` from Python Pip or from the EPEL repository.
+TIP: *AWX CLI* is the official command-line client for AWX and Red Hat Ansible Tower. It uses naming and structure consistent with the AWX HTTP API, provides consistent output formats with optional machine-parsable formats.
 
-We'll install it on your control host using locally cached RPM packages. Exit the SSH session to *tower1.example.com* or open a new one to the control host, then install *tower-cli*:
+We'll install it on your control host using the official repository RPM packages. Exit the SSH session to *tower1.example.com* or open a new one to the control host, then install *AWX CLI* as `root`:
 
 ----
-# ssh root@control-<GUID>.rhpds.opentlc.com
-[root@control ~]# yum install python2-ansible-tower-cli -y
+yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-awx-cli-el7.repo
+yum install ansible-awx-cli -y
 ----
 
 After installing the tool, you have to do some basic configuration (Tower node to connect to, user and password):
 
 ----
-[root@control ~]# tower-cli config host tower2.example.com
-[root@control ~]# tower-cli config username admin
-[root@control ~]# tower-cli config password r3dh4t1!
+[root@bastion ~]# awx-cli config host tower1.ewl04.internal
+[root@bastion ~]# awx-cli config username admin
+[root@bastion ~]# awx-cli config password r3dh4t1!
 ----
 
 TIP: It doesn't really matter what node you connect to.
 
-Now test *tower-cli* is working. First run it without arguments to get a list of resources you can manage with it:
+Now test *awx-cli* is working. First run it without arguments to get a list of resources you can manage with it:
 
 ----
-[root@control ~]# tower-cli --help
+[root@control ~]# awx-cli --help
 ----
 
 And then test something, e.g.:
 
 ----
-[root@control ~]# tower-cli inventory list
+[root@control ~]# awx-cli inventory list
 ----
 
-TIP: When trying to find a *tower-cli* command line for something you want to do, just move one by one.
+TIP: When trying to find a *awx-cli* command line for something you want to do, just move one by one.
 
 Example:
 
 ----
-[root@control ~]# tower-cli --help
+[root@control ~]# awx-cli --help
 ----
 
 Okay, there is an *inventory* resource. Let's see...
 
 ----
-[root@control ~]# tower-cli inventory --help
+[root@control ~]# awx-cli inventory --help
 ----
 
 Well, *create* sounds like what I had in mind. But what arguments do I need? Just run:
 
 ----
-[root@control ~]# tower-cli inventory create
+[root@control ~]# awx-cli inventory create
 ----
 
 Bingo! Take note of the *REQUIRED* mark.
 
-TIP: When you start using *tower-cli* this file is very helpful as it provides a lot of examples: https://raw.githubusercontent.com/ansible/tower-cli/master/docs/source/cli_ref/examples/fake_data_creator.sh
+=== Challenge Lab: awx-cli
 
-=== Challenge Lab: tower-cli
+To practice your *awx-cli* skills, here is a challenge:
 
-To practice your *tower-cli* skills, here is a challenge:
+* Try to change the *idle time out* of the Tower web UI, it's 1800 seconds by default. Set it to, say, 7200. Using *awx-cli*, of course.
 
-* Try to change the *idle time out* of the Tower web UI, it's 1800 seconds by default. Set it to, say, 7200. Using *tower-cli*, of course.
+* Start by looking for a resource type *awx-cli* provides using *--help* that sounds like it has something to do with changing settings.
 
-* Start by looking for a resource type *tower-cli* provides using *--help* that sounds like it has something to do with changing settings.
-
-* Look at the available *tower-cli* commands for this resource type.
+* Look at the available *awx-cli* commands for this resource type.
 
 * Use the commands to have a look at the parameters settings and change it.
 
@@ -246,27 +243,27 @@ WARNING: *SOLUTION BELOW!*
 +++ </summary><div> +++
 
 ----
-[root@control ~]# tower-cli setting
-[root@control ~]# tower-cli setting get SESSION_COOKIE_AGE
-[root@control ~]# tower-cli setting modify SESSION_COOKIE_AGE 7200
-[root@control ~]# tower-cli setting get SESSION_COOKIE_AGE
+[root@control ~]# awx-cli setting
+[root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
+[root@control ~]# awx-cli setting modify SESSION_COOKIE_AGE 7200
+[root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
 ----
 
 +++ </div></details> +++
 
-If you want to, go to the web UI and check the setting under *ADMINISTRATION->Settings->System*.
+If you want to, go to the web UI of any node (not just the one you connected *awx-cli* to) and check the setting under *ADMINISTRATION->Settings->System*.
 
-== Creating Tower Objects Using `tower-cli`
+== Creating Tower Objects Using `awx-cli`
 
-Next we want to configure Tower so that we can run Ansible jobs. For this we need Inventories, Projects, Credentials and Job Templates. When you first start with Tower, this is usually done via web UI. But using Tower more often and especially when you want to boot-strap a configured Tower from the bottom up it makes sense to do this via *tower-cli* in a scripted way - especially when Ansible is not yet set up properly.
+Next we want to configure Tower so that we can run Ansible jobs. For this we need Inventories, Projects, Credentials and Job Templates. When you first start with Tower, this is usually done via web UI. But using Tower more often and especially when you want to boot-strap a configured Tower from the bottom up it makes sense to do this via *awx-cli* in a scripted way - especially when Ansible is not yet set up properly.
 
-In the first step you will learn to setup the inventory with *tower-cli* step by step to get practice using the tool. For the following steps (Projects, Credentials, Job Templates) we will not go into such detail. Instead we will just explain the actual *tower-cli* commands and put them all into a shell script. This shell script will serve as an example of how to bootstrap a Tower from bottom up, for example for test cases.
+In the first step you will learn to setup the inventory with *awx-cli* step by step to get practice using the tool. For the following steps (Projects, Credentials, Job Templates) we will not go into such detail. Instead we will just explain the actual *awx-cli* commands and put them all into a shell script. This shell script will serve as an example of how to bootstrap a Tower from bottom up, for example for test cases.
 
 === Create an Inventory
 
-First we create a static inventory, we'll get to dynamic inventories later on. Try to figure out the proper invocation of *tower-cli* yourself and create an inventory name *Example Inventory*.
+First we create a static inventory, we'll get to dynamic inventories later on. Try to figure out the proper invocation of *awx-cli* yourself and create an inventory name *Example Inventory*.
 
-TIP: Remember how you used the *tower-cli* help to get down to the needed command.
+TIP: Remember how you used the *awx-cli* help to get down to the needed command.
 
 WARNING: *Solution Below*!
 
@@ -275,16 +272,16 @@ WARNING: *Solution Below*!
 +++ </summary><div> +++
 
 ----
-[root@control ~]# tower-cli inventory create --name "Example Inventory" --organization "Default"
+[root@control ~]# awx-cli inventory create --name "Example Inventory" --organization "Default"
 ----
 
 TIP: You can work with multiple organizations in Tower. In this lab we'll work in the *Default* organization.
 
 +++ </div></details> +++
 
-==== Add Hosts to the Inventory using *tower-cli*
+==== Add Hosts to the Inventory using *awx-cli*
 
-Now that we have the empty inventory created, add your two managed hosts *host1.example.com* and *host2.example.com*, again using *tower-cli*.
+Now that we have the empty inventory created, add your two managed hosts *host1.example.com* and *host2.example.com*, again using *awx-cli*.
 
 WARNING: *Solution Below*!
 
@@ -293,23 +290,23 @@ WARNING: *Solution Below*!
 +++ </summary><div> +++
 
 ----
-[root@control ~]# tower-cli host create --name "host1.example.com" --inventory "Example Inventory"
-[root@control ~]# tower-cli host create --name "host2.example.com" --inventory "Example Inventory"
+[root@control ~]# awx-cli host create --name "host1.example.com" --inventory "Example Inventory"
+[root@control ~]# awx-cli host create --name "host2.example.com" --inventory "Example Inventory"
 ----
 
 +++ </div></details> +++
 
-=== Create script to contain this and all following tower-cli commands
+=== Create script to contain this and all following awx-cli commands
 
-As mentioned one of the puproses of *tower-cli* is to use it to automatically configure more complex Tower setups. In such cases, multiple *tower-cli* commands are put togerther in a script. We follow that practice in our example here, and create a shell script on the control host with all commands you have to run to bootstrap Tower. So in the next few paragraphs we describe the steps to do and describe the corresponding *tower-cli* commands. But we will not execute them, but instead write them into a script.
+As mentioned one of the puproses of *awx-cli* is to use it to automatically configure more complex Tower setups. In such cases, multiple *awx-cli* commands are put togerther in a script. We follow that practice in our example here, and create a shell script on the control host with all commands you have to run to bootstrap Tower. So in the next few paragraphs we describe the steps to do and describe the corresponding *awx-cli* commands. But we will not execute them, but instead write them into a script.
 
 Create the file *setup-tower.sh* with your favorite editor and add the commands executed above:
 
 ----
 #!/bin/bash
-tower-cli inventory create --name "Example Inventory" --organization "Default"
-tower-cli host create --name "host1.example.com" --inventory "Example Inventory"
-tower-cli host create --name "host2.example.com" --inventory "Example Inventory"
+awx-cli inventory create --name "Example Inventory" --organization "Default"
+awx-cli host create --name "host1.example.com" --inventory "Example Inventory"
+awx-cli host create --name "host2.example.com" --inventory "Example Inventory"
 ----
 
 TIP: You have run these commands above already, true. But we want to show how to create the full script here. 
@@ -321,7 +318,7 @@ Next, save the script, exit the editor and make the script executable. Then laun
 [root@control ~]# ./setup-tower.sh
 ----
 
-TIP: If you run the script a second time, you will see that *tower-cli* is idempotent, so it's fine that you run the *tower-cli* commands already.
+TIP: If you run the script a second time, you will see that *awx-cli* is idempotent, so it's fine that you run the *awx-cli* commands already.
 
 From now on we'll explain the needed comands for each of the next steps and add them to the script step-by-step.
 
@@ -329,10 +326,10 @@ From now on we'll explain the needed comands for each of the next steps and add 
 
 TIP: SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user *ansible* on *control.example.com*.
 
-Now we want to configure the credentials to access our managed hosts from Tower. Configuring credentials with SSH keys from *tower-cli* on the command line is a bit cumbersome as you can see in the following example. Add the following line to to *setup-tower.sh*, but don't run the script yet:
+Now we want to configure the credentials to access our managed hosts from Tower. Configuring credentials with SSH keys from *awx-cli* on the command line is a bit cumbersome as you can see in the following example. Add the following line to to *setup-tower.sh*, but don't run the script yet:
 
 ----
-tower-cli credential create --name "Example Credentials" \
+awx-cli credential create --name "Example Credentials" \
                      --organization "Default" --credential-type "Machine" \
                      --inputs="{\"username\":\"ansible\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ansible/.ssh/id_rsa)\n\",\"become_method\":\"sudo\"}"
 ----
@@ -341,7 +338,7 @@ The ssh key is read in here via a sub-shell. Since JSON POST data need to be on 
 
 Don't run the shell script yet, first got through the following steps to add all commands to it.
 
-WARNING: As the *tower-cli* commands get longer you'll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \ on one line, of course.
+WARNING: As the *awx-cli* commands get longer you'll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \ on one line, of course.
 
 === Using Git for Software Configuration Management (SCM)
 
@@ -354,10 +351,10 @@ All repos on Gitea are configured as private, e.g. a login is needed to access t
 * *User*: git
 * *Password*: r3dh4t1!
 
-To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over HTTP. This credential is user/password based, and we add the following *tower-cli* command to our *setup-tower.sh* script. Just add it to the script, don't execute it yet.
+To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over HTTP. This credential is user/password based, and we add the following *awx-cli* command to our *setup-tower.sh* script. Just add it to the script, don't execute it yet.
 
 ----
-tower-cli credential create --credential-type="Source Control" \
+awx-cli credential create --credential-type="Source Control" \
                     --name="Gitea Credentials" \
                     --inputs='{"username": "git", "password": "r3dh4t1!"}' \
                     --organization="Default"
@@ -367,10 +364,10 @@ WARNING: Note the different *credential-type* *source* instead of *machine* in t
 
 === Create the Project
 
-Now with the SCM credentials configured, the next step is to add a project to import the playbooks. Add the appropriate *tower-cli* line to the script *setup-tower.sh*:
+Now with the SCM credentials configured, the next step is to add a project to import the playbooks. Add the appropriate *awx-cli* line to the script *setup-tower.sh*:
 
 ----
-tower-cli project create --name="Apache" \
+awx-cli project create --name="Apache" \
                   --scm-type=git \
                   --scm-url="http://control.example.com/gitea/git/apache.git" \
                   --scm-credential="Gitea Credentials" \
@@ -379,16 +376,16 @@ tower-cli project create --name="Apache" \
                   --wait
 ----
 
-TIP: Note that the first parameter to *tower-cli* is different here since we work on the resource *project*.
+TIP: Note that the first parameter to *awx-cli* is different here since we work on the resource *project*.
 
 WARNING: Remember you can use `control.example.com` as hostname in *SCM URL* because it resolves inside the environment. For accessing the Gitea web UI in your browser you need to use `\http://control-<GUID>.rhpds.opentlc.com/gitea`.
 
 === Create a Job Template
 
-Before running an Ansible *Job* from your Tower cluster you must create a *Job Template*, again business as usual for Tower users. Here *tower-cli* will work on the resource *job_template*. Add the following line to your script *setup-tower.sh*. Don't run the script yet.
+Before running an Ansible *Job* from your Tower cluster you must create a *Job Template*, again business as usual for Tower users. Here *awx-cli* will work on the resource *job_template*. Add the following line to your script *setup-tower.sh*. Don't run the script yet.
 
 ----
-tower-cli job_template create \
+awx-cli job_template create \
                     --name="Install Apache" \
                     --inventory="Example Inventory" \
                     --credential="Example Credentials" \
@@ -410,24 +407,24 @@ The final script is also shown here:
 
 ----
 #!/bin/bash
-tower-cli inventory create --name "Example Inventory" --organization "Default"
-tower-cli host create --name "host1.example.com" --inventory "Example Inventory"
-tower-cli host create --name "host2.example.com" --inventory "Example Inventory"
-tower-cli credential create --name "Example Credentials" \
+awx-cli inventory create --name "Example Inventory" --organization "Default"
+awx-cli host create --name "host1.example.com" --inventory "Example Inventory"
+awx-cli host create --name "host2.example.com" --inventory "Example Inventory"
+awx-cli credential create --name "Example Credentials" \
                       --organization "Default" --credential-type "Machine" \
                       --inputs="{\"username\":\"ansible\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ansible/.ssh/id_rsa)\n\",\"become_method\":\"sudo\"}"
-tower-cli credential create --credential-type="Source Control" \
+awx-cli credential create --credential-type="Source Control" \
                      --name="Gitea Credentials" \
                      --inputs='{"username": "git", "password": "r3dh4t1!"}' \
                      --organization="Default"
-tower-cli project create --name="Apache" \
+awx-cli project create --name="Apache" \
                   --scm-type=git \
                   --scm-url="http://control.example.com/gitea/git/apache.git" \
                   --scm-credential="Gitea Credentials" \
                   --organization "Default" \
                   --scm-clean=true --scm-delete-on-update=true --scm-update-on-launch=true \
                   --wait
-tower-cli job_template create \
+awx-cli job_template create \
                      --name="Install Apache" \
                      --inventory="Example Inventory" \
                      --credential="Example Credentials" \
@@ -440,7 +437,7 @@ Run the script, and verify that all resources were properly created in the web U
 
 *Take away:*
 
-It's easy to script Tower's configuration using *tower-cli*.  This way you can bootstrap a new Tower node or script tasks you have to run on a regular basis. You will learn more about the Tower API at the end of the lab.
+It's easy to script Tower's configuration using *awx-cli*.  This way you can bootstrap a new Tower node or script tasks you have to run on a regular basis. You will learn more about the Tower API at the end of the lab.
 
 === It's a Cluster After All
 
@@ -563,7 +560,7 @@ You can check your instance groups in a number of ways.
 ==== Via cli
 
 ----
-[root@control ~]# tower-cli instance_group list
+[root@control ~]# awx-cli instance_group list
 == ===== ======== ================= 
 id name  capacity consumed_capacity 
 == ===== ======== ================= 
@@ -654,10 +651,10 @@ The Playbooks can be found in the "compliance" repository on Gitea: `\http://con
 
 ==== First Step: Add Repository to Tower
 
-The compliance repository needs to be added as project. Feel free to use the web UI or use *tower-cli* like shown below.
+The compliance repository needs to be added as project. Feel free to use the web UI or use *awx-cli* like shown below.
 
 ----
-[root@control ~]# tower-cli project create -n "Compliance Repository" \
+[root@control ~]# awx-cli project create -n "Compliance Repository" \
                     --organization Default \
                     --scm-type git \
                     --scm-url http://control.example.com/gitea/git/compliance.git \
@@ -666,20 +663,20 @@ The compliance repository needs to be added as project. Feel free to use the web
                     --scm-credential "Gitea Credentials"
 ----
 
-TIP: It should again be obvious that using tower-cli is much faster than clicking through multiple steps in a web interface.
+TIP: It should again be obvious that using awx-cli is much faster than clicking through multiple steps in a web interface.
 
 Have a look at the status of the Project:
 
 ----
-[root@control ~]# tower-cli project status -n "Compliance Repository"
+[root@control ~]# awx-cli project status -n "Compliance Repository"
 ----
 
 ==== Second Step: Create three Templates
 
-As mentioned the repository contains three Playbooks to enforce different compliance requirements. We again create these three templates via `tower-cli`:
+As mentioned the repository contains three Playbooks to enforce different compliance requirements. We again create these three templates via `awx-cli`:
 
 ----
-[root@control ~]# tower-cli job_template create -n "Compliance STIG packages" \
+[root@control ~]# awx-cli job_template create -n "Compliance STIG packages" \
                     --job-type run -i "Example Inventory" \
                     --project "Compliance Repository" \
                     --playbook "stig-packages.yml" \
@@ -688,7 +685,7 @@ As mentioned the repository contains three Playbooks to enforce different compli
 ----
 
 ----
-[root@control ~]# tower-cli job_template create -n "Compliance STIG config" \
+[root@control ~]# awx-cli job_template create -n "Compliance STIG config" \
                     --job-type run -i "Example Inventory" \
                     --project "Compliance Repository" \
                     --playbook "stig-config.yml" \
@@ -697,7 +694,7 @@ As mentioned the repository contains three Playbooks to enforce different compli
 ----
 
 ----
-[root@control ~]# tower-cli job_template create -n "Compliance CIS" \
+[root@control ~]# awx-cli job_template create -n "Compliance CIS" \
                     --job-type run -i "Example Inventory" \
                     --project "Compliance Repository" \
                     --playbook "cis.yml" \
@@ -707,7 +704,7 @@ As mentioned the repository contains three Playbooks to enforce different compli
 
 === Create Parallel Workflow
 
-To enable parallel execution of the tasks in these job templates, we will create a workflow. We'll use the web UI because using *tower-cli* is a bit too involved for a lab. Workflows are configured in the *Templates* view, you might have noticed you can choose between *Job Template* and *Workflow Template* when adding a template.
+To enable parallel execution of the tasks in these job templates, we will create a workflow. We'll use the web UI because using *awx-cli* is a bit too involved for a lab. Workflows are configured in the *Templates* view, you might have noticed you can choose between *Job Template* and *Workflow Template* when adding a template.
 
 * Go to the *Templates* view and click the image:green_plus.png[20,20] button. This time choose *Workflow Template*
 ** *NAME:* Compliance Workflow
@@ -876,11 +873,11 @@ TIP: During installation of an isolated node, a randomized RSA key is generated 
 
 === Verify Isolated Nodes
 
-Isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also applies to isolated nodes. For example, using `tower-cli`:
+Isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also applies to isolated nodes. For example, using `awx-cli`:
 
 [subs=+quotes]
 ----
-[root@control ~]# tower-cli instance_group list
+[root@control ~]# awx-cli instance_group list
 == ======== ======== =================
 id   name   capacity consumed_capacity
 == ======== ======== =================
@@ -897,7 +894,7 @@ Like other instance groups, isolated node groups can be assigned at the level of
 
 Let's assume we have a DMZ setup with two hosts we want to manage siloed off from the rest of the infrastructure called *isohost{1,2}.remote.example.com*. The isolated node we configured above is located in the same DMZ and is able to connect to the DMZ hosts.
 
-Now create a new inventory in your Tower cluster. You can do this with `tower-cli` like we did above, or you use the web UI. Why not use the web UI for a change?
+Now create a new inventory in your Tower cluster. You can do this with `awx-cli` like we did above, or you use the web UI. Why not use the web UI for a change?
 
 In the Tower web UI under *RESOURCES*, click *Inventories*:
 
@@ -1504,10 +1501,10 @@ Watch how the changes are done to the target machines. Afterwards, execute the P
 
 ==== From Tower
 
-The new repository needs to be added as project. Feel free to use the web UI or use *tower-cli* as user *root* like shown below.
+The new repository needs to be added as project. Feel free to use the web UI or use *awx-cli* as user *root* like shown below.
 
 ----
-[root@control ~]# tower-cli project create -n "Structured Content Repository" \
+[root@control ~]# awx-cli project create -n "Structured Content Repository" \
                     --organization Default \
                     --scm-type git \
                     --scm-url http://control.example.com/gitea/git/structured-content.git \
@@ -1549,7 +1546,7 @@ Now create a template to execute the `site.yml` against both stages at the same 
 TIP: Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
 ----
-[root@control ~]# tower-cli job_template create -n "Structured Content Execution" \
+[root@control ~]# awx-cli job_template create -n "Structured Content Execution" \
                     --job-type run -i "Structured Content Inventory" \
                     --project "Structured Content Repository" \
                     --playbook "site.yml" \
@@ -1727,14 +1724,14 @@ This will fail. In the case of *PUT* you need to enter all mandatory fields, eve
 
 When you're done press the red *DELETE* button and remove Johnny Smithy.
 
-=== Using tower-cli to Learn the API
+=== Using awx-cli to Learn the API
 
-The Web UI is nice but we love the command line, right? To learn about API calls `tower-cli` comes to the rescue. For the next steps bring up an SSH session and make sure you are user root on *control.example.com*. 
+The Web UI is nice but we love the command line, right? To learn about API calls `awx-cli` comes to the rescue. For the next steps bring up an SSH session and make sure you are user root on *control.example.com*. 
 
 Let's start simple and try to get the version of Tower installed:
 
 ----
-[root@control ~]# tower-cli version --verbose
+[root@control ~]# awx-cli version --verbose
 Tower CLI 3.3.0
 API v2
 GET https://tower2.example.com/api/v2/config/
@@ -1744,7 +1741,7 @@ Ansible Tower 3.4.1
 Ansible 2.7.5
 ----
 
-You see that with the `--verbose` option, tower-cli tells us which API calls it's making, what *parameters* it's sending with *GET* requests and what *data* is needed for *POST* actions. 
+You see that with the `--verbose` option, awx-cli tells us which API calls it's making, what *parameters* it's sending with *GET* requests and what *data* is needed for *POST* actions. 
 
 In this simple case you can simply take the call and run it with e.g. *curl*:
 
@@ -1758,14 +1755,14 @@ TIP: `jq` is optional but useful for us humans to understand the output without 
 
 ==== Practice, Practice...
 
-Using `tower-cli` to learn about the API call and executing it via curl e.g. in scripts is really useful so let's practice a bit. What about creating a new user, say Albert Miller?
+Using `awx-cli` to learn about the API call and executing it via curl e.g. in scripts is really useful so let's practice a bit. What about creating a new user, say Albert Miller?
 
-TIP: Consider that the parameters shown by tower-cli are in Python format (single quotes and the unicode `u`) but we need to send data in JSON format (double quotes).
+TIP: Consider that the parameters shown by awx-cli are in Python format (single quotes and the unicode `u`) but we need to send data in JSON format (double quotes).
 
-First create the user with tower-cli, then delete it again. Use `--verbose` to get the API invocation. 
+First create the user with awx-cli, then delete it again. Use `--verbose` to get the API invocation. 
 
 ----
-[root@control ~]# tower-cli user create --username amiller --email amiller@example.com --password redhat --verbose
+[root@control ~]# awx-cli user create --username amiller --email amiller@example.com --password redhat --verbose
 
 *** DETAILS: Checking for an existing record. *********************************
 GET https://tower2.example.com/api/v2/users/
@@ -1777,7 +1774,7 @@ Data: {'username': u'amiller', 'password': u'redhat', 'email': u'amiller@example
 ----
 
 ----
-[root@control ~]# tower-cli user delete --username amiller --verbose
+[root@control ~]# awx-cli user delete --username amiller --verbose
 
 *** DETAILS: Getting the record. **********************************************
 GET https://tower2.example.com/api/v2/users/
@@ -1787,7 +1784,7 @@ DELETE /users/3/
 DELETE https://tower2.example.com/api/v2/users/3/
 ----
 
-Now we'll do the same using *curl* with the API endpoints, parameters and data we have learned from `tower-cli`:
+Now we'll do the same using *curl* with the API endpoints, parameters and data we have learned from `awx-cli`:
 
 WARNING: The "Getting the record" is (sadly) a bit misleading...  you need to add `?username=amiller` to filter on the username:
 
