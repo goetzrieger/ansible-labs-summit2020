@@ -1,12 +1,12 @@
 # Exercise 2.2 - Inventories, credentials and ad hoc commands
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
 
 ## Create an Inventory
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student\<X\>.workshopname.rhdemo.io** (replace "\<X\>" with your student number and "workshopname" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student\<X\>.\<workshopname\>.rhdemo.io** (replace "\<X\>" with your student number and "\<workshopname\>" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
 
 Create the inventory:
 
@@ -29,7 +29,7 @@ Login to your Tower control host via SSH:
 > Replace **workshopname** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
 
 ```bash
-ssh student<X>@student<X>.workshopname.rhdemo.io
+ssh student<X>@student<X>.<workshopname>.rhdemo.io
 ```
 
 You can find the inventory information at `~/lab_inventory/hosts`. Output them with `cat`, they should look like:
@@ -38,7 +38,7 @@ You can find the inventory information at `~/lab_inventory/hosts`. Output them w
 $ cat ~/lab_inventory/hosts 
 [all:vars]
 ansible_user=student<X>
-ansible_ssh_pass=PASSWORD
+ansible_ssh_pass=<PASSWORD>
 ansible_port=22
 
 [web]
@@ -83,10 +83,9 @@ As this is an important part of your Tower setup, why not make sure that connect
 
  To access the Tower host via SSH do the following:
 
-- Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io` 
-- Replace **workshopname** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
-- From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`. 
-- For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
+- Login to your Tower control host via SSH: `ssh student<X>@student<X>.<workshopname>.rhdemo.io` 
+- Replace **\<workshopname\>** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
+- From Tower, SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`; for the SSH connection use the node password from the inventory file (ansible_ssh_pass=), `sudo -i` works without password.
 
 ```bash
 [student<X>@ansible ~]$ ssh student<X>@22.33.44.55
