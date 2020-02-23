@@ -1,6 +1,6 @@
 # Exercise 2.7 - Wrap up
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
 
 # Final Challenge or Putting it all Together
 
@@ -133,7 +133,7 @@ Note the warning in the first line about not to use `curl` via the `command` mod
 Check the results again from your Tower control host. Since we got a warning last time using `curl` via the `command` module, this time we will use the dedicated `uri` module. As arguments it needs the actual URL and a flag to output the body in the results.
 
 ```bash
-[student<X>ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
+[student<X>ansible ~]$ ansible web -m uri -a "url=http://{{ ansible_host }} return_content=yes"
 node3 | SUCCESS => {
     "accept_ranges": "bytes", 
     "ansible_facts": {
