@@ -157,7 +157,7 @@ Here is a list of tasks:
 
 - It will now ask for the inventory to use, choose the `Webserver` inventory and click **LAUNCH**
 
-- Wait until the Job has finished and make sure it run only on `node1`
+- Wait until the Job has finished and make sure it ran only on `node1`
 
 > **Tip**
 > 
