@@ -174,7 +174,7 @@ TIP: *AWX CLI* is the official command-line client for AWX and Red Hat Ansible T
 We'll install it on your control host using the official repository RPM packages. Exit the SSH session to *tower1.example.com* or open a new one to the control host, then install *AWX CLI* as `root`:
 
 ----
-yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-awx-cli-el7.repo
+yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el7.repo
 yum install ansible-awx-cli -y
 ----
 
@@ -197,7 +197,7 @@ Now test *awx-cli* is working. First run it without arguments to get a list of r
 And then test something, e.g.:
 
 ----
-[root@control ~]# awx-cli inventory list
+[root@control ~]# awx-cli user list
 ----
 
 TIP: When trying to find a *awx-cli* command line for something you want to do, just move one by one.
@@ -290,8 +290,8 @@ WARNING: *Solution Below*!
 +++ </summary><div> +++
 
 ----
-[root@control ~]# awx-cli host create --name "host1.example.com" --inventory "Example Inventory"
-[root@control ~]# awx-cli host create --name "host2.example.com" --inventory "Example Inventory"
+[root@control ~]# awx-cli host create --name "support1.ewl05.internal" --inventory "Example Inventory"
+[root@control ~]# awx-cli host create --name "support2.ewl05.internal" --inventory "Example Inventory"
 ----
 
 +++ </div></details> +++
@@ -318,7 +318,7 @@ Next, save the script, exit the editor and make the script executable. Then laun
 [root@control ~]# ./setup-tower.sh
 ----
 
-TIP: If you run the script a second time, you will see that *awx-cli* is idempotent, so it's fine that you run the *awx-cli* commands already.
+TIP: You will see that *awx-cli* is idempotent, so it's fine that you did run the *awx-cli* commands already.
 
 From now on we'll explain the needed comands for each of the next steps and add them to the script step-by-step.
 
@@ -340,37 +340,36 @@ Don't run the shell script yet, first got through the following steps to add all
 
 WARNING: As the *awx-cli* commands get longer you'll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \ on one line, of course.
 
-=== Using Git for Software Configuration Management (SCM)
+// === Using Git for Software Configuration Management (SCM)
 
-Your lab environment includes Gitea, a Git-service that comes with a web ui and much more. Gitea runs on `control.example.com` and can be accessed via HTTP. Go and have a look around by accessing:
+// Your lab environment includes Gitea, a Git-service that comes with a web ui and much more. Gitea runs on `control.example.com` and can be accessed via HTTP. Go and have a look around by accessing:
 
-*\http://control-<GUID>.rhpds.opentlc.com/gitea*
+// *\http://control-<GUID>.rhpds.opentlc.com/gitea*
 
-All repos on Gitea are configured as private, e.g. a login is needed to access the content. The credentials are:
+// All repos on Gitea are configured as private, e.g. a login is needed to access the content. The credentials are:
 
-* *User*: git
-* *Password*: r3dh4t1!
+// * *User*: git
+// * *Password*: r3dh4t1!
 
-To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over HTTP. This credential is user/password based, and we add the following *awx-cli* command to our *setup-tower.sh* script. Just add it to the script, don't execute it yet.
+// To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over HTTP. This credential is user/password based, and we add the following *awx-cli* command to our *setup-tower.sh* script. Just add it to the script, don't execute it yet.
 
-----
-awx-cli credential create --credential-type="Source Control" \
-                    --name="Gitea Credentials" \
-                    --inputs='{"username": "git", "password": "r3dh4t1!"}' \
-                    --organization="Default"
-----
+// ----
+// awx-cli credential create --credential-type="Source Control" \
+//                     --name="Gitea Credentials" \
+//                     --inputs='{"username": "git", "password": "r3dh4t1!"}' \
+//                     --organization="Default"
+// ----
 
-WARNING: Note the different *credential-type* *source* instead of *machine* in the command.
+// WARNING: Note the different *credential-type* *source* instead of *machine* in the command.
 
 === Create the Project
 
-Now with the SCM credentials configured, the next step is to add a project to import the playbooks. Add the appropriate *awx-cli* line to the script *setup-tower.sh*:
+The Ansible content used in this lab is hosted on Github. The next step is to add a project to import the playbooks. Add the appropriate *awx-cli* line to the script *setup-tower.sh*:
 
 ----
 awx-cli project create --name="Apache" \
                   --scm-type=git \
-                  --scm-url="http://control.example.com/gitea/git/apache.git" \
-                  --scm-credential="Gitea Credentials" \
+                  --scm-url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
                   --organization "Default" \
                   --scm-clean=true --scm-delete-on-update=true --scm-update-on-launch=true \
                   --wait
@@ -378,7 +377,7 @@ awx-cli project create --name="Apache" \
 
 TIP: Note that the first parameter to *awx-cli* is different here since we work on the resource *project*.
 
-WARNING: Remember you can use `control.example.com` as hostname in *SCM URL* because it resolves inside the environment. For accessing the Gitea web UI in your browser you need to use `\http://control-<GUID>.rhpds.opentlc.com/gitea`.
+// WARNING: Remember you can use `control.example.com` as hostname in *SCM URL* because it resolves inside the environment. For accessing the Gitea web UI in your browser you need to use `\http://control-<GUID>.rhpds.opentlc.com/gitea`.
 
 === Create a Job Template
 
@@ -408,29 +407,27 @@ The final script is also shown here:
 ----
 #!/bin/bash
 awx-cli inventory create --name "Example Inventory" --organization "Default"
-awx-cli host create --name "host1.example.com" --inventory "Example Inventory"
-awx-cli host create --name "host2.example.com" --inventory "Example Inventory"
+awx-cli host create --name "support1.ewl05.internal" --inventory "Example Inventory"
+awx-cli host create --name "support2.ewl05.internal" --inventory "Example Inventory"
+
 awx-cli credential create --name "Example Credentials" \
-                      --organization "Default" --credential-type "Machine" \
-                      --inputs="{\"username\":\"ansible\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ansible/.ssh/id_rsa)\n\",\"become_method\":\"sudo\"}"
-awx-cli credential create --credential-type="Source Control" \
-                     --name="Gitea Credentials" \
-                     --inputs='{"username": "git", "password": "r3dh4t1!"}' \
-                     --organization="Default"
+                     --organization "Default" --credential-type "Machine" \
+                     --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /root/.ssh/ewl05key.pem)\n\",\"become_method\":\"sudo\"}"
+
 awx-cli project create --name="Apache" \
                   --scm-type=git \
-                  --scm-url="http://control.example.com/gitea/git/apache.git" \
-                  --scm-credential="Gitea Credentials" \
+                  --scm-url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
                   --organization "Default" \
                   --scm-clean=true --scm-delete-on-update=true --scm-update-on-launch=true \
                   --wait
+
 awx-cli job_template create \
-                     --name="Install Apache" \
-                     --inventory="Example Inventory" \
-                     --credential="Example Credentials" \
-                     --project=Apache \
-                     --playbook=apache_install.yml \
-                     --become-enabled="yes"
+                    --name="Install Apache" \
+                    --inventory="Example Inventory" \
+                    --credential="Example Credentials" \
+                    --project=Apache \
+                    --playbook=apache_install.yml \
+                    --become-enabled="yes"
 ----
 
 Run the script, and verify that all resources were properly created in the web UI.
@@ -457,7 +454,7 @@ At first this is not different from a standard Tower setup. But as this is a clu
 
 === So what Instance run the Job?
 
-In one of the Tower instances web UI under *ADMINISTRATION* go to the *Instance Groups* view. For the `tower` instance group, the *TOTAL JOBS* counter shows the number of finished jobs. If you click *TOTAL JOBS* you'll get a detailed list of jobs. You should see four jobs. Why? Three times the SCM Update on every node and then the actual Playbook run.
+In one of the Tower instances web UI under *ADMINISTRATION* go to the *Instance Groups* view. For the `tower` instance group, the *TOTAL JOBS* counter shows the number of finished jobs. If you click *TOTAL JOBS* you'll get a detailed list of jobs. 
 
 To see on what instance a job actually run go back to the *Instance Groups* view. If you click *INSTANCES* under the *tower* group, you will get an overview of the *TOTAL JOBS* each Tower instance in this group executed. Clicking *TOTAL JOBS* for an instance leads to a detailed job list.
 
@@ -475,9 +472,9 @@ WARNING: Replace <ID> with the job ID you want to query!
 
 [subs=+quotes]
 ----
-[root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
+[root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
 
-    "execution_node": "tower1.example.com",
+    "execution_node": "tower1.ewl05.internal",
 ----
 
 TIP: You can use any method you want to access the API and to display the result, of course. The usage of curl and python-tool was just for example.
@@ -488,7 +485,7 @@ Another way to query the Tower API is using a browser. For example to have a loo
 
 * Find the job ID
 * Now get the job details via the API interface: 
-** Open the URL *\https://tower1-<GUID>.rhpds.opentlc.com/api/v2/jobs/<ID>/* where `<ID>` is the number of the job you just looked up in the UI. 
+** Open the URL *\https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/<ID>/* where `<ID>` is the number of the job you just looked up in the UI. 
 ** Search the page for the string you are interested in, e.g. `execution_node`
 
 TIP: You can of course query any Tower node.
@@ -523,33 +520,44 @@ TIP: Here is a great blog post going into Instance Groups with a lot more depth:
 
 === Instance Group Setup
 
-Having the introduction out of the way, let's get back to our lab and give Instance Groups a try. First have a look at your Tower configuration as described in the installers inventory file. In your SSH session on the control host change into the Ansible installer directory and do the following:
+Having the introduction out of the way, let's get back to our lab and give Instance Groups a try. 
 
-[subs=+quotes]
-----
-[root@control ~]# cd ansible-tower-setup-bundle-3.4.1-1.el7/
-[root@control ansible-tower-setup-bundle-3.4.1-1.el7]# cat inventory
+// First have a look at your Tower configuration as described in the installers inventory file. In your SSH session on the control host change into the Ansible installer directory and do the following:
 
-[tower]
-tower1.example.com
-tower2.example.com
-tower3.example.com
+// [subs=+quotes]
+// ----
+// [root@control ~]# cd ansible-tower-setup-bundle-3.4.1-1.el7/
+// [root@control ansible-tower-setup-bundle-3.4.1-1.el7]# cat inventory
 
-*[instance_group_prod]
-tower3.example.com
+// [tower]
+// tower1.example.com
+// tower2.example.com
+// tower3.example.com
 
-[instance_group_dev]
-tower2.example.com*
+// *[instance_group_prod]
+// tower3.example.com
 
-[...]
-----
+// [instance_group_dev]
+// tower2.example.com*
 
-In a basic cluster setup you would just have the `[tower]` base group. In this lab environment two more Instance Groups where already configured, they are marked in bold:
+// [...]
+// ----
+
+In a basic cluster setup you would just have the `[tower]` base group. So let's go and setup two instance groups:
+
+* In the *Instance Groups* add a new group by clicking the green *+* icon and then *CREATE INSTANCE GROUP* 
+* Name the new group *dev*
+* *SAVE*
+* Click the *INSTANCES* button and add node *tower2.ewl05.internal* again using the *+* icon
+
+Do the same again for the new group *prod* with instance *tower3.ewl05.internal*
+
+Going back to the *Instance Groups* view you should now have the following setup:
 
 * All instances are in the *tower* base group
 * Two more groups (*prod* and *dev*) with one instances each where setup
 
-TIP: Instance groups are prefixed with `instance_group_`.
+TIP: We're using the internal names of the Tower nodes here.
 
 WARNING: This is not best practice, it's just for the sake of this lab! Any jobs that are launched targeting a group without active nodes will be stuck in a waiting state until instances become available. So one-instance groups are never a good idea.
 
@@ -560,59 +568,25 @@ You can check your instance groups in a number of ways.
 ==== Via cli
 
 ----
-[root@control ~]# awx-cli instance_group list
+[root@bastion 0 ~]# awx-cli instance_group list
 == ===== ======== ================= 
 id name  capacity consumed_capacity 
 == ===== ======== ================= 
- 1 tower      171                 0
- 2 prod        57                 0
- 3 dev         57                 0
-== ===== ======== =================
+ 1 tower       51                 0
+ 2 emea        17                 0
+ 3 dev         17                 0
+ 4 prod        17                 0
+== ===== ======== ================= 
 ----
 
 ==== Via API
 
-You can again query the API to get this information. Either use the browser to access the URL `\https://tower1-<GUID>.rhpds.opentlc.com/api/v2/instance_groups/` or use curl to access the API from the command line:
+You can again query the API to get this information. Either use the browser to access the URL `\https://tower.ewl05.sandbox309.opentlc.com/api/v2/instance_groups/` or use curl to access the API from the command line:
 
 TIP: The curl command has to be on one line.
 
 ----
 [root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/instance_groups/| python -m json.tool
-
-{
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "capacity": 171,
-            "committed_capacity": 0,
-            "consumed_capacity": 0,
-            "controller": null,
-            "created": "2019-03-01T16:39:08.293548Z",
-            "id": 1,
-            "instances": 3,
-            "jobs_running": 0,
-            "jobs_total": 150,
-            "modified": "2019-03-01T16:39:08.343125Z",
-            "name": "tower",
-            "percent_capacity_remaining": 100.0,
-            "policy_instance_list": [
-                "tower3.example.com",
-                "tower1.example.com",
-                "tower2.example.com"
-            ],
-            "policy_instance_minimum": 0,
-            "policy_instance_percentage": 0,
-            "related": {
-                "instances": "/api/v2/instance_groups/1/instances/",
-                "jobs": "/api/v2/instance_groups/1/jobs/"
-            },
-            "type": "instance_group",
-            "url": "/api/v2/instance_groups/1/"
-        }
-    ]
-}
 ----
 
 ==== Via the Web UI
@@ -627,7 +601,7 @@ While in the *INSTANCES GROUPS* overview click the *INSTANCES* link for, say, th
 
 * The button should be set to "ON" image:on_off.png[20,20]. Clicking it would deactivate the corresponding instance and would prevent that further jobs are assigned to it. 
 * Running jobs on an instance which is set to "OFF" are finished in a normal way. 
-* Further to the right a slider can change the amount of RAM and thus the amount of forks scheduled on an instance. This way it is possible to influence in which ratio the jobs are assigned.
+* Further to the right a slider can change the amount of forks scheduled on an instance. This way it is possible to influence in which ratio the jobs are assigned.
 
 == Start Parallel Jobs across Instances
 
@@ -645,40 +619,40 @@ In our demo case we use three playbooks which:
 * ensure configuration of PAM and login cryptography (STIG)
 * ensure absence of services and kernel modules (CIS).
 
-The Playbooks can be found in the "compliance" repository on Gitea: `\http://control-<GUID>.rhpds.opentlc.com/gitea/git/compliance`. Head over to Gitea's web UI and have a look at the Playbooks to see what they do.
+The Playbooks can be found in the Github repository you already setup.
 
 === Prepare the Compliance Lab
 
-==== First Step: Add Repository to Tower
+// ==== First Step: Add Repository to Tower
 
-The compliance repository needs to be added as project. Feel free to use the web UI or use *awx-cli* like shown below.
+// The compliance repository needs to be added as project. Feel free to use the web UI or use *awx-cli* like shown below.
 
-----
-[root@control ~]# awx-cli project create -n "Compliance Repository" \
-                    --organization Default \
-                    --scm-type git \
-                    --scm-url http://control.example.com/gitea/git/compliance.git \
-                    --scm-clean 1 \
-                    --scm-update-on-launch 1 \
-                    --scm-credential "Gitea Credentials"
-----
+// ----
+// [root@control ~]# awx-cli project create -n "Compliance Repository" \
+//                     --organization Default \
+//                     --scm-type git \
+//                     --scm-url http://control.example.com/gitea/git/compliance.git \
+//                     --scm-clean 1 \
+//                     --scm-update-on-launch 1 \
+//                     --scm-credential "Gitea Credentials"
+// ----
 
-TIP: It should again be obvious that using awx-cli is much faster than clicking through multiple steps in a web interface.
+// TIP: It should again be obvious that using awx-cli is much faster than clicking through multiple steps in a web interface.
 
-Have a look at the status of the Project:
+// Have a look at the status of the Project:
 
-----
-[root@control ~]# awx-cli project status -n "Compliance Repository"
-----
+// ----
+// [root@control ~]# awx-cli project status -n "Compliance Repository"
+// ----
 
-==== Second Step: Create three Templates
+==== First Step: Create three Templates
 
-As mentioned the repository contains three Playbooks to enforce different compliance requirements. We again create these three templates via `awx-cli`:
+As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates via `awx-cli`:
 
 ----
 [root@control ~]# awx-cli job_template create -n "Compliance STIG packages" \
                     --job-type run -i "Example Inventory" \
-                    --project "Compliance Repository" \
+                    --project "Apache" \
                     --playbook "stig-packages.yml" \
                     --credential "Example Credentials" \
                     --become-enabled 1
@@ -687,7 +661,7 @@ As mentioned the repository contains three Playbooks to enforce different compli
 ----
 [root@control ~]# awx-cli job_template create -n "Compliance STIG config" \
                     --job-type run -i "Example Inventory" \
-                    --project "Compliance Repository" \
+                    --project "Apache" \
                     --playbook "stig-config.yml" \
                     --credential "Example Credentials" \
                     --become-enabled 1
@@ -696,7 +670,7 @@ As mentioned the repository contains three Playbooks to enforce different compli
 ----
 [root@control ~]# awx-cli job_template create -n "Compliance CIS" \
                     --job-type run -i "Example Inventory" \
-                    --project "Compliance Repository" \
+                    --project "Apache" \
                     --playbook "cis.yml" \
                     --credential "Example Credentials" \
                     --become-enabled 1
@@ -704,13 +678,13 @@ As mentioned the repository contains three Playbooks to enforce different compli
 
 === Create Parallel Workflow
 
-To enable parallel execution of the tasks in these job templates, we will create a workflow. We'll use the web UI because using *awx-cli* is a bit too involved for a lab. Workflows are configured in the *Templates* view, you might have noticed you can choose between *Job Template* and *Workflow Template* when adding a template.
+To enable parallel execution of the tasks in these job templates, we will create a workflow. We'll use the web UI because using *awx-cli* for this is a bit too involved for a lab. Workflows are configured in the *Templates* view, you might have noticed you can choose between *Job Template* and *Workflow Template* when adding a template.
 
 * Go to the *Templates* view and click the image:green_plus.png[20,20] button. This time choose *Workflow Template*
 ** *NAME:* Compliance Workflow
 ** *ORGANIZATION:* Default
 * Click *SAVE*
-* Now the *WORKFLOW VISUALIZER* button becomes active, click it to start the graphical editor.
+* Now the *WORKFLOW VISUALIZER* button becomes active and the graphical workflow designer opens.
 * Click on the *START* button, a new node opens. To the right you can assign an action to the node, you can choose between *JOBS*, *PROJECT SYNC* and *INVENTORY SYNC*.
 * In this lab we'll link multiple jobs to the *START*, so select the *Compliance STIG packages* job and click *SELECT*. The node gets annotated with the name of the job.
 * Click on the *START* button again, another new node opens.
@@ -735,9 +709,9 @@ Go to the *Instance Groups* view and find out how the jobs where distributed ove
 * Look at the *TOTAL JOBS* view of the three instances
 * Because the Job Templates called in the workflow didn't specify an instance group, they where distributed evenly over the instances. 
 
-Now deactivate instance *tower1.example.com* with the image:on_off.png[20,20] button and wait until it is shown as deactivated. Make a (mental) note of the *TOTAL JOBS* counter of the instance. Go back to the list of templates and launch the workflow *Compliance Workflow* again.
+Now deactivate instance *tower1.ewl05.internal* with the image:on_off.png[20,20] button and wait until it is shown as deactivated. Make a (mental) note of the *TOTAL JOBS* counter of the instance. Go back to the list of templates and launch the workflow *Compliance Workflow* again.
 
-Go back to the *Instance Groups* view, get back to the instance overview of instance group *tower* and verify that the three Playbooks where launched on the remaining instances and the *TOTAL JOBS* counter of instance *tower1.example.com* didn't change.
+Go back to the *Instance Groups* view, get back to the instance overview of instance group *tower* and verify that the three Playbooks where launched on the remaining instances and the *TOTAL JOBS* counter of instance *tower1.ewl05.internal* didn't change.
 
 Activate *tower1.example.com* again by pressing image:on_off.png[20,20] a second time.
 
@@ -745,7 +719,7 @@ Activate *tower1.example.com* again by pressing image:on_off.png[20,20] a second
 
 So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over what job is executed on which node, so let's use them.
 
-To make it easier to spot where the jobs where run let's first empty the jobs history. This can be done using *awx-manage* on one of the Tower instances. From your control node SSH into one of the Tower hosts and run the command:
+To make it easier to spot where the jobs where run let's first empty the jobs history. This can be done using *awx-manage* on one of the Tower instances. From your control node SSH into one of the Tower hosts and as `root` run the command:
 
 ----
 [root@tower1 ~]# awx-manage cleanup_jobs  --days=0
@@ -770,11 +744,11 @@ You have done this a couple of times now, you should get along without detailed 
 * What would you expect? On what instance(s) should the workflow jobs run?
 * Verify!
 
-TIP: *Result:* The workflow and the associated jobs will run on *tower2.example.com*. Okay, big surprise, in the *dev* instance group is only one instance.
+TIP: *Result:* The workflow and the associated jobs will run on *tower2.ewl05.internal*. Okay, big surprise, in the *dev* instance group is only one instance.
 
 But what's going to happen if you disable this instance?
 
-* Disable the *tower2.example.com* instance in the *Instance Groups* view.
+* Disable the *tower2.ewl05.internal* instance in the *Instance Groups* view.
 * Run the workflow again.
 * What would you expect? On what instance(s) should the workflow jobs run?
 * Verify!
@@ -783,10 +757,10 @@ TIP: *Result:* The workflow and the associated jobs will stay in pending state b
 
 What's going to happen if you enable the instance again?
 
-* Go to the *Instance Groups* view and enable *tower2.example.com* again.
+* Go to the *Instance Groups* view and enable *tower2.ewl05.internal* again.
 * Check in the *Jobs* and *Instance Groups* view what's happening.
 
-TIP: *Result:* After the instance is enabled again the jobs will pickup and run on *tower2.example.com*.
+TIP: *Result:* After the instance is enabled again the jobs will pickup and run on *tower2.ewl05.internal*.
 
 WARNING: At this point make sure the instances you disabled in the previous steps are definitely enabled again! Otherwise subsequent steps might fail...
 
@@ -806,70 +780,72 @@ To solve this, Tower provides Isolated Nodes:
 
 Isolated nodes are defined in the inventory file (same as instance groups) and setup by the Ansible Tower installer. Isolated nodes make up their own instance groups that are specified in the inventory file prefixed with *isolated_group_*. In the isolated instance group model, only specific *controller* Tower instance groups interact with *isolated* nodes.
 
+For this lab an isolated node named *worker1.emea.ewl05.internal* in an instance group *emea* has already been setup for you.
+
  
 
-So for the fun of it, let's set one up.
+// So for the fun of it, let's set one up.
 
-First have a look at our setup as described in the installers inventory file. In your SSH session on the control host change into the Ansible installer directory and do the following:
+// First have a look at our setup as described in the installers inventory file. In your SSH session on the control host change into the Ansible installer directory and do the following:
 
-----
-[root@control ~]# cd ansible-tower-setup-bundle-3.4.1-1.el7
-[root@control ansible-tower-setup-bundle-3.4.1-1.el7]# cat inventory
+// ----
+// [root@control ~]# cd ansible-tower-setup-bundle-3.4.1-1.el7
+// [root@control ansible-tower-setup-bundle-3.4.1-1.el7]# cat inventory
 
-[tower]
-tower1.example.com
-tower2.example.com
-tower3.example.com
+// [tower]
+// tower1.example.com
+// tower2.example.com
+// tower3.example.com
 
-[instance_group_prod]
-tower3.example.com
+// [instance_group_prod]
+// tower3.example.com
 
-[instance_group_dev]
-tower2.example.com
+// [instance_group_dev]
+// tower2.example.com
 
-[database]
-towerdb.example.com
+// [database]
+// towerdb.example.com
 
-[...]
-----
+// [...]
+// ----
 
-We have the `tower` base group and two instance groups. For the isolated node we will define a new *isolated_group_* named *dmz* with one entirely new node (plain RHEL 7 for now), called `isonode.remote.example.com` which we'll use to manage other hosts in the remote location. Add the isolated node by editing the inventory:
+// We have the `tower` base group and two instance groups. For the isolated node we will define a new *isolated_group_* named *dmz* with one entirely new node (plain RHEL 7 for now), called `isonode.remote.example.com` which we'll use to manage other hosts in the remote location. Add the isolated node by editing the inventory:
 
-TIP: Changes are shown in *bold* type for clarity only!
+// TIP: Changes are shown in *bold* type for clarity only!
 
-[subs=+quotes]
-----
-[tower]
-tower1.example.com
-tower2.example.com
+// [subs=+quotes]
+// ----
+// [tower]
+// tower1.example.com
+// tower2.example.com
 
-[instance_group_prod]
-tower3.example.com
+// [instance_group_prod]
+// tower3.example.com
 
-[instance_group_dev]
-tower2.example.com
+// [instance_group_dev]
+// tower2.example.com
 
-*[isolated_group_dmz]
-isonode.remote.example.com
+// *[isolated_group_dmz]
+// isonode.remote.example.com
 
-[isolated_group_dmz:vars]
-controller=tower*
+// [isolated_group_dmz:vars]
+// controller=tower*
 
-[database]
-towerdb.example.com
+// [database]
+// towerdb.example.com
 
-[...]
-----
+// [...]
+// ----
 
-TIP: Each isolated group must have a controller variable set. This variable points to the instance group that manages tasks that are sent to the isolated node. That instance group will be responsible for starting and monitoring jobs on the isolated node. In this case, we're using the main *tower* instance group to manage this isolated group.
+// TIP: Each isolated group must have a controller variable set. This variable points to the instance group that manages tasks that are sent to the isolated node. That instance group will be responsible for starting and monitoring jobs on the isolated node. In this case, we're using the main *tower* instance group to manage this isolated group.
 
-After editing the inventory, start the installer to make the desired changes:
+// After editing the inventory, start the installer to make the desired changes:
 
-----
-[root@control ansible-tower-setup-bundle-3.2.5-1.el7]# ./setup.sh
-----
+// ----
+// [root@control ansible-tower-setup-bundle-3.2.5-1.el7]# ./setup.sh
+// ----
 
-TIP: During installation of an isolated node, a randomized RSA key is generated and distributed as an authorized key to the *isolated* instances.
+// TIP: During installation of an isolated node, a randomized RSA key is generated and distributed as an authorized key to the *isolated* instances.
 
 === Verify Isolated Nodes
 
@@ -877,22 +853,22 @@ Isolated groups can be listed in the same way like instance groups and Ansible T
 
 [subs=+quotes]
 ----
-[root@control ~]# awx-cli instance_group list
-== ======== ======== =================
-id   name   capacity consumed_capacity
-== ======== ======== =================
- 1 tower         171                 0
- 2 prod           57                 0
- 3 dev            57                 0
- *4 dmz            57                 0*
-== ======== ======== =================
+# awx-cli instance_group list
+== ===== ======== ================= 
+id name  capacity consumed_capacity 
+== ===== ======== ================= 
+ 1 tower       51                 0
+ 2 *emea*        17                 0
+ 3 dev         17                 0
+ 4 prod        17                 0
+== ===== ======== =================
 ----
 
 Like other instance groups, isolated node groups can be assigned at the level of an organization, an inventory, or an individual job template.
 
 === Create Isolated Node specific Inventory
 
-Let's assume we have a DMZ setup with two hosts we want to manage siloed off from the rest of the infrastructure called *isohost{1,2}.remote.example.com*. The isolated node we configured above is located in the same DMZ and is able to connect to the DMZ hosts.
+Let's assume we have a setup with two hosts in another region, say EMEA, and we want to manage these siloed off from the rest of the infrastructure. The isolated node we configured above is located in the same region and is able to connect to the managed hosts.
 
 Now create a new inventory in your Tower cluster. You can do this with `awx-cli` like we did above, or you use the web UI. Why not use the web UI for a change?
 
@@ -901,16 +877,16 @@ In the Tower web UI under *RESOURCES*, click *Inventories*:
 * Click the image:green_plus.png[20,20] button to add a new inventory
 * *NAME:* Remote Inventory
 * *ORGANIZATION:* Default
-* *INSTANCE GROUPS:* Pick the instance group you created in the last step, `dmz`
+* *INSTANCE GROUPS:* Pick the instance group you created in the last step, `emea`
 * Click *SAVE*
 
 After you've clicked *SAVE*, you can add hosts: the button for the hosts management image:tower_hosts.png[40,40] is active now. Click on it to access the hosts overview. There are no hosts right now, so let's add some:
 
 * Click the image:green_plus.png[20,20] button to add a new host
-* *NAME:* `isohost1.remote.example.com`
+* *NAME:* `isosupport1.ewl05.internal`
 * Click *SAVE*
 
-Repeat the steps for a second host called `isohost2.remote.example.com`.
+Repeat the steps for a second host called `isosupport2.ewl05.internal`.
 
 === Create Template for Isolated Node
 
@@ -924,7 +900,7 @@ Go to *Templates* in the *RESOURCES* section of the menu, click the image:green_
 * *PROJECT:* Compliance Repository
 * *PLAYBOOK:* `cis.yml`
 * *CREDENTIAL:* Example Credentials
-* *INSTANCE GROUPS:* `dmz`
+* *INSTANCE GROUPS:* `emea`
 * We need to run the tasks as root so check *Enable privilege escalation*
 * Click *SAVE*
 
@@ -935,10 +911,10 @@ Next, launch the template:
 
 === Verify Results
 
-Last but not least, let's check that the job was indeed executed by the isolated node `isonode.remote.example.com`: 
+Last but not least, let's check that the job was indeed executed by the isolated node `worker1.emea.ewl05.internal`: 
 
 * Go to *Instance Groups* in the *ADMINISTRATION* section of the web UI
-* Click on the *dmz* group. 
+* Click on the *emea* group. 
 * Click on the jobs button at the top to see the executed job.
 
 == Advanced Inventories
@@ -959,12 +935,12 @@ TIP: Don't get this wrong... we've chosen to use Bash to make it as simple as po
 
 ==== The Inventory Source
 
-First you need a source. In *real life* this would be your *cloud provider, your CMDB or what not*. For the sake of this lab we have the web server on control.example.com configured to hand out a static file to be our source.
+First you need a source. In *real life* this would be your *cloud provider, your CMDB or what not*. For the sake of this lab we put a file into the Github repository you've already used to be our source
 
-Open an SSH session from the control host to one of your Tower-Nodes and query your external inventory source:
+Use curl to query your external inventory source:
 
 ----
-[root@tower1 ~]# curl control.example.com:/pub/inventory_list
+[root@tower1 ~]# curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
 {
     "dyngroup":{
         "hosts":[
@@ -1002,7 +978,7 @@ As looping over all hosts and calling the script with *--host* can be pretty slo
 #!/bin/bash
 
 if [ "$1" == "--list" ] ; then
-  curl control.example.com:/pub/inventory_list
+  curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
 elif [ "$1" == "--host" ]; then
   echo '{"_meta": {"hostvars": {}}}'
 else
@@ -1014,21 +990,16 @@ What it basically does is to return the data collected by curl when called with 
 
 But before we integrate the custom inventory script into our Tower cluster, it's a good idea to test it on the commandline first:
 
-* Log in to one of the Tower nodes if you don't have an SSH session open:
-
-----
-[root@control ~]# ssh tower1.example.com
-----
-
+* Log in to your bastion host if you don't still have an SSH session open:
 * Create the file dyninv.sh with the content shown above
 * Make the script executable:
 ----
-[root@tower1 ~]# chmod +x dyninv.sh
+[root@bastion ~]# chmod +x dyninv.sh
 ----
 * Execute it:
 
 ----
-[root@tower1 ~]# ./dyninv.sh --list
+[root@bastion ~]# ./dyninv.sh --list
 {
     "dyngroup":{
         "hosts":[
@@ -1092,48 +1063,48 @@ To sync your new source into the inventory:
 
 You should now see a list of hosts according to what you got from the curl command above. Click the hosts to make sure the host variables are there, too.
 
-==== Now to the Dynamic Part...
+// ==== Now to the Dynamic Part...
 
-To mimic the dynamic nature of the inventory, adapt the file we are using as inventory source.
+// To mimic the dynamic nature of the inventory, adapt the file we are using as inventory source.
 
-* Open an SSH session to your control host (if it's not open anyway).
-* Edit the file `/var/www/html/pub/inventory_list` to look like this (i.e. add another host):
+// * Open an SSH session to your control host (if it's not open anyway).
+// * Edit the file `/var/www/html/pub/inventory_list` to look like this (i.e. add another host):
 
-WARNING: Either copy & paste the content or make sure to take care of structure (especially the commas...) to get proper JSON!
+// WARNING: Either copy & paste the content or make sure to take care of structure (especially the commas...) to get proper JSON!
 
-----
-{
-    "dyngroup":{
-        "hosts":[
-            "cloud1.cloud.example.com",
-            "cloud2.cloud.example.com",
-            "cloud3.cloud.example.com"
-        ],
-        "vars":{
-            "var1": true
-        }
-    },
-    "_meta":{
-        "hostvars":{
-            "cloud1.cloud.example.com":{
-                "type":"web"
-            },
-            "cloud2.cloud.example.com":{
-                "type":"database"
-            },
-            "cloud3.cloud.example.com":{
-                "type":"database"
-            }
-        }
-    }
-}
-----
+// ----
+// {
+//     "dyngroup":{
+//         "hosts":[
+//             "cloud1.cloud.example.com",
+//             "cloud2.cloud.example.com",
+//             "cloud3.cloud.example.com"
+//         ],
+//         "vars":{
+//             "var1": true
+//         }
+//     },
+//     "_meta":{
+//         "hostvars":{
+//             "cloud1.cloud.example.com":{
+//                 "type":"web"
+//             },
+//             "cloud2.cloud.example.com":{
+//                 "type":"database"
+//             },
+//             "cloud3.cloud.example.com":{
+//                 "type":"database"
+//             }
+//         }
+//     }
+// }
+// ----
 
-After saving the file:
+// After saving the file:
 
-* Go back to web UI, open the *Cloud Inventory* inventory
-* Click the *SOURCES* button and re-sync the *Cloud Custom Script* source.
-* Open the *HOSTS* view again and make sure you have three hosts listed.
+// * Go back to web UI, open the *Cloud Inventory* inventory
+// * Click the *SOURCES* button and re-sync the *Cloud Custom Script* source.
+// * Open the *HOSTS* view again and make sure you have three hosts listed.
 
 *What is the take away?*
 
@@ -1142,7 +1113,7 @@ Using this simple example you have:
 * Created a script to query an inventory source
 * Integrated the script into Tower
 * Populated an inventory using the custom script
-* Changed the source to test the dynamic nature of the inventory
+//* Changed the source to test the dynamic nature of the inventory
 
 === Smart Inventories
 
@@ -1164,7 +1135,7 @@ Let's start with a simple string example. In your Tower web UI, open the *RESOUR
 * Click the magnifiying glas icon next to *SMART HOST FILTER* 
 * A window *DYNAMIC HOSTS* opens, here you define the search query
 
-To start with you can just use simple search terms. Try *cloud* or *remote.example.com* as search terms and see what you get after hitting *ENTER*.
+To start with you can just use simple search terms. Try *cloud* or *internal* as search terms and see what you get after hitting *ENTER*.
 
 TIP: Search terms are automatically saved so make sure to hit *CLEAR ALL* to clear the saved search when testing expressions.
 
@@ -1182,7 +1153,7 @@ As you know Ansible can collect facts from managed hosts to be used in Playbooks
 
 WARNING: Fact caching is not enabled by default!
 
-Fact caching can be enabled for *Templates* and is not enabled by default. So first we have to enable it. Check *host1.example.com* and *host2.example.com* have no facts stored:
+Fact caching can be enabled for *Templates* and is not enabled by default. So first we have to enable it. Check *support1.ewl05.internal* and *support2.ewl05.internal* have no facts stored:
 
 * In *RESOURCES->Inventories* open the *Example Inventory* and click the *HOSTS* button.
 * Now inspect both hosts by opening the host details and clicking the *FACTS* button at the top.  
@@ -1201,8 +1172,8 @@ Now enable fact caching for the *Remote CIS Compliance* template and run it, too
 
 After you run the templates go back to the host details like you did above and check the *FACTS* fields for 
 
-* *host1.example.com* and *host2.example.com* (from the *Example Inventory*)
-* *isohost1.remote.example.com* and *isohost2.remote.example.com*. 
+* *support1.ewl05.internal* and *support2.ewl05.internal* (from the *Example Inventory*)
+* *isosupport1.ewl05.internal* and *isosupport2.ewl05.internal* (from the *Remote Inventory*). 
 
 The hosts facts should now be populated with a lot of facts.
 
@@ -1222,16 +1193,18 @@ So what could we search for... start to look at the facts of a host. As all host
 * Put *ansible_facts.ansible_distribution:RedHat* in the search field
 * Run the search by hitting *ENTER*
 
-There should be no surprises: All hosts you have run a fact-caching enabled template on should show up. But there is a fact that should differ: the remote hosts have a different kernel version. Why not use this in the search? Again in the *DYNAMIC HOSTS* window of a Smart Inventory:
+There should be no surprises: All hosts you have run a fact-caching enabled template on should show up. 
 
-* Use this query: *ansible_facts.ansible_kernel:3.10.0-957.1.3.el7.x86_64*
-* This should only return *host1.example.com* and *host2.example.com*
+// But there is a fact that should differ: the remote hosts have a different kernel version. Why not use this in the search? Again in the *DYNAMIC HOSTS* window of a Smart Inventory:
 
-Look up the kernel version for the *isohost1.remote.example.com* and *isohost2.remote.example.com* in their respective facts and use it in a query. The query should now return only the remote hosts.
+// * Use this query: *ansible_facts.ansible_kernel:3.10.0-957.1.3.el7.x86_64*
+// * This should only return *host1.example.com* and *host2.example.com*
+
+// Look up the kernel version for the *isohost1.remote.example.com* and *isohost2.remote.example.com* in their respective facts and use it in a query. The query should now return only the remote hosts.
 
 ===== Nested Facts
 
-If a fact is deeper in the structure like this:
+A small hint: If a fact is deeper in the structure like this:
 
 ----
 ansible_eth0:
@@ -1254,8 +1227,15 @@ So a small challenge: Find out if all hosts have the SElinux mode set to "enforc
 
 The search string to use is: *ansible_facts.ansible_selinux.mode:enforcing*
 
-It should return the remote hosts only.
+It should return all hosts.
 +++ </div></details> +++
+
+And to make this a bit more fun:
+
+* ssh into one of your hosts (say *support1.ewl05.internal*) as `root` from your bastion node.
+* Set SELinux to *permissive* (`sudo setenforce 0`)
+* Run the *Install Apache* template again to update the facts.
+* Make sure the host is not showing up in the Smart inventory you just created anymore. 
 
 == OPTIONAL: Well Structured Content Repositories
 
