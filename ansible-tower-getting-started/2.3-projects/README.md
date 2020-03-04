@@ -1,6 +1,6 @@
 # Exercise 2.3 - Projects & job templates
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
 
 A Tower **Project** is a logical collection of Ansible Playbooks. You can manage your playbooks by placing them into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
@@ -77,11 +77,11 @@ Now you need the URL to access the repo. Go to the Github repository mentioned a
 
 - **SCM URL:** `https://github.com/ansible/workshop-examples.git`
 
-- **SCM UPDATE OPTIONS:** Tick all three boxes to always get a fresh copy of the repository and to update the repository when launching a job.
+- **SCM UPDATE OPTIONS:** Tick all four boxes to always get a fresh copy of the repository and to update the repository when launching a job.
 
 - Click **SAVE**
 
-The new Project will be synced automatically after creation. But you can also do this automatically: Sync the Project again with the Git repository by going to the **Projects** view and clicking the circular arrow **Get latest SCM revision** icon to the right of the Project.
+The new Project will be synced automatically after creation. But you can also do this manually: Sync the Project again with the Git repository by going to the **Projects** view and clicking the circular arrow **Get latest SCM revision** icon to the right of the Project.
 
 After starting the sync job, go to the **Jobs** view: there is a new job for the update of the Git repository.
 
@@ -101,7 +101,7 @@ Okay, let’s just do that: Go to the **Templates** view, click the ![plus](imag
 
 > **Tip**
 > 
-> Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
+> Remember that you can often click on magnifying glasses to get an overview of options to pick to fill in fields.
 
 - **NAME:** Install Apache
 
@@ -135,6 +135,34 @@ Since this might take some time, have a closer look at all the details provided:
 
 After the Job has finished go to the main **Jobs** view: All jobs are listed here, you should see directly before the Playbook run an SCM update was started. This is the Git update we configured for the **Project** on launch\!
 
+## What About Some Practice?
+
+Here is a list of tasks:
+
+> **Warning**
+> 
+> Please make sure to finish these steps as the next chapter depends on it\!
+
+- Create a new inventory called `Webserver` and make only `node1` member of it.
+
+- Copy the `Install Apache` template using the copy icon in the **Templates** view
+
+- Change the name to `Install Apache Ask`
+  
+- Change the **INVENTORY** setting of the Project so it will ask for the inventory on launch
+
+- **SAVE**
+
+- Launch the `Install Apache Ask` template.
+
+- It will now ask for the inventory to use, choose the `Webserver` inventory and click **LAUNCH**
+
+- Wait until the Job has finished and make sure it ran only on `node1`
+
+> **Tip**
+> 
+> The Job didn’t change anything because Apache was already installed in the latest version.
+
 ## Challenge Lab: Check the Result
 
 Time for a little challenge:
@@ -162,34 +190,6 @@ You have already been through all the steps needed, so try this for yourself.
 - **MACHINE CREDENTIALS:** Workshop Credentials
 
 - Click **LAUNCH**
-
-## What About Some Practice?
-
-Here is a list of tasks:
-
-> **Warning**
-> 
-> Please make sure to finish these steps as the next chapter depends on it\!
-
-- Create a new inventory called `Webserver` and make only `node1` member of it.
-
-- Copy the `Install Apache` template using the copy icon in the **Templates** view
-
-- Change the name to `Install Apache Ask`
-  
-- Change the **INVENTORY** setting of the Project so it will ask for the inventory on launch
-
-- **SAVE**
-
-- Launch the `Install Apache Ask` template.
-
-- It will now ask for the inventory to use, choose the `Webserver` inventory and click **LAUNCH**
-
-- Wait until the Job has finished and make sure it run only on `node1`
-
-> **Tip**
-> 
-> The Job didn’t change anything because Apache was already installed in the latest version.
 
 ----
 

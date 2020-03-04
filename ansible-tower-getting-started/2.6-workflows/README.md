@@ -1,6 +1,6 @@
 # Exercise 2.6 - Workflows
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
 
 # Ansible Tower Workflows
 
@@ -168,7 +168,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
 
   - Choose **Web App Deploy** as the next Job (you might have to switch to the next page)
 
-  - Leave **Type** set to **On Success**
+  - Leave **Run** set to **On Success**
 
 > **Tip**
 > 
