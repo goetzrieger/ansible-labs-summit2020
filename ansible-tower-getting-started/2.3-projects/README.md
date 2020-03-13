@@ -52,14 +52,14 @@ A Playbook to install the Apache webserver has already been commited to the dire
 ```
 
 > **Tip**
-> 
+>
 > Note the difference to other Playbooks you might have written\! Most importantly there is no `become` and `hosts` is set to `all`.
 
 To configure and use this repository as a **Source Control Management (SCM)** system in Tower you have to create a **Project** that uses the repository
 
 ## Create the Project
 
-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](images/green_plus.png) button. Fill in the form:
+  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../images/ygreen_plus.png) button. Fill in the form:
 
   - **NAME:** Ansible Workshop Examples
 
@@ -70,7 +70,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 Now you need the URL to access the repo. Go to the Github repository mentioned above, choose the green **Clone or download** button on the right, click on **Use https** and copy the HTTPS URL.
 
 > **Note**
-> 
+>
 > If there is no **Use https** to click on, but a **Use SSH**, you are fine: just copy the URL. The important thing is that you copy the URL starting with **https**.
 
  Enter the URL into the Project configuration:
@@ -97,10 +97,10 @@ A job template is a definition and set of parameters for running an Ansible job.
 
 - **What** Playbook to use?
 
-Okay, let’s just do that: Go to the **Templates** view, click the ![plus](images/green_plus.png) button and choose **Job Template**.
+Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**.
 
 > **Tip**
-> 
+>
 > Remember that you can often click on magnifying glasses to get an overview of options to pick to fill in fields.
 
 - **NAME:** Install Apache
@@ -121,7 +121,7 @@ Okay, let’s just do that: Go to the **Templates** view, click the ![plus](imag
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time:
 
-![job exection](images/job_overview.png)
+![job exection](../images/yjob_overview.png)
 
 Since this might take some time, have a closer look at all the details provided:
 
@@ -140,7 +140,7 @@ After the Job has finished go to the main **Jobs** view: All jobs are listed her
 Here is a list of tasks:
 
 > **Warning**
-> 
+>
 > Please make sure to finish these steps as the next chapter depends on it\!
 
 - Create a new inventory called `Webserver` and make only `node1` member of it.
@@ -148,7 +148,7 @@ Here is a list of tasks:
 - Copy the `Install Apache` template using the copy icon in the **Templates** view
 
 - Change the name to `Install Apache Ask`
-  
+
 - Change the **INVENTORY** setting of the Project so it will ask for the inventory on launch
 
 - **SAVE**
@@ -160,7 +160,7 @@ Here is a list of tasks:
 - Wait until the Job has finished and make sure it ran only on `node1`
 
 > **Tip**
-> 
+>
 > The Job didn’t change anything because Apache was already installed in the latest version.
 
 ## Challenge Lab: Check the Result
@@ -172,25 +172,27 @@ Time for a little challenge:
 You have already been through all the steps needed, so try this for yourself.
 
 > **Tip**
-> 
+>
 > What about `systemctl status httpd`?
 
 > **Warning**
-> 
-> **Solution Below**
-
-- Go to **Inventories** → **Workshop Inventory**
-
-- In the **HOSTS** view select all hosts and click **RUN COMMANDS**
-
-- **MODULE:** command
-
-- **ARGUMENTS:** systemctl status httpd
-
-- **MACHINE CREDENTIALS:** Workshop Credentials
-
-- Click **LAUNCH**
-
-----
+>
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> - Go to **Inventories** → **Workshop Inventory**
+>
+> - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
+>
+> - **MODULE:** command
+>
+> - **ARGUMENTS:** systemctl status httpd
+>
+> - **MACHINE CREDENTIALS:** Workshop Credentials
+>
+> - Click **LAUNCH**
+>
+> </p>
+> </details>
 
 [Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)

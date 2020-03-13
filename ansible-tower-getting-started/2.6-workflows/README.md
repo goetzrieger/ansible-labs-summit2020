@@ -41,7 +41,7 @@ To make things somewhat easier for you, everything needed already exists in a Gi
 First you have to set up the Git repo as Projects like you normally would. You have done this before, try to do this on your own. Detailed instructions can be found below.
 
 > **Warning**
-> 
+>
 > **If you are still logged in as user **wweb**, log out of and log in as user **admin** again.**
 
 - Create the project for web operations:
@@ -61,83 +61,87 @@ First you have to set up the Git repo as Projects like you normally would. You h
   - The **SCM BRANCH/TAG/COMMIT** is **webdev**
 
 > **Warning**
-> 
-> **Solution Below**
-
-- Create the project for web operations. In the **Projects** view click the green plus button and fill in:
-  
-    - **NAME:** Webops Git Repo
-  
-    - **ORGANIZATION:** Default
-  
-    - **SCM TYPE:** Git
-  
-    - **SCM URL:** https://github.com/ansible/workshop-examples.git
-
-    - **SCM BRANCH/TAG/COMMIT:** webops
-  
-    - **SCM UPDATE OPTIONS:** Tick all three boxes.
-
-- Click **SAVE**
-
-- Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
-  
-    - **NAME:** Webdev Git Repo
-  
-    - **ORGANIZATION:** Default
-  
-    - **SCM TYPE:** Git
-  
-    - **SCM URL:** https://github.com/ansible/workshop-examples.git
-  
-    - **SCM BRANCH/TAG/COMMIT:** webdev
-
-    - **SCM UPDATE OPTIONS:** Tick all three boxes.
-
-- Click **SAVE**
+>
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> - Create the project for web operations. In the **Projects** view click the green plus button and fill in:
+>
+>     - **NAME:** Webops Git Repo
+>
+>     - **ORGANIZATION:** Default
+>
+>     - **SCM TYPE:** Git
+>
+>     - **SCM URL:** https://github.com/ansible/workshop-examples.git
+>
+>     - **SCM BRANCH/TAG/COMMIT:** webops
+>
+>     - **SCM UPDATE OPTIONS:** Tick all three boxes.
+>
+> - Click **SAVE**
+>
+> - Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
+>
+>     - **NAME:** Webdev Git Repo
+>
+>     - **ORGANIZATION:** Default
+>
+>     - **SCM TYPE:** Git
+>
+>     - **SCM URL:** https://github.com/ansible/workshop-examples.git
+>
+>     - **SCM BRANCH/TAG/COMMIT:** webdev
+>
+>     - **SCM UPDATE OPTIONS:** Tick all three boxes.
+>
+> - Click **SAVE**
+>
+> </p>
+> </details>
 
 ## Set up Job Templates
 
 Now you have to create Job Templates like you would for "normal" Jobs.
 
   - Go to the **Templates** view, click the green plus button and choose **Job Template**:
-    
+
       - **NAME:** Tomcat Deploy
-    
+
       - **JOB TYPE:** Run
-    
+
       - **INVENTORY:** Workshop Inventory
-    
+
       - **PROJECT:** Webops Git Repo
-    
+
       - **PLAYBOOK:** `rhel/webops/tomcat.yml`
-    
+
       - **CREDENTIAL:** Workshop Credentials
-    
+
       - **OPTIONS:** Enable privilege escalation
 
   - Click **SAVE**
 
   - Go to the **Templates** view, click the green plus button and choose **Job Template**:
-    
+
       - **NAME:** Web App Deploy
-    
+
       - **JOB TYPE:** Run
-    
+
       - **INVENTORY:** Workshop Inventory
-    
+
       - **PROJECT:** Webdev Git Repo
-    
+
       - **PLAYBOOK:** `rhel/webdev/create_jsp.yml`
-    
+
       - **CREDENTIALS:** Workshop Credentials
-    
+
       - **OPTIONS:** Enable privilege escalation
 
   - Click **SAVE**
 
 > **Tip**
-> 
+>
 > If you want to know what the Playbooks look like, check out the Github URL and switch to the appropriate branches.
 
 ## Set up the Workflow
@@ -145,9 +149,9 @@ Now you have to create Job Templates like you would for "normal" Jobs.
 And now you finally set up the workflow. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template so this is finally making sense.
 
   - Go to the **Templates** view and click the the green plus button. This time choose **Workflow Template**
-    
+
       - **NAME:** Deploy Webapp Server
-    
+
       - **ORGANIZATION:** Default
 
   - Click **SAVE**
@@ -161,7 +165,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - The node gets annotated with the name of the job. Hover the mouse pointer over the node, you’ll see a red **x**, a green **+** and a blue **chain**-symbol appear.
 
 > **Tip**
-> 
+>
 > Using the red "x" allows you to remove the node, the green plus lets you add the next node and the chain-symbol links to another node .
 
   - Click the green **+** sign
@@ -171,7 +175,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - Leave **Run** set to **On Success**
 
 > **Tip**
-> 
+>
 > The type allows for more complex workflows. You could lay out different execution paths for successful and for failed Playbook runs.
 
   - Click **SELECT**
@@ -181,7 +185,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - Click **SAVE** in the **Workflow Template** view
 
 > **Tip**
-> 
+>
 > The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the documentation.
 
 ## And Action
@@ -190,9 +194,9 @@ Your workflow is ready to go, launch it.
 
   - Click the blue **LAUNCH** button directly or go to the the **Templates** view and launch the **Deploy Webapp Server** workflow by clicking the rocket icon.
 
-![jobs view of workflow](images/job_workflow.png)
+![jobs view of workflow](../images/yjob_workflow.png)
 
-Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, click the ![w-button](images/w_button.png) in the **JOB TEMPLATE** line in the **DETAILS** part on the left side of the job overview.
+Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, click the ![w-button](../images/yw_button.png) in the **JOB TEMPLATE** line in the **DETAILS** part on the left side of the job overview.
 
 After the job was finished, check if everything worked fine: log into `node1`, `node2` or `node3` from your control host and run:
 
@@ -201,7 +205,7 @@ $ curl http://localhost:8080/coolapp/
 ```
 
 > **Tip**
-> 
+>
 > You might have to wait a couple of minutes until Tomcat answers requests.
 
 ----

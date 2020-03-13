@@ -10,7 +10,7 @@ Let’s get started with: The first thing we need is an inventory of your manage
 
 Create the inventory:
 
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](images/green_plus.png) button on the right side and choose **Inventory**.
+  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../images/ygreen_plus.png) button on the right side and choose **Inventory**.
 
   - **NAME:** Workshop Inventory
 
@@ -25,7 +25,7 @@ So let's add some hosts. First we need to have the list of all hosts which are a
 Login to your Tower control host via SSH:
 
 > **Warning**
-> 
+>
 > Replace **workshopname** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
 
 ```bash
@@ -35,7 +35,7 @@ ssh student<X>@student<X>.<workshopname>.rhdemo.io
 You can find the inventory information at `~/lab_inventory/hosts`. Output them with `cat`, they should look like:
 
 ```bash
-$ cat ~/lab_inventory/hosts 
+$ cat ~/lab_inventory/hosts
 [all:vars]
 ansible_user=student<X>
 ansible_ssh_pass=<PASSWORD>
@@ -50,7 +50,7 @@ node3 ansible_host=44.55.66.77
 ansible ansible_host=11.22.33.44
 ```
 > **Warning**
-> 
+>
 > In your inventory the IP addresses will be different.
 
 Note the names for the nodes and the IP addresses, we will use them to fill the inventory in Tower now:
@@ -59,7 +59,7 @@ Note the names for the nodes and the IP addresses, we will use them to fill the 
 
   - Click on  the **HOSTS** button
 
-  - To the right click the ![plus](images/green_plus.png) button.
+  - To the right click the ![plus](../images/ygreen_plus.png) button.
 
   - **HOST NAME:** `node1`
 
@@ -76,20 +76,20 @@ You have now created an inventory with three managed hosts.
 One of the great features of Ansible Tower is to make credentials usable to users without making them visible. To allow Tower to execute jobs on remote hosts, you must configure connection credentials.
 
 > **Note**
-> 
+>
 > This is one of the most important features of Tower: **Credential Separation**\! Credentials are defined separately and not with the hosts or inventory settings.
 
 As this is an important part of your Tower setup, why not make sure that connecting to the managed nodes from Tower is working?
 
  To access the Tower host via SSH do the following:
 
-- Login to your Tower control host via SSH: `ssh student<X>@student<X>.<workshopname>.rhdemo.io` 
+- Login to your Tower control host via SSH: `ssh student<X>@student<X>.<workshopname>.rhdemo.io`
 - Replace **\<workshopname\>** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
 - From Tower, SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`; for the SSH connection use the node password from the inventory file (ansible_ssh_pass=), `sudo -i` works without password.
 
 ```bash
 [student<X>@ansible ~]$ ssh student<X>@22.33.44.55
-student<X>@22.33.44.55's password: 
+student<X>@22.33.44.55's password:
 Last login: Thu Jul  4 14:47:04 2019 from 11.22.33.44
 [student<X>@node1 ~]$ sudo -i
 [root@node1 ~]#
@@ -105,13 +105,13 @@ What does this mean?
 
 Now we will configure the credentials to access our managed hosts from Tower. In the **RESOURCES** menu choose **Credentials**. Now:
 
-Click the ![plus](images/green_plus.png) button to add new credentials
-    
+Click the ![plus](../images/ygreen_plus.png) button to add new credentials
+
   - **NAME:** Workshop Credentials
 
   - **ORGANIZATION:** Default
 
-  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](images/select.png)
+  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../images/yselect.png)
 
   - **USERNAME:** student\<X\> - make sure to replace the **\<X\>** with your actual student number!
 
@@ -124,7 +124,7 @@ Click the ![plus](images/green_plus.png) button to add new credentials
   - Go back to the **RESOURCES** → **Credentials** → **Workshop Credentials** and note that the password is not visible.
 
 > **Tip**
-> 
+>
 > Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
 
 You have now setup credentials to use later for your inventory hosts.
@@ -138,31 +138,31 @@ As you’ve probably done with Ansible before you can run ad hoc commands from T
   - Click the **HOSTS** button to change into the hosts view and select the three hosts by ticking the boxes to the left of the host entries.
 
   - Click **RUN COMMANDS**. In the next screen you have to specify the ad hoc command:
-    
+
       - As **MODULE** choose **ping**
-    
+
       - For **MACHINE CREDENTIAL** click the magnifying glass icon and select **Workshop Credentials**.
-    
+
       - Click **LAUNCH**, and watch the output.
 
 The simple **ping** module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the **command** module to find the userid of the executing user using an ad hoc command.
-  
+
 - **MODULE:** command
 
 - **ARGUMENTS:** id
 
 > **Tip**
-> 
+>
 > After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to "Arguments". This is handy, give it a try.
 
 How about trying to get some secret information from the system? Try to print out */etc/shadow*.
-    
+
 - **MODULE:** command
 
 - **ARGUMENTS:** cat /etc/shadow
 
 > **Warning**
-> 
+>
 > **Expect an error\!**
 
 Oops, the last one didn’t went well, all red.
@@ -176,17 +176,19 @@ As you see, this time it worked. For tasks that have to run as root you need to 
 Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is installed on all hosts. If unsure, consult the documentation either via the web UI as shown above or by running `[ansible@tower ~]$ ansible-doc yum` on your Tower control host.
 
 > **Warning**
-> 
-> **Solution below\!**
-
-  - **MODULE:** yum
-
-  - **ARGUMENTS:** name=tmux
-
-  - Tick **ENABLE PRIVILEGE ESCALATION**
+>
+> <details><summary>Solution below!</summary>
+> <p>
+> - **MODULE:** yum
+>
+> - **ARGUMENTS:** name=tmux
+>
+> - Tick **ENABLE PRIVILEGE ESCALATION**
+> </p>
+> </details>
 
 > **Tip**
-> 
+>
 > The yellow output of the command indicates Ansible has actually done something (here it needed to install the package). If you run the ad hoc command a second time, the output will be green and inform you that the package was already installed. So yellow in Ansible doesn’t mean "be careful"…​ ;-).
 
 ----

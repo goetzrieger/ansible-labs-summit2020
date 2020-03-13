@@ -68,15 +68,17 @@ Add a line to the template to list the current kernel of the managed node.
 
 > **Warning**
 >
-> **Solution below\!**
-
-
-  - Find the fact:
-
-```bash
-[student<X>@ansible ansible-files]$ ansible node1 -m setup|grep -i kernel
-       "ansible_kernel": "3.10.0-693.el7.x86_64",
-```
+> <details><summary>Solution below!</summary>
+> <p>
+>   - Find the fact:
+>
+> ```bash
+> [student<X>@ansible ansible-files]$ ansible node1 -m setup|grep -i kernel
+>        "ansible_kernel": "3.10.0-693.el7.x86_64",
+> ```
+>
+> </p>
+> </details>
 
   - Modify the template `motd-facts.j2`:
 
