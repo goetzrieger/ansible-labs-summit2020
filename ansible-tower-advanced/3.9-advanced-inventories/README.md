@@ -389,12 +389,16 @@ So a small challenge: Find out if all hosts have the SElinux mode set to
 
   - Create the proper search string
 
-**\>\> *Click here for the solution* \<\<**
-
-The search string to use is:
-**ansible\_facts.ansible\_selinux.mode:enforcing**
-
-It should return all hosts. \</div\>\</details\>
+> **Warning**
+>
+> <details><summary>Solution below!</summary>
+> <p>
+> The search string to use is:
+> **ansible\_facts.ansible\_selinux.mode:enforcing**
+>
+>It should return all hosts.
+> </p>
+> </details>
 
 And to make this a bit more fun:
 

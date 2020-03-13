@@ -25,7 +25,7 @@ ansible ansible_host=44.55.66.77
 
 > **Tip**
 >
-> The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault. 
+> The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault.
 
 Ansible is already configured to use the inventory specific to your environment. We will show you in the next step how that is done. For now, we will execute some simple commands to work with the inventory.
 
@@ -274,14 +274,16 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 
 > **Warning**
 >
-> **Solution below\!**
-
-```bash
-[student<X>@ansible ~]$ ansible-doc -l | grep -i yum
-[student<X>@ansible ~]$ ansible-doc yum
-[student<X>@ansible ~]$ ansible node1 -m yum -a 'name=screen state=latest' -b
-```
-
-----
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> ```bash
+> [student<X>@ansible ~]$ ansible-doc -l | grep -i yum
+> [student<X>@ansible ~]$ ansible-doc yum
+> [student<X>@ansible ~]$ ansible node1 -m yum -a 'name=screen state=latest' -b
+> ```
+>
+> </p>
+> </details>
 
 [Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)

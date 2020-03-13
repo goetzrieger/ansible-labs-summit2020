@@ -86,16 +86,16 @@ To practice your **awx-cli** skills, here is a challenge:
 
 > **Warning**
 >
-> **SOLUTION BELOW\!**
-
-**\>\> *Click here for the solution* \<\<**
-
-    [root@control ~]# awx-cli setting
-    [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
-    [root@control ~]# awx-cli setting modify SESSION_COOKIE_AGE 7200
-    [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
-
-\</div\>\</details\>
+> <details><summary>Solution below!</summary>
+> <p>
+>
+>     [root@control ~]# awx-cli setting
+>     [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
+>     [root@control ~]# awx-cli setting modify SESSION_COOKIE_AGE 7200
+>     [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
+>
+> </p>
+> </details>
 
 If you want to, go to the web UI of any node (not just the one you
 connected **awx-cli** to) and check the setting under

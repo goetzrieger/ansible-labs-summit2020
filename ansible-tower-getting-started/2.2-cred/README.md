@@ -177,7 +177,7 @@ Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is instal
 
 > **Warning**
 >
-> <details><summary>Solution below</summary>
+> <details><summary>Solution below!</summary>
 > <p>
 > - **MODULE:** yum
 >

@@ -27,18 +27,18 @@ yourself and create an inventory name **Example Inventory**.
 
 > **Warning**
 >
-> **Solution Below**\!
-
-**\>\> *Click here for the solution* \<\<**
-
-    [root@control ~]# awx-cli inventory create --name "Example Inventory" --organization "Default"
-
+> <details><summary>Solution below!</summary>
+> <p>
+>
+>    [root@control ~]# awx-cli inventory create --name "Example Inventory" --organization "Default"
+>
 > **Tip**
 >
 > You can work with multiple organizations in Tower. In this lab we’ll
 > work in the **Default** organization.
-
-\</div\>\</details\>
+>
+> </p>
+> </details>
 
 ### Add Hosts to the Inventory using **awx-cli**
 
@@ -48,14 +48,14 @@ Now that we have the empty inventory created, add your two managed hosts
 
 > **Warning**
 >
-> **Solution Below**\!
-
-**\>\> *Click here for the solution* \<\<**
-
-    [root@control ~]# awx-cli host create --name "support1.ewl05.internal" --inventory "Example Inventory"
-    [root@control ~]# awx-cli host create --name "support2.ewl05.internal" --inventory "Example Inventory"
-
-\</div\>\</details\>
+> <details><summary>Solution below!</summary>
+> <p>
+>
+>    [root@control ~]# awx-cli host create --name "support1.ewl05.internal" --inventory "Example Inventory"
+>    [root@control ~]# awx-cli host create --name "support2.ewl05.internal" --inventory "Example Inventory"
+>
+> </p>
+> </details>
 
 ## Create script to contain this and all following awx-cli commands
 

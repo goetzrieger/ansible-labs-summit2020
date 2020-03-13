@@ -22,19 +22,23 @@ Create a new user "testuser" on `node1` and `node3` with a comment using an ad h
 
 > **Warning**
 >
-> **Solution below\!**
-
-Your commands could look like these:
-
-```bash
-[student<X>@ansible ansible-files]$ ansible-doc -l | grep -i user
-[student<X>@ansible ansible-files]$ ansible-doc user
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
-[student<X>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
-[student<X>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
-```
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> Your commands could look like these:
+>
+> ```bash
+> [student<X>@ansible ansible-files]$ ansible-doc -l | grep -i user
+> [student<X>@ansible ansible-files]$ ansible-doc user
+> [student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
+> [student<X>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
+> [student<X>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
+> [student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
+> [student<X>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
+> ```
+>
+> </p>
+> </details>
 
 ## Step 8.2 - Bonus Lab: Templates and Variables
 
@@ -53,11 +57,6 @@ Instead of editing and copying `httpd.conf` why don’t you just define a variab
 > **Tip**
 >
 > Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter "Ansible Variables".
-
-
-> **Warning**
->
-> **Solution below\!**
 
 ### Define the variables:
 
