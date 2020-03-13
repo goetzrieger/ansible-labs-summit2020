@@ -103,7 +103,7 @@ So let's add some hosts. First we need to have the list of all hosts which are a
 Login to your Tower control host via SSH:
 
 > **Warning**
-> 
+>
 > Replace **workshopname** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
 
 ```bash
@@ -113,7 +113,7 @@ ssh student<X>@student<X>.workshopname.rhdemo.io
 You can find the inventory information at `~/lab_inventory/hosts`. Output them with `cat`, they should look like:
 
 ```bash
-$ cat ~/lab_inventory/hosts 
+$ cat ~/lab_inventory/hosts
 [all:vars]
 ansible_user=student<X>
 ansible_ssh_pass=PASSWORD
@@ -128,7 +128,7 @@ node3 ansible_host=44.55.66.77
 ansible ansible_host=11.22.33.44
 ```
 > **Warning**
-> 
+>
 > In your inventory the IP addresses will be different.
 
 Note the names for the nodes and the IP addresses, we will use them to fill the inventory in Tower now:
@@ -154,21 +154,21 @@ You have now created an inventory with three managed hosts.
 One of the great features of Ansible Tower is to make credentials usable to users without making them visible. To allow Tower to execute jobs on remote hosts, you must configure connection credentials.
 
 > **Note**
-> 
+>
 > This is one of the most important features of Tower: **Credential Separation**\! Credentials are defined separately and not with the hosts or inventory settings.
 
 As this is an important part of your Tower setup, why not make sure that connecting to the managed nodes from Tower is working?
 
  To access the Tower host via SSH do the following:
 
-- Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io` 
+- Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io`
 - Replace **workshopname** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
-- From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`. 
+- From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
 [student<X>@ansible ~]$ ssh student<X>@22.33.44.55
-student<X>@22.33.44.55's password: 
+student<X>@22.33.44.55's password:
 Last login: Thu Jul  4 14:47:04 2019 from 11.22.33.44
 [student<X>@node1 ~]$ sudo -i
 [root@node1 ~]#
@@ -185,7 +185,7 @@ What does this mean?
 Now we will configure the credentials to access our managed hosts from Tower. In the **RESOURCES** menu choose **Credentials**. Now:
 
 Click the ![plus](images/green_plus.png) button to add new credentials
-    
+
   - **NAME:** Workshop Credentials
 
   - **ORGANIZATION:** Default
@@ -203,7 +203,7 @@ Click the ![plus](images/green_plus.png) button to add new credentials
   - Go back to the **RESOURCES** → **Credentials** → **Workshop Credentials** and note that the password is not visible.
 
 > **Tip**
-> 
+>
 > Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
 
 You have now setup credentials to use later for your inventory hosts.
@@ -217,31 +217,31 @@ As you’ve probably done with Ansible before you can run ad hoc commands from T
   - Click the **HOSTS** button to change into the hosts view and select the three hosts by ticking the boxes to the left of the host entries.
 
   - Click **RUN COMMANDS**. In the next screen you have to specify the ad hoc command:
-    
+
       - As **MODULE** choose **ping**
-    
+
       - For **MACHINE CREDENTIAL** click the magnifying glass icon and select **Workshop Credentials**.
-    
+
       - Click **LAUNCH**, and watch the output.
 
 The simple **ping** module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the **command** module to find the userid of the executing user using an ad hoc command.
-  
+
 - **MODULE:** command
 
 - **ARGUMENTS:** id
 
 > **Tip**
-> 
+>
 > After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to "Arguments". This is handy, give it a try.
 
 How about trying to get some secret information from the system? Try to print out */etc/shadow*.
-    
+
 - **MODULE:** command
 
 - **ARGUMENTS:** cat /etc/shadow
 
 > **Warning**
-> 
+>
 > **Expect an error\!**
 
 Oops, the last one didn’t went well, all red.
@@ -255,17 +255,19 @@ As you see, this time it worked. For tasks that have to run as root you need to 
 Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is installed on all hosts. If unsure, consult the documentation either via the web UI as shown above or by running `[ansible@tower ~]$ ansible-doc yum` on your Tower control host.
 
 > **Warning**
-> 
-> **Solution below\!**
-
-  - **MODULE:** yum
-
-  - **ARGUMENTS:** name=tmux
-
-  - Tick **ENABLE PRIVILEGE ESCALATION**
+>
+> <details><summary>Solution below\!</summary>
+> <p>
+> - **MODULE:** yum
+>
+> - **ARGUMENTS:** name=tmux
+>
+> - Tick **ENABLE PRIVILEGE ESCALATION**
+> </p>
+> </details>
 
 > **Tip**
-> 
+>
 > The yellow output of the command indicates Ansible has actually done something (here it needed to install the package). If you run the ad hoc command a second time, the output will be green and inform you that the package was already installed. So yellow in Ansible doesn’t mean "be careful"…​ ;-).
 
 ----
@@ -325,7 +327,7 @@ A Playbook to install the Apache webserver has already been commited to the dire
 ```
 
 > **Tip**
-> 
+>
 > Note the difference to other Playbooks you might have written\! Most importantly there is no `become` and `hosts` is set to `all`.
 
 To configure and use this repository as a **Source Control Management (SCM)** system in Tower you have to create a **Project** that uses the repository
@@ -343,7 +345,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 Now you need the URL to access the repo. Go to the Github repository mentioned above, choose the green **Clone or download** button on the right, click on **Use https** and copy the HTTPS URL.
 
 > **Note**
-> 
+>
 > If there is no **Use https** to click on, but a **Use SSH**, you are fine: just copy the URL. The important thing is that you copy the URL starting with **https**.
 
  Enter the URL into the Project configuration:
@@ -373,7 +375,7 @@ A job template is a definition and set of parameters for running an Ansible job.
 Okay, let’s just do that: Go to the **Templates** view, click the ![plus](images/green_plus.png) button and choose **Job Template**.
 
 > **Tip**
-> 
+>
 > Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
 
 - **NAME:** Install Apache
@@ -417,11 +419,11 @@ Time for a little challenge:
 You have already been through all the steps needed, so try this for yourself.
 
 > **Tip**
-> 
+>
 > What about `systemctl status httpd`?
 
 > **Warning**
-> 
+>
 > **Solution Below**
 
 - Go to **Inventories** → **Workshop Inventory**
@@ -441,7 +443,7 @@ You have already been through all the steps needed, so try this for yourself.
 Here is a list of tasks:
 
 > **Warning**
-> 
+>
 > Please make sure to finish these steps as the next chapter depends on it\!
 
 - Create a new inventory called `Webserver` and make only `node1` member of it.
@@ -449,7 +451,7 @@ Here is a list of tasks:
 - Copy the `Install Apache` template using the copy icon in the **Templates** view
 
 - Change the name to `Install Apache Ask`
-  
+
 - Change the **INVENTORY** setting of the Project so it will ask for the inventory on launch
 
 - **SAVE**
@@ -461,7 +463,7 @@ Here is a list of tasks:
 - Wait until the Job has finished and make sure it run only on `node1`
 
 > **Tip**
-> 
+>
 > The Job didn’t change anything because Apache was already installed in the latest version.
 
 ----
@@ -484,17 +486,17 @@ You have installed Apache on all hosts in the job you just run. Now we’re goin
 Additionally, the role will also make sure that the Apache configuration is properly set up - in case it got mixed up during the other exercises.
 
 > **Tip**
-> 
+>
 > The survey feature only provides a simple query for data - it does not support four-eye principles, queries based on dynamic data or nested menus.
 
 ## The Apache-configuration Role
 
 The Playbook and the role with the Jinja template already exist in the Github repository **https://github.com/ansible/workshop-examples** in the directory `rhel/apache`**`.
 
- Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory. 
- 
- - Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\. 
- - Also, check out the tasks in `tasks/main.yml` that deploy the file from the template. 
+ Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
+
+ - Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\.
+ - Also, check out the tasks in `tasks/main.yml` that deploy the file from the template.
 
 What is this Playbook doing? It creates a file (**dest**) on the managed hosts from the template (**src**).
 
@@ -513,19 +515,19 @@ Now you create a new Template that includes a survey.
 - **NAME:** Create index.html
 
 - Configure the template to:
-  
-    - Use the `Ansible Workshop Examples` **Project** 
-    
+
+    - Use the `Ansible Workshop Examples` **Project**
+
     - Use the `apache_role_install.yml` **Playbook**
-  
+
     - To run on `node1`
-  
+
     - To run in privileged mode
 
 Try for yourself, the solution is below.
 
 > **Warning**
-> 
+>
 > **Solution Below\!**
 
 - **NAME:** Create index.html
@@ -553,21 +555,21 @@ Try for yourself, the solution is below.
 - In the Template, click the **ADD SURVEY** button
 
 - Under **ADD SURVEY PROMPT** fill in:
-  
+
     - **PROMPT:** First Line
-  
+
     - **ANSWER VARIABLE NAME:** `first_line`
-  
+
     - **ANSWER TYPE:** Text
 
 - Click **+ADD**
 
 - In the same way add a second **Survey Prompt**
-  
+
     - **PROMPT:** Second Line
-  
+
     - **ANSWER VARIABLE NAME:** `second_line`
-  
+
     - **ANSWER TYPE:** Text
 
 - Click **+ADD**
@@ -583,7 +585,7 @@ Now launch **Create index.html** job template.
 Before the actual launch the survey will ask for **First Line** and **Second Line**. Fill in some text and click **Next**. The next window shows the values, if all is good run the Job by clicking **Launch**.
 
 > **Tip**
-> 
+>
 > Note how the two survey lines are shown to the left of the Job view as **Extra Variables**.
 
 After the job has completed, check the Apache homepage. In the SSH console on the control host, execute `curl` against the IP address of your `node1`:
@@ -603,7 +605,7 @@ Note how the two variables where used by the playbook to create the content of t
 Here is a list of tasks:
 
 > **Warning**
-> 
+>
 > **Please make sure to finish these steps as the next chapter depends on it\!**
 
 - Take the inventory `Webserver` and add the other nodes, `node2` and `node3` as well.
@@ -638,19 +640,19 @@ Let’s create a user:
 - Click the green plus button
 
 - Fill in the values for the new user:
-  
+
     - **FIRST NAME:** Werner
-  
+
     - **LAST NAME:** Web
-  
+
     - **EMAIL:** wweb@example.com
-  
+
     - **USERNAME:** wweb
-  
+
     - **USER TYPE:** Normal User
-  
+
     - **PASSWORD:** ansible
-  
+
     - Confirm password
 
 - Click **SAVE**
@@ -686,13 +688,13 @@ Add the permission to use the template:
 - In the Permissions view of the Team `Web Content` click the green plus button to add permissions.
 
 - A new window opens. You can choose to set permissions for a number of resources.
-  
+
     - Select the resource type **JOB TEMPLATES**
-  
+
     - Choose the `Create index.html` Template by ticking the box next to it.
 
 - The second part of the window opens, here you assign roles to the selected resource.
-  
+
     - Choose **EXECUTE**
 
 - Click **SAVE**
@@ -772,7 +774,7 @@ To make things somewhat easier for you, everything needed already exists in a Gi
 First you have to set up the Git repo as Projects like you normally would. You have done this before, try to do this on your own. Detailed instructions can be found below.
 
 > **Warning**
-> 
+>
 > **If you are still logged in as user **wweb**, log out of and log in as user **admin** again.**
 
 - Create the project for web operations:
@@ -792,35 +794,35 @@ First you have to set up the Git repo as Projects like you normally would. You h
   - The **SCM BRANCH/TAG/COMMIT** is **webdev**
 
 > **Warning**
-> 
+>
 > **Solution Below**
 
 - Create the project for web operations. In the **Projects** view click the green plus button and fill in:
-  
+
     - **NAME:** Webops Git Repo
-  
+
     - **ORGANIZATION:** Default
-  
+
     - **SCM TYPE:** Git
-  
+
     - **SCM URL:** https://github.com/ansible/workshop-examples.git
 
     - **SCM BRANCH/TAG/COMMIT:** webops
-  
+
     - **SCM UPDATE OPTIONS:** Tick all three boxes.
 
 - Click **SAVE**
 
 - Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
-  
+
     - **NAME:** Webdev Git Repo
-  
+
     - **ORGANIZATION:** Default
-  
+
     - **SCM TYPE:** Git
-  
+
     - **SCM URL:** https://github.com/ansible/workshop-examples.git
-  
+
     - **SCM BRANCH/TAG/COMMIT:** webdev
 
     - **SCM UPDATE OPTIONS:** Tick all three boxes.
@@ -832,43 +834,43 @@ First you have to set up the Git repo as Projects like you normally would. You h
 Now you have to create Job Templates like you would for "normal" Jobs.
 
   - Go to the **Templates** view, click the green plus button and choose **Job Template**:
-    
+
       - **NAME:** Tomcat Deploy
-    
+
       - **JOB TYPE:** Run
-    
+
       - **INVENTORY:** Workshop Inventory
-    
+
       - **PROJECT:** Webops Git Repo
-    
+
       - **PLAYBOOK:** `rhel/webops/tomcat.yml`
-    
+
       - **CREDENTIAL:** Workshop Credentials
-    
+
       - **OPTIONS:** Enable privilege escalation
 
   - Click **SAVE**
 
   - Go to the **Templates** view, click the green plus button and choose **Job Template**:
-    
+
       - **NAME:** Web App Deploy
-    
+
       - **JOB TYPE:** Run
-    
+
       - **INVENTORY:** Workshop Inventory
-    
+
       - **PROJECT:** Webdev Git Repo
-    
+
       - **PLAYBOOK:** `rhel/webdev/create_jsp.yml`
-    
+
       - **CREDENTIALS:** Workshop Credentials
-    
+
       - **OPTIONS:** Enable privilege escalation
 
   - Click **SAVE**
 
 > **Tip**
-> 
+>
 > If you want to know what the Playbooks look like, check out the Github URL and switch to the appropriate branches.
 
 ## Set up the Workflow
@@ -876,9 +878,9 @@ Now you have to create Job Templates like you would for "normal" Jobs.
 And now you finally set up the workflow. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template so this is finally making sense.
 
   - Go to the **Templates** view and click the the green plus button. This time choose **Workflow Template**
-    
+
       - **NAME:** Deploy Webapp Server
-    
+
       - **ORGANIZATION:** Default
 
   - Click **SAVE**
@@ -892,7 +894,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - The node gets annotated with the name of the job. Hover the mouse pointer over the node, you’ll see a red **x**, a green **+** and a blue **chain**-symbol appear.
 
 > **Tip**
-> 
+>
 > Using the red "x" allows you to remove the node, the green plus lets you add the next node and the chain-symbol links to another node .
 
   - Click the green **+** sign
@@ -902,7 +904,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - Leave **Type** set to **On Success**
 
 > **Tip**
-> 
+>
 > The type allows for more complex workflows. You could lay out different execution paths for successful and for failed Playbook runs.
 
   - Click **SELECT**
@@ -912,7 +914,7 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
   - Click **SAVE** in the **Workflow Template** view
 
 > **Tip**
-> 
+>
 > The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the documentation.
 
 ## And Action
@@ -932,7 +934,7 @@ $ curl http://localhost:8080/coolapp/
 ```
 
 > **Tip**
-> 
+>
 > You might have to wait a couple of minutes until Tomcat answers requests.
 
 ----
@@ -1035,7 +1037,7 @@ This time we use the power of Ansible to check the results: execute curl to get 
 
 > **Tip**
 >
-> We are using the `ansible_host` variable in the URL to access every node in the inventory group. 
+> We are using the `ansible_host` variable in the URL to access every node in the inventory group.
 
 ```bash
 [student<X>@ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
@@ -1075,25 +1077,25 @@ Check the results again from your Tower control host. Since we got a warning las
 ```bash
 [student<X>ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
 node3 | SUCCESS => {
-    "accept_ranges": "bytes", 
+    "accept_ranges": "bytes",
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
-    }, 
-    "changed": false, 
-    "connection": "close", 
-    "content": "<body>\n<h1>This is a development webserver, have fun!</h1>\nwerners dev content\n</body>\n",                                                                                         
-    "content_length": "87", 
-    "content_type": "text/html; charset=UTF-8", 
-    "cookies": {}, 
-    "cookies_string": "", 
-    "date": "Tue, 29 Oct 2019 11:14:24 GMT", 
-    "elapsed": 0, 
-    "etag": "\"57-5960ab74fc401\"", 
-    "last_modified": "Tue, 29 Oct 2019 11:14:12 GMT", 
-    "msg": "OK (87 bytes)", 
-    "redirected": false, 
-    "server": "Apache/2.4.6 (Red Hat Enterprise Linux)", 
-    "status": 200, 
+    },
+    "changed": false,
+    "connection": "close",
+    "content": "<body>\n<h1>This is a development webserver, have fun!</h1>\nwerners dev content\n</body>\n",
+    "content_length": "87",
+    "content_type": "text/html; charset=UTF-8",
+    "cookies": {},
+    "cookies_string": "",
+    "date": "Tue, 29 Oct 2019 11:14:24 GMT",
+    "elapsed": 0,
+    "etag": "\"57-5960ab74fc401\"",
+    "last_modified": "Tue, 29 Oct 2019 11:14:12 GMT",
+    "msg": "OK (87 bytes)",
+    "redirected": false,
+    "server": "Apache/2.4.6 (Red Hat Enterprise Linux)",
+    "status": 200,
     "url": "http://18.205.236.208"
 }
 [...]
