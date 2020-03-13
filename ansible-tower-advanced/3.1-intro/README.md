@@ -91,7 +91,7 @@ And a second network segment with:
 
 A diagram says more then a thousand words:
 
-![adv\_tower\_diagram.png](./images/adv_tower_diagram.png)
+![adv\_tower\_diagram.png](../images/adv_tower_diagram.png)
 
 > **Tip**
 >

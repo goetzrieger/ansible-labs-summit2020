@@ -45,7 +45,7 @@ The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 
 The dashboard also displays real time data about the execution of tasks completed in playbooks.
 
-![Ansible Tower Dashboard](images/dashboard.png)
+![Ansible Tower Dashboard](../images/ydashboard.png)
 
 ## Concepts
 

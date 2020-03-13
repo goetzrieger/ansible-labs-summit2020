@@ -152,7 +152,7 @@ While in the **INSTANCES GROUPS** overview click the **INSTANCES** link
 for, say, the **dev** group. In the next view you’ll see a slide button
 next to each Tower instance (only one in this case).
 
-  - The button should be set to "ON" ![20](./images/on_off.png).
+  - The button should be set to "ON" ![20](../images/on_off.png).
     Clicking it would deactivate the corresponding instance and would
     prevent that further jobs are assigned to it.
 

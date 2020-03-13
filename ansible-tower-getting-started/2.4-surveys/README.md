@@ -39,7 +39,7 @@ Now you create a new Template that includes a survey.
 
 ### Create Template
 
-- Go to **Templates**, click the ![plus](images/green_plus.png) button and choose **Job Template**
+- Go to **Templates**, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**
 
 - **NAME:** Create index.html
 

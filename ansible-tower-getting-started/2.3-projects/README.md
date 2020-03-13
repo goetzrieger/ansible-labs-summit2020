@@ -59,7 +59,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
 ## Create the Project
 
-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](images/green_plus.png) button. Fill in the form:
+  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../images/ygreen_plus.png) button. Fill in the form:
 
   - **NAME:** Ansible Workshop Examples
 
@@ -97,7 +97,7 @@ A job template is a definition and set of parameters for running an Ansible job.
 
 - **What** Playbook to use?
 
-Okay, let’s just do that: Go to the **Templates** view, click the ![plus](images/green_plus.png) button and choose **Job Template**.
+Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**.
 
 > **Tip**
 >
@@ -121,7 +121,7 @@ Okay, let’s just do that: Go to the **Templates** view, click the ![plus](imag
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time:
 
-![job exection](images/job_overview.png)
+![job exection](../images/yjob_overview.png)
 
 Since this might take some time, have a closer look at all the details provided:
 

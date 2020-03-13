@@ -45,7 +45,7 @@ The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 
 The dashboard also displays real time data about the execution of tasks completed in playbooks.
 
-![Ansible Tower Dashboard](images/dashboard.png)
+![Ansible Tower Dashboard](../images/ydashboard.png)
 
 ## Concepts
 
@@ -88,7 +88,7 @@ Let’s get started with: The first thing we need is an inventory of your manage
 
 Create the inventory:
 
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](images/green_plus.png) button on the right side and choose **Inventory**.
+  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../images/ygreen_plus.png) button on the right side and choose **Inventory**.
 
   - **NAME:** Workshop Inventory
 
@@ -137,7 +137,7 @@ Note the names for the nodes and the IP addresses, we will use them to fill the 
 
   - Click on  the **HOSTS** button
 
-  - To the right click the ![plus](images/green_plus.png) button.
+  - To the right click the ![plus](../images/ygreen_plus.png) button.
 
   - **HOST NAME:** `node1`
 
@@ -184,13 +184,13 @@ What does this mean?
 
 Now we will configure the credentials to access our managed hosts from Tower. In the **RESOURCES** menu choose **Credentials**. Now:
 
-Click the ![plus](images/green_plus.png) button to add new credentials
+Click the ![plus](../images/ygreen_plus.png) button to add new credentials
 
   - **NAME:** Workshop Credentials
 
   - **ORGANIZATION:** Default
 
-  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](images/select.png)
+  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../images/yselect.png)
 
   - **USERNAME:** student\<X\> - make sure to replace the **\<X\>** with your actual student number!
 
@@ -334,7 +334,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
 ## Create the Project
 
-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](images/green_plus.png) button. Fill in the form:
+  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../images/ygreen_plus.png) button. Fill in the form:
 
   - **NAME:** Ansible Workshop Examples
 
@@ -372,7 +372,7 @@ A job template is a definition and set of parameters for running an Ansible job.
 
 - **What** Playbook to use?
 
-Okay, let’s just do that: Go to the **Templates** view, click the ![plus](images/green_plus.png) button and choose **Job Template**.
+Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**.
 
 > **Tip**
 >
@@ -396,7 +396,7 @@ Okay, let’s just do that: Go to the **Templates** view, click the ![plus](imag
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time:
 
-![job exection](images/job_overview.png)
+![job exection](../images/yjob_overview.png)
 
 Since this might take some time, have a closer look at all the details provided:
 
@@ -510,7 +510,7 @@ Now you create a new Template that includes a survey.
 
 ### Create Template
 
-- Go to **Templates**, click the ![plus](images/green_plus.png) button and choose **Job Template**
+- Go to **Templates**, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**
 
 - **NAME:** Create index.html
 
@@ -923,9 +923,9 @@ Your workflow is ready to go, launch it.
 
   - Click the blue **LAUNCH** button directly or go to the the **Templates** view and launch the **Deploy Webapp Server** workflow by clicking the rocket icon.
 
-![jobs view of workflow](images/job_workflow.png)
+![jobs view of workflow](../images/yjob_workflow.png)
 
-Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, click the ![w-button](images/w_button.png) in the **JOB TEMPLATE** line in the **DETAILS** part on the left side of the job overview.
+Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, click the ![w-button](../images/yw_button.png) in the **JOB TEMPLATE** line in the **DETAILS** part on the left side of the job overview.
 
 After the job was finished, check if everything worked fine: log into `node1`, `node2` or `node3` from your control host and run:
 

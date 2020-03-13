@@ -70,7 +70,7 @@ UI for a change?
 
 In the Tower web UI under **RESOURCES**, click **Inventories**:
 
-  - Click the ![20](./images/green_plus.png) button to add a new
+  - Click the ![20](../images/green_plus.png) button to add a new
     inventory
 
   - **NAME:** Remote Inventory
@@ -83,11 +83,11 @@ In the Tower web UI under **RESOURCES**, click **Inventories**:
   - Click **SAVE**
 
 After you’ve clicked **SAVE**, you can add hosts: the button for the
-hosts management ![40](./images/tower_hosts.png) is active now. Click on
+hosts management ![40](../images/tower_hosts.png) is active now. Click on
 it to access the hosts overview. There are no hosts right now, so let’s
 add some:
 
-  - Click the ![20](./images/green_plus.png) button to add a new host
+  - Click the ![20](../images/green_plus.png) button to add a new host
 
   - **NAME:** `isosupport1.ewl05.internal`
 
@@ -103,7 +103,7 @@ to make sure that they are following our CIS guidelines - and will set
 up a template executing the CIS playbook on them.
 
 Go to **Templates** in the **RESOURCES** section of the menu, click the
-![20](./images/green_plus.png) button and choose **Job Template**.
+![20](../images/green_plus.png) button and choose **Job Template**.
 
   - **NAME:** Remote CIS Compliance
 

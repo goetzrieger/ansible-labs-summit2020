@@ -161,7 +161,7 @@ The first step is to add the inventory script to Tower:
   - In the web UI, open **RESOURCES→Inventory Scripts**.
 
   - To create a new custom inventory script, click the
-    ![20](./images/green_plus.png) button.
+    ![20](../images/green_plus.png) button.
 
   - Fill in the needed data:
 
@@ -176,7 +176,7 @@ Finally the new inventory script can be used in an actual **Inventory**.
 
   - Go to **RESOURCES→Inventories**
 
-  - Click the ![20](./images/green_plus.png) button and choose
+  - Click the ![20](../images/green_plus.png) button and choose
     **Inventory**.
 
   - **NAME:** Cloud Inventory
@@ -185,7 +185,7 @@ Finally the new inventory script can be used in an actual **Inventory**.
 
   - The **SOURCES** button on top becomes active now, click it
 
-  - Click the ![20](./images/green_plus.png) to add a new source
+  - Click the ![20](../images/green_plus.png) to add a new source
 
   - **NAME:** Cloud Custom Script
 
@@ -253,7 +253,7 @@ The base rules of a search are:
 
 Let’s start with a simple string example. In your Tower web UI, open the
 **RESOURCES→Inventories** view. Then click the
-![20](./images/green_plus.png) button and choose to create a new **Smart
+![20](../images/green_plus.png) button and choose to create a new **Smart
 Inventory**. In the next view:
 
   - **NAME:** Smart Inventory Simple
