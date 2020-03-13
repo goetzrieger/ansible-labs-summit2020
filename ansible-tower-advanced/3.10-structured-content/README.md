@@ -70,7 +70,7 @@ and is explained in more detail there.
 Since we want to store all content in a repository, we will first create
 an empty Git repository on our Gitea server. Access the Gitea web UI via
 
-**\\http://control-\<GUID\>.rhpds.opentlc.com/gitea**.
+**http://control-\<GUID\>.rhpds.opentlc.com/gitea**.
 
 Login via the already well known credentials:
 
@@ -427,7 +427,7 @@ store the role, updating it when needed and so on.
 In this example, we will include a role which ships a simple
 `index.html` file as template and reloads the apache web server. The
 role is already shared in Gitea at
-**\\http://control.example.com/gitea/git/shared-apache-role**.
+**http://control.example.com/gitea/git/shared-apache-role**.
 
 To include it with the existing structured content, first we have to
 create a file called `roles/requirements.yml` and reference the role

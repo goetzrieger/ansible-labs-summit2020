@@ -38,7 +38,7 @@ features of Tower. You’ll learn about:
 
 Definitely, the Asciidoc sources are available here:
 
-**\\https://github.com/goetzrieger/ansible-labs/blob/master/tower/ansible\_tower\_advanced.adoc**
+**https://github.com/goetzrieger/ansible-labs/blob/master/tower/ansible\_tower\_advanced.adoc**
 
 # Your Ansible Tower Lab Environment
 

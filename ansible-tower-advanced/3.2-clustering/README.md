@@ -34,11 +34,11 @@ as:
 >
 > Replace the **\<GUID\>** string with your GUID\!
 
-  - **\\https://tower1.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower1.\<GUID\>.sandbox951.opentlc.com**
 
-  - **\\https://tower2.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower2.\<GUID\>.sandbox951.opentlc.com**
 
-  - **\\https://tower3.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower3.\<GUID\>.sandbox951.opentlc.com**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at
 your hands here. To learn more about your cluster and it’s state, in one
