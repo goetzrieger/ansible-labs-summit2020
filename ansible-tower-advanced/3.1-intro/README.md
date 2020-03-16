@@ -7,7 +7,7 @@ look into Tower? Or you are already using Tower? Cool. We prepared this
 lab to give a hands-on introduction to some of the more advanced
 features of Tower. You’ll learn about:
 
-  - Using commandline tools to manage Ansible Tower
+  - Using command line tools to manage Ansible Tower
 
   - Ansible Tower clustering
 
