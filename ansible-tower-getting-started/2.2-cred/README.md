@@ -26,7 +26,7 @@ Login to your Tower control host via SSH:
 
 > **Warning**
 >
-> Replace **workshopname** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
+> Replace **&lt;workshopname&gt;** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
 
 ```bash
 ssh student<X>@student<X>.<workshopname>.rhdemo.io
