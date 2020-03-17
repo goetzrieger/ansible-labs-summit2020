@@ -229,53 +229,57 @@ environment. Create the file:
 So we have prepared a basic structure for quite some content - call
 `tree` to look at it.
 
-**&gt;&gt; *Click here to see how it should look like* &lt;&lt;**
-
-    [ansible@control structured-content]$ tree
-    .
-    ├── group_vars
-    ├── host_vars
-    ├── library
-    ├── production
-    ├── roles
-    │   ├── apache
-    │   │   ├── defaults
-    │   │   │   └── main.yml
-    │   │   ├── files
-    │   │   ├── handlers
-    │   │   │   └── main.yml
-    │   │   ├── meta
-    │   │   │   └── main.yml
-    │   │   ├── README.md
-    │   │   ├── tasks
-    │   │   │   └── main.yml
-    │   │   ├── templates
-    │   │   ├── tests
-    │   │   │   ├── inventory
-    │   │   │   └── test.yml
-    │   │   └── vars
-    │   │       └── main.yml
-    │   └── security
-    │       ├── defaults
-    │       │   └── main.yml
-    │       ├── files
-    │       ├── handlers
-    │       │   └── main.yml
-    │       ├── meta
-    │       │   └── main.yml
-    │       ├── README.md
-    │       ├── tasks
-    │       │   └── main.yml
-    │       ├── templates
-    │       ├── tests
-    │       │   ├── inventory
-    │       │   └── test.yml
-    │       └── vars
-    │           └── main.yml
-    ├── site.yml
-    └── staging
-
-&lt;/div&gt;&lt;/details&gt;
+> **Warning**
+>
+> <details><summary>Click here to see how it should look like!</summary>
+> <p>
+>
+>     [ansible@control structured-content]$ tree
+>     .
+>     ├── group_vars
+>     ├── host_vars
+>     ├── library
+>     ├── production
+>     ├── roles
+>     │   ├── apache
+>     │   │   ├── defaults
+>     │   │   │   └── main.yml
+>     │   │   ├── files
+>     │   │   ├── handlers
+>     │   │   │   └── main.yml
+>     │   │   ├── meta
+>     │   │   │   └── main.yml
+>     │   │   ├── README.md
+>     │   │   ├── tasks
+>     │   │   │   └── main.yml
+>     │   │   ├── templates
+>     │   │   ├── tests
+>     │   │   │   ├── inventory
+>     │   │   │   └── test.yml
+>     │   │   └── vars
+>     │   │       └── main.yml
+>     │   └── security
+>     │       ├── defaults
+>     │       │   └── main.yml
+>     │       ├── files
+>     │       ├── handlers
+>     │       │   └── main.yml
+>     │       ├── meta
+>     │       │   └── main.yml
+>     │       ├── README.md
+>     │       ├── tasks
+>     │       │   └── main.yml
+>     │       ├── templates
+>     │       ├── tests
+>     │       │   ├── inventory
+>     │       │   └── test.yml
+>     │       └── vars
+>     │           └── main.yml
+>     ├── site.yml
+>     └── staging
+>
+> </p>
+> </details>
 
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:
