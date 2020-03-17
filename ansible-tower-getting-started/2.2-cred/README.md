@@ -84,7 +84,7 @@ As this is an important part of your Tower setup, why not make sure that connect
  To access the Tower host via SSH do the following:
 
 - Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io`
-- Replace **workshopname** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
+- Replace **&lt;workshopname&gt;** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
 - From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
