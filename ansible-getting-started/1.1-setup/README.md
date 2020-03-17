@@ -54,7 +54,7 @@ Log out of the root account again:
 
 > **Note**
 >
-> In all subsequent exercises you should work as the student\<X\> user on the control node if not explicitly told differently.
+> In all subsequent exercises you should work as the student&lt;X&gt; user on the control node if not explicitly told differently.
 
 ## Step 1.2 - Working the Labs
 
@@ -62,7 +62,7 @@ You might have guessed by now this lab is pretty commandline-centric…​ :-)
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
 
-  - All labs were prepared using **Vim**, but we understand not everybody loves it. Feel free to use alternative editors. In the lab environment we provide **Midnight Commander** (just run **mc**, function keys can be reached via Esc-\<n\> or simply clicked with the mouse) or **Nano** (run **nano**). Here is a short [editor intro](../0.0-support-docs/editor_intro.md).
+  - All labs were prepared using **Vim**, but we understand not everybody loves it. Feel free to use alternative editors. In the lab environment we provide **Midnight Commander** (just run **mc**, function keys can be reached via Esc-&lt;n&gt; or simply clicked with the mouse) or **Nano** (run **nano**). Here is a short [editor intro](../0.0-support-docs/editor_intro.md).
 
 > **Tip**
 >

@@ -70,7 +70,7 @@ and is explained in more detail there.
 Since we want to store all content in a repository, we will first create
 an empty Git repository on our Gitea server. Access the Gitea web UI via
 
-**http://control-\<GUID\>.rhpds.opentlc.com/gitea**.
+**http://control-&lt;GUID&gt;.rhpds.opentlc.com/gitea**.
 
 Login via the already well known credentials:
 
@@ -229,7 +229,7 @@ environment. Create the file:
 So we have prepared a basic structure for quite some content - call
 `tree` to look at it.
 
-**\>\> *Click here to see how it should look like* \<\<**
+**&gt;&gt; *Click here to see how it should look like* &lt;&lt;**
 
     [ansible@control structured-content]$ tree
     .
@@ -275,7 +275,7 @@ So we have prepared a basic structure for quite some content - call
     ├── site.yml
     └── staging
 
-\</div\>\</details\>
+&lt;/div&gt;&lt;/details&gt;
 
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:

@@ -48,19 +48,19 @@ access to the following hosts:
 |                                  |                                         |                                |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| Control/Bastion Host, Gitea Repo | bastion.\<GUID\>.sandbox951.opentlc.com | bastion.\<GUID\>.internal      |
+| Control/Bastion Host, Gitea Repo | bastion.&lt;GUID&gt;.sandbox951.opentlc.com | bastion.&lt;GUID&gt;.internal      |
 | Ansible Tower Cluster            |                                         |                                |
-| Ansible Tower Load Balancer      | tower.\<GUID\>.sandbox951.opentlc.com   |                                |
+| Ansible Tower Load Balancer      | tower.&lt;GUID&gt;.sandbox951.opentlc.com   |                                |
 | Ansible Tower Database Host      |                                         | towerdb.example.com            |
-| Managed RHEL7 Host 1             |                                         | support1.\<GUID\>.internal     |
-| Managed RHEL7 Host 2             |                                         | support1.\<GUID\>.internal     |
-| Ansible Tower Isolated Node      |                                         | worker1.emea.\<GUID\>.internal |
-| Managed Remote Host 1            |                                         | isosupport1.\<GUID\>.internal  |
-| Managed Remote Host 2            |                                         | isosupport2.\<GUID\>.internal  |
+| Managed RHEL7 Host 1             |                                         | support1.&lt;GUID&gt;.internal     |
+| Managed RHEL7 Host 2             |                                         | support1.&lt;GUID&gt;.internal     |
+| Ansible Tower Isolated Node      |                                         | worker1.emea.&lt;GUID&gt;.internal |
+| Managed Remote Host 1            |                                         | isosupport1.&lt;GUID&gt;.internal  |
+| Managed Remote Host 2            |                                         | isosupport2.&lt;GUID&gt;.internal  |
 
 > **Tip**
 >
-> Your lab environment will get a unique **\<GUID\>**. You will be able
+> Your lab environment will get a unique **&lt;GUID&gt;**. You will be able
 > to SSH into the bastion host using the external hostname
 > `bastion.<GUID>.sandbox951.opentlc.com`, from here you need to SSH
 > into the other hosts to run tasks on the commandline.
@@ -109,7 +109,7 @@ Some hints to get you started:
   - All labs where prepared using **Vim**, but we understand not
     everybody loves it. Feel free to use alternative editors, in the lab
     environment we provide **Midnight Commander** (just run **mc**,
-    function keys can be reached via Esc-\<n\> or simply clicked with
+    function keys can be reached via Esc-&lt;n&gt; or simply clicked with
     the mouse) or **Nano** (run **nano**). Here is a short [editor
     intro,
     window="\_blank"](http://people.redhat.com/grieger/editor_intro_rhel7.html).

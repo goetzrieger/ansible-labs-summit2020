@@ -75,15 +75,15 @@ If you don’t like **Vim** and you feel too young for **Midnight Commander** us
 ### Basic Commands
 
 > **Tip**
-> 
-> **Ctrl-\<n\>** or **Alt-\<n\>** means press and hold the Control or Alt key and then press the character after the dash.
+>
+> **Ctrl-&lt;n&gt;** or **Alt-&lt;n&gt;** means press and hold the Control or Alt key and then press the character after the dash.
 
 To create a new file or open an existing file:
 
     # nano playbook.yml
 
 > **Tip**
-> 
+>
 > When Nano asks for confirmation, it expects a **y** for yes or **n** for no.
 
 To save the current file in Nano:
@@ -91,7 +91,7 @@ To save the current file in Nano:
   - Type **Ctrl-o**
 
 > **Tip**
-> 
+>
 > Depending if the file was changed or not Nano will ask for confirmation and the file name.
 
 To leave Nano without saving the file (if something went wrong while editing and you just want out without changing anything):

@@ -12,10 +12,10 @@ To implement a conditional, the `when` statement must be used, followed by the c
 | ---- | ---------------------------------------------------------------------- |
 | \==  | Compares two objects for equality.                                     |
 | \!=  | Compares two objects for inequality.                                   |
-| \>   | true if the left hand side is greater than the right hand side.        |
-| \>=  | true if the left hand side is greater or equal to the right hand side. |
-| \<   | true if the left hand side is lower than the right hand side.          |
-| \< = | true if the left hand side is lower or equal to the right hand side.   |
+| &gt;   | true if the left hand side is greater than the right hand side.        |
+| &gt;=  | true if the left hand side is greater or equal to the right hand side. |
+| &lt;   | true if the left hand side is lower than the right hand side.          |
+| &lt; = | true if the left hand side is lower or equal to the right hand side.   |
 
 For more on this, please refer to the documentation: <http://jinja.pocoo.org/docs/2.10/templates/>
 

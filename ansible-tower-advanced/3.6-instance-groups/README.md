@@ -17,7 +17,7 @@ Inventories or Job Templates.
 
 > **Tip**
 >
-> The order of priority is **Job Template \> Inventory \>
+> The order of priority is **Job Template &gt; Inventory &gt;
 > Organization**. So Instance Groups configured in Job Templates take
 > precedence over those configured in Inventories, which take precedence
 > over Organizations

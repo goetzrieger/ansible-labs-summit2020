@@ -77,9 +77,9 @@ Ansible would expect… ;-)
 ### The Custom Inventory Script
 
 An inventory script has to follow some conventions. It must accept the
-**--list** and **--host \<hostname\>** arguments. When it is called with
+**--list** and **--host &lt;hostname&gt;** arguments. When it is called with
 **--list**, the script must output a JSON-encoded data containing all
-groups and hosts to be managed. When called with **--host \<hostname\>**
+groups and hosts to be managed. When called with **--host &lt;hostname&gt;**
 it must return an JSON-formatted hash or dictionary of host variables
 (can be empty).
 

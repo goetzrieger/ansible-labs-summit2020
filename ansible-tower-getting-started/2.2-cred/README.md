@@ -6,7 +6,7 @@
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student\<X\>.\<workshopname\>.rhdemo.io** (replace "\<X\>" with your student number and "\<workshopname\>" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student&lt;X&gt;.&lt;workshopname&gt;.rhdemo.io** (replace "&lt;X&gt;" with your student number and "&lt;workshopname&gt;" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
 
 Create the inventory:
 
@@ -98,9 +98,9 @@ Last login: Thu Jul  4 14:47:04 2019 from 11.22.33.44
 
 What does this mean?
 
-  - Tower user **student\<X>** can connect to the managed hosts with password based SSH
+  - Tower user **student&lt;X>** can connect to the managed hosts with password based SSH
 
-  - User **student\<X>** can execute commands on the managed hosts as **root** with `sudo`
+  - User **student&lt;X>** can execute commands on the managed hosts as **root** with `sudo`
 
 ## Configure Machine Credentials
 
@@ -114,7 +114,7 @@ Click the ![plus](../../images/ygreen_plus.png) button to add new credentials
 
   - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../../images/yselect.png)
 
-  - **USERNAME:** student\<X\> - make sure to replace the **\<X\>** with your actual student number!
+  - **USERNAME:** student&lt;X&gt; - make sure to replace the **&lt;X&gt;** with your actual student number!
 
   - **PASSWORD:** Enter the password from the inventory file.
 

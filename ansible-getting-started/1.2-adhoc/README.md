@@ -105,7 +105,7 @@ ansible ansible_host=44.55.66.77
 
 > **Tip**
 >
-> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
+> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **&lt;X&gt;** with your actual student number.
 
 ## Step 2.3 - Ping a host
 
@@ -207,13 +207,13 @@ As mentioned this produces an **error**:
     }
 ```
 
-The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<X\>** is not allowed to write the motd file.
+The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student&lt;X&gt;** is not allowed to write the motd file.
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
 > **Tip**
 >
-> Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+> Ansible will connect to the machines using your current user name (student&lt;X&gt; in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
 
 For us it’s okay to connect as `student<X>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
