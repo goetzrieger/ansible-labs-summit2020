@@ -1,6 +1,10 @@
 # Exercise 2.4 - Surveys
 
+<<<<<<< HEAD
 **Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
+=======
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
+>>>>>>> master
 
 You might have noticed the **ADD SURVEY** button in the **Template** configuration view. A survey is a way to create a simple form to ask for parameters that get used as variables when a **Template** is launched as a **Job**.
 
@@ -24,6 +28,11 @@ The Playbook and the role with the Jinja template already exist in the Github re
 
  Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
 
+<<<<<<< HEAD
+=======
+ Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
+
+>>>>>>> master
  - Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\.
  - Also, check out the tasks in `tasks/main.yml` that deploy the file from the template.
 
@@ -39,7 +48,11 @@ Now you create a new Template that includes a survey.
 
 ### Create Template
 
+<<<<<<< HEAD
 - Go to **Templates**, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**
+=======
+- Go to **Templates**, click the ![plus](./images/green_plus.png) button and choose **Job Template**
+>>>>>>> master
 
 - **NAME:** Create index.html
 
@@ -57,6 +70,7 @@ Try for yourself, the solution is below.
 
 > **Warning**
 >
+<<<<<<< HEAD
 > <details><summary>Solution below!</summary>
 > <p>
 >
@@ -78,6 +92,25 @@ Try for yourself, the solution is below.
 >
 > </p>
 > </details>
+=======
+> **Solution Below\!**
+
+- **NAME:** Create index.html
+
+- **JOB TYPE:** Run
+
+- **INVENTORY:** Webserver
+
+- **Project:** Ansible Workshop Examples
+
+- **PLAYBOOK:** `rhel/apache/apache_role_install.yml`
+
+- **CREDENTIAL:** Workshop Credentials
+
+- **OPTIONS:** Enable Privilege Escalation
+
+- Click **SAVE**
+>>>>>>> master
 
 > **Warning**
 >

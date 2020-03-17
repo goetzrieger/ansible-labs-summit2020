@@ -1,6 +1,6 @@
 # Exercise 1 - Introduction to Tower
 
-**Read this in other languages**: ![uk](../../../images/uk.png) [English](README.md),  ![japan](../../../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 ## Why Ansible Tower?
 
@@ -45,7 +45,7 @@ The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 
 The dashboard also displays real time data about the execution of tasks completed in playbooks.
 
-![Ansible Tower Dashboard](../images/ydashboard.png)
+![Ansible Tower Dashboard](../../images/dashboard.png)
 
 ## Concepts
 
