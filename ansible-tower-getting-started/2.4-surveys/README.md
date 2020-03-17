@@ -24,8 +24,6 @@ The Playbook and the role with the Jinja template already exist in the Github re
 
  Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
 
- Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
-
  - Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\.
  - Also, check out the tasks in `tasks/main.yml` that deploy the file from the template.
 

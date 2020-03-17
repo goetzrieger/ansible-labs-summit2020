@@ -149,19 +149,23 @@ You have already been through all the steps needed, so try this for yourself.
 
 > **Warning**
 >
-> **Solution Below**
-
-- Go to **Inventories** → **Workshop Inventory**
-
-- In the **HOSTS** view select all hosts and click **RUN COMMANDS**
-
-- **MODULE:** command
-
-- **ARGUMENTS:** systemctl status httpd
-
-- **MACHINE CREDENTIALS:** Workshop Credentials
-
-- Click **LAUNCH**
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> - Go to **Inventories** → **Workshop Inventory**
+>
+> - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
+>
+> - **MODULE:** command
+>
+> - **ARGUMENTS:** systemctl status httpd
+>
+> - **MACHINE CREDENTIALS:** Workshop Credentials
+>
+> - Click **LAUNCH**
+>
+> </p>
+> </details>
 
 ## What About Some Practice?
 
