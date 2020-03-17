@@ -6,7 +6,7 @@ If you don’t like **Vim** as an editor feel free to use **Nano** or **Midnight
 
 Mc is more then an editor, it’s a file manager. And it has this nice nineties feel about it…​ anyway we’ll focus on editing files here.
 
-To open **mc** at the commandline prompt type:
+To open **mc** at the command line prompt type:
 
     # mc
 

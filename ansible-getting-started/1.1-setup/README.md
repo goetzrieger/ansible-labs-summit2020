@@ -58,7 +58,7 @@ Log out of the root account again:
 
 ## Step 1.2 - Working the Labs
 
-You might have guessed by now this lab is pretty commandline-centric…​ :-)
+You might have guessed by now this lab is pretty command line-centric…​ :-)
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
 

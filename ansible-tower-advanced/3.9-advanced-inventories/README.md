@@ -105,7 +105,7 @@ curl command is of course the place where your script would get data by
 whatever means, format it as proper JSON and return it.
 
 But before we integrate the custom inventory script into our Tower
-cluster, it’s a good idea to test it on the commandline first:
+cluster, it’s a good idea to test it on the command line first:
 
   - Log in to your bastion host if you don’t still have an SSH session
     open:
@@ -151,7 +151,7 @@ As simple as it gets, right? More information can be found
 [here](https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html)
 
 So now you have a source of (slightly static) dynamic inventory data
-(talk about oxymorons…) and a script to fetch and pass it to Tower. Now
+(talk about oxymoron…) and a script to fetch and pass it to Tower. Now
 you need to get this into Tower.
 
 ### Integrate into Tower
@@ -258,7 +258,7 @@ Inventory**. In the next view:
 
   - **NAME:** Smart Inventory Simple
 
-  - Click the magnifiying glas icon next to **SMART HOST FILTER**
+  - Click the magnifying glass icon next to **SMART HOST FILTER**
 
   - A window **DYNAMIC HOSTS** opens, here you define the search query
 

@@ -115,7 +115,7 @@ Let's start with something really basic - pinging a host. To do that we use the 
 >
 > Think of a module as a tool which is designed to accomplish a specific task.
 
-Ansible needs to know that it should use the `ping` module: The `-m` option defines which Ansible module to use. Options can be passed to the specified modul using the `-a` option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group `web`.
+Ansible needs to know that it should use the `ping` module: The `-m` option defines which Ansible module to use. Options can be passed to the specified module using the `-a` option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group `web`.
 
 ```bash
 [student<X>@ansible ~]$ ansible web -m ping

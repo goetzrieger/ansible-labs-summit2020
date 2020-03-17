@@ -48,7 +48,7 @@ access to the following hosts:
 |                                  |                                         |                                |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| Control/Bastion Host, Gitea Repo | bastion.&lt;GUID&gt;.sandbox951.opentlc.com | bastion.&lt;GUID&gt;.internal      |
+| Control/Bastion Host, Gitea Repo | bastion.&lt;GUID&gt;.sandbox951.openest.com | bastion.&lt;GUID&gt;.internal      |
 | Ansible Tower Cluster            |                                         |                                |
 | Ansible Tower Load Balancer      | tower.&lt;GUID&gt;.sandbox951.opentlc.com   |                                |
 | Ansible Tower Database Host      |                                         | towerdb.example.com            |
@@ -63,7 +63,7 @@ access to the following hosts:
 > Your lab environment will get a unique **&lt;GUID&gt;**. You will be able
 > to SSH into the bastion host using the external hostname
 > `bastion.<GUID>.sandbox951.opentlc.com`, from here you need to SSH
-> into the other hosts to run tasks on the commandline.
+> into the other hosts to run tasks on the command line.
 
 > **Tip**
 >
