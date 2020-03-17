@@ -1,10 +1,6 @@
 # Exercise 2.2 - Inventories, credentials and ad hoc commands
 
-<<<<<<< HEAD
-**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
-=======
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
->>>>>>> master
 
 ## Create an Inventory
 
@@ -14,11 +10,7 @@ Let’s get started with: The first thing we need is an inventory of your manage
 
 Create the inventory:
 
-<<<<<<< HEAD
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../images/ygreen_plus.png) button on the right side and choose **Inventory**.
-=======
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](./images/green_plus.png) button on the right side and choose **Inventory**.
->>>>>>> master
+  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../../images/green_plus.png) button on the right side and choose **Inventory**.
 
   - **NAME:** Workshop Inventory
 
@@ -67,11 +59,7 @@ Note the names for the nodes and the IP addresses, we will use them to fill the 
 
   - Click on  the **HOSTS** button
 
-<<<<<<< HEAD
-  - To the right click the ![plus](../images/ygreen_plus.png) button.
-=======
-  - To the right click the ![plus](./images/green_plus.png) button.
->>>>>>> master
+  - To the right click the ![plus](../../images/green_plus.png) button.
 
   - **HOST NAME:** `node1`
 
@@ -95,16 +83,10 @@ As this is an important part of your Tower setup, why not make sure that connect
 
  To access the Tower host via SSH do the following:
 
-<<<<<<< HEAD
-- Login to your Tower control host via SSH: `ssh student<X>@student<X>.<workshopname>.rhdemo.io`
-- Replace **\<workshopname\>** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
-- From Tower, SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`; for the SSH connection use the node password from the inventory file (ansible_ssh_pass=), `sudo -i` works without password.
-=======
 - Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io`
 - Replace **workshopname** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
 - From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
->>>>>>> master
 
 ```bash
 [student<X>@ansible ~]$ ssh student<X>@22.33.44.55
@@ -196,7 +178,6 @@ Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is instal
 
 > **Warning**
 >
-<<<<<<< HEAD
 > <details><summary>Solution below!</summary>
 > <p>
 > - **MODULE:** yum
@@ -206,15 +187,6 @@ Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is instal
 > - Tick **ENABLE PRIVILEGE ESCALATION**
 > </p>
 > </details>
-=======
-> **Solution below\!**
-
-  - **MODULE:** yum
-
-  - **ARGUMENTS:** name=tmux
-
-  - Tick **ENABLE PRIVILEGE ESCALATION**
->>>>>>> master
 
 > **Tip**
 >
