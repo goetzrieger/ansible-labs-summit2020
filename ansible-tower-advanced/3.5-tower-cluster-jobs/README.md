@@ -28,7 +28,7 @@ will get an overview of the **TOTAL JOBS** each Tower instance in this
 group executed. Clicking **TOTAL JOBS** for an instance leads to a
 detailed job list.
 
-## But I just want to know on which Instance my Job Run\!
+## But I just want to know on which Instance my Job Run!
 
 But it would still be nice to see where a job run (not the other way
 round) and to get an idea how jobs are distributed to the available

@@ -124,7 +124,7 @@ You can check your instance groups in a number of ways.
 
 You can again query the API to get this information. Either use the
 browser to access the URL
-`\https://tower.ewl05.sandbox309.opentlc.com/api/v2/instance_groups/` or
+`https://tower.ewl05.sandbox309.opentlc.com/api/v2/instance_groups/` or
 use curl to access the API from the command line:
 
 > **Tip**
@@ -136,7 +136,7 @@ use curl to access the API from the command line:
 ### Via the Web UI
 
 Open the URL
-`\https://tower1-<GUID>.rhpds.opentlc.com/#/instance_groups` in your
+`https://tower1-<GUID>.rhpds.opentlc.com/#/instance_groups` in your
 browser.
 
 In the **INSTANCE GROUPS** overview all instance groups are listed with
@@ -152,7 +152,7 @@ While in the **INSTANCES GROUPS** overview click the **INSTANCES** link
 for, say, the **dev** group. In the next view you’ll see a slide button
 next to each Tower instance (only one in this case).
 
-  - The button should be set to "ON" ![20](../images/on_off.png).
+  - The button should be set to "ON" ![on/off](../../images/on_off.png).
     Clicking it would deactivate the corresponding instance and would
     prevent that further jobs are assigned to it.
 

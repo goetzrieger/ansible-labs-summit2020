@@ -63,7 +63,7 @@ the **Templates** view, you might have noticed you can choose between
 **Job Template** and **Workflow Template** when adding a template.
 
   - Go to the **Templates** view and click the
-    ![20](../images/green_plus.png) button. This time choose **Workflow
+    ![plus](../../images/green_plus.png) button. This time choose **Workflow
     Template**
 
       - **NAME:** Compliance Workflow
@@ -120,7 +120,7 @@ distributed over the instances:
     instance group, they where distributed evenly over the instances.
 
 Now deactivate instance **tower1.ewl05.internal** with the
-![20](../images/on_off.png) button and wait until it is shown as
+![on/off](../../images/on_off.png) button and wait until it is shown as
 deactivated. Make a (mental) note of the **TOTAL JOBS** counter of the
 instance. Go back to the list of templates and launch the workflow
 **Compliance Workflow** again.
@@ -131,7 +131,7 @@ where launched on the remaining instances and the **TOTAL JOBS** counter
 of instance **tower1.ewl05.internal** didn’t change.
 
 Activate **tower1.example.com** again by pressing
-![20](../images/on_off.png) a second time.
+![on/off](../../images/on_off.png) a second time.
 
 ## Using Instance Groups
 

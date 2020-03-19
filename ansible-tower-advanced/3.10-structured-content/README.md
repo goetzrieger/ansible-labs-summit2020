@@ -326,7 +326,7 @@ files provided in a SCM repository as an inventory source. This way we
 can use the inventory files we keep in Gitea.
 
 In your Tower web UI, open the **RESOURCES→Inventory** view. Then click
-the ![20](../images/green_plus.png) button and choose to create a new
+the ![plus(../../images/green_plus.png) button and choose to create a new
 **Inventory**. In the next view:
 
   - **NAME:** Structured Content Inventory
@@ -335,7 +335,7 @@ the ![20](../images/green_plus.png) button and choose to create a new
 
   - Click the button **SOURCES** which is now active at the top
 
-  - Click the ![20](../images/green_plus.png) button
+  - Click the ![plus](../../images/green_plus.png) button
 
   - **NAME:** Production
 
@@ -351,7 +351,7 @@ the ![20](../images/green_plus.png) button and choose to create a new
 
 And now for the staging inventory:
 
-  - Down below in the view, click the ![20](../images/green_plus.png)
+  - Down below in the view, click the ![plus](../../images/green_plus.png)
     button again
 
   - In the next view, add as **NAME:** Staging

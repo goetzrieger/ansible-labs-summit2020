@@ -17,7 +17,7 @@ through it:
     admin.
 
 2.  Replace the end of the URL with `/api` e.g.
-    `\https://tower2-<GUID>.rhpds.opentlc.com/api`
+    `https://tower2-<GUID>.rhpds.opentlc.com/api`
 
 3.  You’re now in the API, notice that there are two versions. v1 will
     be retired soon so go to v2.
