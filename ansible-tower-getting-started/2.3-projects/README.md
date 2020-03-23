@@ -1,6 +1,6 @@
 # Exercise 2.3 - Projects & job templates
 
-**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 A Tower **Project** is a logical collection of Ansible Playbooks. You can manage your playbooks by placing them into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
@@ -59,7 +59,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
 ## Create the Project
 
-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../images/ygreen_plus.png) button. Fill in the form:
+  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../../images/green_plus.png) button. Fill in the form:
 
   - **NAME:** Ansible Workshop Examples
 
@@ -97,11 +97,11 @@ A job template is a definition and set of parameters for running an Ansible job.
 
 - **What** Playbook to use?
 
-Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**.
+Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../../images/green_plus.png) button and choose **Job Template**.
 
 > **Tip**
 >
-> Remember that you can often click on magnifying glasses to get an overview of options to pick to fill in fields.
+> Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
 
 - **NAME:** Install Apache
 
@@ -121,7 +121,7 @@ Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../i
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time:
 
-![job exection](../images/yjob_overview.png)
+![job exection](../../images/job_overview.png)
 
 Since this might take some time, have a closer look at all the details provided:
 
@@ -134,6 +134,38 @@ Since this might take some time, have a closer look at all the details provided:
 - On the right side, the output of the playbook run is shown. Click on a node underneath a task and see that detailed information are provided for each task of each node.
 
 After the Job has finished go to the main **Jobs** view: All jobs are listed here, you should see directly before the Playbook run an SCM update was started. This is the Git update we configured for the **Project** on launch\!
+
+## Challenge Lab: Check the Result
+
+Time for a little challenge:
+
+  - Use an ad hoc command on both hosts to make sure Apache has been installed and is running.
+
+You have already been through all the steps needed, so try this for yourself.
+
+> **Tip**
+>
+> What about `systemctl status httpd`?
+
+> **Warning**
+>
+> <details><summary>Solution below!</summary>
+> <p>
+>
+> - Go to **Inventories** → **Workshop Inventory**
+>
+> - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
+>
+> - **MODULE:** command
+>
+> - **ARGUMENTS:** systemctl status httpd
+>
+> - **MACHINE CREDENTIALS:** Workshop Credentials
+>
+> - Click **LAUNCH**
+>
+> </p>
+> </details>
 
 ## What About Some Practice?
 

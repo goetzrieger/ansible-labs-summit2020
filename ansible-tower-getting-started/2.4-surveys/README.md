@@ -1,6 +1,6 @@
 # Exercise 2.4 - Surveys
 
-**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 You might have noticed the **ADD SURVEY** button in the **Template** configuration view. A survey is a way to create a simple form to ask for parameters that get used as variables when a **Template** is launched as a **Job**.
 
@@ -39,7 +39,7 @@ Now you create a new Template that includes a survey.
 
 ### Create Template
 
-- Go to **Templates**, click the ![plus](../images/ygreen_plus.png) button and choose **Job Template**
+- Go to **Templates**, click the ![plus](../../images/green_plus.png) button and choose **Job Template**
 
 - **NAME:** Create index.html
 

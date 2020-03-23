@@ -77,9 +77,9 @@ Ansible would expect… ;-)
 ### The Custom Inventory Script
 
 An inventory script has to follow some conventions. It must accept the
-**--list** and **--host \<hostname\>** arguments. When it is called with
+**--list** and **--host &lt;hostname&gt;** arguments. When it is called with
 **--list**, the script must output a JSON-encoded data containing all
-groups and hosts to be managed. When called with **--host \<hostname\>**
+groups and hosts to be managed. When called with **--host &lt;hostname&gt;**
 it must return an JSON-formatted hash or dictionary of host variables
 (can be empty).
 
@@ -105,7 +105,7 @@ curl command is of course the place where your script would get data by
 whatever means, format it as proper JSON and return it.
 
 But before we integrate the custom inventory script into our Tower
-cluster, it’s a good idea to test it on the commandline first:
+cluster, it’s a good idea to test it on the command line first:
 
   - Log in to your bastion host if you don’t still have an SSH session
     open:
@@ -151,7 +151,7 @@ As simple as it gets, right? More information can be found
 [here](https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html)
 
 So now you have a source of (slightly static) dynamic inventory data
-(talk about oxymorons…) and a script to fetch and pass it to Tower. Now
+(talk about oxymoron…) and a script to fetch and pass it to Tower. Now
 you need to get this into Tower.
 
 ### Integrate into Tower
@@ -161,7 +161,7 @@ The first step is to add the inventory script to Tower:
   - In the web UI, open **RESOURCES→Inventory Scripts**.
 
   - To create a new custom inventory script, click the
-    ![20](../images/green_plus.png) button.
+    ![plus](../../images/green_plus.png) button.
 
   - Fill in the needed data:
 
@@ -176,7 +176,7 @@ Finally the new inventory script can be used in an actual **Inventory**.
 
   - Go to **RESOURCES→Inventories**
 
-  - Click the ![20](../images/green_plus.png) button and choose
+  - Click the ![plus](../../images/green_plus.png) button and choose
     **Inventory**.
 
   - **NAME:** Cloud Inventory
@@ -185,7 +185,7 @@ Finally the new inventory script can be used in an actual **Inventory**.
 
   - The **SOURCES** button on top becomes active now, click it
 
-  - Click the ![20](../images/green_plus.png) to add a new source
+  - Click the ![plus](../../images/green_plus.png) to add a new source
 
   - **NAME:** Cloud Custom Script
 
@@ -253,12 +253,12 @@ The base rules of a search are:
 
 Let’s start with a simple string example. In your Tower web UI, open the
 **RESOURCES→Inventories** view. Then click the
-![20](../images/green_plus.png) button and choose to create a new **Smart
+![plus](../../images/green_plus.png) button and choose to create a new **Smart
 Inventory**. In the next view:
 
   - **NAME:** Smart Inventory Simple
 
-  - Click the magnifiying glas icon next to **SMART HOST FILTER**
+  - Click the magnifying glass icon next to **SMART HOST FILTER**
 
   - A window **DYNAMIC HOSTS** opens, here you define the search query
 

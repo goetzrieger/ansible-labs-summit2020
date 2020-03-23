@@ -32,13 +32,13 @@ as:
 
 > **Warning**
 >
-> Replace the **\<GUID\>** string with your GUID\!
+> Replace the **&lt;GUID&gt;** string with your GUID\!
 
-  - **https://tower1.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower1.&lt;GUID&gt;.sandbox951.opentlc.com**
 
-  - **https://tower2.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower2.&lt;GUID&gt;.sandbox951.opentlc.com**
 
-  - **https://tower3.\<GUID\>.sandbox951.opentlc.com**
+  - **https://tower3.&lt;GUID&gt;.sandbox951.opentlc.com**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at
 your hands here. To learn more about your cluster and it’s state, in one
@@ -61,7 +61,7 @@ You’ll learn more about this later.
 
 You can also get information about your cluster on the command line.
 Open a terminal window and start an SSH session to your control host
-using the external hostname (replace the \<GUID\> string, key
+using the external hostname (replace the &lt;GUID&gt; string, key
 authentication should work automatically):
 
     # ssh -i ~/.ssh/toweradvlab.pem ec2-user@bastion.<GUID>.sandbox951.opentlc.com
@@ -74,9 +74,9 @@ Then become root:
 > **Tip**
 >
 > Remember the control host is named
-> **bastion.\<GUID\>.sandbox951.opentlc.com** when accessed from the
+> **bastion.&lt;GUID&gt;.sandbox951.opentlc.com** when accessed from the
 > outside, inside the lab environment you use
-> **bastion.\<GUID\>.internal**.
+> **bastion.&lt;GUID&gt;.internal**.
 
 From your control host now jump to one of the Tower instances, e.g.:
 

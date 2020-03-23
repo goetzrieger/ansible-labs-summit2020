@@ -70,7 +70,7 @@ and is explained in more detail there.
 Since we want to store all content in a repository, we will first create
 an empty Git repository on our Gitea server. Access the Gitea web UI via
 
-**http://control-\<GUID\>.rhpds.opentlc.com/gitea**.
+**http://control-&lt;GUID&gt;.rhpds.opentlc.com/gitea**.
 
 Login via the already well known credentials:
 
@@ -229,53 +229,57 @@ environment. Create the file:
 So we have prepared a basic structure for quite some content - call
 `tree` to look at it.
 
-**\>\> *Click here to see how it should look like* \<\<**
-
-    [ansible@control structured-content]$ tree
-    .
-    ├── group_vars
-    ├── host_vars
-    ├── library
-    ├── production
-    ├── roles
-    │   ├── apache
-    │   │   ├── defaults
-    │   │   │   └── main.yml
-    │   │   ├── files
-    │   │   ├── handlers
-    │   │   │   └── main.yml
-    │   │   ├── meta
-    │   │   │   └── main.yml
-    │   │   ├── README.md
-    │   │   ├── tasks
-    │   │   │   └── main.yml
-    │   │   ├── templates
-    │   │   ├── tests
-    │   │   │   ├── inventory
-    │   │   │   └── test.yml
-    │   │   └── vars
-    │   │       └── main.yml
-    │   └── security
-    │       ├── defaults
-    │       │   └── main.yml
-    │       ├── files
-    │       ├── handlers
-    │       │   └── main.yml
-    │       ├── meta
-    │       │   └── main.yml
-    │       ├── README.md
-    │       ├── tasks
-    │       │   └── main.yml
-    │       ├── templates
-    │       ├── tests
-    │       │   ├── inventory
-    │       │   └── test.yml
-    │       └── vars
-    │           └── main.yml
-    ├── site.yml
-    └── staging
-
-\</div\>\</details\>
+> **Warning**
+>
+> <details><summary>Click here to see how it should look like!</summary>
+> <p>
+>
+>     [ansible@control structured-content]$ tree
+>     .
+>     ├── group_vars
+>     ├── host_vars
+>     ├── library
+>     ├── production
+>     ├── roles
+>     │   ├── apache
+>     │   │   ├── defaults
+>     │   │   │   └── main.yml
+>     │   │   ├── files
+>     │   │   ├── handlers
+>     │   │   │   └── main.yml
+>     │   │   ├── meta
+>     │   │   │   └── main.yml
+>     │   │   ├── README.md
+>     │   │   ├── tasks
+>     │   │   │   └── main.yml
+>     │   │   ├── templates
+>     │   │   ├── tests
+>     │   │   │   ├── inventory
+>     │   │   │   └── test.yml
+>     │   │   └── vars
+>     │   │       └── main.yml
+>     │   └── security
+>     │       ├── defaults
+>     │       │   └── main.yml
+>     │       ├── files
+>     │       ├── handlers
+>     │       │   └── main.yml
+>     │       ├── meta
+>     │       │   └── main.yml
+>     │       ├── README.md
+>     │       ├── tasks
+>     │       │   └── main.yml
+>     │       ├── templates
+>     │       ├── tests
+>     │       │   ├── inventory
+>     │       │   └── test.yml
+>     │       └── vars
+>     │           └── main.yml
+>     ├── site.yml
+>     └── staging
+>
+> </p>
+> </details>
 
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:
@@ -322,7 +326,7 @@ files provided in a SCM repository as an inventory source. This way we
 can use the inventory files we keep in Gitea.
 
 In your Tower web UI, open the **RESOURCES→Inventory** view. Then click
-the ![20](../images/green_plus.png) button and choose to create a new
+the ![plus(../../images/green_plus.png) button and choose to create a new
 **Inventory**. In the next view:
 
   - **NAME:** Structured Content Inventory
@@ -331,7 +335,7 @@ the ![20](../images/green_plus.png) button and choose to create a new
 
   - Click the button **SOURCES** which is now active at the top
 
-  - Click the ![20](../images/green_plus.png) button
+  - Click the ![plus](../../images/green_plus.png) button
 
   - **NAME:** Production
 
@@ -347,7 +351,7 @@ the ![20](../images/green_plus.png) button and choose to create a new
 
 And now for the staging inventory:
 
-  - Down below in the view, click the ![20](../images/green_plus.png)
+  - Down below in the view, click the ![plus](../../images/green_plus.png)
     button again
 
   - In the next view, add as **NAME:** Staging

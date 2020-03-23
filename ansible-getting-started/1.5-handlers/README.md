@@ -1,6 +1,6 @@
 # Exercise 1.5 - Conditionals, Handlers and Loops
 
-**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 ## Step 5.1 - Conditionals
 
@@ -12,10 +12,10 @@ To implement a conditional, the `when` statement must be used, followed by the c
 | ---- | ---------------------------------------------------------------------- |
 | \==  | Compares two objects for equality.                                     |
 | \!=  | Compares two objects for inequality.                                   |
-| \>   | true if the left hand side is greater than the right hand side.        |
-| \>=  | true if the left hand side is greater or equal to the right hand side. |
-| \<   | true if the left hand side is lower than the right hand side.          |
-| \< = | true if the left hand side is lower or equal to the right hand side.   |
+| &gt;   | true if the left hand side is greater than the right hand side.        |
+| &gt;=  | true if the left hand side is greater or equal to the right hand side. |
+| &lt;   | true if the left hand side is lower than the right hand side.          |
+| &lt; = | true if the left hand side is lower or equal to the right hand side.   |
 
 For more on this, please refer to the documentation: <http://jinja.pocoo.org/docs/2.10/templates/>
 
@@ -87,7 +87,7 @@ First we need the file Ansible will deploy, let’s just take the one from node1
 ```bash
 [student<X>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
 student<X>@11.22.33.44's password:
-httpd.conf             
+httpd.conf
 ```
 
 Next, create the Playbook `httpd_conf.yml`. Make sure that you are in the directory `~/ansible-files`.
@@ -146,7 +146,7 @@ Feel free to change the httpd.conf file again and run the Playbook.
 
 ## Step 5.3 - Simple Loops
 
-Loops enable us to repeat the same task over and over again. For example, lets say you want to create multiple users. By using an Ansible loop, you can do that in a single task. Loops can also iterate over more than just basic lists. For example, if you have a list of users with their coresponding group, loop can iterate over them as well. Find out more about loops in the [Ansible Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html) documentation.
+Loops enable us to repeat the same task over and over again. For example, lets say you want to create multiple users. By using an Ansible loop, you can do that in a single task. Loops can also iterate over more than just basic lists. For example, if you have a list of users with their corresponding group, loop can iterate over them as well. Find out more about loops in the [Ansible Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html) documentation.
 
 To show the loops feature we will generate three new users on `node1`. For that, create the Playbook `loop_users.yml` in `~/ansible-files` on your control node as your student user and run it. We will use the `user` module to generate the user accounts.
 

@@ -28,7 +28,7 @@ will get an overview of the **TOTAL JOBS** each Tower instance in this
 group executed. Clicking **TOTAL JOBS** for an instance leads to a
 detailed job list.
 
-## But I just want to know on which Instance my Job Run\!
+## But I just want to know on which Instance my Job Run!
 
 But it would still be nice to see where a job run (not the other way
 round) and to get an idea how jobs are distributed to the available
@@ -46,7 +46,7 @@ Bring up the SSH session on your control host and run:
 
 > **Warning**
 >
-> Replace \<ID\> with the job ID you want to query\!
+> Replace &lt;ID&gt; with the job ID you want to query\!
 
     [root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
 
@@ -69,7 +69,7 @@ and friends):
   - Now get the job details via the API interface:
 
       - Open the URL
-        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/\<ID\>/**
+        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/&lt;ID&gt;/**
         where `<ID>` is the number of the job you just looked up in the
         UI.
 

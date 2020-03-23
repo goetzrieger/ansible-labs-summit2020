@@ -17,7 +17,7 @@ through it:
     admin.
 
 2.  Replace the end of the URL with `/api` e.g.
-    `\https://tower2-<GUID>.rhpds.opentlc.com/api`
+    `https://tower2-<GUID>.rhpds.opentlc.com/api`
 
 3.  You’re now in the API, notice that there are two versions. v1 will
     be retired soon so go to v2.
@@ -72,7 +72,7 @@ through it:
 > </details>
 
 Now log in again as admin and go back to the list of users:
-**https://tower2-\<GUID\>.rhpds.opentlc.com/api/v2/users/**
+**https://tower2-&lt;GUID&gt;.rhpds.opentlc.com/api/v2/users/**
 
   - Click on the **url** field of your new friend John Smith and notice
     a few more things:
@@ -221,11 +221,11 @@ Note the ID of the user and then delete it:
 
 > **Warning**
 >
-> Replace **\<ID\>**
+> Replace **&lt;ID&gt;**
 
     [root@control ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X DELETE https://tower1.example.com/api/v2/users/<ID>/ #
 
   - don’t forget the slash at the end of the URL, favorite error\!
 
-\</div\>\</details\>
+&lt;/div&gt;&lt;/details&gt;

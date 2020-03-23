@@ -1,16 +1,16 @@
 # Exercise 2.2 - Inventories, credentials and ad hoc commands
 
-**Read this in other languages**: ![uk](../images/uk.png) [English](README.md),  ![japan](../images/japan.png) [日本語](README.ja.md).
+**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
 ## Create an Inventory
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student\<X\>.\<workshopname\>.rhdemo.io** (replace "\<X\>" with your student number and "\<workshopname\>" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **https://student&lt;X&gt;.&lt;workshopname&gt;.rhdemo.io** (replace "&lt;X&gt;" with your student number and "&lt;workshopname&gt;" with the name of your current workshop) and log in as `admin`. The password will be provided by the instructor.
 
 Create the inventory:
 
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../images/ygreen_plus.png) button on the right side and choose **Inventory**.
+  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../../images/green_plus.png) button on the right side and choose **Inventory**.
 
   - **NAME:** Workshop Inventory
 
@@ -26,7 +26,7 @@ Login to your Tower control host via SSH:
 
 > **Warning**
 >
-> Replace **workshopname** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
+> Replace **&lt;workshopname&gt;** by the workshop name provided to you, and the **X** in student**X** by the student number provided to you.
 
 ```bash
 ssh student<X>@student<X>.<workshopname>.rhdemo.io
@@ -59,7 +59,7 @@ Note the names for the nodes and the IP addresses, we will use them to fill the 
 
   - Click on  the **HOSTS** button
 
-  - To the right click the ![plus](../images/ygreen_plus.png) button.
+  - To the right click the ![plus](../../images/green_plus.png) button.
 
   - **HOST NAME:** `node1`
 
@@ -83,9 +83,10 @@ As this is an important part of your Tower setup, why not make sure that connect
 
  To access the Tower host via SSH do the following:
 
-- Login to your Tower control host via SSH: `ssh student<X>@student<X>.<workshopname>.rhdemo.io`
-- Replace **\<workshopname\>** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
-- From Tower, SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`; for the SSH connection use the node password from the inventory file (ansible_ssh_pass=), `sudo -i` works without password.
+- Login to your Tower control host via SSH: `ssh student<X>@student<X>.workshopname.rhdemo.io`
+- Replace **&lt;workshopname&gt;** by the workshop name provided to you, and the `<X>` in `student<X>` by the student number provided to you.
+- From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
+- For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
 [student<X>@ansible ~]$ ssh student<X>@22.33.44.55
@@ -97,23 +98,23 @@ Last login: Thu Jul  4 14:47:04 2019 from 11.22.33.44
 
 What does this mean?
 
-  - Tower user **student\<X>** can connect to the managed hosts with password based SSH
+  - Tower user **student&lt;X>** can connect to the managed hosts with password based SSH
 
-  - User **student\<X>** can execute commands on the managed hosts as **root** with `sudo`
+  - User **student&lt;X>** can execute commands on the managed hosts as **root** with `sudo`
 
 ## Configure Machine Credentials
 
 Now we will configure the credentials to access our managed hosts from Tower. In the **RESOURCES** menu choose **Credentials**. Now:
 
-Click the ![plus](../images/ygreen_plus.png) button to add new credentials
+Click the ![plus](../../images/ygreen_plus.png) button to add new credentials
 
   - **NAME:** Workshop Credentials
 
   - **ORGANIZATION:** Default
 
-  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../images/yselect.png)
+  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../../images/yselect.png)
 
-  - **USERNAME:** student\<X\> - make sure to replace the **\<X\>** with your actual student number!
+  - **USERNAME:** student&lt;X&gt; - make sure to replace the **&lt;X&gt;** with your actual student number!
 
   - **PASSWORD:** Enter the password from the inventory file.
 

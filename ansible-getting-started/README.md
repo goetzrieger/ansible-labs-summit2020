@@ -1,4 +1,4 @@
-## Ansible Engine Exercises
+## Section 1 - Ansible Getting Started
 
  - [Exercise 1.1 - Check the Prerequisites](1.1-setup)
  - [Exercise 1.2 - Running Ad-hoc Commands](1.2-adhoc)
@@ -8,4 +8,3 @@
  - [Exercise 1.6 - Templates](1.6-templates)
  - [Exercise 1.7 - Roles](1.7-role)
  - [Exercise 1.8 - Bonus Labs](1.8-bonus)
-
