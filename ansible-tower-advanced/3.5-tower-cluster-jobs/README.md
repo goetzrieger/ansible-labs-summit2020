@@ -48,7 +48,7 @@ Bring up the SSH session on your control host and run:
 >
 > Replace &lt;ID&gt; with the job ID you want to query\!
 
-    [root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
+    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
 
         "execution_node": "tower1.ewl05.internal",
 

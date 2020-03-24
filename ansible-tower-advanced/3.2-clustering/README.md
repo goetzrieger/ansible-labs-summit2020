@@ -1,13 +1,13 @@
 # Exercise 2 - Introduction to Ansible Tower Clustering
 
 With version 3.1 Ansible Tower introduced clustering, replacing the
-redundancy solution configured with the active-passive nodes. Clustering
+redundancy solution configured with active-passive nodes. Clustering
 is sharing load between Tower nodes/instances. Each Tower instance is
 able to act as an entry point for UI and API access.
 
 > **Tip**
 >
-> Using a load balancer in front of the Tower nodes like in this lab is
+> Using a load balancer in front of the Tower nodes is
 > possible, but optional because an Ansible Tower cluster can be
 > accessed via all Tower instances.
 
@@ -34,11 +34,11 @@ as:
 >
 > Replace the **&lt;GUID&gt;** string with your GUID\!
 
-  - **https://tower1.&lt;GUID&gt;.sandbox951.opentlc.com**
+  - **https://student\<N>.ansible.\<LABID>.rhdemo.io**
 
-  - **https://tower2.&lt;GUID&gt;.sandbox951.opentlc.com**
+  - **https://student\<N>.towernode2.\<LABID>.rhdemo.io**
 
-  - **https://tower3.&lt;GUID&gt;.sandbox951.opentlc.com**
+  - **https://student\<N>.towernode3.\<LABID>.rhdemo.io**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at
 your hands here. To learn more about your cluster and it’s state, in one
@@ -47,61 +47,38 @@ Groups**. Here you will get an overview of the cluster by instance
 groups. Explore the information provided, of course there is no capacity
 used yet and no Jobs have run.
 
-Right now we have three instance groups named **dev**, **prod** and
-**tower**. In a freshly installed Tower install you would only find one,
-**tower**. From this view you can also see how the instance are
-distributed over the groups.
+Right now we have only one instance group named **tower**. From this view you can also see how the instance are distributed over the groups.
 
-To dig deeper, for every group, click on **INSTANCES** to get more
+To dig deeper click on **INSTANCES** to get more
 information about the instances allocated to a group. In the instances
 view you can toggle nodes off/online and adjust the number of forks.
 You’ll learn more about this later.
 
-## Access you Tower Cluster via SSH
+## Access you Tower Cluster via Commandline
 
-You can also get information about your cluster on the command line.
-Open a terminal window and start an SSH session to your control host
-using the external hostname (replace the &lt;GUID&gt; string, key
-authentication should work automatically):
+You can also get information about your cluster on the command line. As mentioned the first Tower node runs **code-server** to let you access an editor and a terminal in your browser. Log in to **code-server** by opening this URL in your browser (replace \<LABID> and the student number \<N> with your values), the password is **r3dh4t1!**:
 
-    # ssh -i ~/.ssh/toweradvlab.pem ec2-user@bastion.<GUID>.sandbox951.opentlc.com
+    https://student<N>-code.<LABID>.rdemo.io
 
-Then become root:
+This will give you a VSCode session running in your Tower node 1. Open a terminal by clicking **Terminal->New Terminal** in the menu bar.
 
-    [ec2-user@bastion 0 ~]$ sudo -i
-    [root@bastion 0 ~]#
+A terminal window opens at the bottom, become root:
 
-> **Tip**
->
-> Remember the control host is named
-> **bastion.&lt;GUID&gt;.sandbox951.opentlc.com** when accessed from the
-> outside, inside the lab environment you use
-> **bastion.&lt;GUID&gt;.internal**.
+    [student1@ansible ~]$ sudo -i
+    [root@ansible ~]#
 
-From your control host now jump to one of the Tower instances, e.g.:
+In the terminal run the following command:
 
-    # ssh tower1.<GUID>.internal
-    # sudo -i
-
-> **Tip**
->
-> SSH keys have been distributed for the root user already.
-
-And run the following command:
-
-    [root@tower1 ~]# awx-manage list_instances
+    [root@ansible ~]# awx-manage list_instances
     [tower capacity=51]
-            tower1.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
-            tower2.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
-            tower3.<GUID>.internal capacity=17 version=3.6.0 heartbeat="2020-02-11 16:06:15"
-
-    [emea capacity=17 controller=tower]
-            worker1.emea.<GUID>.internal capacity=17 version=ansible-runner-1.4.4 last_isolated_check="2020-02-11 16:04:10" heartbeat="2020-02-11 16:04:12"
+        student1-ansible.89cd.ansibleworkshops.com capacity=17 version=3.6.3 heartbeat="2020-03-24 14:31:36"
+        student1-towernode2.89cd.ansibleworkshops.com capacity=17 version=3.6.3 heartbeat="2020-03-24 14:31:07"
+        student1-towernode3.89cd.ansibleworkshops.com capacity=17 version=3.6.3 heartbeat="2020-03-24 14:31:08"
 
 So what we’ve got is a three-node Tower cluster, no surprises here. In
 addition the command tells us the capacity (maximum number of
 forks/concurrent jobs) per node and for the instance groups. Here the
-capacity value of 17 is allocated to any of our three nodes.
+capacity value of 51 is allocated to any of our three nodes.
 
 > **Tip**
 >

@@ -125,15 +125,15 @@ happens?
 When you’re done press the red **DELETE** button and remove Johnny
 Smithy.
 
-## Using awx-cli to Learn the API
+## Using awx to Learn the API
 
 The Web UI is nice but we love the command line, right? To learn about
-API calls `awx-cli` comes to the rescue. For the next steps bring up an
+API calls `awx` comes to the rescue. For the next steps bring up an
 SSH session and make sure you are user root on **control.example.com**.
 
 Let’s start simple and try to get the version of Tower installed:
 
-    [root@control ~]# awx-cli version --verbose
+    [root@ansible ~]# awx version --verbose
     Tower CLI 3.3.0
     API v2
     GET https://tower2.example.com/api/v2/config/
@@ -142,14 +142,14 @@ Let’s start simple and try to get the version of Tower installed:
     Ansible Tower 3.4.1
     Ansible 2.7.5
 
-You see that with the `--verbose` option, awx-cli tells us which API
+You see that with the `--verbose` option, awx tells us which API
 calls it’s making, what **parameters** it’s sending with **GET**
 requests and what **data** is needed for **POST** actions.
 
 In this simple case you can simply take the call and run it with e.g.
 **curl**:
 
-    [root@control ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             --data '{}' \
             -X GET https://tower1.example.com/api/v2/config/ | jq
 
@@ -162,20 +162,20 @@ In this simple case you can simply take the call and run it with e.g.
 
 ### Practice, Practice…
 
-Using `awx-cli` to learn about the API call and executing it via curl
+Using `awx` to learn about the API call and executing it via curl
 e.g. in scripts is really useful so let’s practice a bit. What about
 creating a new user, say Albert Miller?
 
 > **Tip**
 >
-> Consider that the parameters shown by awx-cli are in Python format
+> Consider that the parameters shown by awx are in Python format
 > (single quotes and the unicode `u`) but we need to send data in JSON
 > format (double quotes).
 
-First create the user with awx-cli, then delete it again. Use
+First create the user with awx, then delete it again. Use
 `--verbose` to get the API invocation.
 
-    [root@control ~]# awx-cli user create --username amiller --email amiller@example.com --password redhat --verbose
+    [root@ansible ~]# awx user create --username amiller --email amiller@example.com --password redhat --verbose
 
     *** DETAILS: Checking for an existing record. *********************************
     GET https://tower2.example.com/api/v2/users/
@@ -185,7 +185,7 @@ First create the user with awx-cli, then delete it again. Use
     POST https://tower2.example.com/api/v2/users/
     Data: {'username': u'amiller', 'password': u'redhat', 'email': u'amiller@example.com'}
 
-    [root@control ~]# awx-cli user delete --username amiller --verbose
+    [root@ansible ~]# awx user delete --username amiller --verbose
 
     *** DETAILS: Getting the record. **********************************************
     GET https://tower2.example.com/api/v2/users/
@@ -195,7 +195,7 @@ First create the user with awx-cli, then delete it again. Use
     DELETE https://tower2.example.com/api/v2/users/3/
 
 Now we’ll do the same using **curl** with the API endpoints, parameters
-and data we have learned from `awx-cli`:
+and data we have learned from `awx`:
 
 > **Warning**
 >
@@ -204,13 +204,13 @@ and data we have learned from `awx-cli`:
 
 Check if the user exists:
 
-    [root@control ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X GET https://tower1.example.com/api/v2/users/?username=amiller
 
 Once you’ve found out that the user doesn’t exist by **count:0** in the
 reply, you can create it:
 
-    [root@control ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             --data '{"username": "amiller", "password": "redhat", "email": "amiller@example.com"}' \
             -X POST https://tower1.example.com/api/v2/users/?username=amiller
 
@@ -223,7 +223,7 @@ Note the ID of the user and then delete it:
 >
 > Replace **&lt;ID&gt;**
 
-    [root@control ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X DELETE https://tower1.example.com/api/v2/users/<ID>/ #
 
   - don’t forget the slash at the end of the URL, favorite error\!

@@ -42,9 +42,9 @@ an instance group **emea** has already been setup for you.
 Isolated groups can be listed in the same way like instance groups and
 Ansible Tower cluster configuration. So the methods listed above
 discussing instance groups also applies to isolated nodes. For example,
-using `awx-cli`:
+using `awx`:
 
-    # awx-cli instance_group list
+    # awx instance_group list
     == ===== ======== =================
     id name  capacity consumed_capacity
     == ===== ======== =================
@@ -65,7 +65,7 @@ infrastructure. The isolated node we configured above is located in the
 same region and is able to connect to the managed hosts.
 
 Now create a new inventory in your Tower cluster. You can do this with
-`awx-cli` like we did above, or you use the web UI. Why not use the web
+`awx` like we did above, or you use the web UI. Why not use the web
 UI for a change?
 
 In the Tower web UI under **RESOURCES**, click **Inventories**:

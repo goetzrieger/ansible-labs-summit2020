@@ -16,66 +16,70 @@ and hope you’ll find it helpful. The first step we do is install the
 > HTTP API, provides consistent output formats with optional
 > machine-parsable formats.
 
-We’ll install it on your control host using the official repository RPM
-packages. Exit the SSH session to **tower1.example.com** or open a new
-one to the control host, then install **AWX CLI** as `root`:
+We’ll install it on your Tower node 1 using the official repository RPM
+packages. Using the VSCode terminal window you opened before install **AWX CLI** as `root`:
 
-    yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el7.repo
-    yum install ansible-awx-cli -y
+    # yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el7.repo
+    # yum install ansible-tower-cli -y
 
-After installing the tool, you have to do some basic configuration
-(Tower node to connect to, user and password):
+After installing the tool, you have to configure authentication. The preferred way is to create a token and export it into an environment variable. After this you can seemlessly use **awx** commands in this shell. First set a number of env variables to define your connection:
 
-    [root@bastion ~]# awx-cli config host tower1.ewl04.internal
-    [root@bastion ~]# awx-cli config username admin
-    [root@bastion ~]# awx-cli config password r3dh4t1!
+    [root@ansible ~]# export TOWER_HOST=https://student<N>.ansible.<LABID>.rhdemo.io
+    [root@ansible ~]# export TOWER_USERNAME=admin
+    [root@ansible ~]# export TOWER_PASSWORD='r3dh4t1!'
+    [root@ansible ~]# export TOWER_VERIFY_SSL=false
 
-> **Tip**
->
-> It doesn’t really matter what node you connect to.
+Then use **awx** to login and print out the access token:
 
-Now test **awx-cli** is working. First run it without arguments to get a
+    [root@ansible ~]# awx login -f human
+    export TOWER_TOKEN=<YOUR_TOKEN>
+
+Finally set the environment variable with the token:
+
+    [root@ansible ~]# export TOWER_TOKEN=<YOUR_TOKEN>
+
+Now test **awx** is working. First run it without arguments to get a
 list of resources you can manage with it:
 
-    [root@control ~]# awx-cli --help
+    [root@ansible ~]# awx --help
 
-And then test something, e.g.:
+And then test something, e.g. (leave out **-f human** if you're a JSON fan...):
 
-    [root@control ~]# awx-cli user list
+    [root@ansible ~]# awx -f human user list
 
 > **Tip**
 >
-> When trying to find a **awx-cli** command line for something you want
+> When trying to find a **awx** command line for something you want
 > to do, just move one by one.
 
 Example:
 
-    [root@control ~]# awx-cli --help
+    [root@ansible ~]# awx --help
 
 Okay, there is an **inventory** resource. Let’s see…
 
-    [root@control ~]# awx-cli inventory --help
+    [root@ansible ~]# awx inventory --help
 
 Well, **create** sounds like what I had in mind. But what arguments do I
 need? Just run:
 
-    [root@control ~]# awx-cli inventory create
+    [root@ansible ~]# awx -f human inventory create
 
-Bingo\! Take note of the **REQUIRED** mark.
+Bingo! Take note of the **REQUIRED** information at the end.
 
-## Challenge Lab: awx-cli
+## Challenge Lab: awx
 
-To practice your **awx-cli** skills, here is a challenge:
+To practice your **awx** skills, here is a challenge:
 
   - Try to change the **idle time out** of the Tower web UI, it’s 1800
-    seconds by default. Set it to, say, 7200. Using **awx-cli**, of
+    seconds by default. Set it to, say, 7200. Using **awx**, of
     course.
 
-  - Start by looking for a resource type **awx-cli** provides using
+  - Start by looking for a resource type **awx** provides using
     **--help** that sounds like it has something to do with changing
     settings.
 
-  - Look at the available **awx-cli** commands for this resource type.
+  - Look at the available **awx** commands for this resource type.
 
   - Use the commands to have a look at the parameters settings and
     change it.
@@ -89,14 +93,13 @@ To practice your **awx-cli** skills, here is a challenge:
 > <details><summary>Solution below!</summary>
 > <p>
 >
->     [root@control ~]# awx-cli setting
->     [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
->     [root@control ~]# awx-cli setting modify SESSION_COOKIE_AGE 7200
->     [root@control ~]# awx-cli setting get SESSION_COOKIE_AGE
+>     [root@ansible ~]# awx setting list | grep SESSION
+>     [root@ansible ~]# awx setting modify SESSION_COOKIE_AGE 7200
+>     [root@ansible ~]# awx setting list | grep SESSION
 >
 > </p>
 > </details>
 
 If you want to, go to the web UI of any node (not just the one you
-connected **awx-cli** to) and check the setting under
+connected **awx** to) and check the setting under
 **ADMINISTRATION→Settings→System**.

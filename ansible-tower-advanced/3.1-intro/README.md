@@ -48,22 +48,16 @@ access to the following hosts:
 |                                  |                                         |                                |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| Control/Bastion Host, Gitea Repo | bastion.&lt;GUID&gt;.sandbox951.openest.com | bastion.&lt;GUID&gt;.internal      |
-| Ansible Tower Cluster            |                                         |                                |
-| Ansible Tower Load Balancer      | tower.&lt;GUID&gt;.sandbox951.opentlc.com   |                                |
+| Ansible Tower Cluster            | student\<N>.ansible.\<LABID>.rhdemo.io                                        |                                |
 | Ansible Tower Database Host      |                                         | towerdb.example.com            |
 | Managed RHEL7 Host 1             |                                         | support1.&lt;GUID&gt;.internal     |
 | Managed RHEL7 Host 2             |                                         | support1.&lt;GUID&gt;.internal     |
-| Ansible Tower Isolated Node      |                                         | worker1.emea.&lt;GUID&gt;.internal |
-| Managed Remote Host 1            |                                         | isosupport1.&lt;GUID&gt;.internal  |
-| Managed Remote Host 2            |                                         | isosupport2.&lt;GUID&gt;.internal  |
+| Ansible Tower Isolated Node      |                                         | worker1.emea.internal |
+| Managed Remote Host 1            |                                         | isosupport1.internal  |
 
 > **Tip**
 >
-> Your lab environment will get a unique **&lt;GUID&gt;**. You will be able
-> to SSH into the bastion host using the external hostname
-> `bastion.<GUID>.sandbox951.opentlc.com`, from here you need to SSH
-> into the other hosts to run tasks on the command line.
+> The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
 
 > **Tip**
 >
@@ -71,22 +65,19 @@ access to the following hosts:
 > UI will be reachable over HTTP/HTTPS.
 
 As you can see the lab environment is pretty extensive. You basically
-have one network segment with:
-
-  - A bastion/control host you access via SSH, the Gitea git repo lives
-    here as well
+have:
 
   - A three-node Tower cluster with a separate DB host, accessed via SSH
-    (from control host) or web UI
+    or web UI
 
   - Two managed RHEL 7 hosts
 
-And a second network segment with:
+And a to mimic a remote side:
 
   - One host that acts as an isolated Tower node that can be reached via
     SSH from the Tower cluster nodes.
 
-  - Two hosts which act as remote managed nodes that can only be reached
+  - One host which acts as a remote managed node that can only be reached
     from/through the isolated node.
 
 A diagram says more then a thousand words:
@@ -106,13 +97,7 @@ Some hints to get you started:
   - Don’t type everything manually, use copy & paste from the browser
     when appropriate. But don’t stop to think and understand… ;-)
 
-  - All labs where prepared using **Vim**, but we understand not
-    everybody loves it. Feel free to use alternative editors, in the lab
-    environment we provide **Midnight Commander** (just run **mc**,
-    function keys can be reached via Esc-&lt;n&gt; or simply clicked with
-    the mouse) or **Nano** (run **nano**). Here is a short [editor
-    intro,
-    window="\_blank"](http://people.redhat.com/grieger/editor_intro_rhel7.html).
+  - To edit files or conveniently open a terminal window, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **student\<N>-code.\<LABID>.rhdemo.io**
 
 > **Tip**
 >

@@ -116,13 +116,13 @@ cluster, it’s a good idea to test it on the command line first:
 
 <!-- end list -->
 
-    [root@bastion ~]# chmod +x dyninv.sh
+    [root@ansible ~]# chmod +x dyninv.sh
 
   - Execute it:
 
 <!-- end list -->
 
-    [root@bastion ~]# ./dyninv.sh --list
+    [root@ansible ~]# ./dyninv.sh --list
     {
         "dyngroup":{
             "hosts":[

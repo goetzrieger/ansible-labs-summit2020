@@ -31,23 +31,23 @@ The Playbooks can be found in the Github repository you already setup.
 
 As mentioned the Github repository contains three Playbooks to enforce
 different compliance requirements. First create these three templates
-via `awx-cli`:
+via `awx`:
 
-    [root@control ~]# awx-cli job_template create -n "Compliance STIG packages" \
+    [root@ansible ~]# awx job_template create -n "Compliance STIG packages" \
                         --job-type run -i "Example Inventory" \
                         --project "Apache" \
                         --playbook "stig-packages.yml" \
                         --credential "Example Credentials" \
                         --become-enabled 1
 
-    [root@control ~]# awx-cli job_template create -n "Compliance STIG config" \
+    [root@ansible ~]# awx job_template create -n "Compliance STIG config" \
                         --job-type run -i "Example Inventory" \
                         --project "Apache" \
                         --playbook "stig-config.yml" \
                         --credential "Example Credentials" \
                         --become-enabled 1
 
-    [root@control ~]# awx-cli job_template create -n "Compliance CIS" \
+    [root@ansible ~]# awx job_template create -n "Compliance CIS" \
                         --job-type run -i "Example Inventory" \
                         --project "Apache" \
                         --playbook "cis.yml" \
@@ -57,7 +57,7 @@ via `awx-cli`:
 ## Create Parallel Workflow
 
 To enable parallel execution of the tasks in these job templates, we
-will create a workflow. We’ll use the web UI because using **awx-cli**
+will create a workflow. We’ll use the web UI because using **awx**
 for this is a bit too involved for a lab. Workflows are configured in
 the **Templates** view, you might have noticed you can choose between
 **Job Template** and **Workflow Template** when adding a template.

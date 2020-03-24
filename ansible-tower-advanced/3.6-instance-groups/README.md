@@ -110,7 +110,7 @@ You can check your instance groups in a number of ways.
 
 ### Via cli
 
-    [root@bastion 0 ~]# awx-cli instance_group list
+    [root@bastion 0 ~]# awx instance_group list
     == ===== ======== =================
     id name  capacity consumed_capacity
     == ===== ======== =================
@@ -131,7 +131,7 @@ use curl to access the API from the command line:
 >
 > The curl command has to be on one line.
 
-    [root@control ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/instance_groups/| python -m json.tool
+    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/instance_groups/| python -m json.tool
 
 ### Via the Web UI
 

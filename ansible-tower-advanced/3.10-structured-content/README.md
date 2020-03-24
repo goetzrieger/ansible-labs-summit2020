@@ -90,7 +90,7 @@ work with git on the commandline the SSH key for user **ansible** was
 already added to the Gitea user **git**. Next, clone the repository on
 the control machine:
 
-    [root@control ~]# su - ansible
+    [root@ansible ~]# su - ansible
     [ansible@control ~]$ git clone git@control.example.com:/git/structured-content.git
     [ansible@control ~]$ cd structured-content/
 
@@ -308,9 +308,9 @@ execute the Playbook against the production stage:
 ### From Tower
 
 The new repository needs to be added as project. Feel free to use the
-web UI or use **awx-cli** as user **root** like shown below.
+web UI or use **awx** as user **root** like shown below.
 
-    [root@control ~]# awx-cli project create -n "Structured Content Repository" \
+    [root@ansible ~]# awx project create -n "Structured Content Repository" \
                         --organization Default \
                         --scm-type git \
                         --scm-url http://control.example.com/gitea/git/structured-content.git \
@@ -382,7 +382,7 @@ the same time.
 > Please note that in a real world use case you might want to have
 > different templates to address the different stages separatly.
 
-    [root@control ~]# awx-cli job_template create -n "Structured Content Execution" \
+    [root@ansible ~]# awx job_template create -n "Structured Content Execution" \
                         --job-type run -i "Structured Content Inventory" \
                         --project "Structured Content Repository" \
                         --playbook "site.yml" \
