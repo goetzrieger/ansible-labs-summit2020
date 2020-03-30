@@ -40,7 +40,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 |===
 |Role|Hostname External (if applicable)|Hostname Internal
 
-|Control/Bastion Host, Gitea Repo|bastion.${GUID}.sandbox${SBUID}.opentlc.com|bastion.${GUID}.internal
+|Control/Bastion Host, Git Repo|bastion.${GUID}.sandbox${SBUID}.opentlc.com|bastion.${GUID}.internal
 |Ansible Tower Cluster|tower{1-3}.${GUID}.sandbox${SBUID}.opentlc.com|tower{1-3}.${GUID}.internal
 |Ansible Tower Load Balancer|tower.${GUID}.sandbox${SBUID}.opentlc.com|
 |Ansible Tower Database Host||support1.${GUID}.internal
@@ -58,7 +58,7 @@ TIP: Ansible Tower has already been installed and licensed for you, the web UI w
 
 As you can see the lab environment is pretty extensive. You basically have one network segment with:
 
-* A bastion/control host you access via SSH, the Gitea git repo lives here as well
+* A bastion/control host you access via SSH, the Git git repo lives here as well
 * A three-node Tower cluster with a separate DB host, accessed via SSH (from control host) or web UI
 * Two managed RHEL 7 hosts
 
@@ -332,27 +332,15 @@ The ssh key is read in here via a sub-shell. Since JSON POST data need to be on 
 
 WARNING: As the *awx* commands get longer you'll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \ on one line, of course.
 
-// === Using Git for Software Configuration Management (SCM)
+To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over SSH. This credential is user/key based, and we need the following *awx* command:
 
-// Your lab environment includes Gitea, a Git-service that comes with a web ui and much more. Gitea runs on `bastion.${GUID}.com` and can be accessed via HTTP. Go and have a look around by accessing:
+----
+awx -k credential create --name="Git Credentials" \
+	--organization "Default" --credential_type "Source Control" \
+	--inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/id_rsa)\n\"}"
+----
 
-// *\http://bastion.${GUID}.sandbox${SBUID}.opentlc.com/gitea*
-
-// All repos on Gitea are configured as private, e.g. a login is needed to access the content. The credentials are:
-
-// * *User*: git
-// * *Password*: r3dh4t1!
-
-// To configure and use this repository as a *Source Control Management (SCM)* system in Tower you have to create credentials again, this time to access the Git repository over HTTP. This credential is user/password based, and we add the following *awx* command to our *setup-tower.sh* script. Just add it to the script, don't execute it yet.
-
-// ----
-// awx -k credential create --credential_type="Source Control" \
-//                     --name="Gitea Credentials" \
-//                     --inputs='{"username": "git", "password": "r3dh4t1!"}' \
-//                     --organization="Default"
-// ----
-
-// WARNING: Note the different *credential-type* *source* instead of *machine* in the command.
+WARNING: Note the different *credential-type* *source* instead of *machine* in the command.
 
 === Create the Project
 
@@ -369,7 +357,6 @@ awx -k project create --name="Apache" \
 
 TIP: Note that the first parameter to *awx* is different here since we work on the resource *project*.
 
-// WARNING: Remember you can use `bastion.${GUID}.com` as hostname in *SCM URL* because it resolves inside the environment. For accessing the Gitea web UI in your browser you need to use `\http://bastion.${GUID}.sandbox${SBUID}.opentlc.com/gitea`.
 
 === Create a Job Template
 
@@ -574,18 +561,16 @@ The Playbooks can be found in the Github repository you already setup.
 
 === Prepare the Compliance Lab
 
-// ==== First Step: Add Repository to Tower
-
 // The compliance repository needs to be added as project. Feel free to use the web UI or use *awx* like shown below.
 
 // ----
-// [root@control ~]# awx-cli project create -n "Compliance Repository" \
+// [root@control ~]# awx-cli project create --name "Compliance Repository" \
 //                     --organization Default \
 //                     --scm-type git \
 //                     --scm-url http://bastion.${GUID}.com/gitea/git/compliance.git \
 //                     --scm-clean 1 \
 //                     --scm-update-on-launch 1 \
-//                     --scm-credential "Gitea Credentials"
+//                     --scm-credential "Git Credentials"
 // ----
 
 // TIP: It should again be obvious that using awx-cli is much faster than clicking through multiple steps in a web interface.
@@ -593,7 +578,7 @@ The Playbooks can be found in the Github repository you already setup.
 // Have a look at the status of the Project:
 
 // ----
-// [root@control ~]# awx-cli project status -n "Compliance Repository"
+// [root@control ~]# awx-cli project status --name "Compliance Repository"
 // ----
 
 ==== First Step: Create three Templates
@@ -601,7 +586,7 @@ The Playbooks can be found in the Github repository you already setup.
 As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates via `awx-cli`:
 
 ----
-awx -k job_template create -n "Compliance STIG packages" \
+awx -k job_template create --name "Compliance STIG packages" \
                     --job_type run -i "Example Inventory" \
                     --project "Apache" \
                     --playbook "stig-packages.yml" \
@@ -610,7 +595,7 @@ awx -k job_template create -n "Compliance STIG packages" \
 ----
 
 ----
-awx -k job_template create -n "Compliance STIG config" \
+awx -k job_template create --name "Compliance STIG config" \
                     --job_type run -i "Example Inventory" \
                     --project "Apache" \
                     --playbook "stig-config.yml" \
@@ -619,7 +604,7 @@ awx -k job_template create -n "Compliance STIG config" \
 ----
 
 ----
-awx -k job_template create -n "Compliance CIS" \
+awx -k job_template create --name "Compliance CIS" \
                     --job-type run -i "Example Inventory" \
                     --project "Apache" \
                     --playbook "cis.yml" \
@@ -1214,28 +1199,19 @@ CAUTION: Be careful to _not_ have separate code repositories for each environmen
 
 So, let's get started with an example. The content and repo-structure in this lab is aligned to the link:https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization[Ansible best practices] and is explained in more detail there.
 
-Since we want to store all content in a repository, we will first create an empty Git repository on our Gitea server. Access the Gitea web UI via
+Since we want to store all content in a repository, we have created for you a poor's man Git repo on the bastion/control host with an empty repository called `structured-content`.
 
-*\http://bastion.${GUID}.sandbox${SBUID}.opentlc.com/gitea*.
-
-Login via the already well known credentials:
-
-* *User*: git
-* *Password*: r3dh4t1!
-
-* In the upper right corner, click on the plus sign, and in the opening hover menu click on *New Repository*.
-* Set the *Repository Name*: structured-content
-* Click the button *Create Repository* at the end of the page.
-
-Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ansible* was already added to the Gitea user *git*. Next, clone the repository on the control machine:
+Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
 ----
-[root@control ~]# su - ansible
-[ec2-user@bastion ~]$ git clone git@bastion.${GUID}.com:/git/structured-content.git
+[ec2-user@bastion ~]$ git clone git@bastion.${GUID}.internal:structured-content.git
 [ec2-user@bastion ~]$ cd structured-content/
+[ec2-user@bastion ~]$ git config --global push.default simple
+[ec2-user@bastion ~]$ git config --global user.name "Your Name"
+[ec2-user@bastion ~]$ git config --global user.email you@example.com
 ----
 
-TIP: The repository is currently empty.
+TIP: The repository is currently empty. The last three commands are just there to avoid useless warnings from Git.
 
 you are now going to add some default directories and files:
 
@@ -1245,18 +1221,18 @@ you are now going to add some default directories and files:
 
 This command creates two inventory files: in this case we have different stages with different hosts which we keep them in separate inventory files. Note that those files are right now still empty and need to be filled with content to work properly.
 
-In the current setup we have two instances. Let's assume that `host1.example.com` is part of the staging environment, and `host2.example.com` is part of the production environment. To reflect that in the inventory files, edit the two empty inventory files to look like this:
+In the current setup we have two instances. Let's assume that `support2.ewl0815.internal` is part of the staging environment, and `support3.ewl0815.internal` is part of the production environment. To reflect that in the inventory files, edit the two empty inventory files to look like this:
 
 ----
 [ec2-user@bastion structured-content]$ cat staging
 [staging]
-host1.example.com
+support2.ewl0815.internal
 ----
 
 ----
 [ec2-user@bastion structured-content]$ cat production
 [production]
-host2.example.com
+support3.ewl0815.internal
 ----
 
 Next we add some directories:
@@ -1402,15 +1378,15 @@ So we have prepared a basic structure for quite some content - call `tree` to lo
 ----
 +++ </div></details> +++
 
+NOTE: in a normal case, we would remove the useless/empty directories, and separate more carefully code and inventory.
+
 Since we so far created the code only locally on the control host, we need to add it to the repository and push it:
 
 ----
 [ec2-user@bastion structured-content]$ git add production roles site.yml staging
 [ec2-user@bastion structured-content]$ git commit -m "Adding inventories and apache security roles"
-[ec2-user@bastion-dff2 structured-content]$ git push
+[ec2-user@bastion structured-content]$ git push --set-upstream origin master
 ----
-
-Why not head over to Gitea's web UI to make sure the files are there?
 
 === Launch it!
 
@@ -1419,13 +1395,13 @@ Why not head over to Gitea's web UI to make sure the files are there?
 The code can now be launched. We start at the command line. Call the playbook `site.yml` with the appropriate inventory and privilege escalation:
 
 ----
-[ec2-user@bastion structured-content]$ ansible-playbook -i staging site.yml -b
+root@bastion structured-content]$ ansible-playbook -i staging site.yml -b
 ----
 
-Watch how the changes are done to the target machines. Afterwards, execute the Playbook against the production stage:
+Watch how the changes are done to the target machines. With `curl support2.ewl0815.internal` you may check that the web server is properly running and reachable. Afterwards, execute the Playbook against the production stage:
 
 ----
-[ec2-user@bastion structured-content]$ ansible-playbook -i production site.yml -b
+[root@bastion structured-content]$ ansible-playbook -i production site.yml -b
 ----
 
 ==== From Tower
@@ -1433,18 +1409,18 @@ Watch how the changes are done to the target machines. Afterwards, execute the P
 The new repository needs to be added as project. Feel free to use the web UI or use *awx* like shown below.
 
 ----
-awx -k project create -n "Structured Content Repository" \
+awx -k project create --name "Structured Content Repository" \
                     --organization Default \
                     --scm_type git \
-                    --scm_url http://bastion.${GUID}.com/gitea/git/structured-content.git \
+                    --scm_url bastion.${GUID}.internal:structured-content.git \
                     --scm_clean 1 \
                     --scm_update_on_launch 1 \
-                    --scm_credential "Gitea Credentials"
+                    --credential "Git Credentials"
 ----
 
-Now you've created the Project in Tower. Earlier on the commandline you've setup a staged environment by creating and using two different inventory files. But how can we get the same setup in Tower? We use another way to define Inventories! It is possible to use inventory files provided in a SCM repository as an inventory source. This way we can use the inventory files we keep in Gitea.
+Now you've created the Project in Tower. Earlier on the commandline you've setup a staged environment by creating and using two different inventory files. But how can we get the same setup in Tower? We use another way to define Inventories! It is possible to use inventory files provided in a SCM repository as an inventory source. This way we can use the inventory files we keep in Git.
 
-In your Tower web UI, open the *RESOURCES->Inventory* view. Then click the image:green_plus.png[20,20] button and choose to create a new *Inventory*. In the next view:
+In your Tower web UI, open the *Inventories* view. Then click the image:green_plus.png[20,20] button and choose to create a new *Inventory*. In the next view:
 
 * *NAME:* Structured Content Inventory
 * Click *SAVE*
@@ -1457,33 +1433,41 @@ In your Tower web UI, open the *RESOURCES->Inventory* view. Then click the image
 * In the *INVENTORY FILE* drop down menu, pick *production*
 * Click the green *SAVE* button
 
-And now for the staging inventory:
+And now for the staging _source_, repeat the same operation and sync both sources at once:
 
-* Down below in the view, click the image:green_plus.png[20,20] button again
++++ <details><summary> +++
+*>> _Click here for the solution_ <<*
++++ </summary><div> +++
+
+* click the image:green_plus.png[20,20] button again, the one next to the list at the bottom
 * In the next view, add as *NAME:* Staging
 * *SOURCE:* Pick *Sourced from a Project*
 * Click on *Choose an inventory file*
 * *PROJECT:* Structured Content Repository
 * In the *INVENTORY FILE* drop down menu, pick *staging*
 * Click the green *SAVE* button
-* In the screen below, click the sync button for both sources once so that the cloud icon on the left site next to the name of each inventory turns green.
+* In the screen below, click the *SYNC ALL* button for both sources once so that the cloud icon on the left site next to the name of each source turns green.
+
++++ </div></details> +++
 
 To make sure that the project based inventory worked, click on the *HOSTS* button of the Inventory and make sure the two hosts are listed and tagged with the respective stages as *RELATED GROUPS*.
+
+CAUTION: note that the *HOSTS* button for a specific inventory is different than the *HOSTS* button next to the list of inventories (at the bottom). The latter is completely read only and offers less information, but shows all hosts across all inventories.
 
 Now create a template to execute the `site.yml` against both stages at the same time.
 
 TIP: Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
 ----
-awx -k job_template create -n "Structured Content Execution" \
-                    --job-type run -i "Structured Content Inventory" \
-                    --project "Structured Content Repository" \
-                    --playbook "site.yml" \
-                    --credential "Example Credentials" \
-                    --become_enabled 1
+awx -k job_template create --name "Structured Content Execution" \
+	--job-type run --inventory "Structured Content Inventory" \
+	--project "Structured Content Repository" \
+	--playbook "site.yml" \
+	--credential "Example Credentials" \
+	--become_enabled 1
 ----
 
-Now in the Tower web UI go to *RESOURCES->Templates*, launch the playbook and watch the results.
+Now in the Tower web UI go to *Templates*, launch the playbook and watch the results.
 
 === Adding External Roles
 
@@ -1497,14 +1481,14 @@ To use external roles in a project, they need to be referenced in a file called 
 # Import directly from Galaxy
 - src: geerlingguy.nginx
 # Import from a local Git repository
-- src: http://bastion.${GUID}.com/gitea/git/external-role.git
+- src: http://gitserver.example.com/gitea/git/external-role.git
   version: master
   name: external-role_locally
 ----
 
 The `requirements.yml` needs to be read - either on the command line by invoking `ansible-galaxy`, or automatically by Ansible Tower during project check outs. In both cases the file is read, and the roles are checked out and stored locally, and the roles can be called in playbooks. The advantage of Tower here is that it takes care of all that - including authorization to the Git repo, finding a proper place to store the role, updating it when needed and so on.
 
-In this example, we will include a role which ships a simple `index.html` file as template and reloads the apache web server. The role is already shared in Gitea at *\http://bastion.${GUID}.com/gitea/git/shared-apache-role*.
+In this example, we will include a role which ships a simple `index.html` file as template and reloads the apache web server. The role is already shared in GitHub at https://github.com/ansible-labs-summit-crew/shared-apache-role
 
 To include it with the existing structured content, first we have to create a file called `roles/requirements.yml` and reference the role there:
 
@@ -1512,7 +1496,7 @@ WARNING: Make sure you work as user *ansible*
 
 ----
 [ec2-user@bastion structured-content]$ cat roles/requirements.yml
-- src: http://bastion.${GUID}.com/gitea/git/shared-apache-role.git
+- src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
   scm: git
   version: master
 ----
@@ -1535,7 +1519,7 @@ Next, we reference the role itself in our playbook. Change the *site.yml* Playbo
     - { role: shared-apache-role }
 ----
 
-Because Tower uses the Gitea repo, you've to add, commit and push the changes:
+Because Tower uses the Git repo, you've to add, commit and push the changes:
 
 ----
 [ec2-user@bastion structured-content]$ git add site.yml roles/
@@ -1551,8 +1535,8 @@ Afterwards, go to *RESOURCES->Templates* and launch the *Structured Content Exec
 
 ----
 TASK [shared-apache-role : deploy content] *************************************
-changed: [host2.example.com]
-changed: [host1.example.com]
+changed: [support2.example.com]
+changed: [support3.example.com]
 ----
 
 And you are done! This was quite something to follow through, so let's review:
@@ -1679,21 +1663,23 @@ In this lab a three node Ansible Tower cluster is provided ready to go as instal
 
 TIP: Keep in mind when working with clustered Ansible Tower that the database will not be clustered or replicated by the installer. This is something you have to take care of yourself.
 
+IMPORTANT: Ansible doesn't interpret environment variables in inventories, it should here be only understood as a place holder which you need to replace yourself by the correct value.
+
 ----
 [tower]
-tower1.example.com
-tower2.example.com
-tower3.example.com
+tower1.${GUID}.internal
+tower2.${GUID}.internal
+tower3.${GUID}.internal
 
 [database]
-towerdb.example.com
+support1.${GUID}.internal
 
 [all:vars]
 ansible_become=true
 
 admin_password='r3dh4t1!'
 
-pg_host='towerdb.example.com'
+pg_host='support1.${GUID}.internal'
 pg_port='5432'
 
 pg_database='tower'
