@@ -41,7 +41,7 @@ as:
   - **https://student\<N>.towernode3.\<LABID>.rhdemo.io**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at
-your hands here. To learn more about your cluster and it’s state, in one
+your hands here. To learn more about your cluster and its state, in one
 of the instances web UI under **ADMINISTRATION** choose **Instance
 Groups**. Here you will get an overview of the cluster by instance
 groups. Explore the information provided, of course there is no capacity
