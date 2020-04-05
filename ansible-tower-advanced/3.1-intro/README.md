@@ -72,7 +72,7 @@ have:
 
   - Two managed RHEL 7 hosts
 
-And a to mimic a remote side:
+And a second network segment to mimic a remote site:
 
   - One host that acts as an isolated Tower node that can be reached via
     SSH from the Tower cluster nodes.
