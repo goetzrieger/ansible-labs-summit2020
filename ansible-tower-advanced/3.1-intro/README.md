@@ -106,7 +106,7 @@ Some hints to get you started:
 
 > **Tip**
 >
-> The command line can wrap on the HTML page from time to time. Therefor
+> The command line can wrap on the HTML page from time to time. Therefore
 > the output is often separated from the command line for better
 > readability by an empty line. **Anyway, the line you should actually
 > run should be recognizable by the prompt.** :-)
