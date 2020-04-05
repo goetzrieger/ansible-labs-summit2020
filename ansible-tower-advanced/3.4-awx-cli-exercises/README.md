@@ -30,7 +30,8 @@ yourself and create an inventory name **Example Inventory**.
 > <details><summary>Solution below!</summary>
 > <p>
 >
->    [root@ansible ~]# awx inventory create --name "Example Inventory" --organization "Default"
+>    [root@ansible ~]# awx -f human inventory create --name "Example Inventory" --organization "Default"
+
 >
 > **Tip**
 >
@@ -109,10 +110,10 @@ Now we want to configure the credentials to access our managed hosts
 from Tower, we are using SSH with password authentication in this lab. Add the following line to to **setup-tower.sh**, but don’t run
 the script yet:
 
-    awx credentials create --credential_type 'Machine' \
-      --name 'Example Credentials' \
-      --user admin \
-      --inputs '{"username": "student1", "password": "r3dh4t1!"}'
+awx -f human credential create --name "Example Credentials" \
+                      --organization "Default" \
+                      --credential_type "Machine" \
+                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}
 
 Don’t run the shell script yet, first got through the following steps to
 add all commands to it.
@@ -129,12 +130,12 @@ The Ansible content used in this lab is hosted on Github. The next step
 is to add a project to import the playbooks. Add the appropriate
 **awx** line to the script **setup-tower.sh**:
 
-    awx project create --name="Apache" \
-                      --scm-type=git \
-                      --scm-url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
-                      --organization "Default" \
-                      --scm-clean=true --scm-delete-on-update=true --scm-update-on-launch=true \
-                      --wait
+    awx -f human project create --name="Apache" \
+                   --scm_type=git \
+                   --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
+                   --organization "Default" \
+                   --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
+                   --wait
 
 > **Tip**
 >
@@ -149,13 +150,14 @@ create a **Job Template**, again business as usual for Tower users. Here
 following line to your script **setup-tower.sh**. Don’t run the script
 yet.
 
-    awx job_template create \
-                        --name="Install Apache" \
-                        --inventory="Example Inventory" \
-                        --credential="Example Credentials" \
-                        --project=Apache \
-                        --playbook=apache_install.yml \
-                        --become-enabled="yes"
+    awx -f human job_template create  \
+                    --name="Install Apache" \
+                    --inventory="Example Inventory" \
+                    --credential="Example Credentials" \
+                    --project=Apache \
+                    --playbook=apache_install.yml \
+                    --become_enabled="yes"
+                   
 
 ## Review the final script and execute it
 
@@ -177,24 +179,26 @@ The final script is also shown here:
     awx host create --name "support1.ewl05.internal" --inventory "Example Inventory"
     awx host create --name "support2.ewl05.internal" --inventory "Example Inventory"
 
-    awx credential create --name "Example Credentials" \
-                         --organization "Default" --credential-type "Machine" \
-                         --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /root/.ssh/ewl05key.pem)\n\",\"become_method\":\"sudo\"}"
-
-    awx project create --name="Apache" \
-                      --scm-type=git \
-                      --scm-url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
+    awx -f human credential create --name "Example Credentials" \
                       --organization "Default" \
-                      --scm-clean=true --scm-delete-on-update=true --scm-update-on-launch=true \
-                      --wait
+                      --credential_type "Machine" \
+                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}"
 
-    awx job_template create \
-                        --name="Install Apache" \
-                        --inventory="Example Inventory" \
-                        --credential="Example Credentials" \
-                        --project=Apache \
-                        --playbook=apache_install.yml \
-                        --become-enabled="yes"
+
+awx -f human project create --name="Apache" \
+                   --scm_type=git \
+                   --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
+                   --organization "Default" \
+                   --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
+                   --wait
+
+awx -f human job_template create  \
+                    --name="Install Apache" \
+                    --inventory="Example Inventory" \
+                    --credential="Example Credentials" \
+                    --project=Apache \
+                    --playbook=apache_install.yml \
+                    --become-enabled="yes"
 
 Run the script, and verify that all resources were properly created in
 the web UI.
