@@ -31,7 +31,6 @@ yourself and create an inventory name **Example Inventory**.
 > <p>
 >
 >    [root@ansible ~]# awx -f human inventory create --name "Example Inventory" --organization "Default"
-
 >
 > **Tip**
 >
@@ -150,10 +149,9 @@ create a **Job Template**, again business as usual for Tower users. Here
 following line to your script **setup-tower.sh**. Don’t run the script
 yet.
 
-    awx -f human job_template create  \
+    awx -f human job_templates create  \
                     --name="Install Apache" \
                     --inventory="Example Inventory" \
-                    --credential="Example Credentials" \
                     --project=Apache \
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
