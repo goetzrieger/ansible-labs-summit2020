@@ -142,7 +142,7 @@ instances by default. We have already created instance groups which
 allow us to take control over what job is executed on which node, so
 let’s use them.
 
-To make it easier to spot where the jobs where run let’s first empty the
+To make it easier to spot where the jobs were run, let’s first empty the
 jobs history. This can be done using **awx-manage** on one of the Tower
 instances. From your control node SSH into one of the Tower hosts and as
 `root` run the command:
