@@ -69,7 +69,7 @@ and friends):
   - Now get the job details via the API interface:
 
       - Open the URL
-        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/*<ID>*/**
+        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/ID/**
         where `<ID>` is the number of the job you just looked up in the
         UI.
 
