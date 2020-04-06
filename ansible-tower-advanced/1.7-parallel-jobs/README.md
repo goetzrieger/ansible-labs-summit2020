@@ -33,26 +33,28 @@ As mentioned the Github repository contains three Playbooks to enforce
 different compliance requirements. First create these three templates
 via `awx`:
 
-    [root@ansible ~]# awx job_template create -n "Compliance STIG packages" \
-                        --job-type run -i "Example Inventory" \
-                        --project "Apache" \
-                        --playbook "stig-packages.yml" \
-                        --credential "Example Credentials" \
-                        --become-enabled 1
+    [root@ansible ~]# awx job_template create --name "Compliance STIG packages" \
+                          --job-type run \
+                          --inventory "Example Inventory" \
+                          --project "Apache"  \
+                          --playbook "stig-packages.yml" \
+                          --become_enabled 1 
 
-    [root@ansible ~]# awx job_template create -n "Compliance STIG config" \
-                        --job-type run -i "Example Inventory" \
-                        --project "Apache" \
-                        --playbook "stig-config.yml" \
-                        --credential "Example Credentials" \
-                        --become-enabled 1
 
-    [root@ansible ~]# awx job_template create -n "Compliance CIS" \
-                        --job-type run -i "Example Inventory" \
-                        --project "Apache" \
-                        --playbook "cis.yml" \
-                        --credential "Example Credentials" \
-                        --become-enabled 1
+    [root@ansible ~]# awx job_template create --name "Compliance STIG config" \
+                          --job_type run \
+                          --inventory "Example Inventory" \
+                          --project "Apache" \
+                          --playbook "stig-config.yml" \
+                          --become_enabled 1
+
+    [root@ansible ~]# awx job_template create --name "Compliance CIS" \
+                          --job-type run  \
+                          --inventory "Example Inventory" \
+                          --project "Apache" \
+                          --playbook "cis.yml" \
+                          --become_enabled 1
+
 
 ## Create Parallel Workflow
 
