@@ -110,15 +110,12 @@ You can check your instance groups in a number of ways.
 
 ### Via cli
 
-    [root@bastion 0 ~]# awx instance_group list
-    == ===== ======== =================
-    id name  capacity consumed_capacity
-    == ===== ======== =================
-     1 tower       51                 0
-     2 emea        17                 0
-     3 dev         17                 0
-     4 prod        17                 0
-    == ===== ======== =================
+    [root@bastion 0 ~]#awx -k instance_group list -f human 
+    id name  
+    == ===== 
+    1  tower 
+    2  dev   
+    3  prod 
 
 ### Via API
 
