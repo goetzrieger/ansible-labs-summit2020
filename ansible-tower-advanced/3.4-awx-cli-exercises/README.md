@@ -197,7 +197,7 @@ The final script is also shown here:
                     --credential="Example Credentials" \
                     --project=Apache \
                     --playbook=apache_install.yml \
-                    --become-enabled="yes"
+                    --become_enabled="yes"
 
 
 Run the script, and verify that all resources were properly created in
