@@ -77,4 +77,4 @@ You will soon discover that many chapters in this lab guide come with a "Challen
 ||[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise ->](../1.2-adhoc)|
 |:---|:---:|---:|
 
-<div align="left">Previous</div><div align="center">[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)</div><div align="right">[Next Excercise ->](../1.2-adhoc)</div>
+<div align="left">Previous</div>[<div align="center">Click here to return to the Ansible for Red Hat Enterprise Linux Workshop</div>](../README.md#section-1---ansible-engine-exercises)[<div align="right">Next Excercise -></div>](../1.2-adhoc)
