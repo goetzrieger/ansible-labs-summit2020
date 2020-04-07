@@ -15,13 +15,25 @@ In this lab you work in a pre-configured lab environment. You will have access t
 
 ## Step 1.1 - Access the Environment
 
-Login to your control host via SSH:
+You have been provided access to a virtual terminal/shell via code-server, an open-source Visual Studio code editor:
+
+    	https://student<X>-code.<workshop>.rhdemo.io
+
+Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<workshop\>** by the workshop name provided to you.
+
+![code-server login](../images/vscode-pwd.png)
+
+Use the provided password to login into the code-server and open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half of the screen and you will be presented a prompt:
+
+![code-server terminal](../images/vscode-terminal.png)
+
+Use the terminal you created above to login to your control host via SSH:
 
 > **Warning**
 >
-> Replace **11.22.33.44** by the **IP** provided to you, and the **X** in student**X** by the student number provided to you.
+> Replace **11.22.33.44** by the **IP** provided to you, and the **\<X\>** in student**\<X\>** by the student number provided to you.
 
-    ssh studentX@11.22.33.44
+    ssh student<X>@11.22.33.44
 
 > **Tip**
 >
