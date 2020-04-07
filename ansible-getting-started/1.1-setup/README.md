@@ -77,4 +77,4 @@ You will soon discover that many chapters in this lab guide come with a "Challen
 |:---|:---:|---:|
 
 | [Next Excercise ->](../1.2-adhoc)|
-|===:|
+|---:|
