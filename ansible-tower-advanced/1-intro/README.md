@@ -45,15 +45,18 @@ Definitely, the Asciidoc sources are available here:
 In this lab you work in a pre-configured lab environment. You will have
 access to the following hosts:
 
-|                                  |                                         |                                |
-| -------------------------------- | --------------------------------------- | ------------------------------ |
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| Ansible Tower Cluster            | student\<N>.ansible.\<LABID>.rhdemo.io                                        |                                |
-| Ansible Tower Database Host      |                                         | towerdb.example.com            |
-| Managed RHEL7 Host 1             |                                         | support1.&lt;GUID&gt;.internal     |
-| Managed RHEL7 Host 2             |                                         | support1.&lt;GUID&gt;.internal     |
-| Ansible Tower Isolated Node      |                                         | worker1.emea.internal |
-| Managed Remote Host 1            |                                         | isosupport1.internal  |
+| -------------------------------- | --------------------------------------- | ------------------------------ |
+| Landing page (for all students)  | \<LABID>.rhdemo.io                      |
+| Ansible Tower Cluster - Node 1   | student\<N>-ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
+| Ansible Tower Cluster - Node 2   | student\<N>-towernode2.\<LABID>.rhdemo.io  | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Cluster - Node 3   | student\<N>-towernode3.\<LABID>.rhdemo.io  | student\<N>-towernode3.\<LABID>.internal |
+| Visual Code Web UI               | student\<N>-code.\<LABID>.rhdemo.io     |                                       |
+| Ansible Tower Database Host      |                                         | student\<N>-towerdb.\<LABID>.internal |
+| Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal   |
+| Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal   |
+| Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
+| Managed Remote Host 1            |                                         | student\<N>-remote.\<LABID>.internal |
 
 > **Tip**
 >
