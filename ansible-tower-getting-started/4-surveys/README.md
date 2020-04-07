@@ -1,4 +1,4 @@
-# Exercise 2.4 - Surveys
+# Exercise 4 - Surveys
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 

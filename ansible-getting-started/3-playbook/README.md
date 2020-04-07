@@ -1,4 +1,4 @@
-# Exercise 1.3 - Writing Your First Playbook
+# Exercise 3 - Writing Your First Playbook
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
@@ -64,7 +64,7 @@ On your control host **ansible**, create a directory called `ansible-files` in y
 [student<X>@ansible ~]$ cd ansible-files/
 ```
 
-Add a file called `apache.yml` with the following content. As discussed in the previous exercises, use `vi`/`vim` or, if you are new to editors on the command line, check out the [editor intro](../0.0-support-docs/editor_intro.md) again.
+Add a file called `apache.yml` with the following content. As discussed in the previous exercises, use `vi`/`vim` or, if you are new to editors on the command line, check out the [editor intro](../0-support-docs/editor_intro.md) again.
 
 ```yaml
 ---

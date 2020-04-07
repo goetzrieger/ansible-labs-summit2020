@@ -1,4 +1,4 @@
-# Exercise 1.5 - Conditionals, Handlers and Loops
+# Exercise 5 - Conditionals, Handlers and Loops
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 

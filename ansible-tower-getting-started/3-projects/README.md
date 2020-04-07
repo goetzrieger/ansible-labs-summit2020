@@ -1,4 +1,4 @@
-# Exercise 2.3 - Projects & job templates
+# Exercise 3 - Projects & job templates
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 

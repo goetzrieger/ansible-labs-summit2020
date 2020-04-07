@@ -1,4 +1,4 @@
-# Exercise 1.8 - Bonus Labs
+# Exercise 8 - Bonus Labs
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 

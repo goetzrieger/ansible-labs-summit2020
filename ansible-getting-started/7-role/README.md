@@ -1,4 +1,4 @@
-# Exercise 1.7 - Roles: Making your playbooks reusable
+# Exercise 7 - Roles: Making your playbooks reusable
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 

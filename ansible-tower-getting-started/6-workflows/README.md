@@ -1,4 +1,4 @@
-# Exercise 2.6 - Workflows
+# Exercise 6 - Workflows
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
