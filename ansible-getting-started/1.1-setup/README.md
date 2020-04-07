@@ -27,19 +27,7 @@ Use the provided password to login into the code-server and open a new terminal 
 
 ![code-server terminal](../images/vscode-terminal.png)
 
-Use the terminal you created above to login to your control host via SSH:
-
-> **Warning**
->
-> Replace **11.22.33.44** by the **IP** provided to you, and the **\<X\>** in student**\<X\>** by the student number provided to you.
-
-    ssh student<X>@11.22.33.44
-
-> **Tip**
->
-> Use the password provided on the workshops landing page.
-
-Then become root:
+Now become root:
 
     [student<X>@ansible ~]$ sudo -i
 
@@ -52,7 +40,7 @@ Most prerequisite tasks have already been done for you:
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
     [root@ansible ~]# ansible --version
-    ansible 2.9.2
+    ansible 2.9.5
     [...]
 
 > **Note**
