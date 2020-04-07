@@ -1,4 +1,4 @@
-# Exercise 1.2 - Running Ad-hoc commands
+# Exercise 2 - Running Ad-hoc commands
 
 **Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
 
