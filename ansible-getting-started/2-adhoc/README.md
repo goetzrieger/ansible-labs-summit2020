@@ -105,7 +105,7 @@ ansible ansible_host=44.55.66.77
 
 > **Tip**
 >
-> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **&lt;X&gt;** with your actual student number.
+> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
 
 ## Step 2.3 - Ping a host
 
@@ -207,13 +207,13 @@ As mentioned this produces an **error**:
     }
 ```
 
-The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student&lt;X&gt;** is not allowed to write the motd file.
+The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<X\>** is not allowed to write the motd file.
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
 > **Tip**
 >
-> Ansible will connect to the machines using your current user name (student&lt;X&gt; in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+> Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
 
 For us it’s okay to connect as `student<X>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
@@ -262,11 +262,11 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 
   - Using `ansible-doc`
 
-      - Find a module that uses Yum to manage software packages.
+      - Find a module that uses DNF to manage software packages.
 
       - Look up the help examples for the module to learn how to install a package in the latest version.
 
-  - Run an Ansible ad hoc command to install the package "screen" in the latest version on `node1`.
+  - Run an Ansible ad hoc command to install the package "vim" in the latest version on all available nodes.
 
 > **Tip**
 >
@@ -278,12 +278,15 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 > <p>
 >
 > ```bash
-> [student<X>@ansible ~]$ ansible-doc -l | grep -i yum
-> [student<X>@ansible ~]$ ansible-doc yum
-> [student<X>@ansible ~]$ ansible node1 -m yum -a 'name=screen state=latest' -b
+> [student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
+> [student<X>@ansible ~]$ ansible-doc dnf
+> [student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
 > ```
 >
 > </p>
 > </details>
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)
+----
+|[Previous Excercise](../1.1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.3-playbook)|
+|:---|:---:|---:|
+
