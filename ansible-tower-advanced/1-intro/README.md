@@ -47,7 +47,6 @@ access to the following hosts:
 
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
-| Landing page (for all students)  | \<LABID>.rhdemo.io                      |
 | Ansible Tower Cluster - Node 1   | student\<N>-ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
 | Ansible Tower Cluster - Node 2   | student\<N>-towernode2.\<LABID>.rhdemo.io  | student\<N>-towernode2.\<LABID>.internal |
 | Ansible Tower Cluster - Node 3   | student\<N>-towernode3.\<LABID>.rhdemo.io  | student\<N>-towernode3.\<LABID>.internal |
