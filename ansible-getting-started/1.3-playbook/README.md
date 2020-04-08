@@ -312,5 +312,4 @@ Finally check if Apache is now running on all servers. Identify the IP addresses
 
 ----
 
-|[Previous Excercise](../1.2-adhoc)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.4-variables)|
-|:---|:---:|---:|
+[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)

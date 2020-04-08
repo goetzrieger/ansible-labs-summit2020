@@ -262,11 +262,11 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 
   - Using `ansible-doc`
 
-      - Find a module that uses DNF to manage software packages.
+      - Find a module that uses Yum to manage software packages.
 
       - Look up the help examples for the module to learn how to install a package in the latest version.
 
-  - Run an Ansible ad hoc command to install the package "vim" in the latest version on `node1`.
+  - Run an Ansible ad hoc command to install the package "screen" in the latest version on `node1`.
 
 > **Tip**
 >
@@ -279,13 +279,17 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 >
 > ```bash
 > [student<X>@ansible ~]$ ansible-doc -l | grep -i yum
-> [student<X>@ansible ~]$ ansible-doc dnf
-> [student<X>@ansible ~]$ ansible node1 -m dnf -a 'name=vim state=latest' -b
+> [student<X>@ansible ~]$ ansible-doc yum
+> [student<X>@ansible ~]$ ansible node1 -m yum -a 'name=screen state=latest' -b
 > ```
 >
 > </p>
 > </details>
 
+<<<<<<< HEAD
+[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)
+=======
 ----
-|[Previous Excercise](../1.1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.3-playbook)|
+|[Previous Excercise](../1.1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.2-adhoc)|
 |:---|:---:|---:|
+>>>>>>> parent of d79cece... Update README.md
