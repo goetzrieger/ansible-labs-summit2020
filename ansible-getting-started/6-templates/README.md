@@ -96,4 +96,5 @@ running kernel {{ ansible_kernel }}.
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|[Previous Excercise](../6-templates)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../7-role)|
+|:---|:---:|---:|
