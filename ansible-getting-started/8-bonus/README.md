@@ -128,4 +128,5 @@ First run the playbook itself, then run curl against `node1` with port `8080` an
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) |
+|:---|:---:|
