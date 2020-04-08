@@ -286,10 +286,4 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 > </p>
 > </details>
 
-<<<<<<< HEAD
 [Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)
-=======
-----
-|[Previous Excercise](../1.1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.2-adhoc)|
-|:---|:---:|---:|
->>>>>>> parent of d79cece... Update README.md
