@@ -15,19 +15,19 @@ In this lab you work in a pre-configured lab environment. You will have access t
 
 ## Step 1.1 - Access the Environment
 
-Login to your control host via SSH:
+You have been provided access to a virtual terminal/shell via code-server, an open-source Visual Studio code editor:
 
-> **Warning**
->
-> Replace **11.22.33.44** by the **IP** provided to you, and the **X** in student**X** by the student number provided to you.
+    	https://student<X>-code.<workshop>.rhdemo.io
 
-    ssh studentX@11.22.33.44
+Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<workshop\>** by the workshop name provided to you.
 
-> **Tip**
->
-> Use the password provided on the workshops landing page.
+![code-server login](../../images/vscode-pwd.png)
 
-Then become root:
+Use the provided password to login into the code-server and open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half of the screen and you will be presented a prompt:
+
+![code-server terminal](../../images/vscode-terminal.png)
+
+Now become root:
 
     [student<X>@ansible ~]$ sudo -i
 
@@ -40,7 +40,7 @@ Most prerequisite tasks have already been done for you:
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
     [root@ansible ~]# ansible --version
-    ansible 2.9.2
+    ansible 2.9.5
     [...]
 
 > **Note**
@@ -73,5 +73,5 @@ You might have guessed by now this lab is pretty command line-centric…​ :-)
 You will soon discover that many chapters in this lab guide come with a "Challenge Lab" section. These labs are meant to give you a small task to solve using what you have learned so far. The solution of the task is shown underneath a warning sign.
 
 ----
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|Previous Excercise|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../1.2-adhoc)|
+|:---|:---:|---:|
