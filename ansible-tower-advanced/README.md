@@ -2,7 +2,7 @@
 
 - [Exercise 1 - Ansible Tower Advanced](1-intro)
 - [Exercise 2 - Introduction to Ansible Tower Clustering](2-clustering)
-- [Exercise 3 - There is more to Tower than the Web UI](3-awx-intro)
+- [Exercise 3 - There is more to Tower than the Web UI](3-awx-cli-intro)
 - [Exercise 4 - Creating Tower Objects Using `awx`](4-awx-cli-exercises)
 - [Exercise 5 - Run a Job in a Cluster](5-tower-cluster-jobs)
 - [Exercise 6 - Tower Instance Groups](6-instance-groups)
