@@ -112,7 +112,7 @@ the script yet:
     awx -f human credential create --name "Example Credentials" \
                       --organization "Default" \
                       --credential_type "Machine" \
-                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}
+                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}"
 
 Don’t run the shell script yet, first got through the following steps to
 add all commands to it.
@@ -129,7 +129,7 @@ The Ansible content used in this lab is hosted on Github. The next step
 is to add a project to import the playbooks. Add the appropriate
 **awx** line to the script **setup-tower.sh**:
 
-    awx -f human project create --name="Apache" \
+    awx -f human projects create --name="Apache" \
                    --scm_type=git \
                    --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
                    --organization "Default" \
@@ -155,7 +155,10 @@ yet.
                     --project=Apache \
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
-                   
+                    
+        awx -f human job_templates associate  \
+                  --credential "Example Credentials" \
+                  "Install Apache"               
 
 ## Review the final script and execute it
 
@@ -174,29 +177,32 @@ The final script is also shown here:
 
     #!/bin/bash
     awx inventory create --name "Example Inventory" --organization "Default"
-    awx host create --name "support1.ewl05.internal" --inventory "Example Inventory"
-    awx host create --name "support2.ewl05.internal" --inventory "Example Inventory"
+    awx host create --name "student1-node1.89cd.ansibleworkshops.com" --inventory "Example Inventory"
+    awx host create --name "student1-node2.89cd.ansibleworkshops.com" --inventory "Example Inventory"
 
-    awx -f human credential create --name "Example Credentials" \
+    awx -f human credentials create --name "Example Credentials" \
                       --organization "Default" \
                       --credential_type "Machine" \
                       --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}"
                       
-    awx -f human project create --name="Apache" \
+    awx -f human projects create --name="Apache" \
                    --scm_type=git \
                    --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
                    --organization "Default" \
                    --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
                    --wait
 
-    awx -f human job_template create  \
+    awx -f human job_templates create  \
                     --name="Install Apache" \
                     --inventory="Example Inventory" \
                     --credential="Example Credentials" \
                     --project=Apache \
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
-
+    
+    awx -f human job_templates associate  \
+                  --credential "Example Credentials" \
+                  "Install Apache"
 
 Run the script, and verify that all resources were properly created in
 the web UI.
