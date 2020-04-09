@@ -123,7 +123,6 @@ And finally we need to attach the credentials we created above to the Job Templa
     awx -f human job_template associate --name "Install Apache" \
     --credential "Example Credentials"
 
-
 ## Review the final script and execute it
 
 Verify that your script has all the pieces needed to properly configure Tower:
@@ -162,7 +161,6 @@ The final script is also shown here:
         --become_enabled="yes"
     awx -f human job_template associate --name "Install Apache" \
         --credential "Example Credentials"
-
 
 **And now: Run the script, and verify that all resources were properly created in the web UI.**
 
