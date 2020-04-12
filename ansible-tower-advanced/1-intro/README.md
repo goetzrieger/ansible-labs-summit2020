@@ -93,7 +93,7 @@ Some hints to get you started:
   - Don’t type everything manually, use copy & paste from the browser
     when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.rhdemo.io**
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https\:\/\/student\<N\>-code.\<LABID\>.rhdemo.io**
 
 > **Tip**
 >
