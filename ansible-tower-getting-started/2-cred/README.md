@@ -92,7 +92,7 @@ To access the nodes via SSH do the following:
 
     https://student<X>-code.<workshop>.rhdemo.io
 
-Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<workshop\>** by the workshop name provided to you.
+Use the above link in your browser by replacing **\<X\>** in student\<X\> by the student number and **\<workshop\>** by the workshop name provided to you.
 
 - From Tower SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
@@ -107,9 +107,9 @@ Last login: Thu Jul  4 14:47:04 2019 from 11.22.33.44
 
 What does this mean?
 
-  - Tower user **student<X>** can connect to the managed hosts with password based SSH
+  - Tower user **student\<X\>** can connect to the managed hosts with password based SSH
 
-  - User **student<X>** can execute commands on the managed hosts as **root** with `sudo`
+  - User **student\<X\>** can execute commands on the managed hosts as **root** with `sudo`
 
 ## Configure Machine Credentials
 
@@ -123,7 +123,7 @@ Click the ![plus](../../images/green_plus.png) button to add new credentials
 
   - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click ![plus](../../images/select.png)
 
-  - **USERNAME:** student<X> - make sure to replace the **<X>** with your actual student number!
+  - **USERNAME:** student\<X\> - make sure to replace the **\<X\>** with your actual student number!
 
   - **PASSWORD:** Enter the password from the inventory file.
 
