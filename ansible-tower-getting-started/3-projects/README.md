@@ -227,4 +227,7 @@ You have already been through all the steps needed, so try this for yourself.
 > </p>
 > </details>
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)
+----
+
+| [Previous Excercise](../2-cred) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises) | [Next Excercise](../4-surveys)|
+|:---|:---:|---:|

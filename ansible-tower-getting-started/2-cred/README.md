@@ -203,4 +203,5 @@ Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is instal
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)
+| [Previous Excercise](../1-intro) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises) | [Next Excercise](../3-projects)|
+|:---|:---:|---:|

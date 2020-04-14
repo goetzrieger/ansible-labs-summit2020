@@ -149,4 +149,5 @@ Here is a list of tasks:
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)
+| [Previous Excercise](../3-projects) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises) | [Next Excercise](../5-rbac)|
+|:---|:---:|---:|
