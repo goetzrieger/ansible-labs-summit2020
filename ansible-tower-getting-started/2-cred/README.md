@@ -28,7 +28,7 @@ You have been provided access to a virtual terminal/shell via code-server, an op
 
     https://student<X>-code.<workshop>.rhdemo.io
 
-Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<workshop\>** by the workshop name provided to you.
+Use the above link in your browser by replacing **\<X\>** in `student\<X\>` by the student number and `\<workshop\>` by the workshop name provided to you.
 
 ![code-server login](../../images/vscode-pwd.png)
 
