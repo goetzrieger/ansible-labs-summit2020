@@ -67,40 +67,26 @@ this lab is aligned to the [Ansible best
 practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization)
 and is explained in more detail there.
 
-Since we want to store all content in a repository, we will first create
-an empty Git repository on our Gitea server. Access the Gitea web UI via
+Since we want to store all content in a repository, we have created for you a
+poor man's Git repo on the control host with an empty Git repository called
+`structured-content`.
 
-**http://control-&lt;GUID&gt;.rhpds.opentlc.com/gitea**.
+Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-Login via the already well known credentials:
-
-  - **User**: git
-
-  - **Password**: r3dh4t1\!
-
-  - In the upper right corner, click on the plus sign, and in the
-    opening hover menu click on **New Repository**.
-
-  - Set the **Repository Name**: structured-content
-
-  - Click the button **Create Repository** at the end of the page.
-
-Next we will clone the repository on the control host. To enable you to
-work with git on the commandline the SSH key for user **ansible** was
-already added to the Gitea user **git**. Next, clone the repository on
-the control machine:
-
-    [root@ansible ~]# su - ansible
-    [ansible@control ~]$ git clone git@control.example.com:/git/structured-content.git
-    [ansible@control ~]$ cd structured-content/
+    [studentX@control ~]$ git clone git@localhost:structured-content.git  # FIXME: localhost really?
+    [studentX@control ~]$ git config --global push.default simple
+    [studentX@control ~]$ git config --global user.name "Your Name"
+    [studentX@control ~]$ git config --global user.email you@example.com
+    [studentX@control ~]$ cd structured-content/
 
 > **Tip**
 >
 > The repository is currently empty.
+> The three config commands are just there to avoid useless warnings from Git.
 
 you are now going to add some default directories and files:
 
-    [ansible@control structured-content]$ touch {staging,production}
+    [studentX@control structured-content]$ touch {staging,production}
 
 This command creates two inventory files: in this case we have different
 stages with different hosts which we keep them in separate inventory
@@ -123,7 +109,7 @@ like this:
 
 Next we add some directories:
 
-  - A directories for host and group variables
+  - directories for host and group variables
 
   - A **roles** directory where the main part of our automation logic
     will be in.
@@ -288,7 +274,6 @@ need to add it to the repository and push it:
     [ansible@control structured-content]$ git commit -m "Adding inventories and apache security roles"
     [ansible@control-dff2 structured-content]$ git push
 
-Why not head over to Gitea’s web UI to make sure the files are there?
 
 ## Launch it\!
 
@@ -307,23 +292,32 @@ execute the Playbook against the production stage:
 
 ### From Tower
 
+To configure and use this repository as a **Source Control Management (SCM)**
+system in Tower you have to create credentials again, this time to access the Git
+repository over SSH. This credential is user/key based, and we need the following
+**awx** command:
+
+    [root@ansible ~]# awx -k credential create --name="Git Credentials" \
+                        --organization "Default" --credential_type "Source Control" \
+                        --inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/id_rsa)\n\"}"
+
 The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** as user **root** like shown below.
 
-    [root@ansible ~]# awx project create -n "Structured Content Repository" \
+    [root@ansible ~]# awx -k project create --name "Structured Content Repository" \
                         --organization Default \
-                        --scm-type git \
-                        --scm-url http://control.example.com/gitea/git/structured-content.git \
-                        --scm-clean 1 \
-                        --scm-update-on-launch 1 \
-                        --scm-credential "Gitea Credentials"
+                        --scm_type git \
+                        --scm_url http://control.example.com/gitea/git/structured-content.git \
+                        --scm_clean 1 \
+                        --scm_update_on_launch 1 \
+                        --credential "Git Credentials"
 
 Now you’ve created the Project in Tower. Earlier on the commandline
 you’ve setup a staged environment by creating and using two different
 inventory files. But how can we get the same setup in Tower? We use
 another way to define Inventories\! It is possible to use inventory
 files provided in a SCM repository as an inventory source. This way we
-can use the inventory files we keep in Gitea.
+can use the inventory files we keep in Git.
 
 In your Tower web UI, open the **RESOURCES→Inventory** view. Then click
 the ![plus(../../images/green_plus.png) button and choose to create a new
@@ -382,12 +376,12 @@ the same time.
 > Please note that in a real world use case you might want to have
 > different templates to address the different stages separatly.
 
-    [root@ansible ~]# awx job_template create -n "Structured Content Execution" \
-                        --job-type run -i "Structured Content Inventory" \
+    [root@ansible ~]# awx job_template create --name "Structured Content Execution" \
+                        --job_type run --inventory "Structured Content Inventory" \
                         --project "Structured Content Repository" \
                         --playbook "site.yml" \
                         --credential "Example Credentials" \
-                        --become-enabled 1
+                        --become_enabled 1
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the
 playbook and watch the results.
@@ -430,8 +424,8 @@ store the role, updating it when needed and so on.
 
 In this example, we will include a role which ships a simple
 `index.html` file as template and reloads the apache web server. The
-role is already shared in Gitea at
-**http://control.example.com/gitea/git/shared-apache-role**.
+role is already shared in GitHub at
+**https://github.com/ansible-labs-summit-crew/shared-apache-role**.
 
 To include it with the existing structured content, first we have to
 create a file called `roles/requirements.yml` and reference the role
@@ -442,7 +436,7 @@ there:
 > Make sure you work as user **ansible**
 
     [ansible@control structured-content]$ cat roles/requirements.yml
-    - src: http://control.example.com/gitea/git/shared-apache-role.git
+    - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
       scm: git
       version: master
 
