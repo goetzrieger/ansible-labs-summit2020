@@ -67,40 +67,26 @@ this lab is aligned to the [Ansible best
 practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization)
 and is explained in more detail there.
 
-Since we want to store all content in a repository, we will first create
-an empty Git repository on our Gitea server. Access the Gitea web UI via
+Since we want to store all content in a repository, we have created for you a
+poor man's Git repo on the control host with an empty Git repository called
+`structured-content`.
 
-**http://control-&lt;GUID&gt;.rhpds.opentlc.com/gitea**.
+Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-Login via the already well known credentials:
-
-  - **User**: git
-
-  - **Password**: r3dh4t1\!
-
-  - In the upper right corner, click on the plus sign, and in the
-    opening hover menu click on **New Repository**.
-
-  - Set the **Repository Name**: structured-content
-
-  - Click the button **Create Repository** at the end of the page.
-
-Next we will clone the repository on the control host. To enable you to
-work with git on the commandline the SSH key for user **ansible** was
-already added to the Gitea user **git**. Next, clone the repository on
-the control machine:
-
-    [root@ansible ~]# su - ansible
-    [ansible@control ~]$ git clone git@control.example.com:/git/structured-content.git
-    [ansible@control ~]$ cd structured-content/
+    [student@ansible ~]$ git clone git@student<N>-ansible.<LABID>.internal:projects/structured-content.git
+    [student@ansible ~]$ git config --global push.default simple
+    [student@ansible ~]$ git config --global user.name "Your Name"
+    [student@ansible ~]$ git config --global user.email you@example.com
+    [student@ansible ~]$ cd structured-content/
 
 > **Tip**
 >
 > The repository is currently empty.
+> The three config commands are just there to avoid useless warnings from Git.
 
 you are now going to add some default directories and files:
 
-    [ansible@control structured-content]$ touch {staging,production}
+    [student@control structured-content]$ touch {staging,production}
 
 This command creates two inventory files: in this case we have different
 stages with different hosts which we keep them in separate inventory
@@ -108,22 +94,22 @@ files. Note that those files are right now still empty and need to be
 filled with content to work properly.
 
 In the current setup we have two instances. Let’s assume that
-`host1.example.com` is part of the staging environment, and
-`host2.example.com` is part of the production environment. To reflect
+`student<N>-node1.<LABID>.internal` is part of the staging environment, and
+`student<N>-node2.<LABID>.internal` is part of the production environment. To reflect
 that in the inventory files, edit the two empty inventory files to look
 like this:
 
-    [ansible@control structured-content]$ cat staging
+    [student@ansible structured-content]$ cat staging
     [staging]
-    host1.example.com
+    student<N>-node1.<LABID>.internal
 
-    [ansible@control structured-content]$ cat production
+    [student@ansible structured-content]$ cat production
     [production]
-    host2.example.com
+    student<N>-node2.<LABID>.internal
 
 Next we add some directories:
 
-  - A directories for host and group variables
+  - directories for host and group variables
 
   - A **roles** directory where the main part of our automation logic
     will be in.
@@ -134,7 +120,7 @@ Next we add some directories:
 
 <!-- end list -->
 
-    [ansible@control structured-content]$ mkdir -p {group_vars,host_vars,library,roles}
+    [student@ansible structured-content]$ mkdir -p {group_vars,host_vars,library,roles}
 
 Now to the two roles we’ll use in this example. First we’ll create a
 structure where we’ll add content later. This can easily be achieved
@@ -162,7 +148,7 @@ Let’s add that code to our roles by editing the two task files:
 > created with a comment line after the YAML start (---), make sure to
 > delete these lines before pasting the content.
 
-    [ansible@control structured-content]$ cat roles/apache/tasks/main.yml
+    [student@ansible structured-content]$ cat roles/apache/tasks/main.yml
     ---
     # tasks file for apache
     - name: latest Apache version installed
@@ -190,7 +176,7 @@ Let’s add that code to our roles by editing the two task files:
         enabled: true
         state: started
 
-    [ansible@control structured-content]$ cat roles/security/tasks/main.yml
+    [student@ansible structured-content]$ cat roles/security/tasks/main.yml
     ---
     # tasks file for security
     - name: "HIGH | RHEL-07-010290 | PATCH | The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords."
@@ -217,13 +203,13 @@ We also need to create a playbook to call the roles from. This is often
 call `site.yml`, since it keeps the main code for the setup of our
 environment. Create the file:
 
-    [ansible@control structured-content]$ cat site.yml
+    [student@ansible structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
       hosts: all
 
       roles:
-        - { role: apache}
+        - { role: apache }
         - { role: security }
 
 So we have prepared a basic structure for quite some content - call
@@ -234,7 +220,7 @@ So we have prepared a basic structure for quite some content - call
 > <details><summary>Click here to see how it should look like!</summary>
 > <p>
 >
->     [ansible@control structured-content]$ tree
+>     [student@ansible structured-content]$ tree
 >     .
 >     ├── group_vars
 >     ├── host_vars
@@ -284,11 +270,10 @@ So we have prepared a basic structure for quite some content - call
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:
 
-    [ansible@control structured-content]$ git add production roles site.yml staging
-    [ansible@control structured-content]$ git commit -m "Adding inventories and apache security roles"
-    [ansible@control-dff2 structured-content]$ git push
+    [student@ansible structured-content]$ git add production roles site.yml staging
+    [student@ansible structured-content]$ git commit -m "Adding inventories and apache security roles"
+    [student@ansible structured-content]$ git push
 
-Why not head over to Gitea’s web UI to make sure the files are there?
 
 ## Launch it\!
 
@@ -298,34 +283,46 @@ The code can now be launched. We start at the command line. Call the
 playbook `site.yml` with the appropriate inventory and privilege
 escalation:
 
-    [ansible@control structured-content]$ ansible-playbook -i staging site.yml -b
+    [student@ansible structured-content]$ ansible-playbook -i staging site.yml -b
 
 Watch how the changes are done to the target machines. Afterwards,
 execute the Playbook against the production stage:
 
-    [ansible@control structured-content]$ ansible-playbook -i production site.yml -b
+    [student@ansible structured-content]$ ansible-playbook -i production site.yml -b
+
+Call e.g. `curl $(grep student staging)` or `curl $(grep student production)` to
+get the default page (we're obviously too lazy to remember the URL).
 
 ### From Tower
+
+To configure and use this repository as a **Source Control Management (SCM)**
+system in Tower you have to create credentials again, this time to access the Git
+repository over SSH. This credential is user/key based, and we need the following
+**awx** command:
+
+    [root@ansible ~]# awx credential create --name="Git Credentials" \
+                        --organization "Default" --credential_type "Source Control" \
+                        --inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
 
 The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** as user **root** like shown below.
 
-    [root@ansible ~]# awx project create -n "Structured Content Repository" \
+    [root@ansible ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
-                        --scm-type git \
-                        --scm-url http://control.example.com/gitea/git/structured-content.git \
-                        --scm-clean 1 \
-                        --scm-update-on-launch 1 \
-                        --scm-credential "Gitea Credentials"
+                        --scm_type git \
+                        --scm_url  git@student<N>-ansible.<LABID>.internal:projects/structured-content.git \
+                        --scm_clean 1 \
+                        --scm_update_on_launch 1 \
+                        --credential "Git Credentials"
 
 Now you’ve created the Project in Tower. Earlier on the commandline
 you’ve setup a staged environment by creating and using two different
 inventory files. But how can we get the same setup in Tower? We use
 another way to define Inventories\! It is possible to use inventory
 files provided in a SCM repository as an inventory source. This way we
-can use the inventory files we keep in Gitea.
+can use the inventory files we keep in Git.
 
-In your Tower web UI, open the **RESOURCES→Inventory** view. Then click
+In your Tower web UI, open the **RESOURCES→Inventories** view. Then click
 the ![plus(../../images/green_plus.png) button and choose to create a new
 **Inventory**. In the next view:
 
@@ -335,13 +332,11 @@ the ![plus(../../images/green_plus.png) button and choose to create a new
 
   - Click the button **SOURCES** which is now active at the top
 
-  - Click the ![plus](../../images/green_plus.png) button
+  - Click the ![plus](../../images/green_plus.png) button (the top right one)
 
   - **NAME:** Production
 
   - **SOURCE:** Pick **Sourced from a Project**
-
-  - Click on **Choose an inventory file**
 
   - **PROJECT:** Structured Content Repository
 
@@ -358,16 +353,14 @@ And now for the staging inventory:
 
   - **SOURCE:** Pick **Sourced from a Project**
 
-  - Click on **Choose an inventory file**
-
   - **PROJECT:** Structured Content Repository
 
   - In the **INVENTORY FILE** drop down menu, pick **staging**
 
   - Click the green **SAVE** button
 
-  - In the screen below, click the sync button for both sources once so
-    that the cloud icon on the left site next to the name of each
+  - In the screen below, click the sync button for both sources, or **SYNC ALL**
+    once so that the cloud icon on the left site next to the name of each
     inventory turns green.
 
 To make sure that the project based inventory worked, click on the
@@ -375,19 +368,20 @@ To make sure that the project based inventory worked, click on the
 and tagged with the respective stages as **RELATED GROUPS**.
 
 Now create a template to execute the `site.yml` against both stages at
-the same time.
+the same time and associate the credentials.
 
 > **Tip**
 >
 > Please note that in a real world use case you might want to have
 > different templates to address the different stages separatly.
 
-    [root@ansible ~]# awx job_template create -n "Structured Content Execution" \
-                        --job-type run -i "Structured Content Inventory" \
+    [student@ansible ~]# awx job_template create --name "Structured Content Execution" \
+                        --job_type run --inventory "Structured Content Inventory" \
                         --project "Structured Content Repository" \
                         --playbook "site.yml" \
-                        --credential "Example Credentials" \
-                        --become-enabled 1
+                        --become_enabled 1
+    [student@ansible ~]# awx -f human job_template associate --name "Structured Content Execution" \
+                        --credential "Example Credentials"
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the
 playbook and watch the results.
@@ -430,8 +424,8 @@ store the role, updating it when needed and so on.
 
 In this example, we will include a role which ships a simple
 `index.html` file as template and reloads the apache web server. The
-role is already shared in Gitea at
-**http://control.example.com/gitea/git/shared-apache-role**.
+role is already shared in GitHub at
+**https://github.com/ansible-labs-summit-crew/shared-apache-role**.
 
 To include it with the existing structured content, first we have to
 create a file called `roles/requirements.yml` and reference the role
@@ -439,10 +433,10 @@ there:
 
 > **Warning**
 >
-> Make sure you work as user **ansible**
+> Make sure you work as user **student<N>**
 
-    [ansible@control structured-content]$ cat roles/requirements.yml
-    - src: http://control.example.com/gitea/git/shared-apache-role.git
+    [student@ansible structured-content]$ cat roles/requirements.yml
+    - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
       scm: git
       version: master
 
@@ -459,7 +453,7 @@ control.
 Next, we reference the role itself in our playbook. Change the
 **site.yml** Playbook to look like this:
 
-    [ansible@control structured-content]$ cat site.yml
+    [student@ansible structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
       hosts: all
@@ -472,9 +466,9 @@ Next, we reference the role itself in our playbook. Change the
 Because Tower uses the Gitea repo, you’ve to add, commit and push the
 changes:
 
-    [ansible@control structured-content]$ git add site.yml roles/
-    [ansible@control structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
-    [ansible@control structured-content]$ git push
+    [student@ansible structured-content]$ git add site.yml roles/
+    [student@ansible structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
+    [student@ansible structured-content]$ git push
 
 ## Launch in Tower
 
@@ -490,8 +484,9 @@ external role is called just the way the other roles are called:
     changed: [host2.example.com]
     changed: [host1.example.com]
 
-And you are done\! This was quite something to follow through, so let’s
-review:
+Validate again with `curl` the result and you are done\!
+
+This was quite something to follow through, so let’s review:
 
   - You successfully integrated a shared role provided from a central
     source into your automation code.
