@@ -1,6 +1,7 @@
-# Exercise 5 - Role-based access control
-
-**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
++++
+title = "Role-based access control"
+weight = 5
++++
 
 You have already learned how Tower separates credentials from users. Another advantage of Ansible Tower is the user and group rights management.
 
@@ -111,4 +112,5 @@ This capability is one of the main strengths of Ansible Tower\!
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)
+| [Previous Excercise](../4-surveys) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-2---ansible-tower-exercises) | [Next Excercise](../6-workflows)|
+|:---|:---:|---:|

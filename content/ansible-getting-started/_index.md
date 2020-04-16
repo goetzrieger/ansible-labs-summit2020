@@ -1,4 +1,9 @@
-## Section 1 - Ansible Getting Started
++++
+title = "Ansible Getting Started"
+weight = 1
++++
+
+## Ansible Getting Started
 
  - [Exercise 1 - Check the Prerequisites](1-setup)
  - [Exercise 2 - Running Ad-hoc Commands](2-adhoc)

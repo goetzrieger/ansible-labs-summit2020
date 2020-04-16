@@ -1,6 +1,7 @@
-# Exercise 3 - Writing Your First Playbook
-
-**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
++++
+title = "Writing Your First Playbook"
+weight = 3
++++
 
 While Ansible ad hoc commands are useful for simple operations, they are not suited for complex configuration management or orchestration scenarios. For such use cases *playbooks* are the way to go.
 
@@ -14,7 +15,7 @@ A playbook can have multiple plays and a play can have one or multiple tasks. In
 >
 > Here is a nice analogy: When Ansible modules are the tools in your workshop, the inventory is the materials and the Playbooks are the instructions.
 
-## Step 3.1 - Playbook Basics
+## Playbook Basics
 
 Playbooks are text files written in YAML format and therefore need:
 
@@ -41,7 +42,7 @@ A Playbook should be **idempotent**, so if a Playbook is run once to put the hos
 > Most Ansible modules are idempotent, so it is relatively easy to ensure this is true.
 
 
-## Step 3.2 - Creating a Directory Structure and File for your Playbook
+## Creating a Directory Structure and File for your Playbook
 
 Enough theory, it’s time to create your first Playbook. In this lab you create a Playbook to set up an Apache webserver in three steps:
 
@@ -119,7 +120,7 @@ In the added lines:
 
 Save your playbook and exit your editor.
 
-## Step 3.3 - Running the Playbook
+## Running the Playbook
 
 Playbooks are executed using the `ansible-playbook` command on the control node. Before you run a new Playbook it’s a good idea to check for syntax errors:
 
@@ -157,7 +158,7 @@ Log out of `node1` with the command `exit` so that you are back on the control h
 
 Run the Playbook a second time, and compare the output: The output changed from "changed" to "ok", and the color changed from yellow to green. Also the "PLAY RECAP" is different now. This make it easy to spot what Ansible actually did.
 
-## Step 3.4 - Extend your Playbook: Start & Enable Apache
+## Extend your Playbook: Start & Enable Apache
 
 The next part of the Playbook makes sure the Apache webserver is enabled and started on `node1`.
 
@@ -200,7 +201,7 @@ Note the output now: Some tasks are shown as "ok" in green and one is shown as "
 
   - Run the Playbook a second time to get used to the change in the output.
 
-## Step 3.5 - Extend your Playbook: Create an index.html
+## Extend your Playbook: Create an index.html
 
 Check that the tasks were executed correctly and Apache is accepting connections: Make an HTTP request using Ansible’s `uri` module in an ad hoc command from the control node. Make sure to replace the **&lt;IP&gt;** with the IP for the node from the inventory.
 
@@ -259,7 +260,7 @@ Run your extended Playbook:
 
   - Run the ad hoc command  using the "uri" module from further above again to test Apache: The command should now return a friendly green "status: 200" line, amongst other information.
 
-## Step 3.6 - Practice: Apply to Multiple Host
+## Practice: Apply to Multiple Host
 
 This was nice but the real power of Ansible is to apply the same set of tasks reliably to many hosts.
 
@@ -311,5 +312,5 @@ Now run the Playbook:
 Finally check if Apache is now running on all servers. Identify the IP addresses of the nodes in your inventory first, and afterwards use them each in the ad hoc command with the uri module as we already did with the `node1` above. All output should be green.
 
 ----
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|[Previous Excercise](../3-playbook)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../4-variables)|
+|:---|:---:|---:|

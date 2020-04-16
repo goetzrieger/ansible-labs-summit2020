@@ -1,10 +1,11 @@
-# Exercise 6 - Templates
-
-**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
++++
+title = "Templates"
+weight = 6
++++
 
 Ansible uses Jinja2 templating to modify files before they are distributed to managed hosts. Jinja2 is one of the most used template engines for Python (<http://jinja.pocoo.org/>).
 
-## Step 6.1 - Using Templates in Playbooks
+## Using Templates in Playbooks
 
 When a template for a file has been created, it can be deployed to the managed hosts using the `template` module, which supports the transfer of a local file from the control node to the managed hosts.
 
@@ -50,7 +51,7 @@ You have done this a couple of times by now:
 
 You should see how Ansible replaces the variables with the facts it discovered from the system.
 
-## Step 6.2 - Challenge Lab
+## Challenge Lab
 
 Add a line to the template to list the current kernel of the managed node.
 
@@ -96,4 +97,5 @@ running kernel {{ ansible_kernel }}.
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|[Previous Excercise](../6-templates)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../7-role)|
+|:---|:---:|---:|

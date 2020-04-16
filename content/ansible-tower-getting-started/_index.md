@@ -1,4 +1,9 @@
-## Section 2 - Ansible Tower Getting Started
++++
+title = "Ansible Tower Getting Started"
+weight = 2
++++
+
+## Ansible Tower Getting Started
 
  - [Exercise 1 - Introduction to Tower](1-intro)
  - [Exercise 2 - Inventories, credentials and ad hoc commands](2-cred)

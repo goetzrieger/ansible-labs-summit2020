@@ -1,4 +1,7 @@
-# Appendix
++++
+title = "Appendix"
+weight = 12
++++
 
 ## Setup Considerations
 

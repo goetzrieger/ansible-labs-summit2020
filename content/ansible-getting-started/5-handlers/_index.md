@@ -1,8 +1,9 @@
-# Exercise 5 - Conditionals, Handlers and Loops
++++
+title = "Conditionals, Handlers and Loops"
+weight = 5
++++
 
-**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
-
-## Step 5.1 - Conditionals
+## Conditionals
 
 Ansible can use conditionals to execute tasks or plays when certain conditions are met.
 
@@ -70,7 +71,7 @@ skipping: [node3]
 changed: [node2]
 ```
 
-## Step 5.2 - Handlers
+## Handlers
 
 Sometimes when a task does make a change to the system, an additional task or tasks may need to be run. For example, a change to a service’s configuration file may then require that the service be restarted so that the changed configuration takes effect.
 
@@ -144,7 +145,7 @@ curl: (7) Failed connect to 22.33.44.55:80; Connection refused
 ```
 Feel free to change the httpd.conf file again and run the Playbook.
 
-## Step 5.3 - Simple Loops
+## Simple Loops
 
 Loops enable us to repeat the same task over and over again. For example, lets say you want to create multiple users. By using an Ansible loop, you can do that in a single task. Loops can also iterate over more than just basic lists. For example, if you have a list of users with their corresponding group, loop can iterate over them as well. Find out more about loops in the [Ansible Loops](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html) documentation.
 
@@ -183,7 +184,7 @@ Understand the playbook and the output:
   - During execution the task is only listed once, but there are three changes listed underneath it.
 <!-- {% endraw %} -->
 
-## Step 5.4 - Loops over hashes
+## Loops over hashes
 
 As mentioned loops can also be over lists of hashes. Imagine that the users should be assigned to different additional groups:
 
@@ -235,4 +236,5 @@ uid=1002(dev_user) gid=1002(dev_user) Gruppen=1002(dev_user),50(ftp)
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises)
+|[Previous Excercise](../5-handlers)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../6-templates)|
+|:---|:---:|---:|

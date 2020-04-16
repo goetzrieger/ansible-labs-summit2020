@@ -1,4 +1,9 @@
-# Exercise 11 - OPTIONAL: Discovering the Tower API
++++
+title = "Discovering the Tower API"
+weight = 11
++++
+
+## OPTIONAL EXERCISE
 
 You have used the Tower API a couple of times in this lab already. In
 this chapter we’ll describe two ways to discover the Tower API if you

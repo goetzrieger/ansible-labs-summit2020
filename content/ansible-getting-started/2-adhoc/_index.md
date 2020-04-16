@@ -1,10 +1,11 @@
-# Exercise 2 - Running Ad-hoc commands
-
-**Read this in other languages**: ![uk](../../images/uk.png) [English](README.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
++++
+title = "Running Ad-hoc commands"
+weight = 2
++++
 
 For our first exercise, we are going to run some ad-hoc commands to help you get a feel for how Ansible works.  Ansible Ad-Hoc commands enable you to perform tasks on remote nodes without having to write a playbook.  They are very useful when you simply need to do one or two things quickly and often, to many remote nodes.
 
-## Step 2.1 - Work with your Inventory
+## Work with your Inventory
 
 To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. It looks like:
 
@@ -54,7 +55,7 @@ As you see it is OK to put systems in more than one group. For instance, a serve
 >
 > The inventory can contain more data. E.g. if you have hosts that run on non-standard SSH ports you can put the port number after the hostname with a colon. Or you could define names specific to Ansible and have them point to the "real" IP or hostname.
 
-## Step 2.2 - The Ansible Configuration Files
+## The Ansible Configuration Files
 
 The behavior of Ansible can be customized by modifying settings in Ansible’s ini-style configuration file. Ansible will select its configuration file from one of several possible locations on the control node, please refer to the [documentation](https://docs.ansible.com/ansible/latest/reference_appendices/config.html).
 
@@ -105,9 +106,9 @@ ansible ansible_host=44.55.66.77
 
 > **Tip**
 >
-> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **&lt;X&gt;** with your actual student number.
+> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
 
-## Step 2.3 - Ping a host
+## Ping a host
 
 Let's start with something really basic - pinging a host. To do that we use the Ansible `ping` module. The `ping` module makes sure our target hosts are responsive. Basically, it connects to the managed host, executes a small script there and collects the results. This ensures that the managed host is reachable and that Ansible is able to execute commands properly on it.
 
@@ -131,7 +132,7 @@ node2 | SUCCESS => {
 
 As you see each node in the `web` group reports the successful execution and the actual result - here "pong".
 
-## Step 2.4 - Listing Modules and Getting Help
+## Listing Modules and Getting Help
 
 Ansible comes with a lot of modules by default. To list all modules run:
 
@@ -159,7 +160,7 @@ Get help for a specific module including usage examples:
 >
 > Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
 
-## Step 2.5 - Use the command module:
+## Use the command module:
 
 Now let's see how we can run a good ol' fashioned Linux command and format the output using the `command` module. It simply executes the specified command on a managed host (note this time not a group but a hostname is used as host pattern):
 
@@ -186,7 +187,7 @@ Sometimes it’s desirable to have the output for a host on one line:
 >
 > Like many Linux commands, `ansible` allows for long-form options as well as short-form.  For example `ansible web --module-name ping` is the same as running `ansible web -m ping`.  We are going to be using the short-form options throughout this workshop.
 
-## Step 2.6 - The copy module and permissions
+## The copy module and permissions
 
 Using the `copy` module, execute an ad hoc command on `node1` to change the contents of the `/etc/motd` file. **The content is handed to the module through an option in this case**.
 
@@ -207,13 +208,13 @@ As mentioned this produces an **error**:
     }
 ```
 
-The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student&lt;X&gt;** is not allowed to write the motd file.
+The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<X\>** is not allowed to write the motd file.
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
 > **Tip**
 >
-> Ansible will connect to the machines using your current user name (student&lt;X&gt; in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+> Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
 
 For us it’s okay to connect as `student<X>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
@@ -262,11 +263,11 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 
   - Using `ansible-doc`
 
-      - Find a module that uses Yum to manage software packages.
+      - Find a module that uses DNF to manage software packages.
 
       - Look up the help examples for the module to learn how to install a package in the latest version.
 
-  - Run an Ansible ad hoc command to install the package "screen" in the latest version on `node1`.
+  - Run an Ansible ad hoc command to install the package "vim" in the latest version on all available nodes.
 
 > **Tip**
 >
@@ -278,12 +279,14 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 > <p>
 >
 > ```bash
-> [student<X>@ansible ~]$ ansible-doc -l | grep -i yum
-> [student<X>@ansible ~]$ ansible-doc yum
-> [student<X>@ansible ~]$ ansible node1 -m yum -a 'name=screen state=latest' -b
+> [student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
+> [student<X>@ansible ~]$ ansible-doc dnf
+> [student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
 > ```
 >
 > </p>
 > </details>
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)
+----
+|[Previous Excercise](../1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../3-playbook)|
+|:---|:---:|---:|
