@@ -1,0 +1,30 @@
+baseurl = "https://cjung.gitlab.io/ansible-summit-labs-2020/"
+contentdir    = "content"
+layoutdir     = "layouts"
+publishdir    = "public"
+
+title = "Ansible Labs for Red Hat Summit"
+canonifyurls = true
+paginate = 10
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+
+[author]
+  name = "Christian, Eric, Götz, Ismail, Joachim"
+    
+[params]
+  DateForm = "Mon, Jan 2, 2006"
+  Description = "Ansible and Ansible Tower Labs"
+  Author = "Christian, Eric, Götz, Ismail, Joachim"
+  Ganalytics = "XX-00000000-0"
+  themeVariant = "red"
+              
+[[menu.shortcuts]] 
+name = "<i class='fas fa-home'></i> Homepage"
+url = "https://www.redhat.com"
+weight = 10
