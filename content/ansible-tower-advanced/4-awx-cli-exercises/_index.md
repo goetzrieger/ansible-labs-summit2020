@@ -54,9 +54,9 @@ Now that we have the empty inventory created, add your two managed hosts
 > <details><summary>Solution below!</summary>
 > <p>
 >
->    [root@ansible ~]# awx -f human host create --name "student1-node1.89cd.ansibleworkshops.com" --inventory "Example Inventory"
+>    [student@ansible ~]$ awx -f human host create --name "student\<N>-node1.\<LABID>.internal" --inventory "Example Inventory"
 >
->    [root@ansible ~]# awx -f human host create --name "student1-node2.89cd.ansibleworkshops.com" --inventory "Example Inventory"
+>    [student@ansible ~]$ awx -f human host create --name "student\<N>-node2.\<LABID>.internal" --inventory "Example Inventory"
 >
 > </p>
 > </details>
@@ -76,9 +76,9 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
-    awx -f human host create --name "student1-node1.89cd.ansibleworkshops.com" \
+    awx -f human host create --name "student<N>-node1.<LABID>.internal" \
       --inventory "Example Inventory"
-    awx -f human host create --name "student1-node2.89cd.ansibleworkshops.com" \
+    awx -f human host create --name "student<N>-node2.<LABID>.internal" \
       --inventory "Example Inventory"
 
 > **Tip**
@@ -104,9 +104,7 @@ and add them to the script step-by-step.
 
 > **Tip**
 >
-> SSH keys have already been created and distributed in your lab
-> environment and `sudo` has been setup on the managed hosts to allow
-> password-less login for user **ansible** on **control.example.com**.
+> SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user **ec2-user** from **student\<N>-ansible.\<LABID>.internal**.
 
 Now we want to configure the credentials to access our managed hosts
 from Tower, we are using SSH with password authentication in this lab. Add the following line to to **setup-tower.sh**, but don’t run
@@ -177,8 +175,10 @@ The final script is also shown here:
 
     #!/bin/bash
     awx inventory create --name "Example Inventory" --organization "Default"
-    awx host create --name "support1.ewl05.internal" --inventory "Example Inventory"
-    awx host create --name "support2.ewl05.internal" --inventory "Example Inventory"
+    awx -f human host create --name "student1-node1.gritest3.internal" \
+        --inventory "Example Inventory"
+    awx -f human host create --name "student1-node2.gritest3.internal" \
+        --inventory "Example Inventory"
 
     awx -f human credential create --name "Example Credentials" \
                       --organization "Default" \

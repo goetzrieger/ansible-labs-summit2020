@@ -51,9 +51,9 @@ Bring up the SSH session on your control host and run:
 >
 > Replace &lt;ID&gt; with the job ID you want to query\!
 
-    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
+    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
-        "execution_node": "tower1.ewl05.internal",
+        "execution_node": "student1-ansible.gritest3.internal",
 
 > **Tip**
 >
@@ -71,13 +71,9 @@ and friends):
 
   - Now get the job details via the API interface:
 
-      - Open the URL
-        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/ID/**
-        where `<ID>` is the number of the job you just looked up in the
-        UI.
-
-      - Search the page for the string you are interested in, e.g.
-        `execution_node`
+      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<N>-ansible.<LABID>.rhdemo.io/api/`
+      - Open the URL `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
+      - Search the page for the string you are interested in, e.g. `execution_node`
 
 > **Tip**
 >

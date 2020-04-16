@@ -124,19 +124,11 @@ distributed over the instances:
   - Because the Job Templates called in the workflow didn’t specify an
     instance group, they where distributed evenly over the instances.
 
-Now deactivate instance **tower1.ewl05.internal** with the
-![on/off](../../images/on_off.png?classes=inline) button and wait until it is shown as
-deactivated. Make a (mental) note of the **TOTAL JOBS** counter of the
-instance. Go back to the list of templates and launch the workflow
-**Compliance Workflow** again.
+Now deactivate instance **student\<N>-ansible.\<LABID>.internal** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
-Go back to the **Instance Groups** view, get back to the instance
-overview of instance group **tower** and verify that the three Playbooks
-where launched on the remaining instances and the **TOTAL JOBS** counter
-of instance **tower1.ewl05.internal** didn’t change.
+Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **student\<N>-ansible.\<LABID>.internal** didn’t change.
 
-Activate **tower1.example.com** again by pressing
-![on/off](../../images/on_off.png?classes=inline) a second time.
+Activate **student\<N>-ansible.\<LABID>.internal** again by sliding the button to "checked".
 
 ## Using Instance Groups
 
@@ -185,14 +177,11 @@ detailed instructions.
 
 > **Tip**
 >
-> **Result:** The workflow and the associated jobs will run on
-> **tower2.ewl05.internal**. Okay, big surprise, in the **dev** instance
-> group is only one instance.
+> **Result:** The workflow and the associated jobs will run on **student\<N>-towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
 
 But what’s going to happen if you disable this instance?
 
-  - Disable the **tower2.ewl05.internal** instance in the **Instance
-    Groups** view.
+  - Disable the **student\<N>-towernode2.\<LABID>.internal** instance in the **Instance Groups** view.
 
   - Run the workflow again.
 
@@ -209,15 +198,13 @@ But what’s going to happen if you disable this instance?
 
 What’s going to happen if you enable the instance again?
 
-  - Go to the **Instance Groups** view and enable
-    **tower2.ewl05.internal** again.
+  - Go to the **Instance Groups** view and enable **student\<N>-towernode2.\<LABID>.internal** again.
 
   - Check in the **Jobs** and **Instance Groups** view what’s happening.
 
 > **Tip**
 >
-> **Result:** After the instance is enabled again the jobs will pickup
-> and run on **tower2.ewl05.internal**.
+> **Result:** After the instance is enabled again the jobs will pickup and run on **student\<N>-towernode2.\<LABID>.internal**.
 
 > **Warning**
 >

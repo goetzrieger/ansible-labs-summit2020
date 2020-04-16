@@ -82,11 +82,9 @@ So let’s go and setup two instance groups:
 
   - **SAVE**
 
-  - Click the **INSTANCES** button and add node
-    **tower2.ewl05.internal** again using the **+** icon
+  - Click the **INSTANCES** button and add node **student\<N>-towernode2.\<LABID>.internal** again using the **+** icon
 
-Do the same again for the new group **prod** with instance
-**tower3.ewl05.internal**
+Do the same to create a the new group **prod** with instance **student\<N>-towernode3.\<LABID>.internal**
 
 Going back to the **Instance Groups** view you should now have the
 following setup:
@@ -124,14 +122,16 @@ You can check your instance groups in a number of ways.
 
 You can again query the API to get this information. Either use the
 browser to access the URL
-`https://tower.ewl05.sandbox309.opentlc.com/api/v2/instance_groups/` or
+
+  `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/instance_groups/`
+
 use curl to access the API from the command line:
 
 > **Tip**
 >
 > The curl command has to be on one line.
 
-    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/instance_groups/| python -m json.tool
+    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool
 
 ### Via the Web UI
 
