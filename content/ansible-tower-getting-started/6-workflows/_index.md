@@ -209,5 +209,5 @@ $ curl http://localhost:8080/coolapp/
 
 ----
 
-| [Previous Excercise](../5-rbac) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-2---ansible-tower-exercises) | [Next Excercise](../7-wrap)|
+| [Previous Excercise](../5-rbac) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../7-wrap)|
 |:---|:---:|---:|

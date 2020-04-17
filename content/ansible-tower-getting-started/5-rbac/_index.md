@@ -112,5 +112,5 @@ This capability is one of the main strengths of Ansible Tower\!
 
 ----
 
-| [Previous Excercise](../4-surveys) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-2---ansible-tower-exercises) | [Next Excercise](../6-workflows)|
+| [Previous Excercise](../4-surveys) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../6-workflows)|
 |:---|:---:|---:|
