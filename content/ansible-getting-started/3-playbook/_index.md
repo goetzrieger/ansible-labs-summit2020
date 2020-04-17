@@ -65,7 +65,7 @@ On your control host **ansible**, create a directory called `ansible-files` in y
 [student<X>@ansible ~]$ cd ansible-files/
 ```
 
-Add a file called `apache.yml` with the following content. As discussed in the previous exercises, use `vi`/`vim` or, if you are new to editors on the command line, check out the [editor intro](../0-support-docs/editor_intro.md) again.
+Add a file called `apache.yml` with the following content. As discussed in the previous exercises, use `vi`/`vim` or, if you are new to editors on the command line, check out the [editor intro](../0-support-docs/) again.
 
 ```yaml
 ---
@@ -312,5 +312,5 @@ Now run the Playbook:
 Finally check if Apache is now running on all servers. Identify the IP addresses of the nodes in your inventory first, and afterwards use them each in the ad hoc command with the uri module as we already did with the `node1` above. All output should be green.
 
 ----
-|[Previous Excercise](../3-playbook)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../4-variables)|
+|[Previous Excercise](../3-playbook)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../4-variables)|
 |:---|:---:|---:|

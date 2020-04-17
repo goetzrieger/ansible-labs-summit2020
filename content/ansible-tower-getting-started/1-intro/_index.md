@@ -76,4 +76,4 @@ A job is basically an instance of Tower launching an Ansible playbook against an
 
 ----
 
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-2---ansible-tower-exercises)
+[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../)

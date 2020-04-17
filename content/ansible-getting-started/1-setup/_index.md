@@ -63,7 +63,7 @@ You might have guessed by now this lab is pretty commandline-centric…​ :-)
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
 
-  - All labs were prepared using **Vim**, but we understand not everybody loves it. Feel free to use alternative editors. In the lab environment we provide **Midnight Commander** (just run **mc**, function keys can be reached via Esc-\<n\> or simply clicked with the mouse) or **Nano** (run **nano**). Here is a short [editor intro](../0.0-support-docs/editor_intro.md).
+  - All labs were prepared using **Vim**, but we understand not everybody loves it. Feel free to use alternative editors. In the lab environment we provide **Midnight Commander** (just run **mc**, function keys can be reached via Esc-\<n\> or simply clicked with the mouse) or **Nano** (run **nano**). Here is a short [editor intro](../0-support-docs/).
 
 > **Tip**
 >
@@ -75,5 +75,5 @@ You will soon discover that many chapters in this lab guide come with a "Challen
 
 ----
 
-|Previous Excercise|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../2-adhoc)|
+|Previous Excercise|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../2-adhoc)|
 |:---|:---:|---:|

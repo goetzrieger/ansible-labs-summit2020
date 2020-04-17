@@ -274,5 +274,5 @@ All looking good? Congratulations! You have successfully completed the Ansible E
 
 ----
 
-|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../8-bonus)|
+|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../8-bonus)|
 |:---|:---:|---:|

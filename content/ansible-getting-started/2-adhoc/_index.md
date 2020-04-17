@@ -288,5 +288,5 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 > </details>
 
 ----
-|[Previous Excercise](../1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../3-playbook)|
+|[Previous Excercise](../1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../3-playbook)|
 |:---|:---:|---:|

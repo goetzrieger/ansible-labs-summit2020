@@ -228,5 +228,5 @@ You have already been through all the steps needed, so try this for yourself.
 > </p>
 > </details>
 
-| [Previous Excercise](../2-cred) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-2---ansible-tower-exercises) | [Next Excercise](../4-surveys)|
+| [Previous Excercise](../2-cred) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../4-surveys)|
 |:---|:---:|---:|

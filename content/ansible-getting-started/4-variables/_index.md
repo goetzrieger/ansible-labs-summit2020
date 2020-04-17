@@ -233,5 +233,5 @@ node3                      : ok=2    changed=0    unreachable=0    failed=0
 ```
 
 ----
-|[Previous Excercise](../4-variables)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md#section-1---ansible-engine-exercises) | [Next Excercise](../5-handlers)|
+|[Previous Excercise](../4-variables)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../5-handlers)|
 |:---|:---:|---:|
