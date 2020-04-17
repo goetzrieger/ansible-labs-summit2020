@@ -53,11 +53,12 @@ access to the following hosts:
 | Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
 | Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
 | Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
+| Visual Code Web UI               | student\<N>-code.\<LABID>.rhdemo.io     |                                       |
 | Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
 | Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
 | Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
 | Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
-| Managed Remote Host 1            |                                         | student\<N>-remote.\<LABUID>.internal |
+| Managed Remote Host 1            |                                         | student\<N>-remote.\<LABID>.internal |
 
 You can also find all hostnames and URL's on your student lab page.
 
@@ -90,7 +91,7 @@ And a second network segment to mimic a remote site:
 
 A diagram says more then a thousand words:
 
-![adv\_tower\_diagram.png](../../images/adv_tower_diagram.png)
+![adv tower diagram.png](../../images/adv_tower_diagram.png)
 
 > **Tip**
 >
