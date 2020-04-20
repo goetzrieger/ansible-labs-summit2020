@@ -11,5 +11,4 @@ weight = 1
  - [Exercise 4 - Using Variables](4-variables)
  - [Exercise 5 - Conditionals, Handlers and Loops](5-handlers)
  - [Exercise 6 - Templates](6-templates)
- - [Exercise 7 - Roles](7-role)
- - [Exercise 8 - Bonus Labs](8-bonus)
+ - [Exercise 7 - Bonus Labs](7-bonus)

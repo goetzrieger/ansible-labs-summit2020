@@ -7,39 +7,34 @@ You have finished the lab already. But it doesn’t have to end here. We prepare
 
 ## Bonus Lab: Ad Hoc Commands
 
-Create a new user "testuser" on `node1` and `node3` with a comment using an ad hoc command, make sure that it is not created on `node2`!
+Create a new user `testuser` on `node1` and `node3` with a comment using an ad hoc command, make sure that it is not created on `node2`!
 
   - Find the parameters for the appropriate module using `ansible-doc user` (leave with `q`)
 
-  - Use an Ansible ad hoc command to create the user with the comment "Test D User"
+  - Use an Ansible ad hoc command to create the user with the comment `Test D User`
 
-  - Use the "command" module with the proper invocation to find the userid
+  - Use the `command` module with the proper invocation to find the userid
 
   - Delete the user and check it has been deleted
 
-> **Tip**
->
-> Remember privilege escalation…​
+{{% notice tip %}}
+Remember privilege escalation…​
+{{% /notice %}}
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> Your commands could look like these:
->
-> ```bash
-> [student<X>@ansible ansible-files]$ ansible-doc -l | grep -i user
-> [student<X>@ansible ansible-files]$ ansible-doc user
-> [student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
-> [student<X>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
-> [student<X>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
-> [student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
-> [student<X>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
-> ```
->
-> </p>
-> </details>
+<details><summary>**>>Click here for Solution<<**</summary>
+<p>
+Your commands could look like these:
+```bash
+[student<X>@ansible ansible-files]$ ansible-doc -l | grep -i user
+[student<X>@ansible ansible-files]$ ansible-doc user
+[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
+[student<X>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
+[student<X>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
+[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
+[student<X>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
+```
+</p>
+</details>
 
 ## Bonus Lab: Templates and Variables
 
@@ -55,12 +50,11 @@ Instead of editing and copying `httpd.conf` why don’t you just define a variab
 
   - Run the Playbook and test the result using `curl`.
 
-> **Tip**
->
-> Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter "Ansible Variables".
+{{% notice tip %}}
+Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter "Ansible Variables".
+{{% /notice %}}
 
 ### Define the variables:
-
 
 Add this line to `group_vars/web`:
 
@@ -77,7 +71,7 @@ listen_port: 80
 
   - Copy `httpd.conf` to `httpd.conf.j2`
 
-  - Edit the "Listen" directive in `httpd.conf.j2` to make it look like this:
+  - Edit the `Listen` directive in `httpd.conf.j2` to make it look like this:
 
 <!-- {% raw %} -->
 ```ini
@@ -126,8 +120,3 @@ First run the playbook itself, then run curl against `node1` with port `8080` an
 <h1>This is a production webserver, take care!</h1>
 </body>
 ```
-
-----
-
-|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) |
-|:---|:---:|
