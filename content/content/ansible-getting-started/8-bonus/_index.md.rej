@@ -1,0 +1,34 @@
+--- ansible-getting-started/8-bonus/_index.md
++++ content/ansible-getting-started/8-bonus/_index.md
+@@ -1,10 +1,11 @@
+-# Exercise 8 - Bonus Labs
+-
+-**Read this in other languages**: ![uk](../../images/uk.png) [English](_index.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
+++++
++title = "Bonus Labs"
++weight = 8
+++++
+ 
+ You have finished the lab already. But it doesn’t have to end here. We prepared some slightly more advanced bonus labs for you to follow through if you like. So if you are done with the labs and still have some time, here are some more labs for you:
+ 
+-## Step 8.1 - Bonus Lab: Ad Hoc Commands
++## Bonus Lab: Ad Hoc Commands
+ 
+ Create a new user "testuser" on `node1` and `node3` with a comment using an ad hoc command, make sure that it is not created on `node2`!
+ 
+@@ -40,7 +41,7 @@ Create a new user "testuser" on `node1` and `node3` with a comment using an ad h
+ > </p>
+ > </details>
+ 
+-## Step 8.2 - Bonus Lab: Templates and Variables
++## Bonus Lab: Templates and Variables
+ 
+ You have learned the basics about Ansible templates, variables and handlers. Let’s combine all of these.
+ 
+@@ -128,4 +129,5 @@ First run the playbook itself, then run curl against `node1` with port `8080` an
+ 
+ ----
+ 
+-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-1---ansible-engine-exercises)
++|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) |
++|:---|:---:|

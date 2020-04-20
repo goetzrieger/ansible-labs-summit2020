@@ -1,0 +1,109 @@
+--- ansible-tower-advanced/1-intro/_index.md
++++ content/ansible-tower-advanced/1-intro/_index.md
+@@ -1,4 +1,7 @@
+-# Exercise 1 - Ansible Tower Advanced
+++++
++title = "Ansible Tower Advanced"
++weight = 1
+++++
+ 
+ ## About this Lab
+ 
+@@ -34,6 +37,12 @@ features of Tower. You’ll learn about:
+ > where it is, feel free to go through these lab tasks later (you don’t
+ > need a Tower cluster for this).
+ 
++## Want to Use this Lab after Summit?
++
++Definitely, the Asciidoc sources are available here:
++
++**[https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced)**
++
+ # Your Ansible Tower Lab Environment
+ 
+ In this lab you work in a pre-configured lab environment. You will have
+@@ -41,19 +50,23 @@ access to the following hosts:
+ 
+ | Role                             | Hostname External (if applicable)       | Hostname Internal              |
+ | -------------------------------- | --------------------------------------- | ------------------------------ |
+-| Ansible Tower Cluster - Node 1   | student\<N>-ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
+-| Ansible Tower Cluster - Node 2   | student\<N>-towernode2.\<LABID>.rhdemo.io  | student\<N>-towernode2.\<LABID>.internal |
+-| Ansible Tower Cluster - Node 3   | student\<N>-towernode3.\<LABID>.rhdemo.io  | student\<N>-towernode3.\<LABID>.internal |
++| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
++| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
++| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
+ | Visual Code Web UI               | student\<N>-code.\<LABID>.rhdemo.io     |                                       |
+-| Ansible Tower Database Host      |                                         | student\<N>-towerdb.\<LABID>.internal |
+-| Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal   |
+-| Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal   |
++| Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
++| Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
++| Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
+ | Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
+ | Managed Remote Host 1            |                                         | student\<N>-remote.\<LABID>.internal |
+ 
+-* All lab environments in this session have the same **\<LABID>**, the student environments are separated by numbered **student\<N>** accounts.
+-* Some of your hosts have external and internal hostnames, others have only internal names.
+-* The internal hostnames are obviously different, all names are shown in the table above for reference.
++You can also find all hostnames and URL's on your student lab page.
++
++    http://<LABUID>.rhdemo.io
++
++> **Tip**
++>
++> The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
+ 
+ > **Tip**
+ >
+@@ -68,7 +81,7 @@ have:
+ 
+   - Two managed RHEL 7 hosts
+ 
+-And to mimic a remote site with isolated nodes:
++And a second network segment to mimic a remote site:
+ 
+   - One host that acts as an isolated Tower node that can be reached via
+     SSH from the Tower cluster nodes.
+@@ -78,7 +91,7 @@ And to mimic a remote site with isolated nodes:
+ 
+ A diagram says more then a thousand words:
+ 
+-![adv\_tower\_diagram.png](../../images/adv_tower_diagram.png)
++![adv tower diagram.png](../../images/adv_tower_diagram.png)
+ 
+ > **Tip**
+ >
+@@ -93,7 +106,7 @@ Some hints to get you started:
+   - Don’t type everything manually, use copy & paste from the browser
+     when appropriate. But don’t stop to think and understand… ;-)
+ 
+-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https\:\/\/student\<N\>-code.\<LABID\>.rhdemo.io**
++  - To edit files or conveniently open a terminal window, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **student\<N>-code.\<LABID>.rhdemo.io**
+ 
+ > **Tip**
+ >
+@@ -106,24 +119,3 @@ Some hints to get you started:
+ > the output is often separated from the command line for better
+ > readability by an empty line. **Anyway, the line you should actually
+ > run should be recognizable by the prompt.** :-)
+-
+-## Accessing your Lab Environment
+-
+-Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** it to
+-
+-* open virtual terminals
+-* edit files
+-
+-Open code-server using this link in your browser by replacing **\<N\>** by your student number and **\<LABID\>** by the workshop name provided to you:
+-
+-
+-     	https://student<N>-code.<LABID>.rhdemo.io
+-
+-
+-![code-server login](../../images/vscode-pwd.png)
+-
+-Use the provided password to login into the code-server web UI, then open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half of the screen and you will be presented a prompt:
+-
+-![code-server terminal](../../images/vscode-terminal.png)
+-
+-Congrats, you now have a shell terminal on your Ansible Tower node 1. From here you run commands or access the other hosts in your lab environment if the lab task requires it.

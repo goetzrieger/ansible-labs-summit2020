@@ -1,0 +1,11 @@
+--- ansible-tower-advanced/12-appendix/_index.md
++++ content/ansible-tower-advanced/12-appendix/_index.md
+@@ -1,4 +1,7 @@
+-# Appendix
+++++
++title = "Appendix"
++weight = 12
+++++
+ 
+ ## Setup Considerations
+ 
