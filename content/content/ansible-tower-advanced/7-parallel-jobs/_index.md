@@ -115,39 +115,46 @@ Activate **student\<N>-ansible.\<LABID>.internal** again by sliding the button t
 
 ## Using Instance Groups
 
-So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over what job is executed on which node, so let’s use them.
+So we have seen how a Tower cluster is distributing jobs over Tower
+instances by default. We have already created instance groups which
+allow us to take control over what job is executed on which node, so
+let’s use them.
 
-To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using **awx-manage** on one of the Tower instances. From your VSCode terminal **and as `root`** run the command:
+To make it easier to spot where the jobs were run, let’s first empty the
+jobs history. This can be done using **awx-manage** on one of the Tower
+instances. From your control node SSH into one of the Tower hosts and as
+`root` run the command:
 
-      [student@ansible ~]$ sudo -i
-      [root@ansible ~]# awx-manage cleanup_jobs  --days=0
-      deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
-      [...]
-      notifications: 0 deleted, 0 skipped.
-      [root@ansible ~]# exit
-      logout
+    [root@tower1 ~]# awx-manage cleanup_jobs  --days=0
 
 ### Assign Jobs to Instance Groups
 
-One way to assign a job to an instance group is in the job template. As our compliance workflow uses three job templates, do this for all of them:
+One way to assign a job to an instance group is in the job template. As
+our compliance workflow uses three job templates, do this for all of
+them:
 
   - In the web UI, go to **RESOURCES→Templates**
 
   - Open one of the three compliance templates
 
-  - In the **Instance Groups** field, choose the **dev** instance group and click **SAVE**.
+  - In the **Instance Groups** field, choose the **dev** instance group
+    and click **SAVE**.
 
-  - Do this for the other two compliance templates, too.
+  - Click **SAVE** for the template and do this for the other two
+    compliance templates, too.
 
-Now the jobs that make up our **Compliance Workflow** are all configured to run on the instances of the **dev** instance group.
+Now the jobs that make up our **Compliance Workflow** are all configured
+to run on the instances of the **dev** instance group.
 
 ### Run the Workflow
 
-You have done this a couple of times now, you should get along without detailed instructions.
+You have done this a couple of times now, you should get along without
+detailed instructions.
 
   - Run the **Compliance Workflow**
 
-  - What would you expect? On what instance(s) should the workflow jobs run?
+  - What would you expect? On what instance(s) should the workflow jobs
+    run?
 
   - Verify\!
 
@@ -161,13 +168,16 @@ But what’s going to happen if you disable this instance?
 
   - Run the workflow again.
 
-  - What would you expect? On what instance(s) should the workflow jobs run?
+  - What would you expect? On what instance(s) should the workflow jobs
+    run?
 
   - Verify\!
 
 > **Tip**
 >
-> **Result:** The workflow and the associated jobs will stay in pending state because there are no instance available in the **dev** instance group.
+> **Result:** The workflow and the associated jobs will stay in pending
+> state because there are no instance available in the **dev** instance
+> group.
 
 What’s going to happen if you enable the instance again?
 
@@ -181,4 +191,6 @@ What’s going to happen if you enable the instance again?
 
 > **Warning**
 >
-> At this point make sure the instances you disabled in the previous steps are definitely enabled again\! Otherwise subsequent lab tasks might fail…
+> At this point make sure the instances you disabled in the previous
+> steps are definitely enabled again\! Otherwise subsequent steps might
+> fail…

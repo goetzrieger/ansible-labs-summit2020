@@ -1,0 +1,38 @@
+--- ansible-tower-getting-started/3-projects/_index.md
++++ content/ansible-tower-getting-started/3-projects/_index.md
+@@ -1,6 +1,7 @@
+-# Exercise 3 - Projects & job templates
+-
+-**Read this in other languages**: ![uk](../../images/uk.png) [English](_index.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
+++++
++title = "Projects & job templates"
++weight = 3
+++++
+ 
+ A Tower **Project** is a logical collection of Ansible Playbooks. You can manage your playbooks by placing them into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
+ 
+@@ -59,7 +60,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
+ 
+ ## Create the Project
+ 
+-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../../images/green_plus.png) button. Fill in the form:
++  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../../images/green_plus.png?classes=inline) button. Fill in the form:
+ 
+   - **NAME:** Ansible Workshop Examples
+ 
+@@ -97,7 +98,7 @@ A job template is a definition and set of parameters for running an Ansible job.
+ 
+ - **What** Playbook to use?
+ 
+-Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../../images/green_plus.png) button and choose **Job Template**.
++Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../../images/green_plus.png?classes=inline) button and choose **Job Template**.
+ 
+ > **Tip**
+ >
+@@ -227,4 +228,5 @@ You have already been through all the steps needed, so try this for yourself.
+ > </p>
+ > </details>
+ 
+-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-2---ansible-tower-exercises)
++| [Previous Excercise](../2-cred) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../4-surveys)|
++|:---|:---:|---:|

@@ -81,7 +81,7 @@ have:
 
   - Two managed RHEL 7 hosts
 
-And a second network segment to mimic a remote site:
+And to mimic a remote site with isolated nodes:
 
   - One host that acts as an isolated Tower node that can be reached via
     SSH from the Tower cluster nodes.
@@ -106,7 +106,7 @@ Some hints to get you started:
   - Don’t type everything manually, use copy & paste from the browser
     when appropriate. But don’t stop to think and understand… ;-)
 
-  - To edit files or conveniently open a terminal window, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **student\<N>-code.\<LABID>.rhdemo.io**
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.rhdemo.io**
 
 > **Tip**
 >
@@ -119,3 +119,24 @@ Some hints to get you started:
 > the output is often separated from the command line for better
 > readability by an empty line. **Anyway, the line you should actually
 > run should be recognizable by the prompt.** :-)
+
+## Accessing your Lab Environment
+
+Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** it to
+
+* open virtual terminals
+* edit files
+
+Open code-server using this link in your browser by replacing **\<N\>** by your student number and **\<LABID\>** by the workshop name provided to you:
+
+
+     	https://student<N>-code.<LABID>.rhdemo.io
+
+
+![code-server login](../../images/vscode-pwd.png)
+
+Use the provided password to login into the code-server web UI, then open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half f the screen and you will be presented a prompt:
+
+![code-server terminal](../../images/vscode-terminal.png)
+
+Congrats, you now have a shell terminal on your Ansible Tower node 1. From here you run commands or access the other hosts in your lab environment if the lab task requires it.

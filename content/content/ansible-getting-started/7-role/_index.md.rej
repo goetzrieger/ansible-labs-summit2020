@@ -1,0 +1,72 @@
+--- ansible-getting-started/7-role/_index.md
++++ content/ansible-getting-started/7-role/_index.md
+@@ -1,12 +1,13 @@
+-# Exercise 7 - Roles: Making your playbooks reusable
+-
+-**Read this in other languages**: ![uk](../../images/uk.png) [English](_index.md),  ![japan](../../images/japan.png) [日本語](README.ja.md).
+++++
++title = "Roles"
++weight = 7
+++++
+ 
+ While it is possible to write a playbook in one file as we've done throughout this workshop, eventually you’ll want to reuse files and start to organize things.
+ 
+ Ansible Roles are the way we do this.  When you create a role, you deconstruct your playbook into parts and those parts sit in a directory structure.  This is explained in more detail in the [best practice](http://docs.ansible.com/ansible/playbooks_best_practices.html) already mentioned in exercise 3.
+ 
+-## Step 7.1 - Understanding the Ansible Role Structure
++## Understanding the Ansible Role Structure
+ 
+ Roles are basically automation built around *include* directives and really don’t contain much additional magic beyond some improvements to search path handling for referenced files.
+ 
+@@ -54,7 +55,7 @@ Using roles in a Playbook is straight forward:
+ For each role, the tasks, handlers and variables of that role will be included in the Playbook, in that order. Any copy, script, template, or include tasks in the role can reference the relevant files, templates, or tasks *without absolute or relative path names*. Ansible will look for them in the role's files, templates, or tasks respectively, based on their
+ use.
+ 
+-## Step 7.2 - Create a Basic Role Directory Structure
++## Create a Basic Role Directory Structure
+ 
+ Ansible looks for roles in a subdirectory called `roles` in the project directory. This can be overridden in the Ansible configuration. Each role has its own directory. To ease creation of a new role the tool `ansible-galaxy` can be used.
+ 
+@@ -75,7 +76,7 @@ Have a look at the role directories and their content:
+ [student<X>@ansible ansible-files]$ tree roles
+ ```
+ 
+-## Step 7.3 - Create the Tasks File
++## Create the Tasks File
+ 
+ The `main.yml` file in the tasks subdirectory of the role should do the following:
+ 
+@@ -187,7 +188,7 @@ The full `tasks/main.yml` file is:
+ <!-- {% endraw %} -->
+ 
+ 
+-## Step 7.4 - Create the handler
++## Create the handler
+ 
+ Create the handler in the file `handlers/main.yml` to restart httpd when notified by the template task:
+ 
+@@ -200,7 +201,7 @@ Create the handler in the file `handlers/main.yml` to restart httpd when notifie
+     state: restarted
+ ```
+ 
+-## Step 7.5 - Create the index.html and vhost configuration file template
++## Create the index.html and vhost configuration file template
+ 
+ Create the HTML content that will be served by the webserver.
+ 
+@@ -232,7 +233,7 @@ Create the HTML content that will be served by the webserver.
+ ```
+ <!-- {% endraw %} -->
+ 
+-## Step 7.6 - Test the role
++## Test the role
+ 
+ You are ready to test the role against `node2`. But since a role cannot be assigned to a node directly, first create a playbook which connects the role and the host. Create the file `test_apache_role.yml` in the directory `~/ansible-files`:
+ 
+@@ -273,4 +274,5 @@ All looking good? Congratulations! You have successfully completed the Ansible E
+ 
+ ----
+ 
+-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../_index.md#section-1---ansible-engine-exercises)
++|[Previous Excercise](../7-role)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../8-bonus)|
++|:---|:---:|---:|
