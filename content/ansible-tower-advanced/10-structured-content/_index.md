@@ -468,7 +468,7 @@ Next, we reference the role itself in our playbook. Change the
         - { role: security }
         - { role: shared-apache-role }
 
-Because Tower uses the Gitea repo, you’ve to add, commit and push the
+Because Tower uses your Git repo, you’ve to add, commit and push the
 changes:
 
     [student@ansible structured-content]$ git add site.yml roles/
