@@ -20,7 +20,7 @@ To implement a conditional, the `when` statement must be used, followed by the c
 
 For more on this, please refer to the documentation: <http://jinja.pocoo.org/docs/2.10/templates/>
 
-As an example you would like to install an FTP server, but only on hosts that are in the "ftpserver" inventory group.
+As an example you would like to install an FTP server, but only on hosts that are in the **ftpserver** inventory group.
 
 To do that, first edit the inventory to add another group, and place `node2` in it. Make sure that the IP address of `node2` is always the same when `node2` is listed. Edit the inventory `~/lab_inventory/hosts` to look like the following listing:
 
@@ -57,9 +57,9 @@ Next create the file `ftpserver.yml` on your control host in the `~/ansible-file
       when: inventory_hostname in groups["ftpserver"]
 ```
 
-> **Tip**
->
-> By now you should know how to run Ansible Playbooks, we’ll start to be less verbose in this guide. Go create and run it. :-)
+{{% notice tip %}}
+By now you should know how to run Ansible Playbooks, we’ll start to be less verbose in this guide. Go create and run it. :-)
+{{% /notice %}}
 
 Run it and examine the output. The expected outcome: The task is skipped on node1, node3 and the ansible host (your control host) because they are not in the ftpserver group in your inventory file.
 
@@ -75,7 +75,7 @@ changed: [node2]
 
 Sometimes when a task does make a change to the system, an additional task or tasks may need to be run. For example, a change to a service’s configuration file may then require that the service be restarted so that the changed configuration takes effect.
 
-Here Ansible’s handlers come into play. Handlers can be seen as inactive tasks that only get triggered when explicitly invoked using the "notify" statement. Read more about them in the [Ansible Handlers](http://docs.ansible.com/ansible/latest/playbooks_intro.html#handlers-running-operations-on-change) documentation.
+Here Ansible’s handlers come into play. Handlers can be seen as inactive tasks that only get triggered when explicitly invoked using the `notify` statement. Read more about them in the [Ansible Handlers](http://docs.ansible.com/ansible/latest/playbooks_intro.html#handlers-running-operations-on-change) documentation.
 
 As a an example, let’s write a Playbook that:
 
@@ -83,7 +83,7 @@ As a an example, let’s write a Playbook that:
 
   - restarts Apache when the file has changed
 
-First we need the file Ansible will deploy, let’s just take the one from node1. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
+First we need the file Ansible will deploy, let’s just take the one from `node1`. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
 
 ```bash
 [student<X>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
@@ -114,9 +114,9 @@ Next, create the Playbook `httpd_conf.yml`. Make sure that you are in the direct
 
 So what’s new here?
 
-  - The "notify" section calls the handler only when the copy task actually changes the file. That way the service is only restarted if needed - and not each time the playbook is run.
+  - The `notify` section calls the handler only when the copy task actually changes the file. That way the service is only restarted if needed - and not each time the playbook is run.
 
-  - The "handlers" section defines a task that is only run on notification.
+  - The `handlers` section defines a task that is only run on notification.
 
 Run the Playbook. We didn’t change anything in the file yet so there should not be any `changed` lines in the output and of course the handler shouldn’t have fired.
 
@@ -143,7 +143,7 @@ curl: (7) Failed connect to 22.33.44.55:80; Connection refused
 <h1>This is a production webserver, take care!</h1>
 </body>
 ```
-Feel free to change the httpd.conf file again and run the Playbook.
+Feel free to change the `httpd.conf` file again and run the Playbook.
 
 ## Simple Loops
 
@@ -151,7 +151,6 @@ Loops enable us to repeat the same task over and over again. For example, lets s
 
 To show the loops feature we will generate three new users on `node1`. For that, create the Playbook `loop_users.yml` in `~/ansible-files` on your control node as your student user and run it. We will use the `user` module to generate the user accounts.
 
-<!-- {% raw %} -->
 ```yaml
 ---
 - name: Ensure users
@@ -168,21 +167,18 @@ To show the loops feature we will generate three new users on `node1`. For that,
          - qa_user
          - prod_user
 ```
-<!-- {% endraw %} -->
 
-> **Tip**
->
-> Lines starting with a variable need to be quoted.
+{{% notice tip %}}
+Lines starting with a variable need to be quoted.
+{{% /notice %}}
 
 Understand the playbook and the output:
 
-<!-- {% raw %} -->
   - The names are not provided to the user module directly. Instead, there is only a variable called `{{ item }}` for the parameter `name`.
 
   - The `loop` keyword lists the actual user names. Those replace the `{{ item }}` during the actual execution of the playbook.
 
   - During execution the task is only listed once, but there are three changes listed underneath it.
-<!-- {% endraw %} -->
 
 ## Loops over hashes
 
@@ -233,8 +229,3 @@ Verify that the user `prod_user` was indeed created on `node1`:
 node1 | CHANGED | rc=0 >>
 uid=1002(dev_user) gid=1002(dev_user) Gruppen=1002(dev_user),50(ftp)
 ```
-
-----
-
-|[Previous Excercise](../5-handlers)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../6-templates)|
-|:---|:---:|---:|

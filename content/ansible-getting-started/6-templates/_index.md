@@ -3,13 +3,13 @@ title = "Templates"
 weight = 6
 +++
 
-Ansible uses Jinja2 templating to modify files before they are distributed to managed hosts. Jinja2 is one of the most used template engines for Python (<http://jinja.pocoo.org/>).
+Ansible uses Jinja2 templating to modify files before they are distributed to managed hosts. Jinja2 is one of the most used templating engines for Python (<http://jinja.pocoo.org/>).
 
 ## Using Templates in Playbooks
 
 When a template for a file has been created, it can be deployed to the managed hosts using the `template` module, which supports the transfer of a local file from the control node to the managed hosts.
 
-As an example of using templates you will change the motd file to contain host-specific data.
+As an example of using templates you will change the `motd` file to contain host-specific data.
 
 First in the `~/ansible-files/` directory create the template file `motd-facts.j2`:
 
@@ -45,9 +45,9 @@ You have done this a couple of times by now:
 
   - Execute the Playbook `motd-facts.yml`.
 
-  - Login to node1 via SSH and check the message of the day content.
+  - Login to `node1` via SSH and check the message of the day content.
 
-  - Log out of node1.
+  - Log out of `node1`.
 
 You should see how Ansible replaces the variables with the facts it discovered from the system.
 
@@ -57,9 +57,10 @@ Add a line to the template to list the current kernel of the managed node.
 
   - Find a fact that contains the kernel version using the commands you learned in the "Ansible Facts" chapter.
 
-> **Tip**
->
-> Do a `grep -i` for kernel
+{{% notice tip %}}
+Do a `grep -i` for kernel
+{{% /notice %}}
+
 
   - Change the template to use the fact you found.
 
@@ -67,35 +68,27 @@ Add a line to the template to list the current kernel of the managed node.
 
   - Check motd by logging in to node1
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->   - Find the fact:
->
-> ```bash
-> [student<X>@ansible ansible-files]$ ansible node1 -m setup|grep -i kernel
->        "ansible_kernel": "3.10.0-693.el7.x86_64",
-> ```
->
-> </p>
-> </details>
+<details><summary> **>>Click here for Solution<<** </summary>
+<p>
 
-  - Modify the template `motd-facts.j2`:
+- Find the fact:
 
-<!-- {% raw %} -->
+```bash
+[student<X>@ansible ansible-files]$ ansible node1 -m setup|grep -i kernel
+       "ansible_kernel": "3.10.0-693.el7.x86_64",
+```
+
+- Modify the template `motd-facts.j2`:
+
 ```html+jinja
 Welcome to {{ ansible_hostname }}.
 {{ ansible_distribution }} {{ ansible_distribution_version}}
 deployed on {{ ansible_architecture }} architecture
 running kernel {{ ansible_kernel }}.
 ```
-<!-- {% endraw %} -->
 
-  - Run the playbook.
-  - Verify the new message via SSH login to `node1`.
+- Run the playbook.
+- Verify the new message via SSH login to `node1`.
 
-----
-
-|[Previous Excercise](../6-templates)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../7-role)|
-|:---|:---:|---:|
+</p>
+</details>

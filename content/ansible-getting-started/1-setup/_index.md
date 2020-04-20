@@ -16,11 +16,11 @@ In this lab you work in a pre-configured lab environment. You will have access t
 
 ## Access the Environment
 
-You have been provided access to a virtual terminal/shell via code-server, an open-source Visual Studio code editor:
+Your Ansible control host runs **code-server**, the server part of an VSCode-like editor running in your browser. It provides access to a virtual terminal/shell and file editing capabilities:
 
-    https://student<X>-code.<workshop>.rhdemo.io
+    https://student<X>-code.<LABID>.rhdemo.io
 
-Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<workshop\>** by the workshop name provided to you.
+Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<LABID\>** by the workshop name provided to you.
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -44,18 +44,18 @@ Check Ansible has been installed correctly (your actual Ansible version might di
     ansible 2.9.5
     [...]
 
-> **Note**
->
-> Ansible is keeping configuration management simple. Ansible requires no database or running daemons and can run easily on a laptop. On the managed hosts it needs no running agent.
+{{% notice tip %}}
+Ansible is keeping configuration management simple. Ansible requires no database or running daemons and can run easily on a laptop. On the managed hosts it needs no running agent.
+{{% /notice %}}
 
 Log out of the root account again:
 
     [root@ansible ~]# exit
     logout
 
-> **Note**
->
-> In all subsequent exercises you should work as the student\<X\> user on the control node if not explicitly told differently.
+{{% notice tip %}}
+In all subsequent exercises you should work as the student\<X\> user on the control node if not explicitly told differently.
+{{% /notice %}}
 
 ## Working the Labs
 
@@ -63,17 +63,10 @@ You might have guessed by now this lab is pretty commandline-centric…​ :-)
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
 
-  - All labs were prepared using **Vim**, but we understand not everybody loves it. Feel free to use alternative editors. In the lab environment we provide **Midnight Commander** (just run **mc**, function keys can be reached via Esc-\<n\> or simply clicked with the mouse) or **Nano** (run **nano**). Here is a short [editor intro](../0-support-docs/).
-
-> **Tip**
->
-> In the lab guide commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
+{{% notice tip %}}
+In the lab guide commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
+{{% /notice %}}
 
 ## Challenge Labs
 
-You will soon discover that many chapters in this lab guide come with a "Challenge Lab" section. These labs are meant to give you a small task to solve using what you have learned so far. The solution of the task is shown underneath a warning sign.
-
-----
-
-|Previous Excercise|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../2-adhoc)|
-|:---|:---:|---:|
+You will soon discover that many chapters in this lab guide come with a "Challenge Lab" section. These labs are meant to give you a small task to solve using what you have learned so far. The solution of a challenge task is shown beneath the task in a fold-out.

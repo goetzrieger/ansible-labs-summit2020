@@ -3,33 +3,30 @@ title = "Using Variables"
 weight = 4
 +++
 
-Previous exercises showed you the basics of Ansible Engine.  In the next few exercises, we are going
-to teach some more advanced Ansible skills that will add flexibility and power to your playbooks.
+Previous exercises showed you the basics of Ansible Engine.  In the next few exercises, we are going to teach some more advanced Ansible skills that will add flexibility and power to your playbooks.
 
-Ansible exists to make tasks simple and repeatable.  We also know that not all systems are exactly alike and often require
-some slight change to the way an Ansible playbook is run.  Enter variables.
+Ansible exists to make tasks simple and repeatable.  We also know that not all systems are exactly alike and often require some slight change to the way an Ansible playbook is run. Enter variables.
 
 Ansible supports variables to store values that can be used in Playbooks. Variables can be defined in a variety of places and have a clear precedence. Ansible substitutes the variable with its value when a task is executed.
 
 Variables are referenced in Playbooks by placing the variable name in double curly braces:
 
-<!-- {% raw %} -->
 ```yaml
 Here comes a variable {{ variable1 }}
 ```
-<!-- {% endraw %} -->
 
 Variables and their values can be defined in various places: the inventory, additional files, on the command line, etc.
 
 The recommended practice to provide variables in the inventory is to define them in files located in two directories named `host_vars` and `group_vars`:
 
-  - To define variables for a group "servers", a YAML file named `group_vars/servers` with the variable definitions is created.
+  - To define variables for a group `servers`, a YAML file named `group_vars/servers` with the variable definitions is created.
 
   - To define variables specifically for a host `node1`, the file `host_vars/node1` with the variable definitions is created.
 
-> **Tip**
->
-> Host variables take precedence over group variables (more about precedence can be found in the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)).
+{{% notice tip %}}
+Host variables take precedence over group variables (more about precedence can be found in the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)).
+{{% /notice %}}
+
 
 ## Create Variable Files
 
@@ -89,11 +86,10 @@ Now you need a Playbook that copies the prod or dev `index.html` file - accordin
 
 Create a new Playbook called `deploy_index_html.yml` in the `~/ansible-files/` directory.
 
-> **Tip**
->
-> Note how the variable "stage" is used in the name of the file to copy.
+{{% notice tip %}}
+Note how the variable "stage" is used in the name of the file to copy.
+{{% /notice %}}
 
-<!-- {% raw %} -->
 ```yaml
 ---
 - name: Copy index.html
@@ -105,7 +101,7 @@ Create a new Playbook called `deploy_index_html.yml` in the `~/ansible-files/` d
       src: ~/ansible-files/{{ stage }}_index.html
       dest: /var/www/html/index.html
 ```
-<!-- {% endraw %} -->
+
 
   - Run the Playbook:
 
@@ -136,9 +132,9 @@ node3 ansible_host=33.44.55.66
 </body>
 ```
 
-> **Tip**
->
-> If by now you think: There has to be a smarter way to change content in files…​ you are absolutely right. This lab was done to introduce variables, you are about to learn about templates in one of the next chapters.
+{{% notice tip %}}
+If by now you think: There has to be a smarter way to change content in files…​ you are absolutely right. This lab was done to introduce variables, you are about to learn about templates in one of the next chapters.
+{{% /notice %}}
 
 ## Ansible Facts
 
@@ -165,28 +161,23 @@ Or what about only looking for memory related facts:
 
   - Try to find and print the distribution (Red Hat) of your managed hosts. On one line, please.
 
-> **Tip**
->
-> Use grep to find the fact, then apply a filter to only print this fact.
+{{% notice tip %}}
+Use grep to find the fact, then apply a filter to only print this fact.
+{{% /notice %}}
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> ```bash
-> [student<X>@ansible ansible-files]$ ansible node1 -m setup|grep distribution
-> [student<X>@ansible ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
-> ```
->
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+```bash
+[student<X>@ansible ansible-files]$ ansible node1 -m setup|grep distribution
+[student<X>@ansible ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
+```
+</p>
+</details>
 
 ## Using Facts in Playbooks
 
 Facts can be used in a Playbook like variables, using the proper naming, of course. Create this Playbook as `facts.yml` in the `~/ansible-files/` directory:
 
-<!-- {% raw %} -->
 ```yaml
 ---
 - name: Output facts within a playbook
@@ -196,11 +187,9 @@ Facts can be used in a Playbook like variables, using the proper naming, of cour
     debug:
       msg: The default IPv4 address of {{ ansible_fqdn }} is {{ ansible_default_ipv4.address }}
 ```
-<!-- {% endraw %} -->
-
-> **Tip**
->
-> The "debug" module is handy for e.g. debugging variables or expressions.
+{{% notice tip %}}
+The "debug" module is handy for e.g. debugging variables or expressions.
+{{% /notice %}}
 
 Execute it to see how the facts are printed:
 
@@ -231,7 +220,3 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0
 node2                      : ok=2    changed=0    unreachable=0    failed=0
 node3                      : ok=2    changed=0    unreachable=0    failed=0
 ```
-
-----
-|[Previous Excercise](../4-variables)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../5-handlers)|
-|:---|:---:|---:|
