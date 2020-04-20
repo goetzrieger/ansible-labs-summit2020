@@ -24,9 +24,9 @@ node3 ansible_host=<Z.Z.Z.Z>
 ansible ansible_host=44.55.66.77
 ```
 
-> **Tip**
->
-> The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault.
+{{% notice tip %}}
+The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault.
+{{% /notice %}}
 
 Ansible is already configured to use the inventory specific to your environment. We will show you in the next step how that is done. For now, we will execute some simple commands to work with the inventory.
 
@@ -51,9 +51,9 @@ An inventory file can contain a lot more information, it can organize your hosts
 
 As you see it is OK to put systems in more than one group. For instance, a server could be both a web server and a database server. Note that in Ansible the groups are not necessarily hierarchical.
 
-> **Tip**
->
-> The inventory can contain more data. E.g. if you have hosts that run on non-standard SSH ports you can put the port number after the hostname with a colon. Or you could define names specific to Ansible and have them point to the "real" IP or hostname.
+{{% notice tip %}}
+The inventory can contain more data. E.g. if you have hosts that run on non-standard SSH ports you can put the port number after the hostname with a colon. Or you could define names specific to Ansible and have them point to the "real" IP or hostname.
+{{% /notice %}}
 
 ## The Ansible Configuration Files
 
@@ -104,17 +104,17 @@ node3 ansible_host=33.44.55.66
 ansible ansible_host=44.55.66.77
 ```
 
-> **Tip**
->
-> Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
+{{% notice tip %}}
+Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
+{{% /notice %}}
 
 ## Ping a host
 
 Let's start with something really basic - pinging a host. To do that we use the Ansible `ping` module. The `ping` module makes sure our target hosts are responsive. Basically, it connects to the managed host, executes a small script there and collects the results. This ensures that the managed host is reachable and that Ansible is able to execute commands properly on it.
 
-> **Tip**
->
-> Think of a module as a tool which is designed to accomplish a specific task.
+{{% notice tip %}}
+Think of a module as a tool which is designed to accomplish a specific task.
+{{% /notice %}}
 
 Ansible needs to know that it should use the `ping` module: The `-m` option defines which Ansible module to use. Options can be passed to the specified module using the `-a` option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group `web`.
 
@@ -140,9 +140,9 @@ Ansible comes with a lot of modules by default. To list all modules run:
 [student<X>@ansible ~]$ ansible-doc -l
 ```
 
-> **Tip**
->
-> In `ansible-doc` leave by pressing the button `q`. Use the `up`/`down` arrows to scroll through the content.
+{{% notice tip %}}
+In `ansible-doc` leave by pressing the button `q`. Use the `up`/`down` arrows to scroll through the content.
+{{% /notice %}}
 
 To find a module try e.g.:
 
@@ -156,9 +156,9 @@ Get help for a specific module including usage examples:
 [student<X>@ansible ~]$ ansible-doc user
 ```
 
-> **Tip**
->
-> Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
+{{% notice tip %}}
+Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
+{{% /notice %}}
 
 ## Use the command module:
 
@@ -183,9 +183,9 @@ Sometimes it’s desirable to have the output for a host on one line:
 [student<X>@ansible ~]$ ansible all -m command -a 'uname -r' -o
 ```
 
-> **Tip**
->
-> Like many Linux commands, `ansible` allows for long-form options as well as short-form.  For example `ansible web --module-name ping` is the same as running `ansible web -m ping`.  We are going to be using the short-form options throughout this workshop.
+{{% notice tip %}}
+Like many Linux commands, `ansible` allows for long-form options as well as short-form.  For example `ansible web --module-name ping` is the same as running `ansible web -m ping`.  We are going to be using the short-form options throughout this workshop.
+{{% /notice %}}
 
 ## The copy module and permissions
 
@@ -212,9 +212,9 @@ The output of the ad hoc command is screaming **FAILED** in red at you. Why? Bec
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
-> **Tip**
->
-> Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+{{% notice tip %}}
+Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+{{% /notice %}}
 
 For us it’s okay to connect as `student<X>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
@@ -255,9 +255,9 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
   - The change from `"changed": true,` to `"changed": false,`.
   - The first line says `SUCCESS` instead of `CHANGED`.
 
-> **Tip**
->
-> This makes it a lot easier to spot changes and what Ansible actually did.
+{{% notice tip %}}
+This makes it a lot easier to spot changes and what Ansible actually did.
+{{% /notice %}}
 
 ## Challenge Lab: Modules
 
@@ -269,24 +269,16 @@ Run the `ansible node1 -m copy …​` command from above again. Note:
 
   - Run an Ansible ad hoc command to install the package "vim" in the latest version on all available nodes.
 
-> **Tip**
->
-> Use the copy ad hoc command from above as a template and change the module and options.
+{{% notice tip %}}
+Use the copy ad hoc command from above as a template and change the module and options.
+{{% /notice %}}
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> ```bash
-> [student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
-> [student<X>@ansible ~]$ ansible-doc dnf
-> [student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
-> ```
->
-> </p>
-> </details>
-
-----
-|[Previous Excercise](../1-setup)|[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../3-playbook)|
-|:---|:---:|---:|
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+```bash
+[student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
+[student<X>@ansible ~]$ ansible-doc dnf
+[student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
+```
+</p>
+</details>
