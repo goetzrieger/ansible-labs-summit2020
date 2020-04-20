@@ -16,15 +16,16 @@ home = [ "HTML", "RSS", "JSON"]
 
 [author]
   name = "Christian, Eric, Götz, Ismail, Joachim"
-    
+
 [params]
   DateForm = "Mon, Jan 2, 2006"
   Description = "Ansible and Ansible Tower Labs"
   Author = "Christian, Eric, Götz, Ismail, Joachim"
   Ganalytics = "XX-00000000-0"
   themeVariant = "red"
-              
-[[menu.shortcuts]] 
+  disableInlineCopyToClipBoard = "false"
+
+[[menu.shortcuts]]
 name = "<i class='fas fa-home'></i> Homepage"
 url = "https://www.redhat.com"
 weight = 10
