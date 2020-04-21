@@ -18,6 +18,36 @@ Headers are marked with hash signs:
 
 Text will be standard formatted (no italics, no bold, etc.), except for the following situations.
 
+### Tips and warnings
+
+We use Hugo short codes to format tips and warnings. We do not use info or note! Use the following example:
+
+```
+{{% notice tip %}}
+This is a tip
+{{% /notice %}}
+```
+
+```
+{{% notice warning %}}
+This is a warning
+{{% /notice %}}
+```
+
+For example solutions, we use the collapse feature:
+
+```
+    <details><summary>**>> Click here for Solution <<**</summary>
+    <p>
+    ```bash
+    [student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
+    [student<X>@ansible ~]$ ansible-doc dnf
+    [student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
+    ```
+    </p>
+    </details>
+```
+
 ### Code, addresses, host names, everything for copy & paste
 
 Every piece of text which in theory can be copied and pasted during the lab, is marked as `code` with back tics:
