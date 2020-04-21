@@ -41,7 +41,7 @@ features of Tower. You’ll learn about:
 
 Definitely, the Asciidoc sources are available here:
 
-**[https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced)**
+**[https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced)**
 
 # Your Ansible Tower Lab Environment
 
@@ -52,9 +52,9 @@ access to the following hosts:
 | -------------------------------- | --------------------------------------- | ------------------------------ |
 | Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
 | Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
-| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode3.\<LABID>.internal |
 | Visual Code Web UI               | student\<N>-code.\<LABID>.rhdemo.io     |                                       |
-| Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
+| Ansible Tower Database Host      |                                         | student\<N>-db.\<LABID>.internal |
 | Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
 | Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
 | Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
@@ -62,7 +62,7 @@ access to the following hosts:
 
 You can also find all hostnames and URL's on your student lab page.
 
-    http://<LABUID>.rhdemo.io
+    http://<LABUID>.rhdemo.io/#student\<N>
 
 > **Tip**
 >
