@@ -1,1 +1,0 @@
-# ansible-labs-summit2020
