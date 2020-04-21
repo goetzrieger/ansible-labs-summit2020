@@ -33,25 +33,25 @@ But it would still be nice to see where a job run (not the other way round) and 
 
 Bring up the terminal in your VSCode session and run:
 
-> **Warning**
->
-> Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>** with your values, you should be used to this by now!
+{{% notice warning %}}
+Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>** with your values, you should be used to this by now!
+{{% /notice %}}
 
     [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
         "execution_node": "student1-ansible.gritest3.internal",
 
-> **Tip**
->
-> You can use any method you want to access the API and to display the result, of course. The usage of curl and python-tool was just an example.
+{{% notice tip %}}
+You can use any method you want to access the API and to display the result, of course. The usage of curl and python-tool was just an example.
+{{% /notice %}}
 
 ## Via API in the browser
 
 Another way to query the Tower API is using a browser. For example to have a look at the job details (basically what you did above using curl and friends):
 
-> **TIP**
->
-> Note you used the internal hostname above, when using your browser, you have to use the external hostname, of course.
+{{% notice tip %}}
+Note you used the internal hostname above, when using your browser, you have to use the external hostname, of course.
+{{% /notice %}}
 
   - Find the job ID
 
@@ -61,6 +61,6 @@ Another way to query the Tower API is using a browser. For example to have a loo
       - Open the URL `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
       - Search the page for the string you are interested in, e.g. `execution_node`
 
-> **Tip**
->
-> You can of course query any Tower node.
+{{% notice tip %}}
+You can of course query any Tower node.
+{{% /notice %}}

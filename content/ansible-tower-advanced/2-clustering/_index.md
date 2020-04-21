@@ -8,20 +8,17 @@ redundancy solution configured with active-passive nodes. Clustering
 is sharing load between Tower nodes/instances. Each Tower instance is
 able to act as an entry point for UI and API access.
 
-> **Tip**
->
-> Using a load balancer in front of the Tower nodes is
-> possible, but optional because an Ansible Tower cluster can be
-> accessed via all Tower instances.
+{{% notice tip %}}
+Using a load balancer in front of the Tower nodes is possible, but optional because an Ansible Tower cluster can be accessed via all Tower instances.
+{{% /notice %}}
 
 Each instance in a Tower cluster expands the cluster’s capacity to
 execute jobs. Jobs can and will run anywhere rather than be directed on
 where to run.
 
-> **Tip**
->
-> The Appendix contains some installation considerations and an
-> installer inventory for reference.
+{{% notice tip %}}
+The Appendix contains some installation considerations and an installer inventory for reference.
+{{% /notice %}}
 
 ## Access the Tower Web UI
 
@@ -32,9 +29,9 @@ three nodes web UIs as:
 
   - password **r3dh4t1\!**
 
-> **Warning**
->
-> Replace **\<LABID>** with the session ID and **\<N>** with your student number!
+{{% notice warning %}}
+Replace **\<LABID>** with the session ID and **\<N>** with your student number!
+{{% /notice %}}
 
 **`https://student<N>-ansible.<LABID>.rhdemo.io`**
 
@@ -42,12 +39,7 @@ three nodes web UIs as:
 
 **`https://student<N>-towernode3.<LABID>.rhdemo.io`**
 
-Just from the web UI you wouldn’t know you’ve got a Tower cluster at
-your hands here. To learn more about your cluster and its state, in one
-of the instances web UI under **ADMINISTRATION** choose **Instance
-Groups**. Here you will get an overview of the cluster by instance
-groups. Explore the information provided, of course there is no capacity
-used yet and no Jobs have run.
+Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information rovided, of course there is no capacity used yet and no Jobs have run.
 
 Right now we have only one instance group named **tower**. When you get more groups, from this view you will see how the instance are distributed over the groups.
 
@@ -80,9 +72,6 @@ In the terminal run the following command:
 
 So what we’ve got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 17 is allocated to any of our three nodes.
 
-> **Tip**
->
-> The **awx-manage** (formerly tower-manage) utility can be used to
-> administer a lot of the more internal aspects of Tower. You can e.g.
-> use it to clean up old data, for token and session management and for
-> cluster management.
+{{% notice tip %}}
+The **awx-manage** (formerly tower-manage) utility can be used to administer a lot of the more internal aspects of Tower. You can e.g. use it to clean up old data, for token and session management and for cluster management.
+{{% /notice %}}
