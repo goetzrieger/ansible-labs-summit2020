@@ -57,6 +57,7 @@ through it:
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 The JSON should roughly look like this:
+```JSON
     {
         "username": "jsmith",
         "first_name": "John",
@@ -66,6 +67,7 @@ The JSON should roughly look like this:
         "is_system_auditor": false,
         "password": "redhat"
     }
+```
 and the result should be a 201 telling you about your success. You can
 log-in with the password and see that you see… nothing, because you have
 no rights.
@@ -89,9 +91,11 @@ So why not patch the user to be named "Johnny" instead of "John"?
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 Add this to the **CONTENT** field:
+```JSON
     {
         "first_name": "Johnny"
     }
+```
 And press the **PATCH** button.
 </p>
 </details>
@@ -102,15 +106,19 @@ happens?
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 Enter this into the **CONTENT** field and press **PUT**:
+```JSON
     {
         "last_name": "Smithy"
     }
+```
 This will fail. In the case of **PUT** you need to enter all mandatory
 fields, even if you don’t want to modify them:
+```JSON
     {
         "username": "jsmith",
         "last_name": "Smithy"
     }
+```
 </p>
 </details>
 
@@ -125,6 +133,7 @@ SSH session and make sure you are user root on **control.example.com**.
 
 Let’s start simple and try to get the version of Tower installed:
 
+```bash
     [root@ansible ~]# awx version --verbose
     Tower CLI 3.3.0
     API v2
@@ -133,6 +142,7 @@ Let’s start simple and try to get the version of Tower installed:
 
     Ansible Tower 3.4.1
     Ansible 2.7.5
+```
 
 You see that with the `--verbose` option, awx tells us which API
 calls it’s making, what **parameters** it’s sending with **GET**
@@ -141,9 +151,11 @@ requests and what **data** is needed for **POST** actions.
 In this simple case you can simply take the call and run it with e.g.
 **curl**:
 
+```bash
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             --data '{}' \
             -X GET https://tower1.example.com/api/v2/config/ | jq
+```
 
 {{% notice tip %}}
 `jq` is optional but useful for us humans to understand the output without getting dizzy… in this case it comes from the EPEL repo. If you don’t have `jq` appending `| python -m json.tool` to the command is better then nothing.
@@ -162,6 +174,7 @@ Consider that the parameters shown by awx are in Python format (single quotes an
 First create the user with awx, then delete it again. Use
 `--verbose` to get the API invocation.
 
+```bash
     [root@ansible ~]# awx user create --username amiller --email amiller@example.com --password redhat --verbose
 
     *** DETAILS: Checking for an existing record. *********************************
@@ -180,6 +193,7 @@ First create the user with awx, then delete it again. Use
 
     DELETE /users/3/
     DELETE https://tower2.example.com/api/v2/users/3/
+```
 
 Now we’ll do the same using **curl** with the API endpoints, parameters
 and data we have learned from `awx`:
@@ -190,15 +204,19 @@ The "Getting the record" is (sadly) a bit misleading… you need to add `?userna
 
 Check if the user exists:
 
+```bash
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X GET https://tower1.example.com/api/v2/users/?username=amiller
+```
 
 Once you’ve found out that the user doesn’t exist by **count:0** in the
 reply, you can create it:
 
+```bash
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             --data '{"username": "amiller", "password": "redhat", "email": "amiller@example.com"}' \
             -X POST https://tower1.example.com/api/v2/users/?username=amiller
+```
 
 Run the `curl` command from above again to check the user now exists, it
 should return **count:1** and the user’s data.
