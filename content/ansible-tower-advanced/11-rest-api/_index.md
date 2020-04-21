@@ -54,27 +54,23 @@ through it:
         name John Smith (user name doesn’t matter)
 
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
-> The JSON should roughly look like this:
->
->     {
->         "username": "jsmith",
->         "first_name": "John",
->         "last_name": "Smith",
->         "email": "jsmith@example.com",
->         "is_superuser": false,
->         "is_system_auditor": false,
->         "password": "redhat"
->     }
->
-> and the result should be a 201 telling you about your success. You can
-> log-in with the password and see that you see… nothing, because you have
-> no rights.
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+The JSON should roughly look like this:
+    {
+        "username": "jsmith",
+        "first_name": "John",
+        "last_name": "Smith",
+        "email": "jsmith@example.com",
+        "is_superuser": false,
+        "is_system_auditor": false,
+        "password": "redhat"
+    }
+and the result should be a 201 telling you about your success. You can
+log-in with the password and see that you see… nothing, because you have
+no rights.
+</p>
+</details>
 
 Now log in again as admin and go back to the list of users:
 **https://tower2-&lt;GUID&gt;.rhpds.opentlc.com/api/v2/users/**
@@ -90,42 +86,33 @@ Now log in again as admin and go back to the list of users:
 
 So why not patch the user to be named "Johnny" instead of "John"?
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
-> Add this to the **CONTENT** field:
->
->     {
->         "first_name": "Johnny"
->     }
->
-> And press the **PATCH** button.
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+Add this to the **CONTENT** field:
+    {
+        "first_name": "Johnny"
+    }
+And press the **PATCH** button.
+</p>
+</details>
 
 Now try to **PUT** **last\_name** "Smithy" using the same approach. What
 happens?
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
-> Enter this into the **CONTENT** field and press **PUT**:
->
->     {
->         "last_name": "Smithy"
->     }
->
-> This will fail. In the case of **PUT** you need to enter all mandatory
-> fields, even if you don’t want to modify them:
->
->     {
->         "username": "jsmith",
->         "last_name": "Smithy"
->     }
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+Enter this into the **CONTENT** field and press **PUT**:
+    {
+        "last_name": "Smithy"
+    }
+This will fail. In the case of **PUT** you need to enter all mandatory
+fields, even if you don’t want to modify them:
+    {
+        "username": "jsmith",
+        "last_name": "Smithy"
+    }
+</p>
+</details>
 
 When you’re done press the red **DELETE** button and remove Johnny
 Smithy.
@@ -158,12 +145,9 @@ In this simple case you can simply take the call and run it with e.g.
             --data '{}' \
             -X GET https://tower1.example.com/api/v2/config/ | jq
 
-> **Tip**
->
-> `jq` is optional but useful for us humans to understand the output
-> without getting dizzy… in this case it comes from the EPEL repo. If
-> you don’t have `jq` appending `| python -m json.tool` to the command
-> is better then nothing.
+{{% notice tip %}}
+`jq` is optional but useful for us humans to understand the output without getting dizzy… in this case it comes from the EPEL repo. If you don’t have `jq` appending `| python -m json.tool` to the command is better then nothing.
+{{% /notice %}}
 
 ### Practice, Practice…
 
@@ -171,11 +155,9 @@ Using `awx` to learn about the API call and executing it via curl
 e.g. in scripts is really useful so let’s practice a bit. What about
 creating a new user, say Albert Miller?
 
-> **Tip**
->
-> Consider that the parameters shown by awx are in Python format
-> (single quotes and the unicode `u`) but we need to send data in JSON
-> format (double quotes).
+{{% notice tip %}}
+Consider that the parameters shown by awx are in Python format (single quotes and the unicode `u`) but we need to send data in JSON format (double quotes).
+{{% /notice %}}
 
 First create the user with awx, then delete it again. Use
 `--verbose` to get the API invocation.
@@ -202,10 +184,9 @@ First create the user with awx, then delete it again. Use
 Now we’ll do the same using **curl** with the API endpoints, parameters
 and data we have learned from `awx`:
 
-> **Warning**
->
-> The "Getting the record" is (sadly) a bit misleading… you need to add
-> `?username=amiller` to filter on the username:
+{{% notice warning %}}
+The "Getting the record" is (sadly) a bit misleading… you need to add `?username=amiller` to filter on the username:
+{{% /notice %}}
 
 Check if the user exists:
 
@@ -224,13 +205,11 @@ should return **count:1** and the user’s data.
 
 Note the ID of the user and then delete it:
 
-> **Warning**
->
-> Replace **&lt;ID&gt;**
-
+{{% notice warning %}}
+Replace **&lt;ID&gt;**
+```bash
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X DELETE https://tower1.example.com/api/v2/users/<ID>/ #
-
-  - don’t forget the slash at the end of the URL, favorite error\!
-
-&lt;/div&gt;&lt;/details&gt;
+```
+Don’t forget the slash at the end of the URL, favorite error\!
+{{% /notice %}}

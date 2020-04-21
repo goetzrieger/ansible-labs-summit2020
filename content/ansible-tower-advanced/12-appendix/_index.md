@@ -54,11 +54,9 @@ as installing it would eat too much of your lab time. It’s pretty
 straight forward anyway. The inventory file here is just for giving you
 an idea what you are using here and for reference.
 
-> **Tip**
->
-> Keep in mind when working with clustered Ansible Tower that the
-> database will not be clustered or replicated by the installer. This is
-> something you have to take care of yourself.
+{{% notice tip %}}
+Keep in mind when working with clustered Ansible Tower that the database will not be clustered or replicated by the installer. This is something you have to take care of yourself.
+{{% /notice %}}
 
     [tower]
     tower1.example.com
@@ -86,7 +84,6 @@ an idea what you are using here and for reference.
     rabbitmq_password='r3dh4t1!'
     rabbitmq_cookie=rabbitmqcookie
 
-> **Warning**
->
-> In this lab this has been taken care of, but remember all instances
-> have to able to resolve all hostnames and to reach each other\!
+{{% notice warning %}}
+In this lab this has been taken care of, but remember all instances have to able to resolve all hostnames and to reach each other\!
+{{% /notice %}}
