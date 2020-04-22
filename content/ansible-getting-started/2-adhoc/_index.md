@@ -1,9 +1,9 @@
 +++
-title = "Running Ad-hoc commands"
+title = "Running ad hoc commands"
 weight = 2
 +++
 
-For our first exercise, we are going to run some ad-hoc commands to help you get a feel for how Ansible works.  Ansible Ad-Hoc commands enable you to perform tasks on remote nodes without having to write a playbook.  They are very useful when you simply need to do one or two things quickly and often, to many remote nodes.
+For our first exercise, we are going to run some ad hoc commands to help you get a feel for how Ansible works.  Ansible ad hoc commands enable you to perform tasks on remote nodes without having to write a playbook.  They are very useful when you simply need to do one or two things quickly and often, to many remote nodes.
 
 ## Work with your Inventory
 
@@ -43,7 +43,7 @@ The most basic host pattern is the name for a single managed host listed in the 
 An inventory file can contain a lot more information, it can organize your hosts in groups or define variables. In our example, the current inventory has the groups `web` and `control`. Run Ansible with these host patterns and observe the output:
 
 ```bash
-[student<X@>ansible ~]$ ansible web  --list-hosts
+[student<X@>ansible ~]$ ansible web --list-hosts
 [student<X@>ansible ~]$ ansible web,ansible --list-hosts
 [student<X@>ansible ~]$ ansible 'node*' --list-hosts
 [student<X@>ansible ~]$ ansible all --list-hosts
@@ -70,7 +70,7 @@ In the lab environment provided to you an `.ansible.cfg` file has already been c
 -rw-r--r--. 1 student<N> student<N> 231 14. Mai 17:17 .ansible.cfg
 ```
 
-Output the content of the file:
+Review the content of the file:
 
 ```bash
 [student<N>@ansible ~]$ cat .ansible.cfg
@@ -86,7 +86,7 @@ inventory = /home/student<N>/lab_inventory/hosts
 
 There are multiple configuration flags provided. Most of them are not of interest here, but make sure to note the last line: there the location of the inventory is provided. That is the way Ansible knew in the previous commands what machines to connect to.
 
-Output the content of your dedicated inventory:
+Review the content of your dedicated inventory:
 
 ```bash
 [student<N>@ansible ~]$ cat /home/student<N>/lab_inventory/hosts
@@ -105,12 +105,12 @@ ansible ansible_host=44.55.66.77
 ```
 
 {{% notice tip %}}
-Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<X\>** with your actual student number.
+Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<N\>** with your actual student number.
 {{% /notice %}}
 
 ## Ping a host
 
-Let's start with something really basic - pinging a host. To do that we use the Ansible `ping` module. The `ping` module makes sure our target hosts are responsive. Basically, it connects to the managed host, executes a small script there and collects the results. This ensures that the managed host is reachable and that Ansible is able to execute commands properly on it.
+Let's start with something really basic - pinging a host. To do that we use the Ansible `ping` module. Basically, the `ping` module connects to the managed host, executes a small script there and collects the results. This ensures that the managed host is reachable and that Ansible is able to execute commands properly on it.
 
 {{% notice tip %}}
 Think of a module as a tool which is designed to accomplish a specific task.
@@ -160,7 +160,7 @@ Get help for a specific module including usage examples:
 Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
 {{% /notice %}}
 
-## Use the command module:
+## Use the command module
 
 Now let's see how we can run a good ol' fashioned Linux command and format the output using the `command` module. It simply executes the specified command on a managed host (note this time not a group but a hostname is used as host pattern):
 
@@ -184,7 +184,7 @@ Sometimes it’s desirable to have the output for a host on one line:
 ```
 
 {{% notice tip %}}
-Like many Linux commands, `ansible` allows for long-form options as well as short-form.  For example `ansible web --module-name ping` is the same as running `ansible web -m ping`.  We are going to be using the short-form options throughout this workshop.
+Like many Linux commands, `ansible` allows long-form options as well as short-form.  For example `ansible web --module-name ping` is the same as running `ansible web -m ping`.  We are going to be using the short-form options throughout this workshop.
 {{% /notice %}}
 
 ## The copy module and permissions
@@ -208,12 +208,12 @@ As mentioned this produces an **error**:
     }
 ```
 
-The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<X\>** is not allowed to write the motd file.
+The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<N\>** is not allowed to write the motd file.
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
 {{% notice tip %}}
-Ansible will connect to the machines using your current user name (student\<X\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+Ansible will connect to the machines using your current user name (student\<N\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
 {{% /notice %}}
 
 For us it’s okay to connect as `student<N>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
