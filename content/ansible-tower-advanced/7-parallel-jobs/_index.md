@@ -151,9 +151,9 @@ You have done this a couple of times now, you should get along without detailed 
 
   - Verify\!
 
-> **Tip**
->
-> **Result:** The workflow and the associated jobs will run on **student\<N>-towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
+{{% notice tip %}}
+**Result:** The workflow and the associated jobs will run on **student\<N>-towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
+{{% /notice %}}
 
 But what’s going to happen if you disable this instance?
 
@@ -165,9 +165,9 @@ But what’s going to happen if you disable this instance?
 
   - Verify\!
 
-> **Tip**
->
-> **Result:** The workflow and the associated jobs will stay in pending state because there are no instance available in the **dev** instance group.
+{{% notice tip %}}
+**Result:** The workflow and the associated jobs will stay in pending state because there are no instance available in the **dev** instance group.
+{{% /notice %}}
 
 What’s going to happen if you enable the instance again?
 
@@ -175,10 +175,10 @@ What’s going to happen if you enable the instance again?
 
   - Check in the **Jobs** and **Instance Groups** view what’s happening.
 
-> **Tip**
->
-> **Result:** After the instance is enabled again the jobs will pickup and run on **student\<N>-towernode2.\<LABID>.internal**.
+{{% notice tip %}}
+**Result:** After the instance is enabled again the jobs will pickup and run on **student\<N>-towernode2.\<LABID>.internal**.
+{{% /notice %}}
 
-> **Warning**
->
-> At this point make sure the instances you disabled in the previous steps are definitely enabled again\! Otherwise subsequent lab tasks might fail…
+{{% notice warning %}}
+At this point make sure the instances you disabled in the previous steps are definitely enabled again\! Otherwise subsequent lab tasks might fail…
+{{% /notice %}}

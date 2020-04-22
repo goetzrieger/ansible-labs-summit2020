@@ -15,9 +15,9 @@ Tower includes built-in support for syncing dynamic inventory from cloud sources
 
 In this chapter you’ll get started with dynamic inventories in Tower. Aside from the build-in sources you can write inventory scripts in any programming/scripting language that you have installed on the Tower machine. To keep it easy we’ll use a most simple custom inventory script using… Bash! Yes!
 
-> **Tip**
->
-> Don’t get this wrong… we’ve chosen to use Bash to make it as simple as possible to show the concepts behind dynamic and custom inventories. Usually you’d use Python or some other scripting/programming language.
+{{% notice tip %}}
+Don’t get this wrong… we’ve chosen to use Bash to make it as simple as possible to show the concepts behind dynamic and custom inventories. Usually you’d use Python or some other scripting/programming language.
+{{% /notice %}}
 
 ### The Inventory Source
 
@@ -50,9 +50,9 @@ Use curl to query your external inventory source:
 
 Well, this is handy, the output is already configured as JSON like Ansible would expect… ;-)
 
-> **Warning**
->
-> Okay, seriously, in real life your script would likely get some information from your source system, format it as JSON and return the data to Tower.
+{{% notice warning %}}
+Okay, seriously, in real life your script would likely get some information from your source system, format it as JSON and return the data to Tower.
+{{% /notice %}}
 
 ### The Custom Inventory Script
 
@@ -168,7 +168,7 @@ To sync your new source into the inventory:
 
 You should now see a list of hosts according to what you got from the curl command above. Click the hosts to make sure the host variables are there, too.
 
-**What is the take-away?**
+## What is the take-away?
 
 Using this simple example you have:
 
@@ -204,17 +204,17 @@ Let’s start with a simple string example. In your Tower web UI, open the **RES
 
 To start with you can just use simple search terms. Try **cloud** or **internal** as search terms and see what you get after hitting **ENTER**.
 
-> **Tip**
->
-> Search terms are automatically saved so make sure to hit **CLEAR ALL** to clear the saved search when testing expressions.
+{{% notice tip %}}
+Search terms are automatically saved so make sure to hit **CLEAR ALL** to clear the saved search when testing expressions.
+{{% /notice %}}
 
 Or what about searching by inventory groups? In the **SEARCH** field enter **`groups.name:dyngroup`**. After hitting **ENTER** the hosts from the dynamic inventory exercise should show up.
 
 When your search returns the expected results, hit **SAVE** for the **DYNAMIC HOSTS** window and again for the Smart Inventory. Now your Smart Inventory is usable for executing job templates!
 
-> **Tip**
->
-> You may press the **KEY** button to get a feeling along which fields you can search. Browsing through the API becomes necessary to understand which related fields have which attributes (e.g. name for groups).
+{{% notice tip %}}
+You may press the **KEY** button to get a feeling along which fields you can search. Browsing through the API becomes necessary to understand which related fields have which attributes (e.g. name for groups).
+{{% /notice %}}
 
 ### Build Smart Inventories with Facts
 
@@ -222,9 +222,9 @@ As you know Ansible can collect facts from managed hosts to be used in Playbooks
 
 #### Enable Fact Caching
 
-> **Warning**
->
-> Fact caching is not enabled by default\!
+{{% notice warning %}}
+Fact caching is not enabled by default\!
+{{% /notice %}}
 
 Fact caching can be enabled for **Templates** and is not enabled by default. So first we have to enable it. Check **student\<N>-node1.\<LABID>.internal** and **student\<N>-node2.\<LABID>.internal** have no facts stored:
 
@@ -263,9 +263,9 @@ Now that we got the facts for the hosts in the facts cache, we can use facts in 
 
 To search for facts the search field (left side of a search query) has to start with **ansible\_facts.** followed by the fact. The value is separated by a colon on the right side.
 
-> **Warning**
->
-> No blank between field and value is allowed!
+{{% notice warning %}}
+No blank between field and value is allowed!
+{{% /notice %}}
 
 So what could we search for… start to look at the facts of a host. As all hosts are Red Hat, searching for the fact **ansible\_distribution:RedHat** won’t be too exciting. Ah, what the heck, just try it:
 
@@ -295,16 +295,13 @@ So a small challenge: Find out if all hosts have the SElinux mode set to "enforc
 
 - Create the proper search string
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
-> The search string to use is:
-> ansible_facts.ansible_selinux.mode:enforcing
->
->It should return all hosts.
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+The search string to use is:
+ansible_facts.ansible_selinux.mode:enforcing
+It should return all hosts.
+</p>
+</details>
 
 And to make this a bit more fun:
 

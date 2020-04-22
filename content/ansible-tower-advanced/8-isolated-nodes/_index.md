@@ -38,16 +38,15 @@ First have a look at the Tower installer inventory file that was used for lab se
 
     [...]
 
-> **TIP**
->
-> The inventory has been adapted for readability by leaving out connection variables.
-
+{{% notice tip %}}
+The inventory has been adapted for readability by leaving out connection variables.
+{{% /notice %}}
 
 You can see we have the tower base group and one for the database node. For the isolated node we will define a new **isolated_group_** named **dmz** with one entirely new node, called **student\<N>-isonode.\<LABID>.internal** which we’ll use to manage other hosts in the remote location.
 
-> **WARNING**
->
-> The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student\<N> user. To be able to edit the inventory file, you have to change the file permissions.
+{{% notice warning %}}
+The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student\<N> user. To be able to edit the inventory file, you have to change the file permissions.
+{{% /notice %}}
 
 To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;)):
 
@@ -55,7 +54,6 @@ To edit the inventory file in VSCode editor change the permissions (don't do 777
     [root@ansible ~]# chmod 777 /tmp/tower_install/inventory
 
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
-
 
     [tower]
     ansible ansible_host=student<X>-ansible.<LABID>.internal
@@ -73,12 +71,13 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
 
     [...]
 
-> **WARNING**
->
-> Only add the isolated_group settings, don't change the other groups and settings!
+{{% notice warning %}}
+Only add the isolated_group settings, don't change the other groups and settings!
+{{% /notice %}}
 
-> **Tip**
-> Each isolated group must have a controller variable set. This variable points to the instance group that manages tasks that are sent to the isolated node. That instance group will be responsible for starting and monitoring jobs on the isolated node. In this case, we’re using the main tower instance group to manage this isolated group.
+{{% notice tip %}}
+Each isolated group must have a controller variable set. This variable points to the instance group that manages tasks that are sent to the isolated node. That instance group will be responsible for starting and monitoring jobs on the isolated node. In this case, we’re using the main tower instance group to manage this isolated group.
+{{% /notice %}}
 
 After editing the inventory, start the installer in the VSCode terminal to make the desired changes:
 

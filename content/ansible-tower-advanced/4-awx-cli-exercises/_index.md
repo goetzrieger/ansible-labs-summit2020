@@ -11,40 +11,31 @@ In the first step you will learn to setup the inventory with **awx** step by ste
 
 First we create a static inventory, we’ll get to dynamic inventories later on. Try to figure out the proper invocation of **awx** yourself and create an inventory name **Example Inventory**.
 
-> **Tip**
->
-> Remember how you used the **awx** help to get down to the needed command.
+{{% notice tip %}}
+Remember how you used the **awx** help to get down to the needed command.
+{{% /notice %}}
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
->    [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+   [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
 
-> **Tip**
->
-> You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** organization.
->
-> </p>
-> </details>
+{{% notice note %}}
+You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** ganization.
+{{% /notice %}}
+</p>
+</details>
 
 ### Add Hosts to the Inventory using **awx**
 
 Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`student<X>-node1.<LABID>.internal`** and **`student<X>-node2.<LABID>.internal`**, again using
 **awx**.
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
->    [student@ansible ~]$ awx -f human host create --name "student\<N>-node1.\<LABID>.internal" --inventory "Example Inventory"
->
->    [student@ansible ~]$ awx -f human host create --name "student\<N>-node2.\<LABID>.internal" --inventory "Example Inventory"
->
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+   [student@ansible ~]$ awx -f human host create --name "student\<N>-node1.\<LABID>.internal" inventory "Example Inventory"
+   [student@ansible ~]$ awx -f human host create --name "student\<N>-node2.\<LABID>.internal" inventory "Example Inventory"
+</p>
+</details>
 
 ## Create script to contain this and all following awx commands
 
@@ -59,26 +50,26 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
     awx -f human host create --name "student<X>-node2.<LABID>.internal" \
       --inventory "Example Inventory"
 
-> **Tip**
->
-> You have run these commands above already, true. But we want to show how to create the full script here.
+{{% notice tip %}}
+You have run these commands above already, true. But we want to show how to create the full script here.
+{{% /notice %}}
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
     [student@ansible ~]$ chmod u+x /home/student1/setup-tower.sh
     [student@ansible ~]$ /home/student1/setup-tower.sh
 
-> **Tip**
->
-> You will see that **awx** is idempotent and recognises the objects as duplicate, so it’s fine that you did run the **awx** commands already.
+{{% notice tip %}}
+You will see that **awx** is idempotent and recognises the objects as duplicate, so it’s fine that you did run the **awx** commands already.
+{{% /notice %}}
 
 From now on we’ll explain the needed comands for each of the next steps and add them to the script one-by-one.
 
 ## Create Machine Credentials
 
-> **Tip**
->
-> SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user **ec2-user** from **student\<N>-ansible.\<LABID>.internal**.
+{{% notice tip %}}
+SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user **ec2-user** from **student\<N>-ansible.\<LABID>.internal**.
+{{% /notice %}}
 
 Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to **`setup-tower.sh`**, but don’t run the script yet:
 
@@ -89,9 +80,9 @@ Now we want to configure these credentials to access our managed hosts from Towe
 
 Don’t run the shell script yet, first got through the following steps to add all commands to it.
 
-> **Warning**
->
-> As the **awx** commands get longer you’ll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \\ on one line, of course.
+{{% notice warning %}}
+As the **awx** commands get longer you’ll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \\ on one line, of course.
+{{% /notice %}}
 
 ## Create the Project
 
@@ -104,9 +95,9 @@ The Ansible content used in this lab is hosted on Github. The next step is to ad
         --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
         --wait
 
-> **Tip**
->
-> Note that the first parameter to **awx** is different here since we work on the resource **project**.
+{{% notice tip %}}
+Note that the first parameter to **awx** is different here since we work on the resource **project**.
+{{% /notice %}}
 
 ## Create a Job Template
 
