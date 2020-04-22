@@ -1,0 +1,26 @@
+/' generate PNG with plantuml '/
+@startuml
+
+actor student
+
+package "Local Datacenter" {
+	component "Control/Bastion Host\n(and VS Code)\n**studentN-ansible**" as control
+	node "Ansible Tower Cluster\n**studentN-ansible**\n**studentN-towernode2**\n**studentN-towernode3**" as towercluster
+	database "Ansible Tower Database Host\n**studentN-db**" as db
+	towercluster -down-> db
+	component "Managed RHEL Host 1\n**studentN-node1**" as node1
+	component "Managed RHEL Host 2\n**studentN-node2**" as node2
+	towercluster -down->> node1
+	towercluster -down->> node2
+}
+cloud "Isolated Network / Remote Site" {
+	component "Ansible Tower Isolated Node\n**studentN-isonode**" as towerisonode
+	component "Managed Remote Host\n**studentN-remote**" as remotenode
+	towerisonode -down->> remotenode
+	towercluster -right-> towerisonode
+}
+
+
+student -down-|> control
+student -down-|> towercluster
+@enduml

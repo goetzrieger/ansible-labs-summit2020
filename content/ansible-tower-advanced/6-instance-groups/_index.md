@@ -7,9 +7,9 @@ Ansible Tower clustering allows you to easily add capacity to your Tower infrast
 
 To enable more control over what node is running a job, Tower 3.2 saw the introduction of the **Instance Groups** feature. Instance groups allow you to organize your cluster nodes into groups. In turn Jobs can be assigned to Instance Groups by configuring the Groups in Organizations, Inventories or Job Templates.
 
-> **Tip**
->
-> The order of priority is **Job Template > Inventory > Organization**. So Instance Groups configured in Job Templates take precedence over those configured in Inventories, which take precedence over Organizations
+{{% notice tip %}}
+The order of priority is **Job Template > Inventory > Organization**. So Instance Groups configured in Job Templates take precedence over those configured in Inventories, which take precedence over Organizations
+{{% /notice %}}
 
 Some things to keep in mind about Instance Groups:
 
@@ -26,20 +26,19 @@ Some things to keep in mind about Instance Groups:
 
 Instance Groups allows for some pretty cool setups, e.g. you could have some nodes shared over the whole cluster (by putting them into all groups) but then have other nodes that are dedicated to one group to reserve some capacity.
 
-> **Warning**
->
-> The base `tower` group does house keeping like processing events from jobs for all groups so the node count of this group has to scale with your overall cluster load, even if these nodes are not used to run Jobs.
+{{% notice warning %}}
+The base `tower` group does house keeping like processing events from jobs for all groups so the node count of this group has to scale with your overall cluster load, even if these nodes are not used to run Jobs.
+{{% /notice %}}
 
 Talking about the `tower` group: As you have learned this group is crucial for the operations of a Tower cluster. Apart from the house keeping tasks, if a resource is not associated with an Instance Group, one of the nodes from the `tower` group will run the Job. So if there are no operational nodes in the base group, the cluster will not be able to run Jobs.
 
-> **Warning**
->
-> It is important to have enough nodes in the `tower` group
+{{% notice warning %}}
+It is important to have enough nodes in the `tower` group
+{{% /notice %}}
 
-> **Tip**
->
-> Here is a great blog post going into Instance Groups with a lot more depth:
-> <https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes>.
+{{% notice tip %}}
+Here is a great blog post going into Instance Groups with a lot more depth: <https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes>.
+{{% /notice %}}
 
 ## Instance Group Setup
 
@@ -64,13 +63,13 @@ Go back to the **Instance Groups** view, you should now have the following setup
 
   - Two more groups (**prod** and **dev**) with one instances each where setup
 
-> **Tip**
->
-> We’re using the internal names of the Tower nodes here.
+{{% notice tip %}}
+We’re using the internal names of the Tower nodes here.
+{{% /notice %}}
 
-> **Warning**
->
-> This is not best practice, it’s just for the sake of this lab! Any jobs that are launched targeting a group without active nodes will be stuck in a waiting state until instances become available. So one-instance groups are never a good idea.
+{{% notice warning %}}
+This is not best practice, it’s just for the sake of this lab! Any jobs that are launched targeting a group without active nodes will be stuck in a waiting state until instances become available. So one-instance groups are never a good idea.
+{{% /notice %}}
 
 ## Verify Instance Groups
 
@@ -105,11 +104,11 @@ You can again query the API to get this information. Either use the browser to a
 
 or use curl to access the API from the command line in your VSCode terminal:
 
-> **Tip**
->
-> The curl command has to be on one line.
+`[student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<X>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool`
 
-    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool
+{{% notice tip %}}
+The curl command has to be on one line.
+{{% /notice %}}
 
 ## Deactivating Tower Instances
 

@@ -29,13 +29,14 @@ features of Tower. You’ll learn about:
 ## So little time and so much to do…
 
 {{% notice warning %}}
-To be honest we got carried away slightly while trying to press all
-these cool features into a two-hours lab session. We decided to flag
-the last two chapters as "optional" instead of taking them out. If you
-find the time to run them, cool\! If not, the lab guide will stay
-where it is, feel free to go through these lab tasks later (you don’t
-need a Tower cluster for this).
+To be honest we got carried away slightly while trying to press all these cool features into a two-hours lab session. We decided to flag the last two chapters as "optional" instead of taking them out. If you find the time to run them, cool\! If not, the lab guide will stay where it is, feel free to go through these lab tasks later (you don’t  need a Tower cluster for this).
 {{% /notice %}}
+
+## Want to Use this Lab after Summit?
+
+Definitely, the Asciidoc sources are available here:
+
+**[https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced)**
 
 # Your Ansible Tower Lab Environment
 
@@ -44,10 +45,10 @@ access to the following hosts:
 
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
-| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>. events.opentlc.com  | student\<N>-ansible.\<LABID>.internal |
-| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>. events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
-| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>. events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
-| Visual Code Web UI               | student\<N>-code.\<LABID>. events.opentlc.com     |                                       |
+| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.events.opentlc.com  | student\<N>-ansible.\<LABID>.internal |
+| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
+| Visual Code Web UI               | student\<N>-code.\<LABID>.events.opentlc.com     |                                       |
 | Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
 | Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
 | Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
@@ -61,7 +62,6 @@ The lab environments in this session have a **\<LABID>** and are separated by nu
 {{% notice tip %}}
 Ansible Tower has already been installed and licensed for you, the web UI will be reachable over HTTP/HTTPS.
 {{% /notice %}}
-
 
 As you can see the lab environment is pretty extensive. You basically
 have:

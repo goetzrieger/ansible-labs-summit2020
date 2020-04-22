@@ -47,23 +47,13 @@ The first recommendation is to separate *specific code* from
     is advisable to have a dedicated inventory for each life-cycle
     environment.
 
-> **Tip**
->
-> Data content files can be in the same Git repository, each in its own
-> directory (e.g. dev, test, qa, prod). Alternatively, for example in
-> larger environments or with dedicated teams per environment there can
-> be one Git repository for each environment. We recommend to put
-> special focus on [splitting out host and group
-> data](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#splitting-out-host-and-group-specific-data).
+{{% notice tip %}}
+Data content files can be in the same Git repository, each in its own directory (e.g. dev, test, qa, prod). Alternatively, for example in larger environments or with dedicated teams per environment there can be one Git repository for each environment. We recommend to put special focus on [splitting out host and group data](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#splitting-out-host-and-group-specific-data).
+{{% /notice %}}
 
-> **Caution**
->
-> Be careful to *not* have separate code repositories for each
-> environment. It would go against the purpose of testing the *same*
-> code as you push it through your life-cycle, only varying the data /
-> inventory. If you have difficulties to keep the same code throughout
-> all your environments we recommend to re-think the structure of cour
-> code and what you put into your inventory.
+{{% notice warning %}}
+Be careful to *not* have separate code repositories for each environment. It would go against the purpose of testing the *same* code as you push it through your life-cycle, only varying the data / inventory. If you have difficulties to keep the same code throughout all your environments we recommend to re-think the structure of cour code and what you put into your inventory.
+{{% /notice %}}
 
 ## Example repository
 
@@ -84,10 +74,9 @@ Next we will clone the repository on the control host. To enable you to work wit
     [student@ansible ~]$ git config --global user.email you@example.com
     [student@ansible ~]$ cd structured-content/
 
-> **Tip**
->
-> The repository is currently empty.
-> The three config commands are just there to avoid useless warnings from Git.
+{{% notice tip %}}
+The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.
+{{% /notice %}}
 
 you are now going to add some default directories and files:
 
@@ -135,23 +124,17 @@ all appropriate files, directories and so on already in place.
     ansible-galaxy init --offline --init-path=roles security
     ansible-galaxy init --offline --init-path=roles apache
 
-> **Important**
->
-> Even if a good role is generally self-explanatory, it still makes
-> sense to have proper documentation. The right location to document
-> roles is the file **meta/main.yml**.
+{{% notice tip %}}
+Even if a good role is generally self-explanatory, it still makes sense to have proper documentation. The right location to document roles is the file **meta/main.yml**.
+{{% /notice %}}
 
 The roles are empty, so we need to add a few tasks to each. In the last
 chapters we set up an Apache webserver and used some security tasks.
 Let’s add that code to our roles by editing the two task files:
 
-> **Warning**
->
-> If you copy and paste text in VI under a comment (\#) character, Vi
-> might (depending on settings) add comment signs to the start of each
-> new line. Probably not what you want. Because the role files are being
-> created with a comment line after the YAML start (---), make sure to
-> delete these lines before pasting the content.
+{{% notice warning %}}
+If you copy and paste text in VI under a comment (\#) character, Vi might (depending on settings) add comment signs to the start of each new line. Probably not what you want. Because the role files are being created with a comment line after the YAML start (---), make sure to delete these lines before pasting the content.
+{{% /notice %}}
 
     [student@ansible structured-content]$ cat roles/apache/tasks/main.yml
     ---
@@ -220,57 +203,53 @@ environment. Create the file:
 So we have prepared a basic structure for quite some content - call
 `tree` to look at it.
 
-> **Warning**
->
-> <details><summary>Click here to see how it should look like!</summary>
-> <p>
->
->     [student@ansible structured-content]$ tree
->     .
->     ├── group_vars
->     ├── host_vars
->     ├── library
->     ├── production
->     ├── roles
->     │   ├── apache
->     │   │   ├── defaults
->     │   │   │   └── main.yml
->     │   │   ├── files
->     │   │   ├── handlers
->     │   │   │   └── main.yml
->     │   │   ├── meta
->     │   │   │   └── main.yml
->     │   │   ├── README.md
->     │   │   ├── tasks
->     │   │   │   └── main.yml
->     │   │   ├── templates
->     │   │   ├── tests
->     │   │   │   ├── inventory
->     │   │   │   └── test.yml
->     │   │   └── vars
->     │   │       └── main.yml
->     │   └── security
->     │       ├── defaults
->     │       │   └── main.yml
->     │       ├── files
->     │       ├── handlers
->     │       │   └── main.yml
->     │       ├── meta
->     │       │   └── main.yml
->     │       ├── README.md
->     │       ├── tasks
->     │       │   └── main.yml
->     │       ├── templates
->     │       ├── tests
->     │       │   ├── inventory
->     │       │   └── test.yml
->     │       └── vars
->     │           └── main.yml
->     ├── site.yml
->     └── staging
->
-> </p>
-> </details>
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+    [student@ansible structured-content]$ tree
+    .
+    ├── group_vars
+    ├── host_vars
+    ├── library
+    ├── production
+    ├── roles
+    │   ├── apache
+    │   │   ├── defaults
+    │   │   │   └── main.yml
+    │   │   ├── files
+    │   │   ├── handlers
+    │   │   │   └── main.yml
+    │   │   ├── meta
+    │   │   │   └── main.yml
+    │   │   ├── README.md
+    │   │   ├── tasks
+    │   │   │   └── main.yml
+    │   │   ├── templates
+    │   │   ├── tests
+    │   │   │   ├── inventory
+    │   │   │   └── test.yml
+    │   │   └── vars
+    │   │       └── main.yml
+    │   └── security
+    │       ├── defaults
+    │       │   └── main.yml
+    │       ├── files
+    │       ├── handlers
+    │       │   └── main.yml
+    │       ├── meta
+    │       │   └── main.yml
+    │       ├── README.md
+    │       ├── tasks
+    │       │   └── main.yml
+    │       ├── templates
+    │       ├── tests
+    │       │   ├── inventory
+    │       │   └── test.yml
+    │       └── vars
+    │           └── main.yml
+    ├── site.yml
+    └── staging
+</p>
+</details>
 
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:
@@ -375,10 +354,8 @@ and tagged with the respective stages as **RELATED GROUPS**.
 Now create a template to execute the `site.yml` against both stages at
 the same time and associate the credentials.
 
-> **Tip**
->
-> Please note that in a real world use case you might want to have
-> different templates to address the different stages separatly.
+{{% notice tip %}}
+Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
     [student@ansible ~]# awx job_template create --name "Structured Content Execution" \
                         --job_type run --inventory "Structured Content Inventory" \
@@ -387,6 +364,7 @@ the same time and associate the credentials.
                         --become_enabled 1
     [student@ansible ~]# awx -f human job_template associate --name "Structured Content Execution" \
                         --credential "Example Credentials"
+{{% /notice %}}
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the
 playbook and watch the results.
@@ -436,21 +414,19 @@ To include it with the existing structured content, first we have to
 create a file called `roles/requirements.yml` and reference the role
 there:
 
-> **Warning**
->
-> Make sure you work as user **student<N>**
-
+{{% notice warning %}}
+Make sure you work as user **student<X>**
+```bash
     [student@ansible structured-content]$ cat roles/requirements.yml
     - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
       scm: git
       version: master
+```
+{{% /notice %}}
 
-> **Tip**
->
-> In a production environment you may want to change the version to a
-> fixed version or tag, to make sure that only tested and verified code
-> is checked out and used. But this strongly depends on how you develop
-> your code and which branching model you use.
+{{% notice tip %}}
+In a production environment you may want to change the version to a fixed version or tag, to make sure that only tested and verified code is checked out and used. But this strongly depends on how you develop your code and which branching model you use.
+{{% /notice %}}
 
 Here we add the source for the role and identify the type of source
 control.
