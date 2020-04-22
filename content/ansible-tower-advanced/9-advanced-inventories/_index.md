@@ -310,7 +310,7 @@ And to make this a bit more fun:
 
 - SSH into one of your hosts (say **student\<N>-node2.\<LABID>.internal**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
 
-        [student1@ansible ~]$ ssh ec2-user@student<N>-node2.<LABID>.internal
+        [student1@ansible ~]$ ssh ec2-user@student<X>-node2.<LABID>.internal
         [ec2-user@node2 ~]$ sudo -i
         [root@node2 ~]# sudo setenforce 0
 

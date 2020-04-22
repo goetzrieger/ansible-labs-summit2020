@@ -29,12 +29,12 @@ First have a look at the Tower installer inventory file that was used for lab se
     [student@ansible tower_install]$ cat inventory
 
     [tower]
-    ansible ansible_host=student<N>-ansible.<LABID>.internal
-    towernode2 ansible_host=student<N>-towernode2.<LABID>.internal
-    towernode3 ansible_host=student<N>-towernode3.<LABID>.internal
+    ansible ansible_host=student<X>-ansible.<LABID>.internal
+    towernode2 ansible_host=student<X>-towernode2.<LABID>.internal
+    towernode3 ansible_host=student<X>-towernode3.<LABID>.internal
 
     [database]
-    towerdb ansible_host=student<N>-towerdb.<LABID>.internal
+    towerdb ansible_host=student<X>-towerdb.<LABID>.internal
 
     [...]
 
@@ -58,18 +58,18 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
 
 
     [tower]
-    ansible ansible_host=student<N>-ansible.<LABID>.internal
-    towernode2 ansible_host=student<N>-towernode2.<LABID>.internal
-    towernode3 ansible_host=student<N>-towernode3.<LABID>.internal
+    ansible ansible_host=student<X>-ansible.<LABID>.internal
+    towernode2 ansible_host=student<X>-towernode2.<LABID>.internal
+    towernode3 ansible_host=student<X>-towernode3.<LABID>.internal
 
     [isolated_group_dmz]
-    isonode ansible_host=student<N>-isonode.<LABID>.internal ansible_user="student1" ansible_password='r3dh4t1!' ansible_become=true
+    isonode ansible_host=student<X>-isonode.<LABID>.internal ansible_user="student1" ansible_password='r3dh4t1!' ansible_become=true
 
     [isolated_group_dmz:vars]
     controller=tower
 
     [database]
-    towerdb ansible_host=student<N>-towerdb.<LABID>.internal
+    towerdb ansible_host=student<X>-towerdb.<LABID>.internal
 
     [...]
 
@@ -124,7 +124,7 @@ Now you can add managed hosts,the **HOSTS** button is active now. Click it to ac
 
   - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
 
-  - **NAME:** `student<N>-remote.<LABID>.internal`
+  - **NAME:** `student<X>-remote.<LABID>.internal`
 
   - Click **SAVE**
 
@@ -161,7 +161,7 @@ Next, launch the template:
 ## Verify Results
 
 Last but not least, let’s check that the job was indeed executed by the
-isolated node `student<N>-isonode.<LABID>.internal`:
+isolated node `student<X>-isonode.<LABID>.internal`:
 
   - Go to **Instance Groups** in the **ADMINISTRATION** section of the
     web UI

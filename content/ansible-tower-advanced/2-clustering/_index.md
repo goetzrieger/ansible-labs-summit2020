@@ -36,11 +36,11 @@ three nodes web UIs as:
 >
 > Replace **\<LABID>** with the session ID and **\<N>** with your student number!
 
-**`https://student<N>-ansible.<LABID>.rhdemo.io`**
+**`https://student<X>-ansible.<LABID>. events.opentlc.com`**
 
-**`https://student<N>-towernode2.<LABID>.rhdemo.io`**
+**`https://student<X>-towernode2.<LABID>. events.opentlc.com`**
 
-**`https://student<N>-towernode3.<LABID>.rhdemo.io`**
+**`https://student<X>-towernode3.<LABID>. events.opentlc.com`**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at
 your hands here. To learn more about your cluster and its state, in one
@@ -59,7 +59,7 @@ To dig deeper click on **INSTANCES** to get more information about the instances
 
 You can also get information about your cluster on the command line. Log in to your **code-server** again if you closed it by opening this URL in your browser:
 
-**`https://student<N>-code.<LABID>.rhdemo.io`**
+**`https://student<X>-code.<LABID>. events.opentlc.com`**
 
 Your VSCode session is running on your Tower node 1. Again if not still open, open a terminal by clicking **Terminal->New Terminal** in the menu bar.
 

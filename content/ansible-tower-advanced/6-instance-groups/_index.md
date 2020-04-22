@@ -80,7 +80,7 @@ You can check your instance groups in a number of ways.
 
 You have configured the groups here, open the URL
 
-    https://student<N>-ansible.<LABID>.rhdemo.io/#/instance_groups
+    https://student<X>-ansible.<LABID>. events.opentlc.com/#/instance_groups
 
 in your browser.
 
@@ -101,7 +101,7 @@ In your VSCode terminal, run:
 
 You can again query the API to get this information. Either use the browser to access the URL (you might have to login to the API again):
 
-  `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/instance_groups/`
+  `https://student<X>-ansible.<LABID>. events.opentlc.com/api/v2/instance_groups/`
 
 or use curl to access the API from the command line in your VSCode terminal:
 
@@ -109,7 +109,7 @@ or use curl to access the API from the command line in your VSCode terminal:
 >
 > The curl command has to be on one line.
 
-    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool
+    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<X>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool
 
 ## Deactivating Tower Instances
 

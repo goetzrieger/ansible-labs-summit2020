@@ -31,7 +31,7 @@ First we create a static inventory, we’ll get to dynamic inventories later on.
 
 ### Add Hosts to the Inventory using **awx**
 
-Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`student<N>-node1.<LABID>.internal`** and **`student<N>-node2.<LABID>.internal`**, again using
+Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`student<X>-node1.<LABID>.internal`** and **`student<X>-node2.<LABID>.internal`**, again using
 **awx**.
 
 > **Warning**
@@ -54,9 +54,9 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
-    awx -f human host create --name "student<N>-node1.<LABID>.internal" \
+    awx -f human host create --name "student<X>-node1.<LABID>.internal" \
       --inventory "Example Inventory"
-    awx -f human host create --name "student<N>-node2.<LABID>.internal" \
+    awx -f human host create --name "student<X>-node2.<LABID>.internal" \
       --inventory "Example Inventory"
 
 > **Tip**

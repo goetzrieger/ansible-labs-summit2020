@@ -78,7 +78,7 @@ poor man's Git repo on the control host with an empty Git repository called
 
 Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-    [student@ansible ~]$ git clone git@student<N>-ansible.<LABID>.internal:projects/structured-content.git
+    [student@ansible ~]$ git clone git@student<X>-ansible.<LABID>.internal:projects/structured-content.git
     [student@ansible ~]$ git config --global push.default simple
     [student@ansible ~]$ git config --global user.name "Your Name"
     [student@ansible ~]$ git config --global user.email you@example.com
@@ -99,18 +99,18 @@ files. Note that those files are right now still empty and need to be
 filled with content to work properly.
 
 In the current setup we have two instances. Let’s assume that
-`student<N>-node1.<LABID>.internal` is part of the staging environment, and
-`student<N>-node2.<LABID>.internal` is part of the production environment. To reflect
+`student<X>-node1.<LABID>.internal` is part of the staging environment, and
+`student<X>-node2.<LABID>.internal` is part of the production environment. To reflect
 that in the inventory files, edit the two empty inventory files to look
 like this:
 
     [student@ansible structured-content]$ cat staging
     [staging]
-    student<N>-node1.<LABID>.internal
+    student<X>-node1.<LABID>.internal
 
     [student@ansible structured-content]$ cat production
     [production]
-    student<N>-node2.<LABID>.internal
+    student<X>-node2.<LABID>.internal
 
 Next we add some directories:
 
@@ -316,7 +316,7 @@ web UI or use **awx** as user **root** like shown below.
     [root@ansible ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
                         --scm_type git \
-                        --scm_url  git@student<N>-ansible.<LABID>.internal:projects/structured-content.git \
+                        --scm_url  git@student<X>-ansible.<LABID>.internal:projects/structured-content.git \
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential "Git Credentials"
@@ -438,7 +438,7 @@ there:
 
 > **Warning**
 >
-> Make sure you work as user **student<N>**
+> Make sure you work as user **student<X>**
 
     [student@ansible structured-content]$ cat roles/requirements.yml
     - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git

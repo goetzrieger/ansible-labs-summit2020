@@ -9,9 +9,9 @@ You should definitely keep your Playbooks under version control. In this lab we�
 
 ## Setup Git Repository
 
-For this demonstration we will use playbooks stored in a Git repository:
+For this demonstration we will use playbooks stored in this Git repository:
 
-**https://github.com/ansible/workshop-examples**
+`https://github.com/ansible/workshop-examples`
 
 
 A Playbook to install the Apache webserver has already been commited to the directory **rhel/apache**, `apache_install.yml`:
@@ -51,10 +51,9 @@ A Playbook to install the Apache webserver has already been commited to the dire
       enabled: true
       state: started
 ```
-
-> **Tip**
->
-> Note the difference to other Playbooks you might have written\! Most importantly there is no `become` and `hosts` is set to `all`.
+{{% notice tip %}}
+Note the difference to other Playbooks you might have written\! Most importantly there is no `become` and `hosts` is set to `all`.
+{{% /notice %}}
 
 To configure and use this repository as a **Source Control Management (SCM)** system in Tower you have to create a **Project** that uses the repository
 
@@ -68,13 +67,9 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
   - **SCM TYPE:** Git
 
-Now you need the URL to access the repo. Go to the Github repository mentioned above, choose the green **Clone or download** button on the right, click on **Use https** and copy the HTTPS URL.
+Now you need the URL to access the repo. Go to the Github repository https://github.com/ansible/workshop-examples, choose the green **Clone or download** button on the right and copy the HTTPS URL.
 
-> **Note**
->
-> If there is no **Use https** to click on, but a **Use SSH**, you are fine: just copy the URL. The important thing is that you copy the URL starting with **https**.
-
- Enter the URL into the Project configuration:
+Enter the URL into the Project configuration:
 
 - **SCM URL:** `https://github.com/ansible/workshop-examples.git`
 
@@ -100,9 +95,9 @@ A job template is a definition and set of parameters for running an Ansible job.
 
 Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../../images/green_plus.png?classes=inline) button and choose **Job Template**.
 
-> **Tip**
->
-> Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
+{{% notice tip %}}
+Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
+{{% /notice %}}
 
 - **NAME:** Install Apache
 
@@ -144,37 +139,30 @@ Time for a little challenge:
 
 You have already been through all the steps needed, so try this for yourself.
 
-> **Tip**
->
-> What about `systemctl status httpd`?
+{{% notice tip %}}
+What about `systemctl status httpd`?
+{% /notice %}}
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> - Go to **Inventories** → **Workshop Inventory**
->
-> - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
->
-> - **MODULE:** command
->
-> - **ARGUMENTS:** systemctl status httpd
->
-> - **MACHINE CREDENTIALS:** Workshop Credentials
->
-> - Click **LAUNCH**
->
-> </p>
-> </details>
+<details><summary>Solution below!</summary>
+<p>
+
+- Go to **Inventories** → **Workshop Inventory**
+- In the **HOSTS** view select all hosts and click **RUN COMMANDS**
+- **MODULE:** command
+- **ARGUMENTS:** systemctl status httpd
+- **MACHINE CREDENTIALS:** Workshop Credentials
+- Click **LAUNCH**
+</p>
+</details>
+
 
 ## What About Some Practice?
 
 Here is a list of tasks:
 
-> **Warning**
->
-> Please make sure to finish these steps as the next chapter depends on it\!
+{{% notice warning %}}
+Please make sure to finish these steps as the next chapter depends on it!
+{{% /notice %}}
 
 - Create a new inventory called `Webserver` and make only `node1` member of it.
 
@@ -192,41 +180,6 @@ Here is a list of tasks:
 
 - Wait until the Job has finished and make sure it ran only on `node1`
 
-> **Tip**
->
-> The Job didn’t change anything because Apache was already installed in the latest version.
-
-## Challenge Lab: Check the Result
-
-Time for a little challenge:
-
-  - Use an ad hoc command on both hosts to make sure Apache has been installed and is running.
-
-You have already been through all the steps needed, so try this for yourself.
-
-> **Tip**
->
-> What about `systemctl status httpd`?
-
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> - Go to **Inventories** → **Workshop Inventory**
->
-> - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
->
-> - **MODULE:** command
->
-> - **ARGUMENTS:** systemctl status httpd
->
-> - **MACHINE CREDENTIALS:** Workshop Credentials
->
-> - Click **LAUNCH**
->
-> </p>
-> </details>
-
-| [Previous Excercise](../2-cred) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../4-surveys)|
-|:---|:---:|---:|
+{{% notice tip %}}
+The Job didn’t change anything because Apache was already installed in the latest version.
+{{% /notice %}}

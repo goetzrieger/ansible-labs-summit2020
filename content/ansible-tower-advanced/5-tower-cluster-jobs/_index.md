@@ -37,7 +37,7 @@ Bring up the terminal in your VSCode session and run:
 >
 > Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>** with your values, you should be used to this by now!
 
-    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
+    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<X>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
         "execution_node": "student1-ansible.gritest3.internal",
 
@@ -57,8 +57,8 @@ Another way to query the Tower API is using a browser. For example to have a loo
 
   - Now get the job details via the API interface:
 
-      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<N>-ansible.<LABID>.rhdemo.io/api/`
-      - Open the URL `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
+      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<X>-ansible.<LABID>. events.opentlc.com/api/`
+      - Open the URL `https://student<X>-ansible.<LABID>. events.opentlc.com/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
       - Search the page for the string you are interested in, e.g. `execution_node`
 
 > **Tip**
