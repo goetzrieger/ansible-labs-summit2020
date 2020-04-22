@@ -73,4 +73,4 @@ Starting with Ansible Tower 3.6, we can also find the information in the Web UI.
 
 - Click on the job you just
 
-You will find the Ansible Tower node name in the field "Execution Node".
+You will find the Ansible Tower node name in the field **Execution Node**.
