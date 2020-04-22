@@ -415,7 +415,7 @@ create a file called `roles/requirements.yml` and reference the role
 there:
 
 {{% notice warning %}}
-Make sure you work as user **student<N>**
+Make sure you work as user **student<X>**
 ```bash
     [student@ansible structured-content]$ cat roles/requirements.yml
     - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git

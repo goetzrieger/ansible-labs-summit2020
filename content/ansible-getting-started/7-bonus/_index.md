@@ -25,13 +25,13 @@ Remember privilege escalation…​
 <p>
 Your commands could look like these:
 ```bash
-[student<X>@ansible ansible-files]$ ansible-doc -l | grep -i user
-[student<X>@ansible ansible-files]$ ansible-doc user
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
-[student<X>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
-[student<X>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
-[student<X>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
+[student<N>@ansible ansible-files]$ ansible-doc -l | grep -i user
+[student<N>@ansible ansible-files]$ ansible-doc user
+[student<N>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
+[student<N>@ansible ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
+[student<N>@ansible ansible-files]$ ansible node2 -m command -a " id testuser" -b
+[student<N>@ansible ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
+[student<N>@ansible ansible-files]$ ansible web -m command -a " id testuser" -b
 ```
 </p>
 </details>

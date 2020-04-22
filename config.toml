@@ -1,4 +1,4 @@
-baseurl = "https://cjung.gitlab.io/ansible-summit-labs-2020/"
+baseurl = "https://people.redhat.com/grieger/summit2020_labs/"
 contentdir    = "content"
 layoutdir     = "layouts"
 publishdir    = "public"

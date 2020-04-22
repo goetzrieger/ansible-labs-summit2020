@@ -57,8 +57,8 @@ Note you used the internal hostname above, when using your browser, you have to 
 
   - Now get the job details via the API interface:
 
-      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<N>-ansible.<LABID>.rhdemo.io/api/`
-      - Open the URL `https://student<N>-ansible.<LABID>.rhdemo.io/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
+      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<N>-ansible.<LABID>. events.opentlc.com/api/`
+      - Open the URL `https://student<N>-ansible.<LABID>. events.opentlc.com/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
       - Search the page for the string you are interested in, e.g. `execution_node`
 
 {{% notice tip %}}

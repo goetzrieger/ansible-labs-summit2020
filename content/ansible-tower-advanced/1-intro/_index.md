@@ -45,19 +45,15 @@ access to the following hosts:
 
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
 | -------------------------------- | --------------------------------------- | ------------------------------ |
-| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
-| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
-| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode3.\<LABID>.internal |
-| Visual Code Web UI               | student\<N>-code.\<LABID>.rhdemo.io     |                                       |
-| Ansible Tower Database Host      |                                         | student\<N>-db.\<LABID>.internal |
+| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.events.opentlc.com  | student\<N>-ansible.\<LABID>.internal |
+| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
+| Visual Code Web UI               | student\<N>-code.\<LABID>.events.opentlc.com     |                                       |
+| Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
 | Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
 | Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
 | Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
 | Managed Remote Host 1            |                                         | student\<N>-remote.\<LABID>.internal |
-
-You can also find all hostnames and URL's on your student lab page.
-
-    http://<LABUID>.rhdemo.io/#student\<N>
 
 {{% notice tip %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
@@ -77,11 +73,9 @@ have:
 
 And to mimic a remote site with isolated nodes:
 
-  - One host that acts as an isolated Tower node that can be reached via
-    SSH from the Tower cluster nodes.
+  - One host that acts as an isolated Tower node that can be reached via SSH from the Tower cluster nodes.
 
-  - One host which acts as a remote managed node that can only be reached
-    from/through the isolated node.
+  - One host which acts as a remote managed node that can only be reached from/through the isolated node.
 
 A diagram says more then a thousand words:
 
@@ -95,10 +89,9 @@ Access to the isolated node and the managed hosts is actually not restricted in 
 
 Some hints to get you started:
 
-  - Don’t type everything manually, use copy & paste from the browser
-    when appropriate. But don’t stop to think and understand… ;-)
+  - Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.rhdemo.io**
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.events.opentlc.com**
 
 {{% notice tip %}}
 Commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
@@ -110,20 +103,20 @@ The command line can wrap on the HTML page from time to time. Therefore the outp
 
 ## Accessing your Lab Environment
 
-Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** it to
+Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** to:
 
 * open virtual terminals
 * edit files
 
-Open code-server using this link in your browser by replacing **\<N\>** by your student number and **\<LABID\>** by the workshop name provided to you:
+Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
-     	https://student<N>-code.<LABID>.rhdemo.io
+     	https://student<N>-code.<LABID>.events.opentlc.com
 
 
 ![code-server login](../../images/vscode-pwd.png)
 
-Use the provided password to login into the code-server web UI, then open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half f the screen and you will be presented a prompt:
+Use the provided password to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
 
 ![code-server terminal](../../images/vscode-terminal.png)
 

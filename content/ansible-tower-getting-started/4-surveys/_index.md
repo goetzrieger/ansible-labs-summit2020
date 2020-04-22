@@ -15,9 +15,9 @@ You have installed Apache on all hosts in the job you just run. Now we’re goin
 
 Additionally, the role will also make sure that the Apache configuration is properly set up - in case it got mixed up during the other exercises.
 
-> **Tip**
->
-> The survey feature only provides a simple query for data - it does not support four-eye principles, queries based on dynamic data or nested menus.
+{{% notice tip %}}
+The survey feature only provides a simple query for data - it does not support four-eye principles, queries based on dynamic data or nested menus.
+{{% /notice %}}
 
 ## The Apache-configuration Role
 
@@ -46,43 +46,38 @@ Now you create a new Template that includes a survey.
 
 - Configure the template to:
 
+    - Use the `Webserver` Inventory
+
     - Use the `Ansible Workshop Examples` **Project**
 
     - Use the `apache_role_install.yml` **Playbook**
 
-    - To run on `node1`
+    - Use the `Workshop Credentials`
+
+    - To run on `node1` (Read the help for the **LIMIT** field)
 
     - To run in privileged mode
 
 Try for yourself, the solution is below.
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> - **NAME:** Create index.html
->
-> - **JOB TYPE:** Run
->
-> - **INVENTORY:** Webserver
->
-> - **Project:** Ansible Workshop Examples
->
-> - **PLAYBOOK:** `rhel/apache/apache_role_install.yml`
->
-> - **CREDENTIAL:** Workshop Credentials
->
-> - **OPTIONS:** Enable Privilege Escalation
->
-> - Click **SAVE**
->
-> </p>
-> </details>
+<details><summary>**>>Click here for Solution<<**</summary>
+<p>
 
-> **Warning**
->
-> **Do not run the template yet!**
+- **NAME:** Create index.html
+- **JOB TYPE:** Run
+- **INVENTORY:** Workshop Inventory
+- **PROJECT:** Ansible Workshop Examples
+- **PLAYBOOK:** `rhel/apache/apache_role_install.yml`
+- **CREDENTIAL:** Workshop Credentials
+- **LIMIT:** node1
+- **OPTIONS:** Enable Privilege Escalation
+- Click **SAVE**
+</p>
+</details>
+
+{{% notice warning %}}
+Do not run the template yet!
+{{% /notice %}}
 
 ### Add the Survey
 
@@ -92,7 +87,7 @@ Try for yourself, the solution is below.
 
     - **PROMPT:** First Line
 
-    - **ANSWER VARIABLE NAME:** `first_line`
+    - **ANSWER VARIABLE NAME:** first_line
 
     - **ANSWER TYPE:** Text
 
@@ -102,7 +97,7 @@ Try for yourself, the solution is below.
 
     - **PROMPT:** Second Line
 
-    - **ANSWER VARIABLE NAME:** `second_line`
+    - **ANSWER VARIABLE NAME:** second_line
 
     - **ANSWER TYPE:** Text
 
@@ -114,15 +109,15 @@ Try for yourself, the solution is below.
 
 ## Launch the Template
 
-Now launch **Create index.html** job template.
+Now launch the **Create index.html** job template.
 
 Before the actual launch the survey will ask for **First Line** and **Second Line**. Fill in some text and click **Next**. The next window shows the values, if all is good run the Job by clicking **Launch**.
 
-> **Tip**
->
-> Note how the two survey lines are shown to the left of the Job view as **Extra Variables**.
+{{% notice tip %}}
+Note how the two survey lines are shown to the left of the Job view as **Extra Variables**.
+{{% /notice %}}
 
-After the job has completed, check the Apache homepage. In the SSH console on the control host, execute `curl` against the IP address of your `node1`:
+After the job has completed, check the Apache homepage. In your code-server terminal, execute `curl` against the IP address of your `node1`:
 
 ```bash
 $ curl http://22.33.44.55
@@ -138,9 +133,9 @@ Note how the two variables where used by the playbook to create the content of t
 
 Here is a list of tasks:
 
-> **Warning**
->
-> **Please make sure to finish these steps as the next chapter depends on it\!**
+{{% notice warning %}}
+Please make sure to finish these steps as the next chapter depends on it!
+{{% /notice %}}
 
 - Take the inventory `Webserver` and add the other nodes, `node2` and `node3` as well.
 
