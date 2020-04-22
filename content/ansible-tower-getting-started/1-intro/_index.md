@@ -61,7 +61,7 @@ Your main points of contact with the lab is the Ansible Tower web UI and **code-
 Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
-     	https://student<X>-code.<LABID>.events.opentlc.com
+     	https://student<N>-code.<LABID>.events.opentlc.com
 
 
 ![code-server login](../../images/vscode-pwd.png)
@@ -74,7 +74,7 @@ Congrats, you now have a shell terminal on your Ansible Tower. From here you run
 
 ## Dashboard
 
-Let's have a first look at Tower: Point your browser to the URL you were given, similar to `https://student<X>.<LABID>.events.opentlc.com` (replace `<X>` with your student number and `<LABID>` with the ID of your lab) and log in as `admin`. The password will be provided by the instructor.
+Let's have a first look at Tower: Point your browser to the URL you were given, similar to `https://student<N>.<LABID>.events.opentlc.com` (replace `<N>` with your student number and `<LABID>` with the ID of your lab) and log in as `admin`. The password will be provided by the instructor.
 
 The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 

@@ -7,7 +7,7 @@ weight = 2
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<X>.<LABID>.events.opentlc.com`** (replace "\<X\>" and "\<LABID\>") and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<X\>" and "\<LABID\>") and log in as `admin`. The password will be provided by the instructor.
 
 Create the inventory:
 
@@ -28,9 +28,9 @@ You should already have the **code-server** web UI and a terminal window open fr
 You can find the inventory information for your lab in the file `~/lab_inventory/hosts`. In your code-server terminal, output them with `cat`, they should look like:
 
 ```bash
-[student<X>@ansible ~]$ cat ~/lab_inventory/hosts
+[student<N>@ansible ~]$ cat ~/lab_inventory/hosts
 [all:vars]
-ansible_user=student<X>
+ansible_user=student<N>
 ansible_ssh_pass=<password>
 ansible_port=22
 

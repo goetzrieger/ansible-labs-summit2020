@@ -30,7 +30,7 @@ After installing the tool, you have to configure authentication. The preferred w
 >
 > Replace student number and labid!
 
-    [student@ansible ~]$ export TOWER_HOST=https://student<X>-ansible.<LABID>. events.opentlc.com
+    [student@ansible ~]$ export TOWER_HOST=https://student<N>-ansible.<LABID>. events.opentlc.com
     [student@ansible ~]$ export TOWER_USERNAME=admin
     [student@ansible ~]$ export TOWER_PASSWORD='r3dh4t1!'
     [student@ansible ~]$ export TOWER_VERIFY_SSL=false

@@ -111,7 +111,7 @@ Your main points of contact with the lab are the Ansible Tower web UI's and **co
 Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
-     	https://student<X>-code.<LABID>.events.opentlc.com
+     	https://student<N>-code.<LABID>.events.opentlc.com
 
 
 ![code-server login](../../images/vscode-pwd.png)

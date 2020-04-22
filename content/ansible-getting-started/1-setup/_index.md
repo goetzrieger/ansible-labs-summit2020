@@ -18,7 +18,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 
 Your Ansible control host runs **code-server**, the server part of an VSCode-like editor running in your browser. It provides access to a virtual terminal/shell and file editing capabilities:
 
-    https://student<X>-code.<LABID>. events.opentlc.com
+    https://student<N>-code.<LABID>. events.opentlc.com
 
 Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<LABID\>** by the workshop name provided to you.
 
@@ -30,7 +30,7 @@ Use the provided password to login into the code-server and open a new terminal 
 
 Now become root:
 
-    [student<X>@ansible ~]$ sudo -i
+    [student<N>@ansible ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
