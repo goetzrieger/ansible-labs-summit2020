@@ -263,7 +263,7 @@ This makes it a lot easier to spot changes and what Ansible actually did.
 
   - Using `ansible-doc`
 
-      - Find a module that uses DNF to manage software packages.
+      - Find a module that uses yum to manage software packages.
 
       - Look up the help examples for the module to learn how to install a package in the latest version.
 
@@ -276,9 +276,9 @@ Use the copy ad hoc command from above as a template and change the module and o
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 ```bash
-[student<N>@ansible ~]$ ansible-doc -l | grep -i dnf
-[student<N>@ansible ~]$ ansible-doc dnf
-[student<N>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
+[student<N>@ansible ~]$ ansible-doc -l | grep -i yum
+[student<N>@ansible ~]$ ansible-doc yum
+[student<N>@ansible ~]$ ansible all -m yum -a 'name=vim state=latest' -b
 ```
 </p>
 </details>
