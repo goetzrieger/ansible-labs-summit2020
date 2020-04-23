@@ -20,7 +20,7 @@ Your Ansible control host runs **code-server**, the server part of an VSCode-lik
 
     https://student<N>-code.<LABID>. events.opentlc.com
 
-Use the above link in your browser by replacing **\<X\>** in student**\<X\>** by the student number and **\<LABID\>** by the workshop name provided to you.
+Use the above link in your browser by replacing **\<N\>** in student**\<N\>** by the student number and **\<LABID\>** by the workshop name provided to you.
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -41,7 +41,7 @@ Most prerequisite tasks have already been done for you:
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
     [root@ansible ~]# ansible --version
-    ansible 2.9.5
+    ansible 2.9.6
     [...]
 
 {{% notice tip %}}
@@ -54,14 +54,14 @@ Log out of the root account again:
     logout
 
 {{% notice tip %}}
-In all subsequent exercises you should work as the student\<X\> user on the control node if not explicitly told differently.
+In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
 {{% /notice %}}
 
 ## Working the Labs
 
-You might have guessed by now this lab is pretty commandline-centric…​ :-)
+You might have guessed by now this lab is pretty command line-centric…​ :-)
 
-  - Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
+Don’t type everything manually, use copy & paste from the browser when appropriate. But do still take time to think and understand.
 
 {{% notice tip %}}
 In the lab guide commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.

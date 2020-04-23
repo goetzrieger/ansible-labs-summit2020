@@ -7,7 +7,7 @@ While Ansible ad hoc commands are useful for simple operations, they are not sui
 
 Playbooks are files which describe the desired configurations or steps to implement on managed hosts. Playbooks can change lengthy, complex administrative tasks into easily repeatable routines with predictable and successful outcomes.
 
-A Playbook is where you can take some of those ad-hoc commands you just ran and put them into a repeatable set of **Plays** and **Tasks**.
+A Playbook is where you can take some of those ad hoc commands you just ran and put them into a repeatable set of **Plays** and **Tasks**.
 
 A Playbook can have multiple Plays and a Play can have one or multiple Tasks. In a Task a **Module** is called, like the Modules in the previous chapter.
 
@@ -15,7 +15,7 @@ A Playbook can have multiple Plays and a Play can have one or multiple Tasks. In
 - The goal of a Task is to implement Modules against those hosts.
 
 {{% notice tip %}}
-Here is a nice analogy: When Ansible Modules are the tools in your workshop, the Inventory is the materials and the Playbooks are the instructions.
+Here is a nice analogy: When Ansible Modules are the tools in your workshop, the Inventory is the list of materials and the Playbooks are the instructions.
 {{% /notice %}}
 
 ## Playbook Basics
@@ -60,7 +60,7 @@ There is a [best practice](http://docs.ansible.com/ansible/playbooks_best_practi
 
 Instead, we are going to create a very simple directory structure for our playbook, and add just a couple of files to it.
 
-On your control host **ansible**, create a directory called `ansible-files` in your home directory and change directories into it:
+On your control host **ansible**, create a directory called `ansible-files` in your home directory and change into it:
 
 ```bash
 [student<N>@ansible ~]$ mkdir ansible-files
@@ -76,7 +76,7 @@ Add a file called `apache.yml` with the following content.
   become: yes
 ```
 
-This shows one of Ansible’s strenghts: The Playbook syntax is easy to read and understand. In this Playbook:
+This shows one of Ansible’s strengths: The Playbook syntax is easy to read and understand. In this Playbook:
 
   - A name is given for the play via `name:`.
 
@@ -121,7 +121,7 @@ In the added lines:
 The module parameters are individual to each module. If in doubt, look them up again with `ansible-doc`.
 {{% /notice %}}
 
-Save your playbook and exit your editor.
+Save your playbook.
 
 ## Running the Playbook
 
@@ -136,7 +136,8 @@ Now you should be ready to run your Playbook:
 ```bash
 [student<N>@ansible ansible-files]$ ansible-playbook apache.yml
 ```
-The output should not report any errors but provide an overview of the tasks executed and a play recap summarizing what has been done. There is also a task called **Gathering Facts** listed: this is an built-in task that runs automatically at the beginning of each play. It collects information about the managed nodes. Exercises later on will cover this in more detail.
+
+The output should not report any errors but provide an overview of the tasks executed and a **Play Recap** summarizing what has been done. There is also a task called **Gathering Facts** listed: this is a built-in task that runs automatically at the beginning of each **Play**. It collects information about the managed nodes. Exercises later on will cover this in more detail.
 
 Use SSH to make sure Apache has been installed on `node1`. The necessary IP address is provided in the inventory. Grep for the IP address there and use it to SSH to the node.
 
@@ -144,10 +145,9 @@ Use SSH to make sure Apache has been installed on `node1`. The necessary IP addr
 [student<N>@ansible ansible-files]$ grep node1 ~/lab_inventory/hosts
 node1 ansible_host=11.22.33.44
 [student<N>@ansible ansible-files]$ ssh 11.22.33.44
-student<N>@11.22.33.44's password:
 Last login: Wed May 15 14:03:45 2019 from 44.55.66.77
 Managed by Ansible
-[student<N>@node1 ~]$ rpm -qi httpd
+[ec2-user@node1 ~]$ rpm -qi httpd
 Name        : httpd
 Version     : 2.4.6
 [...]
@@ -192,7 +192,7 @@ Again: what these lines do is easy to understand:
 
   - parameters for the module are supplied
 
-Thus with the second task we make sure the Apache server is indeed running on the target machine. Run your extended Playbook:
+With the second task we make sure the Apache server is indeed running on the target machine. Run your extended Playbook:
 
 ```bash
 [student<N>@ansible ansible-files]$ ansible-playbook apache.yml

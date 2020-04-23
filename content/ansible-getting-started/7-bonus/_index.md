@@ -51,7 +51,7 @@ Instead of editing and copying `httpd.conf` why don’t you just define a variab
   - Run the Playbook and test the result using `curl`.
 
 {{% notice tip %}}
-Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter "Ansible Variables".
+Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter [Using Variables](../4-variables/).
 {{% /notice %}}
 
 ### Define the variables:
@@ -77,7 +77,7 @@ listen_port: 80
 ```ini
 [...]
 Listen {{ listen_port }}
-[]...]
+[...]
 ```
 <!-- {% endraw %} -->
 
