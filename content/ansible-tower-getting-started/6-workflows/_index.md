@@ -19,29 +19,35 @@ In this lab you’ll learn how to setup a workflow.
 
 You have two departements in your organization:
 
-  - The web operations team that is developing Playbooks in their own Git repository.
+  - The web operations team that is developing Playbooks for deploying web infrastructures in their own Git repository.
 
-  - The web applications team, that develops JSP web applications for Tomcat in their Git repository.
+  - The web applications team, that develops JavaScript web applications for NodeJS in their Git repository.
 
-When there is a new Tomcat server to deploy, two things need to happen:
+When there is a new NodeJS-based website to deploy, two main steps need to happen:
 
-  - Tomcat needs to be installed, the firewall needs to be opened and Tomcat should get started.
+The web operations team has to:
 
-  - The most recent version of the web application needs to be deployed.
+  - Install and configure NodeJS to run as a service.
+  - An Apache instance needs to be installed and configured as proxy to pass requests for the NodeJS content to the NodeJS backend. And a lot of other steps might be needed, too. Like SELinux, firewall... you know the drill.
 
-To make things somewhat easier for you, everything needed already exists in a Github repository: Playbooks, JSP-files etc. You just need to glue it together.
+The web developer team has to:
 
-> **Note**
->
-> In this example we use two different branches of the same repository for the content of the separate teams. In reality the structure of your SCM repositories depends on a lot of factors and could be different.
+  - Deploy the most recent version of the JavaScript web application.
+  - Make sure stuff like making sure the directory structure is fine and service restarts happen.
+
+To make things somewhat easier for you, everything needed already exists in a Github repository: Playbooks, JavaScript files etc. You just need to glue it together.
+
+{{% notice tip %}}
+In this example we use two different branches of the same repository for the content of the separate teams. In reality the structure of your SCM repositories depends on a lot of factors and could be different.
+{{% /notice %}}
 
 ## Set up Projects
 
 First you have to set up the Git repo as Projects like you normally would. You have done this before, try to do this on your own. Detailed instructions can be found below.
 
-> **Warning**
->
-> **If you are still logged in as user **wweb**, log out of and log in as user **admin** again.**
+{{% notice warning %}}
+If you are still logged in as user **wweb**, log out of and log in as user **admin** again.
+{{% /notice %}}
 
 - Create the project for web operations:
 
@@ -59,53 +65,39 @@ First you have to set up the Git repo as Projects like you normally would. You h
 
   - The **SCM BRANCH/TAG/COMMIT** is **webdev**
 
-> **Warning**
->
-> <details><summary>Solution below!</summary>
-> <p>
->
-> - Create the project for web operations. In the **Projects** view click the green plus button and fill in:
->
->     - **NAME:** Webops Git Repo
->
->     - **ORGANIZATION:** Default
->
->     - **SCM TYPE:** Git
->
->     - **SCM URL:** https://github.com/ansible/workshop-examples.git
->
->     - **SCM BRANCH/TAG/COMMIT:** webops
->
->     - **SCM UPDATE OPTIONS:** Tick all three boxes.
->
-> - Click **SAVE**
->
-> - Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
->
->     - **NAME:** Webdev Git Repo
->
->     - **ORGANIZATION:** Default
->
->     - **SCM TYPE:** Git
->
->     - **SCM URL:** https://github.com/ansible/workshop-examples.git
->
->     - **SCM BRANCH/TAG/COMMIT:** webdev
->
->     - **SCM UPDATE OPTIONS:** Tick all three boxes.
->
-> - Click **SAVE**
->
-> </p>
-> </details>
+<details><summary>**>>Click here for Solution<<**</summary>
+<p>
+
+- Create the project for web operations. In the **Projects** view click the green us button and fill in:
+    - **NAME:** Webops Git Repo
+    - **ORGANIZATION:** Default
+    - **SCM TYPE:** Git
+    - **SCM URL:** https://github.com/ansible/workshop-examples.git
+    - **SCM BRANCH/TAG/COMMIT:** webops
+    - **SCM UPDATE OPTIONS:** Tick the first three boxes.
+- Click **SAVE**
+- Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
+    - **NAME:** Webdev Git Repo
+    - **ORGANIZATION:** Default
+    - **SCM TYPE:** Git
+    - **SCM URL:** https://github.com/ansible/workshop-examples.git
+    - **SCM BRANCH/TAG/COMMIT:** webdev
+    - **SCM UPDATE OPTIONS:** Tick the first three boxes.
+- Click **SAVE**
+</p>
+</details>
 
 ## Set up Job Templates
 
 Now you have to create Job Templates like you would for "normal" Jobs.
 
+{{% notice tip %}}
+We want to install the **NodeJS app on node3 only**. The Inventory **Workshop Inventory** contains all nodes, but we can limit the nodes using the **LIMIT** field!
+{{% /notice %}}
+
   - Go to the **Templates** view, click the green plus button and choose **Job Template**:
 
-      - **NAME:** Tomcat Deploy
+      - **NAME:** Web Infra Deploy
 
       - **JOB TYPE:** Run
 
@@ -113,9 +105,11 @@ Now you have to create Job Templates like you would for "normal" Jobs.
 
       - **PROJECT:** Webops Git Repo
 
-      - **PLAYBOOK:** `rhel/webops/tomcat.yml`
+      - **PLAYBOOK:** `rhel/webops/web_infrastructure.yml`
 
       - **CREDENTIAL:** Workshop Credentials
+
+      - **LIMIT:** node3
 
       - **OPTIONS:** Enable privilege escalation
 
@@ -131,25 +125,27 @@ Now you have to create Job Templates like you would for "normal" Jobs.
 
       - **PROJECT:** Webdev Git Repo
 
-      - **PLAYBOOK:** `rhel/webdev/create_jsp.yml`
+      - **PLAYBOOK:** `rhel/webdev/install_node_app.yml`
 
       - **CREDENTIALS:** Workshop Credentials
+
+      - **LIMIT:** node3
 
       - **OPTIONS:** Enable privilege escalation
 
   - Click **SAVE**
 
-> **Tip**
->
-> If you want to know what the Playbooks look like, check out the Github URL and switch to the appropriate branches.
+{{% notice tip %}}
+If you want to know what the Playbooks look like, check out the Github URL and switch to the appropriate branches.
+{{% /notice %}}
 
 ## Set up the Workflow
 
-And now you finally set up the workflow. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template so this is finally making sense.
+And now you finally set up the Workflow. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template so this is finally making sense.
 
   - Go to the **Templates** view and click the the green plus button. This time choose **Workflow Template**
 
-      - **NAME:** Deploy Webapp Server
+      - **NAME:** Deploy Webapplication
 
       - **ORGANIZATION:** Default
 
@@ -159,13 +155,13 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
 
   - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **JOBS**, **PROJECT SYNC** and **INVENTORY SYNC**.
 
-  - In this lab we’ll link Jobs together, so select the **Tomcat Deploy** job and click **SELECT**.
+  - In this lab we’ll link Jobs together, so select the **Web Infra Deploy** Template and click **SELECT**.
 
   - The node gets annotated with the name of the job. Hover the mouse pointer over the node, you’ll see a red **x**, a green **+** and a blue **chain**-symbol appear.
 
-> **Tip**
->
-> Using the red "x" allows you to remove the node, the green plus lets you add the next node and the chain-symbol links to another node .
+{{% notice tip %}}
+Using the red "x" allows you to remove the node, the green plus lets you add the next node and the chain-symbol links to another node.
+{{% /notice %}}
 
   - Click the green **+** sign
 
@@ -173,9 +169,9 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
 
   - Leave **Run** set to **On Success**
 
-> **Tip**
->
-> The type allows for more complex workflows. You could lay out different execution paths for successful and for failed Playbook runs.
+{{% notice tip %}}
+The type allows for more complex workflows. You could lay out different execution paths for successful and for failed Playbook runs.
+{{% /notice %}}
 
   - Click **SELECT**
 
@@ -183,31 +179,24 @@ And now you finally set up the workflow. Workflows are configured in the **Templ
 
   - Click **SAVE** in the **Workflow Template** view
 
-> **Tip**
->
-> The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the documentation.
+{{% notice tip %}}
+The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the documentation.
+{{% /notice %}}
 
 ## And Action
 
 Your workflow is ready to go, launch it.
 
-  - Click the blue **LAUNCH** button directly or go to the the **Templates** view and launch the **Deploy Webapp Server** workflow by clicking the rocket icon.
+  - Click the blue **LAUNCH** button directly or go to the the **Templates** view and launch the **Deploy Webapplication** workflow by clicking the rocket icon.
 
 ![jobs view of workflow](../../images/job_workflow.png)
 
-Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, click the ![w-button](../../images/w_button.png?classes=inline) in the **JOB TEMPLATE** line in the **DETAILS** part on the left side of the job overview.
+Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, just hit your browsers back button.
 
-After the job was finished, check if everything worked fine: log into `node1`, `node2` or `node3` from your control host and run:
+After the job was finished, check if everything worked fine. In your code-server terminal, run:
 
 ```bash
-$ curl http://localhost:8080/coolapp/
+$ curl http://node3/nodejs
 ```
 
-> **Tip**
->
-> You might have to wait a couple of minutes until Tomcat answers requests.
-
-----
-
-| [Previous Excercise](../5-rbac) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../7-wrap)|
-|:---|:---:|---:|
+You should be greeted with a friendly `Hello World`

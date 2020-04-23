@@ -7,7 +7,7 @@ weight = 2
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<X\>" and "\<LABID\>") and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<N\>" and "\<LABID\>") and log in as `admin`. The password will be provided by the instructor.
 
 Create the inventory:
 
@@ -21,7 +21,7 @@ Create the inventory:
 
 Now there will be two inventories, the **Demo Inventory** and the **Workshop Inventory**. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
 
-So let's add some hosts. First we need to have the list of all hosts which are accessible to you within this lab. These can be found in an inventory on the ansible control node on which Tower is installed.
+So let's add some hosts. First we need to have the list of all managed hosts which are accessible to you within this lab. These can be found in an Ansible inventory file on the Tower node, it was created during deployment of the environment.
 
 You should already have the **code-server** web UI and a terminal window open from the **Accessing your Lab Environment** section, if not refer back there to open it.
 
@@ -43,9 +43,11 @@ node3 ansible_host=<IP>
 ansible ansible_host=<IP>
 ```
 
-Note the names for the nodes and the IP addresses, we will use them to fill the inventory in Tower now:
+But to make your life easier there is a `/etc/hosts` file that will resolve the nodes `node1`, `node2` and `node3` to their IP addresses. So you can just use the short hostnames.
 
-  - In the inventory view of Tower click on your **Workshop Inventory**
+Now create the inventory in Tower:
+
+  - In the inventory view of the Tower web UI click on your **Workshop Inventory**
 
   - Click on  the **HOSTS** button
 
@@ -53,11 +55,9 @@ Note the names for the nodes and the IP addresses, we will use them to fill the 
 
   - **HOST NAME:** node1
 
-  - **Variables:** Under the three dashes `---`, enter **ansible_host: 22.33.44.55** in a new line. Make sure to enter your specific IP address for your **node1** from the inventory looked up above, and note that the variable definition has a colon **:** and a space between the values, not an equal sign **=** like in the inventory file.
-
   - Click **SAVE**
 
-  - Go back to **HOSTS** and repeat to add **node2** as a second host and **node3** as a third node. Make sure that for each node you enter the right IP addresses.
+  - Go back to **HOSTS** and repeat to add **node2** as a second host and **node3** as a third node.
 
 You have now created an inventory with three managed hosts.
 
@@ -74,11 +74,11 @@ As this is an important part of your Tower setup, why not make sure that connect
 To test access to the nodes via SSH do the following:
 
 - In your browser bring up the terminal window in code-server (remember this runs on the Tower node)
-- From here as user `ec2-user` SSH into `node1` or one of the other nodes (look up the IP addresses from the inventory) and execute `sudo -i`.
+- From here as user `ec2-user` SSH into `node1` or one of the other nodes and execute `sudo -i`.
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
-[student1@ansible ~]$ ssh ec2-user<IP from inventory>
+[student1@ansible ~]$ ssh ec2-user@node1
 [ec2-user@node1 ~]$
 sudo -i
 [root@node1 ~]# exit

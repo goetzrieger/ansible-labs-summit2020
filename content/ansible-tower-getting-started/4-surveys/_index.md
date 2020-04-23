@@ -54,8 +54,6 @@ Now you create a new Template that includes a survey.
 
     - Use the `Workshop Credentials`
 
-    - To run on `node1` (Read the help for the **LIMIT** field)
-
     - To run in privileged mode
 
 Try for yourself, the solution is below.
@@ -65,11 +63,10 @@ Try for yourself, the solution is below.
 
 - **NAME:** Create index.html
 - **JOB TYPE:** Run
-- **INVENTORY:** Workshop Inventory
+- **INVENTORY:** Webserver
 - **PROJECT:** Ansible Workshop Examples
 - **PLAYBOOK:** `rhel/apache/apache_role_install.yml`
 - **CREDENTIAL:** Workshop Credentials
-- **LIMIT:** node1
 - **OPTIONS:** Enable Privilege Escalation
 - Click **SAVE**
 </p>
@@ -117,10 +114,10 @@ Before the actual launch the survey will ask for **First Line** and **Second Lin
 Note how the two survey lines are shown to the left of the Job view as **Extra Variables**.
 {{% /notice %}}
 
-After the job has completed, check the Apache homepage. In your code-server terminal, execute `curl` against the IP address of your `node1`:
+After the job has completed, check the Apache homepage. In your code-server terminal, execute `curl` against `node1`:
 
 ```bash
-$ curl http://22.33.44.55
+$ curl http://node1
 <body>
 <h1>Apache is running fine</h1>
 <h1>This is survey field "First Line": line one</h1>
@@ -137,13 +134,8 @@ Here is a list of tasks:
 Please make sure to finish these steps as the next chapter depends on it!
 {{% /notice %}}
 
-- Take the inventory `Webserver` and add the other nodes, `node2` and `node3` as well.
+- Take the inventory `Webserver` and add node `node2` to it.
 
 - Run the **Create index.html** Template again.
 
-- Verify the results on the other two nodes by using `curl` against their IP addresses.
-
-----
-
-| [Previous Excercise](../3-projects) |[Return to the Ansible for Red Hat Enterprise Linux Workshop](../) | [Next Excercise](../5-rbac)|
-|:---|:---:|---:|
+- Verify the results on node2 by using `curl`.

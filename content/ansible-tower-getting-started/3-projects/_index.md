@@ -141,9 +141,9 @@ You have already been through all the steps needed, so try this for yourself.
 
 {{% notice tip %}}
 What about `systemctl status httpd`?
-{% /notice %}}
+{{% /notice %}}
 
-<details><summary>Solution below!</summary>
+<details><summary>**>>Click here for Solution<<**</summary>
 <p>
 
 - Go to **Inventories** → **Workshop Inventory**

@@ -113,7 +113,3 @@ A job template is a definition and set of parameters for running an Ansible job.
 **Jobs**
 
 A job is basically an instance of Tower launching an Ansible playbook against an inventory of hosts.
-
-----
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../)

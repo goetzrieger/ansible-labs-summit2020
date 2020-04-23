@@ -27,11 +27,13 @@ Your operations team and your application development team like what they see in
 
 ## The Git Repository
 
-All code is already in place - this is a Tower lab after all. Check out the **Ansible Workshop Examples** git repository at **https://github.com/ansible/workshop-examples**. There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
+All code is already in place - this is a Tower lab after all and not about configuring Apache. Check out the **Ansible Workshop Examples** git repository at **https://github.com/ansible/workshop-examples**. There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
 
-Compared to the previous Apache installation role there is a major difference: there are now two versions of an `index.html` template, and a task deploying the template file which has a variable as part of the source file name:
+Compared to the previous Apache installation role there is a major difference: there are now two versions of an `index.html` template, and a task deploying the template file which has a variable as part of the template file name.
 
-`dev_index.html.j2`
+Here are the files for you to review (path is relativ to the Github repository):
+
+- rhel/apache/roles/role_webcontent/templates/dev_index.html.j2
 
 ```html
 <body>
@@ -40,7 +42,7 @@ Compared to the previous Apache installation role there is a major difference: t
 </body>
 ```
 
-`prod_index.html.j2`
+- rhel/apache/roles/role_webcontent/templates/prod_index.html.j2
 
 ```html
 <body>
@@ -49,7 +51,11 @@ Compared to the previous Apache installation role there is a major difference: t
 </body>
 ```
 
-`main.yml`
+- rhel/apache/roles/role_webcontent/tasks/main.yml
+
+{{% notice tip %}}
+Only the part deploying the template is shown
+{{% /notice %}}
 
 ```yaml
 [...]
@@ -68,13 +74,16 @@ There is of course more then one way to accomplish this, but here is what you sh
 
 - Define a variable `stage` with the value `dev` for the `Webserver` inventory:
 
-    - Add `stage: dev` to the inventory `Webserver` by putting it into the **VARIABLES** field beneath the three start-yaml dashes.
+    - Add `stage: dev` to the inventory `Webserver` by putting it into the **VARIABLES** field beneath the three start-yaml dashes. Click **SAVE**
 
-- In the same way add a variable `stage: prod` but this time only for `node2` (by clicking the hostname) so that it overrides the inventory variable.
+- In the same way add a variable `stage: prod` but this time only for `node2` (by clicking the hostname in the **HOSTS** view). Click **SAVE**
 
-> **Tip**
->
-> Make sure to keep the three dashes that mark the YAML start and the `ansible_host` line in place\!
+This way the host variable overrides the variable set at the Inventory level because it's more specific and takes precedence.
+
+
+{{% notice tip %}}
+Make sure to keep the three dashes that mark the YAML start and the `ansible_host` line in place!
+{{% /notice %}}
 
 ## Create the Template
 
@@ -94,9 +103,9 @@ There is of course more then one way to accomplish this, but here is what you sh
 
 This time we use the power of Ansible to check the results: execute curl to get the web content from each node, orchestrated by an ad-hoc command on the command line of your Tower control host:
 
-> **Tip**
->
-> We are using the `ansible_host` variable in the URL to access every node in the inventory group.
+{{% notice tip %}}
+We are using the `ansible_host` variable in the URL to access every node in the inventory group.
+{{% /notice %}}
 
 ```bash
 [student<N>@ansible ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
@@ -131,7 +140,7 @@ Note the warning in the first line about not to use `curl` via the `command` mod
 
 - Run the survey as user `wweb`
 
-Check the results again from your Tower control host. Since we got a warning last time using `curl` via the `command` module, this time we will use the dedicated `uri` module. As arguments it needs the actual URL and a flag to output the body in the results.
+Check the results again from your code-server terminal. Since we got a warning last time using `curl` via the `command` module, this time we will use the dedicated `uri` module. As arguments it needs the actual URL and a flag to output the body in the results.
 
 ```bash
 [student<N>ansible ~]$ ansible web -m uri -a "url=http://{{ ansible_host }} return_content=yes"
@@ -162,13 +171,11 @@ node3 | SUCCESS => {
 
 ## Solution
 
-> **Warning**
->
-> <details><summary>Solution NOT below!</summary>
-> <p>
-> You have to figure this one out yourself!
-> </p>
-> </details>
+<details><summary>**>>Solution NOT below<<**</summary>
+<p>
+You have to figure this one out yourself! ;-)
+</p>
+</details>
 
 You have done all the required configuration steps in the lab already. If unsure, just refer back to the respective chapters.
 
