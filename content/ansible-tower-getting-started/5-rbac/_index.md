@@ -92,10 +92,10 @@ Now log out of Tower’s web UI and in again as the **wweb** user.
 
 - In the following **Jobs** view have a good look around, note that there where changes to the host (of course…​).
 
-Check the result: In the code-server terminal execute `curl` again on the control host to pull the content of the webserver on the IP address of `node1` (you could of course check `node2` and `node3`, too):
+Check the result: In the code-server terminal execute `curl` to pull the content of the webserver on `node1` (you could of course check `node2` and `node3`, too):
 
 ```bash
-$ curl http://22.33.44.55
+$ curl http://node1
 ```
 
 Just recall what you have just done: You enabled a restricted user to run an Ansible Playbook
