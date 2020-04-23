@@ -37,7 +37,7 @@ Bring up the terminal in your VSCode session and run:
 Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>** with your values, you should be used to this by now!
 {{% /notice %}}
 
-    [student@ansible ~]$ curl -s -k -u admin:r3dh4t1! https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
+    [student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
         "execution_node": "student1-ansible.gritest3.internal",
 
@@ -57,7 +57,7 @@ Note you used the internal hostname above, when using your browser, you have to 
 
   - Now get the job details via the API interface:
 
-      - Login to the API with user `admin` and password `r3dh4t1!`: `https://student<N>-ansible.<LABID>. events.opentlc.com/api/`
+      - Login to the API with user `admin` and password `MYSECRETPWD`: `https://student<N>-ansible.<LABID>. events.opentlc.com/api/`
       - Open the URL `https://student<N>-ansible.<LABID>. events.opentlc.com/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
       - Search the page for the string you are interested in, e.g. `execution_node`
 

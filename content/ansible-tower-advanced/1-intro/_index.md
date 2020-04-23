@@ -63,6 +63,10 @@ The lab environments in this session have a **\<LABID>** and are separated by nu
 Ansible Tower has already been installed and licensed for you, the web UI will be reachable over HTTP/HTTPS.
 {{% /notice %}}
 
+{{% notice info %}}
+Wherever you see the placeholder **MYSECRETPWD** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
+{{% /notice %}}
+
 As you can see the lab environment is pretty extensive. You basically
 have:
 
