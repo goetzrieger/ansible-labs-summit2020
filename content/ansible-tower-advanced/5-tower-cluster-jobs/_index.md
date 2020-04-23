@@ -64,3 +64,13 @@ Note you used the internal hostname above, when using your browser, you have to 
 {{% notice tip %}}
 You can of course query any Tower node.
 {{% /notice %}}
+
+## Via Web UI
+
+Starting with Ansible Tower 3.6, we can also find the information in the Web UI.
+
+- Navigate to the **Jobs** menu
+
+- Click on the job you just
+
+You will find the Ansible Tower node name in the field **Execution Node**.
