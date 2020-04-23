@@ -28,7 +28,7 @@ When there is a new NodeJS-based website to deploy, two main steps need to happe
 The web operations team has to:
 
   - Install and configure NodeJS to run as a service.
-  - An Apache instance needs to be installed and configured as proxy to pass requests for the NodeJS content to NodeJSAnd a lot of other steps might be needed, too. Like SELinux, firewall... you know the drill.
+  - An Apache instance needs to be installed and configured as proxy to pass requests for the NodeJS content to the NodeJS backend. And a lot of other steps might be needed, too. Like SELinux, firewall... you know the drill.
 
 The web developer team has to:
 

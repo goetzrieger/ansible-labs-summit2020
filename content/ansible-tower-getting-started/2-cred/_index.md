@@ -54,7 +54,6 @@ Now create the inventory in Tower:
   - To the right click the ![plus](../../images/green_plus.png?classes=inline) button.
 
   - **HOST NAME:** node1
-  <!-- - **Variables:** Under the three dashes `---`, enter **ansible_host: 22.33.44.55** in a new line. Make sure to enter your specific IP address for your **node1** from the inventory looked up above, and note that the variable definition has a colon **:** and a space between the values, not an equal sign **=** like in the inventory file. -->
 
   - Click **SAVE**
 
