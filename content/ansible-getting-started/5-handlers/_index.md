@@ -227,5 +227,5 @@ Verify that the user `prod_user` was indeed created on `node1`:
 ```bash
 [student<N>@ansible ansible-files]$ ansible node1 -m command -a "id dev_user"
 node1 | CHANGED | rc=0 >>
-uid=1002(dev_user) gid=1002(dev_user) Gruppen=1002(dev_user),50(ftp)
+uid=1002(dev_user) gid=1002(dev_user) groups=1002(dev_user),50(ftp)
 ```
