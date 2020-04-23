@@ -28,6 +28,8 @@ Use the provided password to login into the code-server and open a new terminal 
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
+Read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
+
 Now become root:
 
     [student<N>@ansible ~]$ sudo -i

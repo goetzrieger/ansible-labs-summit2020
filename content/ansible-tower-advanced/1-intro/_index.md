@@ -120,4 +120,6 @@ Use the provided password to login into the code-server web UI, you can close th
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
+Read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
+
 Congrats, you now have a shell terminal on your Ansible Tower node 1. From here you run commands or access the other hosts in your lab environment if the lab task requires it.
