@@ -7,7 +7,7 @@ weight = 1
 
 Ansible Tower is a web-based UI that provides an enterprise solution for IT automation. It
 
-  - has a user-friendly dashboard
+  - has a user-friendly dashboard.
 
   - complements Ansible, adding automation, visual management, and monitoring capabilities.
 
@@ -15,7 +15,7 @@ Ansible Tower is a web-based UI that provides an enterprise solution for IT auto
 
   - graphically manages or synchronizes inventories with a wide variety of sources.
 
-  - has a RESTful API
+  - has a RESTful API.
 
   - And much more...
 

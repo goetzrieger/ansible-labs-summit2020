@@ -87,7 +87,7 @@ sudo -i
 
 What does this mean?
 
-  - Tower user **student\<X\>** can connect to the managed hosts with SSH key authentication as user **ec2-user**.
+  - Tower user **student\<N\>** can connect to the managed hosts with SSH key authentication as user **ec2-user**.
 
   - User **ec2-user** can execute commands on the managed hosts as **root** with `sudo`.
 
@@ -99,7 +99,7 @@ Click the ![plus](../../images/green_plus.png?classes=inline) button to add new 
 
   - **NAME:** Workshop Credentials
 
-  - **ORGANIZATION:** Default
+  - **ORGANIZATION:** Click on the magnifying glass, pick **Default** and click **SELECT**
 
   - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click **SELECT** (you will have to use the search or page through the options).
 
@@ -137,7 +137,7 @@ As you’ve probably done with Ansible before you can run ad hoc commands from T
 
   - In the web UI go to **RESOURCES → Inventories → Workshop Inventory**
 
-  - Click the **HOSTS** button to change into the hosts view and select the three hosts by ticking the boxes to the left of the host entries.
+  - Click the **HOSTS** button to change into the hosts view and select the three hosts by checking the boxes to the left of the host entries.
 
   - Click **RUN COMMANDS**. In the next screen you have to specify the ad hoc command:
 
@@ -147,7 +147,7 @@ As you’ve probably done with Ansible before you can run ad hoc commands from T
 
       - Click **LAUNCH**, and watch the output.
 
-The simple **ping** module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the **command** module to find the userid of the executing user using an ad hoc command.
+The simple **ping** module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the **command** module to find the user ID of the executing user using an ad hoc command.
 
 - **MODULE:** command
 
