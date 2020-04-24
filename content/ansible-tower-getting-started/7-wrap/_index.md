@@ -11,7 +11,7 @@ This is the final challenge where we try to put most of what you have learned to
 
 Your operations team and your application development team like what they see in Tower. To really use it in their environment they put together these requirements:
 
-- All webservers (`node1`, `node2` and `node3`) should go in one group
+- All webservers (`node1`, `node2` and `node3`) should go in one group.
 
 - As the webservers can be used for development purposes or in production, there has to be a way to flag them accordingly as "stage dev" or "stage prod".
 
@@ -19,9 +19,9 @@ Your operations team and your application development team like what they see in
 
 - Of course the content of the world famous application "index.html" will be different between dev and prod stages.
 
-    - There should be a title on the page stating the environment
+    - There should be a title on the page stating the environment.
 
-    - There should be a content field
+    - There should be a content field.
 
 - The content writer `wweb` should have access to a survey to change the content for dev and prod servers.
 
@@ -95,13 +95,13 @@ Make sure to keep the three dashes that mark the YAML start and the `ansible_hos
 
     - Defines two variables: `dev_content: default dev content` and `prod_content: default prod content` in the **EXTRA VARIABLES FIELD**
 
-    - Uses `Workshop Credentials` and runs with privilege escalation
+    - Uses `Workshop Credentials` and runs with privilege escalation.
 
-- Save and run the template
+- Save and run the template.
 
 ## Check the results
 
-This time we use the power of Ansible to check the results: execute curl to get the web content from each node, orchestrated by an ad-hoc command on the command line of your Tower control host:
+This time we use the power of Ansible to check the results: execute curl to get the web content from each node, orchestrated by an ad hoc command on the command line of your Tower control host:
 
 {{% notice tip %}}
 We are using the `ansible_host` variable in the URL to access every node in the inventory group.
@@ -134,11 +134,11 @@ Note the warning in the first line about not to use `curl` via the `command` mod
 
 ## Add Survey
 
-- Add a survey to the Template to allow changing the variables `dev_content` and `prod_content`
+- Add a survey to the Template to allow changing the variables `dev_content` and `prod_content`.
 
 - Add permissions to the Team `Web Content` so the Template **Create Web Content** can be executed by `wweb`.
 
-- Run the survey as user `wweb`
+- Run the survey as user `wweb`.
 
 Check the results again from your code-server terminal. Since we got a warning last time using `curl` via the `command` module, this time we will use the dedicated `uri` module. As arguments it needs the actual URL and a flag to output the body in the results.
 
@@ -173,7 +173,7 @@ node3 | SUCCESS => {
 
 <details><summary>**>>Solution NOT below<<**</summary>
 <p>
-You have to figure this one out yourself! ;-)
+You have to figure this one out by yourself! ;-)
 </p>
 </details>
 
@@ -182,5 +182,3 @@ You have done all the required configuration steps in the lab already. If unsure
 # The End
 
 Congratulations, you finished your labs\! We hope you enjoyed your first encounter with Ansible Tower as much as we enjoyed creating the labs.
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../)
