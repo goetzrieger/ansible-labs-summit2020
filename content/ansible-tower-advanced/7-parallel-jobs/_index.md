@@ -107,11 +107,11 @@ Go to the **Instance Groups** view and find out how the jobs where distributed o
   - Because the Job Templates called in the workflow didn’t specify an
     instance group, they where distributed evenly over the instances.
 
-Now deactivate instance **student\<N>-ansible.\<LABID>.internal** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
+Now deactivate instance **{{< param "internal_tower1" >}}** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
-Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **student\<N>-ansible.\<LABID>.internal** didn’t change.
+Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **{{< param "internal_tower1" >}}** didn’t change.
 
-Activate **student\<N>-ansible.\<LABID>.internal** again by sliding the button to "checked".
+Activate **{{< param "internal_tower1" >}}** again by sliding the button to "checked".
 
 ## Using Instance Groups
 
@@ -152,12 +152,12 @@ You have done this a couple of times now, you should get along without detailed 
   - Verify\!
 
 {{% notice tip %}}
-**Result:** The workflow and the associated jobs will run on **student\<N>-towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
+**Result:** The workflow and the associated jobs will run on **{{< param "internal_tower2" >}}**. Okay, big surprise, in the **dev** instance group there is only one instance.
 {{% /notice %}}
 
 But what’s going to happen if you disable this instance?
 
-  - Disable the **student\<N>-towernode2.\<LABID>.internal** instance in the **Instance Groups** view.
+  - Disable the **{{< param "internal_tower2" >}}** instance in the **Instance Groups** view.
 
   - Run the workflow again.
 
@@ -171,12 +171,12 @@ But what’s going to happen if you disable this instance?
 
 What’s going to happen if you enable the instance again?
 
-  - Go to the **Instance Groups** view and enable **student\<N>-towernode2.\<LABID>.internal** again.
+  - Go to the **Instance Groups** view and enable **{{< param "internal_tower2" >}}** again.
 
   - Check in the **Jobs** and **Instance Groups** view what’s happening.
 
 {{% notice tip %}}
-**Result:** After the instance is enabled again the jobs will pickup and run on **student\<N>-towernode2.\<LABID>.internal**.
+**Result:** After the instance is enabled again the jobs will pickup and run on **{{< param "internal_tower2" >}}**.
 {{% /notice %}}
 
 {{% notice warning %}}

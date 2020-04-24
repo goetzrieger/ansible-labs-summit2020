@@ -21,8 +21,7 @@ through it:
 1.  Go to the Tower UI in your browser and make sure you’re logged in as
     admin.
 
-2.  Replace the end of the URL with `/api` e.g.
-    `https://tower2-<GUID>.rhpds.opentlc.com/api`
+2.  Replace the end of the URL with `/api` e.g. `https://{{< param "external_tower" >}}/api`
 
 3.  You’re now in the API, notice that there are two versions. v1 will
     be retired soon so go to v2.
@@ -75,7 +74,7 @@ no rights.
 </details>
 
 Now log in again as admin and go back to the list of users:
-**https://tower2-&lt;GUID&gt;.rhpds.opentlc.com/api/v2/users/**
+**https://{{< param "external_tower" >}}/api/v2/users/**
 
   - Click on the **url** field of your new friend John Smith and notice
     a few more things:

@@ -13,9 +13,9 @@ There are probably thousands of combinations of Operating Systems and Web Browse
 
 Each students has it's dedicated lab environment. This also means you have your dedicated instance of Visual Studio Code Server. The URL to open the Web Interface is:
 
-    https://student\<N>-code.\<LABID>.events.opentlc.com
+    https://{{< param "external_code" >}}
 
-Replace \<N\> with your student number and \<LABUD\>. You will find your LABID in the invite to this event. If you don't know your LABID, ask your instructor.
+Replace \<N\> with your student number and \<LABID\>. You will find your LABID in the invite to this event. If you don't know your LABID, ask your instructor.
 
 After opening the URL, you will see a dialog asking for your password. The password was provided to you in the Lab instructions or the invite to this event.
 
