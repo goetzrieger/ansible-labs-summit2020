@@ -61,7 +61,7 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
     towernode3 ansible_host=student<N>-towernode3.<LABID>.internal
 
     [isolated_group_dmz]
-    isonode ansible_host=student<N>-isonode.<LABID>.internal ansible_user="student1" ansible_password='r3dh4t1!' ansible_become=true
+    isonode ansible_host=student<N>-isonode.<LABID>.internal ansible_user="student1" ansible_password='MYSECRETPWD' ansible_become=true
 
     [isolated_group_dmz:vars]
     controller=tower

@@ -152,7 +152,7 @@ In this simple case you can simply take the call and run it with e.g.
 **curl**:
 
 ```bash
-    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:MYSECRETPWD \
             --data '{}' \
             -X GET https://tower1.example.com/api/v2/config/ | jq
 ```
@@ -205,7 +205,7 @@ The "Getting the record" is (sadly) a bit misleading… you need to add `?userna
 Check if the user exists:
 
 ```bash
-    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:MYSECRETPWD \
             -X GET https://tower1.example.com/api/v2/users/?username=amiller
 ```
 
@@ -213,7 +213,7 @@ Once you’ve found out that the user doesn’t exist by **count:0** in the
 reply, you can create it:
 
 ```bash
-    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:MYSECRETPWD \
             --data '{"username": "amiller", "password": "redhat", "email": "amiller@example.com"}' \
             -X POST https://tower1.example.com/api/v2/users/?username=amiller
 ```
@@ -226,7 +226,7 @@ Note the ID of the user and then delete it:
 {{% notice warning %}}
 Replace **&lt;ID&gt;**
 ```bash
-    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
+    [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:MYSECRETPWD \
             -X DELETE https://tower1.example.com/api/v2/users/<ID>/ #
 ```
 Don’t forget the slash at the end of the URL, favorite error\!

@@ -27,7 +27,7 @@ three nodes web UIs as:
 
   - user **admin**
 
-  - password **r3dh4t1\!**
+  - password **MYSECRETPWD**
 
 {{% notice warning %}}
 Replace **\<LABID>** with the session ID and **\<N>** with your student number!
