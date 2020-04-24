@@ -57,6 +57,9 @@ access to the following hosts:
 
 {{% notice tip %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
+We use `${LABID}` and `${N}` more as a place holder in this lab, but you can of
+course use the fact that those look like shell environment variables on the
+command line to make your life easier ;-).
 {{% /notice %}}
 
 {{% notice tip %}}
