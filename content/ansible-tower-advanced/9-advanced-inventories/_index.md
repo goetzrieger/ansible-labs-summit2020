@@ -226,7 +226,7 @@ As you know Ansible can collect facts from managed hosts to be used in Playbooks
 Fact caching is not enabled by default\!
 {{% /notice %}}
 
-Fact caching can be enabled for **Templates** and is not enabled by default. So first we have to enable it. Check **student\<N>-node1.\<LABID>.internal** and **student\<N>-node2.\<LABID>.internal** have no facts stored:
+Fact caching can be enabled for **Templates** and is not enabled by default. So first we have to enable it. Check **{{< param "internal_host1" >}}** and **{{< param "internal_host2" >}}** have no facts stored:
 
 - In **RESOURCES→Inventories** open the **Example Inventory** and click the **HOSTS** button.
 - Now inspect both hosts by opening the host details and clicking the **FACTS** button at the top.
@@ -247,9 +247,9 @@ Now enable fact caching for the **Remote CIS Compliance** template and run it, t
 
 After you run the templates go back to the host details like you did above and check the **FACTS** fields for
 
-  - **student\<N>-node1.\<LABID>.internal** and **student\<N>-node2.\<LABID>.internal** (from the **Example Inventory**)
+  - **{{< param "internal_host1" >}}** and **{{< param "internal_host2" >}}** (from the **Example Inventory**)
 
-  - **student\<N>-remote.\<LABID>.internal** (from the **Remote Inventory**).
+  - **{{< param "internal_hostremote" >}}** (from the **Remote Inventory**).
 
 The hosts facts should now be populated with a lot of facts.
 
@@ -305,9 +305,9 @@ It should return all hosts.
 
 And to make this a bit more fun:
 
-- SSH into one of your hosts (say **student\<N>-node2.\<LABID>.internal**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
+- SSH into one of your hosts (say **{{< param "internal_host2" >}}**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
 
-        [student1@ansible ~]$ ssh ec2-user@student<N>-node2.<LABID>.internal
+        [student1@ansible ~]$ ssh ec2-user@{{< param "internal_host2" >}}
         [ec2-user@node2 ~]$ sudo -i
         [root@node2 ~]# sudo setenforce 0
 

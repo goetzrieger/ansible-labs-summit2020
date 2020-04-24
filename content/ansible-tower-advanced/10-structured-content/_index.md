@@ -68,11 +68,11 @@ poor man's Git repo on the control host with an empty Git repository called
 
 Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-    [student@ansible ~]$ git clone git@student<N>-ansible.<LABID>.internal:projects/structured-content.git
-    [student@ansible ~]$ git config --global push.default simple
-    [student@ansible ~]$ git config --global user.name "Your Name"
-    [student@ansible ~]$ git config --global user.email you@example.com
-    [student@ansible ~]$ cd structured-content/
+    [{{< param "control_prompt" >}} ~]$ git clone git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
+    [{{< param "control_prompt" >}} ~]$ git config --global push.default simple
+    [{{< param "control_prompt" >}} ~]$ git config --global user.name "Your Name"
+    [{{< param "control_prompt" >}} ~]$ git config --global user.email you@example.com
+    [{{< param "control_prompt" >}} ~]$ cd structured-content/
 
 {{% notice tip %}}
 The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.
@@ -80,7 +80,7 @@ The repository is currently empty. The three config commands are just there to a
 
 you are now going to add some default directories and files:
 
-    [student@control structured-content]$ touch {staging,production}
+    [{{< param "control_prompt" >}} structured-content]$ touch {staging,production}
 
 This command creates two inventory files: in this case we have different
 stages with different hosts which we keep them in separate inventory
@@ -88,18 +88,18 @@ files. Note that those files are right now still empty and need to be
 filled with content to work properly.
 
 In the current setup we have two instances. Let’s assume that
-`student<N>-node1.<LABID>.internal` is part of the staging environment, and
-`student<N>-node2.<LABID>.internal` is part of the production environment. To reflect
+`{{< param "internal_host1" >}}` is part of the staging environment, and
+`{{< param "internal_host2" >}}` is part of the production environment. To reflect
 that in the inventory files, edit the two empty inventory files to look
 like this:
 
-    [student@ansible structured-content]$ cat staging
+    [{{< param "control_prompt" >}} structured-content]$ cat staging
     [staging]
-    student<N>-node1.<LABID>.internal
+    {{< param "internal_host1" >}}
 
-    [student@ansible structured-content]$ cat production
+    [{{< param "control_prompt" >}} structured-content]$ cat production
     [production]
-    student<N>-node2.<LABID>.internal
+    {{< param "internal_host2" >}}
 
 Next we add some directories:
 
@@ -114,7 +114,7 @@ Next we add some directories:
 
 <!-- end list -->
 
-    [student@ansible structured-content]$ mkdir -p {group_vars,host_vars,library,roles}
+    [{{< param "control_prompt" >}} structured-content]$ mkdir -p {group_vars,host_vars,library,roles}
 
 Now to the two roles we’ll use in this example. First we’ll create a
 structure where we’ll add content later. This can easily be achieved
@@ -136,7 +136,7 @@ Let’s add that code to our roles by editing the two task files:
 If you copy and paste text in VI under a comment (\#) character, Vi might (depending on settings) add comment signs to the start of each new line. Probably not what you want. Because the role files are being created with a comment line after the YAML start (---), make sure to delete these lines before pasting the content.
 {{% /notice %}}
 
-    [student@ansible structured-content]$ cat roles/apache/tasks/main.yml
+    [{{< param "control_prompt" >}} structured-content]$ cat roles/apache/tasks/main.yml
     ---
     # tasks file for apache
     - name: latest Apache version installed
@@ -164,7 +164,7 @@ If you copy and paste text in VI under a comment (\#) character, Vi might (depen
         enabled: true
         state: started
 
-    [student@ansible structured-content]$ cat roles/security/tasks/main.yml
+    [{{< param "control_prompt" >}} structured-content]$ cat roles/security/tasks/main.yml
     ---
     # tasks file for security
     - name: "HIGH | RHEL-07-010290 | PATCH | The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords."
@@ -191,7 +191,7 @@ We also need to create a playbook to call the roles from. This is often
 call `site.yml`, since it keeps the main code for the setup of our
 environment. Create the file:
 
-    [student@ansible structured-content]$ cat site.yml
+    [{{< param "control_prompt" >}} structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
       hosts: all
@@ -205,7 +205,7 @@ So we have prepared a basic structure for quite some content - call
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-    [student@ansible structured-content]$ tree
+    [{{< param "control_prompt" >}} structured-content]$ tree
     .
     ├── group_vars
     ├── host_vars
@@ -254,9 +254,9 @@ So we have prepared a basic structure for quite some content - call
 Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:
 
-    [student@ansible structured-content]$ git add production roles site.yml staging
-    [student@ansible structured-content]$ git commit -m "Adding inventories and apache security roles"
-    [student@ansible structured-content]$ git push
+    [{{< param "control_prompt" >}} structured-content]$ git add production roles site.yml staging
+    [{{< param "control_prompt" >}} structured-content]$ git commit -m "Adding inventories and apache security roles"
+    [{{< param "control_prompt" >}} structured-content]$ git push
 
 
 ## Launch it\!
@@ -267,12 +267,12 @@ The code can now be launched. We start at the command line. Call the
 playbook `site.yml` with the appropriate inventory and privilege
 escalation:
 
-    [student@ansible structured-content]$ ansible-playbook -i staging site.yml -b
+    [{{< param "ansible_prompt" >}} structured-content]$ ansible-playbook -i staging site.yml -b
 
 Watch how the changes are done to the target machines. Afterwards,
 execute the Playbook against the production stage:
 
-    [student@ansible structured-content]$ ansible-playbook -i production site.yml -b
+    [{{< param "ansible_prompt" >}} structured-content]$ ansible-playbook -i production site.yml -b
 
 Call e.g. `curl $(grep student staging)` or `curl $(grep student production)` to
 get the default page (we're obviously too lazy to remember the URL).
@@ -284,7 +284,7 @@ system in Tower you have to create credentials again, this time to access the Gi
 repository over SSH. This credential is user/key based, and we need the following
 **awx** command:
 
-    [root@ansible ~]# awx credential create --name="Git Credentials" \
+    [{{< param "awx_prompt" >}} ~]# awx credential create --name="Git Credentials" \
                         --organization "Default" --credential_type "Source Control" \
                         --inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
 
@@ -292,10 +292,10 @@ repository over SSH. This credential is user/key based, and we need the followin
 The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** as user **root** like shown below.
 
-    [root@ansible ~]# awx project create --name "Structured Content Repository" \
+    [{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
                         --scm_type git \
-                        --scm_url  git@student<N>-ansible.<LABID>.internal:projects/structured-content.git \
+                        --scm_url  git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential "Git Credentials"
@@ -357,12 +357,12 @@ the same time and associate the credentials.
 {{% notice tip %}}
 Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
-    [student@ansible ~]# awx job_template create --name "Structured Content Execution" \
+    [{{< param "control_prompt" >}} ~]# awx job_template create --name "Structured Content Execution" \
                         --job_type run --inventory "Structured Content Inventory" \
                         --project "Structured Content Repository" \
                         --playbook "site.yml" \
                         --become_enabled 1
-    [student@ansible ~]# awx -f human job_template associate --name "Structured Content Execution" \
+    [{{< param "control_prompt" >}} ~]# awx -f human job_template associate --name "Structured Content Execution" \
                         --credential "Example Credentials"
 {{% /notice %}}
 
@@ -417,7 +417,7 @@ there:
 {{% notice warning %}}
 Make sure you work as user **student<X>**
 ```bash
-    [student@ansible structured-content]$ cat roles/requirements.yml
+    [{{< param "control_prompt" >}} structured-content]$ cat roles/requirements.yml
     - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
       scm: git
       version: master
@@ -434,7 +434,7 @@ control.
 Next, we reference the role itself in our playbook. Change the
 **site.yml** Playbook to look like this:
 
-    [student@ansible structured-content]$ cat site.yml
+    [{{< param "control_prompt" >}} structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
       hosts: all
@@ -447,9 +447,9 @@ Next, we reference the role itself in our playbook. Change the
 Because Tower uses your Git repo, you’ve to add, commit and push the
 changes:
 
-    [student@ansible structured-content]$ git add site.yml roles/
-    [student@ansible structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
-    [student@ansible structured-content]$ git push
+    [{{< param "control_prompt" >}} structured-content]$ git add site.yml roles/
+    [{{< param "control_prompt" >}} structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
+    [{{< param "control_prompt" >}} structured-content]$ git push
 
 ## Launch in Tower
 

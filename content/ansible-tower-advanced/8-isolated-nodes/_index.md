@@ -29,12 +29,12 @@ First have a look at the Tower installer inventory file that was used for lab se
     [student@ansible tower_install]$ cat inventory
 
     [tower]
-    ansible ansible_host=student<N>-ansible.<LABID>.internal
-    towernode2 ansible_host=student<N>-towernode2.<LABID>.internal
-    towernode3 ansible_host=student<N>-towernode3.<LABID>.internal
+    ansible ansible_host={{< param "internal_tower1" >}}
+    towernode2 ansible_host={{< param "internal_tower2" >}}
+    towernode3 ansible_host={{< param "internal_tower3" >}}
 
     [database]
-    towerdb ansible_host=student<N>-towerdb.<LABID>.internal
+    towerdb ansible_host={{< param "internal_towerdb" >}}
 
     [...]
 
@@ -42,7 +42,7 @@ First have a look at the Tower installer inventory file that was used for lab se
 The inventory has been adapted for readability by leaving out connection variables.
 {{% /notice %}}
 
-You can see we have the tower base group and one for the database node. For the isolated node we will define a new **isolated_group_** named **dmz** with one entirely new node, called **student\<N>-isonode.\<LABID>.internal** which we’ll use to manage other hosts in the remote location.
+You can see we have the tower base group and one for the database node. For the isolated node we will define a new **isolated_group_** named **dmz** with one entirely new node, called **{{< param "internal_toweriso" >}}** which we’ll use to manage other hosts in the remote location.
 
 {{% notice warning %}}
 The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student\<N> user. To be able to edit the inventory file, you have to change the file permissions.
@@ -56,18 +56,18 @@ To edit the inventory file in VSCode editor change the permissions (don't do 777
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
 
     [tower]
-    ansible ansible_host=student<N>-ansible.<LABID>.internal
-    towernode2 ansible_host=student<N>-towernode2.<LABID>.internal
-    towernode3 ansible_host=student<N>-towernode3.<LABID>.internal
+    ansible ansible_host={{< param "internal_tower1" >}}
+    towernode2 ansible_host={{< param "internal_tower2" >}}
+    towernode3 ansible_host={{< param "internal_tower3" >}}
 
     [isolated_group_dmz]
-    isonode ansible_host=student<N>-isonode.<LABID>.internal ansible_user="student1" ansible_password='MYSECRETPWD' ansible_become=true
+    isonode ansible_host={{< param "internal_toweriso" >}} ansible_user="student1" ansible_password='MYSECRETPWD' ansible_become=true
 
     [isolated_group_dmz:vars]
     controller=tower
 
     [database]
-    towerdb ansible_host=student<N>-towerdb.<LABID>.internal
+    towerdb ansible_host={{< param "internal_towerdb" >}}
 
     [...]
 
@@ -123,7 +123,7 @@ Now you can add managed hosts,the **HOSTS** button is active now. Click it to ac
 
   - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
 
-  - **NAME:** `student<N>-remote.<LABID>.internal`
+  - **NAME:** `{{< param "internal_hostremote" >}}`
 
   - Click **SAVE**
 
@@ -160,7 +160,7 @@ Next, launch the template:
 ## Verify Results
 
 Last but not least, let’s check that the job was indeed executed by the
-isolated node `student<N>-isonode.<LABID>.internal`:
+isolated node `{{< param "internal_toweriso" >}}`:
 
   - Go to **Instance Groups** in the **ADMINISTRATION** section of the
     web UI
