@@ -55,7 +55,7 @@ Now you can add a user to the Team:
 
 - Switch to the Users view of the `Web Content` Team by clicking the **USERS** button.
 
-- Click the green plus button, tick the box next to the `wweb` user and click **SAVE**.
+- Click the green plus button, check the box next to the `wweb` user and click **SAVE**.
 
 Now click the **PERMISSIONS** button in the **TEAMS** view, you will be greeted with "No Permissions Have Been Granted".
 
@@ -73,7 +73,7 @@ Add the permission to use the template:
 
     - Select the resource type **JOB TEMPLATES**
 
-    - Choose the `Create index.html` Template by ticking the box next to it.
+    - Choose the `Create index.html` Template by checking the box next to it.
 
 - The second part of the window opens, here you assign roles to the selected resource.
 

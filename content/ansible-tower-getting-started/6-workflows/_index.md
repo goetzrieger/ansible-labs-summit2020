@@ -180,7 +180,7 @@ The type allows for more complex workflows. You could lay out different executio
   - Click **SAVE** in the **Workflow Template** view
 
 {{% notice tip %}}
-The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the documentation.
+The **Workflow Visualizer** has options for setting up more advanced workflows, please refer to the [documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/workflows.html).
 {{% /notice %}}
 
 ## And Action
