@@ -37,8 +37,8 @@ As mentioned the Github repository contains three Playbooks to enforce different
     [student@ansible ~]$ awx -f human job_template associate --name "Compliance STIG packages" \
                           --credential "Example Credentials"
 
-    [student@ansible ~]$ awx -f human job_template associate --name "Compliance STIG config" \
-                          --credential "Example Credentials"
+    [student@ansible ~]$ awx -f human job_template create --name "Compliance STIG config" \
+                          --credential "Example Credentials" \
                           --job_type run \
                           --inventory "Example Inventory" \
                           --project "Apache" \
@@ -72,7 +72,7 @@ To enable parallel execution of the tasks in these job templates, we will create
 
   - Now the **WORKFLOW VISUALIZER** button becomes active and the     graphical workflow designer opens.
 
-  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **JOBS**, **PROJECT SYNC** and **INVENTORY SYNC**.
+  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **TEMPLATE**, **PROJECT SYNC**, **INVENTORY SYNC** or **APPROVAL**.
 
   - In this lab we’ll link multiple jobs to the **START**, so select the **Compliance STIG packages** job template and click **SELECT**. The node gets annotated with the name of the job.
 
@@ -100,12 +100,12 @@ Your workflow is ready to go, launch it.
 
 Go to the **Instance Groups** view and find out how the jobs where distributed over the instances:
 
-  - Open the **INSTANCES** view of the tower instance group.
+  - Open the **INSTANCES** view of the **tower** instance group.
 
   - Look at the **TOTAL JOBS** view of the three instances
 
   - Because the Job Templates called in the workflow didn’t specify an
-    instance group, they where distributed evenly over the instances.
+    instance group, they where distributed (more or less) evenly over the instances.
 
 Now deactivate instance **{{< param "internal_tower1" >}}** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
@@ -166,7 +166,7 @@ But what’s going to happen if you disable this instance?
   - Verify\!
 
 {{% notice tip %}}
-**Result:** The workflow and the associated jobs will stay in pending state because there are no instance available in the **dev** instance group.
+**Result:** The workflow is running but the associated jobs will stay in pending state because there are no instance available in the **dev** instance group, and the workflow runs "forever".
 {{% /notice %}}
 
 What’s going to happen if you enable the instance again?

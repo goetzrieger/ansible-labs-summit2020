@@ -90,9 +90,11 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-    [student@ansible ~]$ awx setting list | grep SESSION
-    [student@ansible ~]$ awx setting modify SESSION_COOKIE_AGE 7200
-    [student@ansible ~]$ awx setting list | grep SESSION
+```
+[student@ansible ~]$ awx setting list | grep SESSION
+[student@ansible ~]$ awx setting modify SESSION_COOKIE_AGE 7200
+[student@ansible ~]$ awx setting list | grep SESSION
+```
 </p>
 </details>
 
