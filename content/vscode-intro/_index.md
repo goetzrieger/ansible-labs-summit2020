@@ -64,3 +64,7 @@ If you don't have Chrome installed, it is available [here](https://google.com/ch
 ### Copy & Paste and general performance
 
 Please also keep in mind that the lab is running in the cloud. Sometimes performance is degraded due to high latency. This became particularly challenging when you try to copy & paste something into the editor window. After pressing Ctrl-V to paste, give a few seconds to respond.
+
+[allow paste from clipboard in Chrome](../../images/clipboard-chrome.png)
+
+In Chrome, you might have to allow paste from clipboard, when you use it the first time.
