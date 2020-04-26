@@ -58,17 +58,22 @@ Be careful to *not* have separate code repositories for each environment. It wou
 ## Example repository
 
 So, let’s get started with an example. The content and repo-structure in
-this lab is aligned to the [Ansible best
+this lab is mostly aligned to the [Ansible best
 practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization)
-and is explained in more detail there.
+and is explained in more detail there (we've had to simplify a bit for the lab).
 
-Since we want to store all content in a repository, we have created for you a
-poor man's Git repo on the control host with an empty Git repository called
-`structured-content`.
+Since we want to store all content in a repository, we have to create a simplistic Git server on our control host.
+In a more typical environment, you would work with GitLab, Gitea, or any other commercial Git server.
+
+```
+[{{< param "control_prompt" >}} ~]$ wget https://raw.githubusercontent.com/ansible-labs-summit-crew/structured-content/master/simple_git.yml
+[{{< param "control_prompt" >}} ~]$ ansible-playbook simple_git.yml
+```
 
 Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-    [{{< param "control_prompt" >}} ~]$ git clone git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
+    [{{< param "control_prompt" >}} ~]$ git clone {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
+    # Message "warning: You appear to have cloned an empty repository." is OK and can be ignored
     [{{< param "control_prompt" >}} ~]$ git config --global push.default simple
     [{{< param "control_prompt" >}} ~]$ git config --global user.name "Your Name"
     [{{< param "control_prompt" >}} ~]$ git config --global user.email you@example.com
@@ -295,7 +300,7 @@ web UI or use **awx** as user **root** like shown below.
     [{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
                         --scm_type git \
-                        --scm_url  git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
+                        --scm_url  {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential "Git Credentials"

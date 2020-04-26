@@ -70,6 +70,7 @@ home = [ "HTML", "RSS", "JSON"]
   ansible_prompt = "student@ansible"
   pre_awx_prompt = "student@ansible"
   awx_prompt = "root@ansible"
+  git_user = "ec2-user"
   content_git_uri = "projects/structured-content.git"
   internal_host1 = "student<N>-node1.<LABID>.internal"
   internal_host2 = "student<N>-node2.<LABID>.internal"
