@@ -17,8 +17,9 @@ Remember how you used the **awx** help to get down to the needed command.
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-   [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
-
+```
+[student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
+```
 {{% notice note %}}
 You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** ganization.
 {{% /notice %}}
@@ -32,8 +33,10 @@ Now that we have the empty inventory created, add your two managed hosts using t
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-   [student@ansible ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" inventory "Example Inventory"
-   [student@ansible ~]$ awx -f human host create --name "{{< param "internal_host2" >}}" inventory "Example Inventory"
+```
+[student@ansible ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" --inventory "Example Inventory"
+[student@ansible ~]$ awx -f human host create --name "{{< param "internal_host2" >}}" --inventory "Example Inventory"
+```
 </p>
 </details>
 
@@ -56,19 +59,15 @@ You have run these commands above already, true. But we want to show how to crea
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
-    [student@ansible ~]$ chmod u+x /home/student1/setup-tower.sh
-    [student@ansible ~]$ /home/student1/setup-tower.sh
-
-{{% notice tip %}}
-You will see that **awx** is idempotent and recognises the objects as duplicate, so it’s fine that you did run the **awx** commands already.
-{{% /notice %}}
+    [student@ansible ~]$ chmod u+x /home/student${N}/setup-tower.sh
+    [student@ansible ~]$ /home/student${N}/setup-tower.sh
 
 From now on we’ll explain the needed comands for each of the next steps and add them to the script one-by-one.
 
 ## Create Machine Credentials
 
 {{% notice tip %}}
-SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user **ec2-user** from **{{< param "internal_control" >}}**.
+SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login as user **student${N}** from **{{< param "internal_control" >}}** using the user **ec2-user**.
 {{% /notice %}}
 
 Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to **`setup-tower.sh`**, but don’t run the script yet:

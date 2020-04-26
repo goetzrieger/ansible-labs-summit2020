@@ -61,7 +61,7 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
     towernode3 ansible_host={{< param "internal_tower3" >}}
 
     [isolated_group_dmz]
-    isonode ansible_host={{< param "internal_toweriso" >}} ansible_user="student1" ansible_password='MYSECRETPWD' ansible_become=true
+    isonode ansible_host={{< param "internal_toweriso" >}} ansible_user="student${N}" ansible_password='MYSECRETPWD' ansible_become=true
 
     [isolated_group_dmz:vars]
     controller=tower
@@ -85,11 +85,13 @@ After editing the inventory, start the installer in the VSCode terminal to make 
     [root@ansible ~]# cd /tmp/tower_install/
     [root@ansible tower_install]# ./setup.sh
 
+Sit down and watch the tasks flying by...
+
 ## Verify Isolated Nodes
 
 After the installer has finished isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also apply to isolated nodes. For example, using `awx`:
 
-    [student1@ansible ~]$ awx -f human instance_group list
+    [student@ansible ~]$ awx -f human instance_group list
     id name
     == =====
     1  tower

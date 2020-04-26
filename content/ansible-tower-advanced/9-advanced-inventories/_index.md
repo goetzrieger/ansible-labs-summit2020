@@ -25,7 +25,7 @@ First you need a source. In **real life** this would be your **cloud provider, y
 
 Use curl to query your external inventory source:
 
-    [student1@ansible ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
+    [student@ansible ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
     {
         "dyngroup":{
             "hosts":[
@@ -78,11 +78,11 @@ But before we integrate the custom inventory script into our Tower cluster, itâ€
 - Create the file `dyninv.sh` with the content shown above (use VI or the VSCode editor)
 - Make the script executable:
 
-        [student1@ansible ~]$ chmod +x dyninv.sh
+        [student@ansible ~]$ chmod +x dyninv.sh
 
 - Execute it:
 
-        [student1@ansible ~]$ ./dyninv.sh --list
+        [student@ansible ~]$ ./dyninv.sh --list
         {
             "dyngroup":{
                 "hosts":[
@@ -107,7 +107,7 @@ But before we integrate the custom inventory script into our Tower cluster, itâ€
 
 The script should output the JSON-formatted output shown above.
 
-As simple as it gets, right? More information can be found [here](https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html)
+As simple as it gets, right? More information can be found [how to develop dynamic inventories](https://docs.ansible.com/ansible/latest/dev_guide/developing_inventory.html).
 
 So now you have a source of (slightly static) dynamic inventory data (talk about oxymoronâ€¦) and a script to fetch and pass it to Tower. Now you need to get this into Tower.
 
@@ -122,7 +122,7 @@ The first step is to add the inventory script to Tower:
 
   - Fill in the needed data:
 
-      - **NAME:** Cloud Inventory
+      - **NAME:** Cloud Inventory Script
 
       - Copy the Bash script from above and paste it into the **CUSTOM
         SCRIPT** field
@@ -148,10 +148,9 @@ Finally the new inventory script can be used in an actual **Inventory**.
 
   - From the **SOURCE** drop-down choose **Custom Script**
 
-  - Now the dialog for the source opens, your custom script **Cloud Inventory** should already be selected in the **CUSTOM INVENTORY SCRIPT**.
+  - Now the dialog for the source opens, your custom script **Cloud Inventory Script** should already be selected in the **CUSTOM INVENTORY SCRIPT**.
 
-  - Under **UPDATE OPTIONS** check **Overwrite** and **Overwrite
-    Variables**
+  - Under **UPDATE OPTIONS** check **Overwrite** and **Overwrite Variables**
 
   - Click **SAVE**
 
@@ -164,7 +163,7 @@ To sync your new source into the inventory:
   - To the right click the circular arrow to start the sync process for
     your custom source.
 
-  - After the sync has finished click the **HOSTS** button.
+  - After the sync has finished click the **HOSTS** button (the top one).
 
 You should now see a list of hosts according to what you got from the curl command above. Click the hosts to make sure the host variables are there, too.
 
@@ -307,7 +306,7 @@ And to make this a bit more fun:
 
 - SSH into one of your hosts (say **{{< param "internal_host2" >}}**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
 
-        [student1@ansible ~]$ ssh ec2-user@{{< param "internal_host2" >}}
+        [student@ansible ~]$ ssh ec2-user@{{< param "internal_host2" >}}
         [ec2-user@node2 ~]$ sudo -i
         [root@node2 ~]# sudo setenforce 0
 
