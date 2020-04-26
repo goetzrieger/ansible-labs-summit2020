@@ -59,15 +59,15 @@ You have run these commands above already, true. But we want to show how to crea
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
-    [student@ansible ~]$ chmod u+x /home/student${N}/setup-tower.sh
-    [student@ansible ~]$ /home/student${N}/setup-tower.sh
+    [student@ansible ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
+    [student@ansible ~]$ /home/student{{< param "student" >}}/setup-tower.sh
 
 From now on we’ll explain the needed comands for each of the next steps and add them to the script one-by-one.
 
 ## Create Machine Credentials
 
 {{% notice tip %}}
-SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login as user **student${N}** from **{{< param "internal_control" >}}** using the user **ec2-user**.
+SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login as user **student{{< param "student" >}}** from **{{< param "internal_control" >}}** using the user **ec2-user**.
 {{% /notice %}}
 
 Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to **`setup-tower.sh`**, but don’t run the script yet:

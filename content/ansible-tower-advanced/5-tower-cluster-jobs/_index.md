@@ -34,10 +34,10 @@ But it would still be nice to see where a job run (not the other way round) and 
 Bring up the terminal in your VSCode session and run:
 
 {{% notice warning %}}
-Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>** with your values, you should be used to this by now!
+Replace **\<ID>** with the job ID you want to query and **{{< param "student" >}}** and **{{< param "labid" >}}** with your values, you should be used to this by now!
 {{% /notice %}}
 
-    [student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
+    [student@ansible ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
         "execution_node": "{{< param "internal_tower1" >}}",
 
@@ -57,7 +57,7 @@ Note you used the internal hostname above, when using your browser, you have to 
 
   - Now get the job details via the API interface:
 
-      - Login to the API with user `admin` and password `MYSECRETPWD`: `https://{{< param "external_tower" >}}/api/`
+      - Login to the API with user `admin` and password `{{< param "secret_password" >}}`: `https://{{< param "external_tower" >}}/api/`
       - Open the URL `https://{{< param "external_tower" >}}/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
       - Search the page for the string you are interested in, e.g. `execution_node`
 

@@ -27,10 +27,10 @@ three nodes web UIs as:
 
   - user **admin**
 
-  - password **MYSECRETPWD**
+  - password **{{< param "secret_password" >}}**
 
 {{% notice warning %}}
-Replace **\<LABID>** with the session ID and **\<N>** with your student number!
+Replace **{{< param "labid" >}}** with the session ID and **{{< param "student" >}}** with your student number!
 {{% /notice %}}
 
 **`{{< param "external_tower1" >}}`**

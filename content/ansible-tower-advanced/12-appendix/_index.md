@@ -70,19 +70,19 @@ Keep in mind when working with clustered Ansible Tower that the database will no
     [all:vars]
     ansible_become=true
 
-    admin_password='MYSECRETPWD'
+    admin_password='{{< param "secret_password" >}}'
 
     pg_host='towerdb.example.com'
     pg_port='5432'
 
     pg_database='tower'
     pg_username='tower'
-    pg_password='MYSECRETPWD'
+    pg_password='{{< param "secret_password" >}}'
 
     rabbitmq_port=5672
     rabbitmq_vhost=tower
     rabbitmq_username=tower
-    rabbitmq_password='MYSECRETPWD'
+    rabbitmq_password='{{< param "secret_password" >}}'
     rabbitmq_cookie=rabbitmqcookie
 
 {{% notice warning %}}

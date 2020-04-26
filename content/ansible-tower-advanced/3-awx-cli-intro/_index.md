@@ -31,7 +31,7 @@ Replace student number and labid!
 
     [student@ansible ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
     [student@ansible ~]$ export TOWER_USERNAME=admin
-    [student@ansible ~]$ export TOWER_PASSWORD='MYSECRETPWD'
+    [student@ansible ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
     [student@ansible ~]$ export TOWER_VERIFY_SSL=false
 
 Then use **awx** to login and print out the access token:

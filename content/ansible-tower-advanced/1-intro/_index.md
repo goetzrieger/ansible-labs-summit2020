@@ -56,10 +56,7 @@ access to the following hosts:
 | Managed Remote Host 1        |                                    | {{< param "internal_hostremote" >}} |
 
 {{% notice tip %}}
-The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
-We use `${LABID}` and `${N}` more as a place holder in this lab, but you can of
-course use the fact that those look like shell environment variables on the
-command line to make your life easier ;-).
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name. {{< param "tip_variable_placeholder" >}}
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -67,7 +64,7 @@ Ansible Tower has already been installed and licensed for you, the web UI will b
 {{% /notice %}}
 
 {{% notice info %}}
-Wherever you see the placeholder **MYSECRETPWD** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
+Wherever you see the placeholder **{{< param "secret_password" >}}** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
 {{% /notice %}}
 
 As you can see the lab environment is pretty extensive. You basically

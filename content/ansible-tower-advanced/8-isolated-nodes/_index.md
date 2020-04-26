@@ -42,13 +42,13 @@ First have a look at the Tower installer inventory file that was used for lab se
 The inventory has been adapted for readability by leaving out connection variables.
 {{% /notice %}}
 
-You can see we have the tower base group and one for the database node. For the isolated node we will define a new **isolated_group_** named **dmz** with one entirely new node, called **{{< param "internal_toweriso" >}}** which we’ll use to manage other hosts in the remote location.
+You can see we have the tower base group and one for the database node. For the isolated node we will define a new **isolated\_group\_** named **dmz** with one entirely new node, called **{{< param "internal_toweriso" >}}** which we’ll use to manage other hosts in the remote location.
 
 {{% notice warning %}}
-The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student\<N> user. To be able to edit the inventory file, you have to change the file permissions.
+The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student{{< param "student" >}} user. To be able to edit the inventory file, you have to change the file permissions.
 {{% /notice %}}
 
-To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;)):
+To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;-)):
 
     [student@ansible ~]$ sudo -i
     [root@ansible ~]# chmod 777 /tmp/tower_install/inventory
@@ -61,7 +61,7 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
     towernode3 ansible_host={{< param "internal_tower3" >}}
 
     [isolated_group_dmz]
-    isonode ansible_host={{< param "internal_toweriso" >}} ansible_user="student${N}" ansible_password='MYSECRETPWD' ansible_become=true
+    isonode ansible_host={{< param "internal_toweriso" >}} ansible_user="student{{< param "student" >}}" ansible_password='{{< param "secret_password" >}}' ansible_become=true
 
     [isolated_group_dmz:vars]
     controller=tower
