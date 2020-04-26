@@ -60,14 +60,18 @@ There is a [best practice](http://docs.ansible.com/ansible/playbooks_best_practi
 
 Instead, we are going to create a very simple directory structure for our playbook, and add just a couple of files to it.
 
-On your control host **ansible**, create a directory called `ansible-files` in your home directory and change into it:
+In your browser, bring up your **code-server** terminal (you opened one in the first section) and create a directory called `ansible-files` in your home directory and change into it:
 
 ```bash
 [student<N>@ansible ~]$ mkdir ansible-files
 [student<N>@ansible ~]$ cd ansible-files/
 ```
 
-Add a file called `apache.yml` with the following content.
+Now use **code-server** to add a file called `apache.yml` with the following content.
+
+{{% notice tip %}}
+If you are unsure how to use **code-server** (basically like VSCode), have a quick look at the [Visual Studio Code Server introduction](../../vscode-intro/)
+{{% /notice %}}
 
 ```yaml
 ---
@@ -88,7 +92,7 @@ This shows one of Ansible’s strengths: The Playbook syntax is easy to read and
 You obviously need to use privilege escalation to install a package or run any other task that requires root permissions. This is done in the Playbook by `become: yes`.
 {{% /notice %}}
 
-Now that we've defined the play, let's add a task to get something done. We will add a task in which yum will ensure that the Apache package is installed in the latest version. Modify the file so that it looks like the following listing:
+Now that we've defined the play, let's add a task to get something done. We will add a task in which yum will ensure that the Apache package is installed in the latest version. Modify the file so that it looks like the following listing using the **code-server** editor:
 
 ```yaml
 ---
@@ -125,7 +129,7 @@ Save your playbook.
 
 ## Running the Playbook
 
-Playbooks are executed using the `ansible-playbook` command on the control node. Before you run a new Playbook it’s a good idea to check for syntax errors:
+Playbooks are executed using the `ansible-playbook` command on the control node. Before you run a new Playbook it’s a good idea to check for syntax errors. Head over to the **code-server** terminal and run:
 
 ```bash
 [student<N>@ansible ansible-files]$ ansible-playbook --syntax-check apache.yml
@@ -165,7 +169,7 @@ Run the Playbook a second time, and compare the output: The output changed from 
 
 The next part of the Playbook makes sure the Apache webserver is enabled and started on `node1`.
 
-On the control host, as your student user, edit the file `~/ansible-files/apache.yml` to add a second task using the `service` module. The Playbook should now look like this:
+On the control host, as your student user, edit the file `~/ansible-files/apache.yml` again to add a second task using the `service` module. The Playbook should now look like this:
 
 ```yaml
 ---
