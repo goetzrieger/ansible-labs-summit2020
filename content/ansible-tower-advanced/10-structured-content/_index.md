@@ -58,17 +58,22 @@ Be careful to *not* have separate code repositories for each environment. It wou
 ## Example repository
 
 So, let’s get started with an example. The content and repo-structure in
-this lab is aligned to the [Ansible best
+this lab is mostly aligned to the [Ansible best
 practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization)
-and is explained in more detail there.
+and is explained in more detail there (we've had to simplify a bit for the lab).
 
-Since we want to store all content in a repository, we have created for you a
-poor man's Git repo on the control host with an empty Git repository called
-`structured-content`.
+Since we want to store all content in a repository, we have to create a simplistic Git server on our control host.
+In a more typical environment, you would work with GitLab, Gitea, or any other commercial Git server.
+
+```
+[{{< param "control_prompt" >}} ~]$ wget https://raw.githubusercontent.com/ansible-labs-summit-crew/structured-content/master/simple_git.yml
+[{{< param "control_prompt" >}} ~]$ ansible-playbook simple_git.yml
+```
 
 Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
-    [{{< param "control_prompt" >}} ~]$ git clone git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
+    [{{< param "control_prompt" >}} ~]$ git clone {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
+    # Message "warning: You appear to have cloned an empty repository." is OK and can be ignored
     [{{< param "control_prompt" >}} ~]$ git config --global push.default simple
     [{{< param "control_prompt" >}} ~]$ git config --global user.name "Your Name"
     [{{< param "control_prompt" >}} ~]$ git config --global user.email you@example.com
@@ -205,49 +210,56 @@ So we have prepared a basic structure for quite some content - call
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-    [{{< param "control_prompt" >}} structured-content]$ tree
-    .
-    ├── group_vars
-    ├── host_vars
-    ├── library
-    ├── production
-    ├── roles
-    │   ├── apache
-    │   │   ├── defaults
-    │   │   │   └── main.yml
-    │   │   ├── files
-    │   │   ├── handlers
-    │   │   │   └── main.yml
-    │   │   ├── meta
-    │   │   │   └── main.yml
-    │   │   ├── README.md
-    │   │   ├── tasks
-    │   │   │   └── main.yml
-    │   │   ├── templates
-    │   │   ├── tests
-    │   │   │   ├── inventory
-    │   │   │   └── test.yml
-    │   │   └── vars
-    │   │       └── main.yml
-    │   └── security
-    │       ├── defaults
-    │       │   └── main.yml
-    │       ├── files
-    │       ├── handlers
-    │       │   └── main.yml
-    │       ├── meta
-    │       │   └── main.yml
-    │       ├── README.md
-    │       ├── tasks
-    │       │   └── main.yml
-    │       ├── templates
-    │       ├── tests
-    │       │   ├── inventory
-    │       │   └── test.yml
-    │       └── vars
-    │           └── main.yml
-    ├── site.yml
-    └── staging
+```
+[{{< param "control_prompt" >}} structured-content]$ tree
+.
+├── group_vars
+├── host_vars
+├── library
+├── production
+├── roles
+│   ├── apache
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── README.md
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   ├── tests
+│   │   │   ├── inventory
+│   │   │   └── test.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── security
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       ├── handlers
+│       │   └── main.yml
+│       ├── meta
+│       │   └── main.yml
+│       ├── README.md
+│       ├── tasks
+│       │   └── main.yml
+│       ├── templates
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       └── vars
+│           └── main.yml
+├── site.yml
+└── staging
+```
+
+{{% notice tip %}}
+In real life, you should remove the unnecessary roles sub-directories to keep the
+structure easier to understand and maintain.
+{{% /notice %}}
 </p>
 </details>
 
@@ -270,32 +282,32 @@ escalation:
     [{{< param "ansible_prompt" >}} structured-content]$ ansible-playbook -i staging site.yml -b
 
 Watch how the changes are done to the target machines. Afterwards,
-execute the Playbook against the production stage:
+we could similarly execute the playbook against the production stage, but we want
+to keep something for Tower to do, so we just check it:
 
-    [{{< param "ansible_prompt" >}} structured-content]$ ansible-playbook -i production site.yml -b
+    [{{< param "ansible_prompt" >}} structured-content]$ ansible-playbook -i production site.yml -b --list-hosts --list-tasks
 
-Call e.g. `curl $(grep student staging)` or `curl $(grep student production)` to
-get the default page (we're obviously too lazy to remember the URL).
+Call e.g. `curl {{< param "internal_host1" >}}` to get the default page.
 
 ### From Tower
 
 To configure and use this repository as a **Source Control Management (SCM)**
 system in Tower you have to create credentials again, this time to access the Git
 repository over SSH. This credential is user/key based, and we need the following
-**awx** command:
+**awx** command (assuming the `TOWER_` environment variables are still defined):
 
     [{{< param "awx_prompt" >}} ~]# awx credential create --name="Git Credentials" \
                         --organization "Default" --credential_type "Source Control" \
-                        --inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
+                        --inputs="{\"username\":\"{{< param "git_user" >}}\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
 
 
 The new repository needs to be added as project. Feel free to use the
-web UI or use **awx** as user **root** like shown below.
+web UI or use **awx** like shown below.
 
     [{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
                         --scm_type git \
-                        --scm_url  git@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
+                        --scm_url  {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential "Git Credentials"
@@ -308,7 +320,7 @@ files provided in a SCM repository as an inventory source. This way we
 can use the inventory files we keep in Git.
 
 In your Tower web UI, open the **RESOURCES→Inventories** view. Then click
-the ![plus(../../images/green_plus.png?classes=inline?classes=inline) button and choose to create a new
+the ![plus](../../images/green_plus.png?classes=inline) button and choose to create a new
 **Inventory**. In the next view:
 
   - **NAME:** Structured Content Inventory
@@ -367,7 +379,7 @@ Please note that in a real world use case you might want to have different templ
 {{% /notice %}}
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the
-playbook and watch the results.
+job template **Structured Content Execution** and watch the results.
 
 ## Adding External Roles
 
@@ -417,10 +429,10 @@ there:
 {{% notice warning %}}
 Make sure you work as user **student<X>**
 ```bash
-    [{{< param "control_prompt" >}} structured-content]$ cat roles/requirements.yml
-    - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
-      scm: git
-      version: master
+[{{< param "control_prompt" >}} structured-content]$ cat roles/requirements.yml
+- src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
+  scm: git
+  version: master
 ```
 {{% /notice %}}
 
@@ -462,8 +474,8 @@ Content Execution** job template. As you will see in the job output, the
 external role is called just the way the other roles are called:
 
     TASK [shared-apache-role : deploy content] *************************************
-    changed: [host2.example.com]
-    changed: [host1.example.com]
+    changed: [{{< param "internal_host2" >}}]
+    changed: [{{< param "internal_host1" >}}]
 
 Validate again with `curl` the result and you are done\!
 
