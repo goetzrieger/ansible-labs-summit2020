@@ -30,8 +30,12 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Managed Host 2               | node2          |
 | Managed Host 2               | node3          |
 
+{{% notice warning %}}
+The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Make sure to have the **Your Red Hat Summit Lab Credentials** email ready. Your student number, the lab ID and a link to the lab page with the access credentials (**Lab Link**) are in there!
+{{% /notice %}}
+
 {{% notice tip %}}
-The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You only need to access your Tower node from the Internet.
+On the lab landing page you'll find the URLs you need to access complete with student number and lab ID already filled in.
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -44,7 +48,11 @@ Some hints to get you started:
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.events.opentlc.com**
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the Tower node and can be accessed through the URL
+
+```
+https://student<N>-code.<LABID>.events.opentlc.com
+```
 
 {{% notice tip %}}
 Commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
@@ -58,7 +66,7 @@ The command line can wrap on the HTML page from time to time. Therefore the outp
 
 Your main points of contact with the lab is the Ansible Tower web UI and **code-server**, providing a VSCode-experience in your browser.
 
-Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
+Now open code-server using the link from the lab landing page or this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
      	https://student<N>-code.<LABID>.events.opentlc.com
@@ -66,7 +74,7 @@ Now open code-server using this link in your browser by replacing **\<N\>** by y
 
 ![code-server login](../../images/vscode-pwd.png)
 
-Use the provided password to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
+Use the password **provided on the lab landing page** to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
@@ -76,7 +84,7 @@ Congrats, you now have a shell terminal on your Ansible Tower. From here you run
 
 ## Dashboard
 
-Let's have a first look at Tower: Point your browser to the URL you were given, similar to `https://student<N>.<LABID>.events.opentlc.com` (replace `<N>` with your student number and `<LABID>` with the ID of your lab) and log in as `admin`. The password will be provided by the instructor.
+Let's have a first look at Tower: Point your browser to the URL you were given on the lab landing page, similar to `https://student<N>.<LABID>.events.opentlc.com` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
 
 The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 

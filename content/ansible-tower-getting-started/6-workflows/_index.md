@@ -57,6 +57,8 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 
   - The **SCM BRANCH/TAG/COMMIT** is **webops**
 
+  - Do not allow branch overrides
+
 - Create the project for the application developers:
 
   - It should be named **Webdev Git Repo**
@@ -64,6 +66,8 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
   - The URL to access the repo is **https://github.com/ansible/workshop-examples.git**
 
   - The **SCM BRANCH/TAG/COMMIT** is **webdev**
+
+  - Do not allow branch overrides
 
 <details><summary>**>>Click here for Solution<<**</summary>
 <p>
@@ -185,15 +189,15 @@ The **Workflow Visualizer** has options for setting up more advanced workflows, 
 
 ## And Action
 
-Your workflow is ready to go, launch it.
+Your **Deploy Webapplication** workflow is ready to go, launch it.
 
   - Click the blue **LAUNCH** button directly or go to the the **Templates** view and launch the **Deploy Webapplication** workflow by clicking the rocket icon.
 
 ![jobs view of workflow](../../images/job_workflow.png)
 
-Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual playbooks behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, just hit your browsers back button.
+Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no Playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual Jobs behind that, click **DETAILS** in each step. If you want to get back from a details view to the corresponding workflow, just hit your browsers back button.
 
-After the job was finished, check if everything worked fine. In your code-server terminal, run:
+After the job has finished, check if everything worked fine. In your code-server terminal, run:
 
 ```bash
 $ curl http://node3/nodejs

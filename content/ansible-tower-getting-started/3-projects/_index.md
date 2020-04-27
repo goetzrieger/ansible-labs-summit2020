@@ -5,16 +5,16 @@ weight = 3
 
 A Tower **Project** is a logical collection of Ansible Playbooks. You can manage your playbooks by placing them into a source code management (SCM) system supported by Tower, including Git, Subversion, and Mercurial.
 
-You should definitely keep your Playbooks under version control. In this lab we’ll use Playbooks kept in a Git repository.
+You should definitely keep your Playbooks under version control. In this lab we’ll use Playbooks that are provided in a Github repository.
 
 ## Setup Git Repository
 
-For this demonstration we will use playbooks stored in this Git repository:
+For this lab we will use playbooks stored in this Git repository:
 
 `https://github.com/ansible/workshop-examples`
 
 
-A Playbook to install the Apache webserver has already been commited to the directory **rhel/apache**, `apache_install.yml`:
+A Playbook to install the Apache webserver has already been commited to the directory **rhel/apache**, `apache_install.yml`, here for reference:
 
 ```yaml
 ---
@@ -67,9 +67,7 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
   - **SCM TYPE:** Git
 
-Now you need the URL to access the repo. Go to the Github repository https://github.com/ansible/workshop-examples, choose the green **Clone or download** button on the right and copy the HTTPS URL.
-
-Enter the URL into the Project configuration:
+Now you need the URL to access the repo. You could get the URL in Github as **Clone URL**. Enter the URL into the Project configuration:
 
 - **SCM URL:** `https://github.com/ansible/workshop-examples.git`
 
@@ -129,13 +127,13 @@ Since this might take some time, have a closer look at all the details provided:
 
 - On the right side, the output of the playbook run is shown. Click on a node underneath a task and see that detailed information are provided for each task of each node.
 
-After the Job has finished go to the main **Jobs** view: All jobs are listed here, you should see directly before the Playbook run an SCM update was started. This is the Git update we configured for the **Project** on launch\!
+After the Job has finished go to the main **Jobs** view: All jobs are listed here, you should see directly before the Playbook run an SCM update was started. This is the Git update we configured for the **Project** on Job Template launch\!
 
 ## Challenge Lab: Check the Result
 
 Time for a little challenge:
 
-  - Use an ad hoc command on both hosts to make sure Apache has been installed and is running.
+  - Use an ad hoc command on all hosts to make sure Apache has been installed and is running.
 
 You have already been through all the steps needed, so try this for yourself.
 
@@ -155,6 +153,7 @@ What about `systemctl status httpd`?
 </p>
 </details>
 
+It should all look good and yellow because there where changes!
 
 ## What About Some Practice?
 
@@ -170,7 +169,7 @@ Please make sure to finish these steps as the next chapter depends on it!
 
 - Change the name to `Install Apache Ask`
 
-- Change the **INVENTORY** setting of the Project so it will ask for the inventory on launch
+- Change the **INVENTORY** setting of the Project so it will prompt for the inventory on launch (tick the appropriate box).
 
 - **SAVE**
 

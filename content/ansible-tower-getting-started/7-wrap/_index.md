@@ -15,7 +15,7 @@ Your operations team and your application development team like what they see in
 
 - As the webservers can be used for development purposes or in production, there has to be a way to flag them accordingly as "stage dev" or "stage prod".
 
-    - Currently `node1` and `node3` are used as a development system and `node2` is in production.
+    - Currently `node1` and `node3` should be used as a development systems and `node2` in production.
 
 - Of course the content of the world famous application "index.html" will be different between dev and prod stages.
 
@@ -76,13 +76,17 @@ There is of course more then one way to accomplish this, but here is what you sh
 
     - Add `stage: dev` to the inventory `Webserver` by putting it into the **VARIABLES** field beneath the three start-yaml dashes. Click **SAVE**
 
+{{% notice warning %}}
+Make sure to add the variable to the inventory and **not** to the new node3!
+{{% /notice %}}
+
 - In the same way add a variable `stage: prod` but this time only for `node2` (by clicking the hostname in the **HOSTS** view). Click **SAVE**
 
 This way the host variable overrides the variable set at the Inventory level because it's more specific and takes precedence.
 
 
 {{% notice tip %}}
-Make sure to keep the three dashes that mark the YAML start and the `ansible_host` line in place!
+Make sure to keep the three dashes that mark the YAML start in place!
 {{% /notice %}}
 
 ## Create the Template
@@ -101,7 +105,7 @@ Make sure to keep the three dashes that mark the YAML start and the `ansible_hos
 
 ## Check the results
 
-This time we use the power of Ansible to check the results: execute curl to get the web content from each node, orchestrated by an ad hoc command on the command line of your Tower control host:
+This time we use the power of Ansible to check the results: execute curl to get the web content from each node, orchestrated by an ad hoc command on the command line of your code-server terminal:
 
 {{% notice tip %}}
 We are using the `ansible_host` variable in the URL to access every node in the inventory group.

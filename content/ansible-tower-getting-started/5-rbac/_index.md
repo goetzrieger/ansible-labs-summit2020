@@ -92,7 +92,7 @@ Now log out of Tower’s web UI and in again as the **wweb** user.
 
 - In the following **Jobs** view have a good look around, note that there where changes to the host (of course…​).
 
-Check the result: In the code-server terminal execute `curl` to pull the content of the webserver on `node1` (you could of course check `node2` and `node3`, too):
+Check the result: In the code-server terminal execute `curl` to pull the content of the webserver on `node1` (you could of course check `node2`, too):
 
 ```bash
 $ curl http://node1

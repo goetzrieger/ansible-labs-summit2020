@@ -54,7 +54,7 @@ Now you create a new Template that includes a survey.
 
     - Use the `Workshop Credentials`
 
-    - To run in privileged mode
+    - To run with privilege escalation
 
 Try for yourself, the solution is below.
 
@@ -78,7 +78,7 @@ Do not run the template yet!
 
 ### Add the Survey
 
-- In the Template, click the **ADD SURVEY** button
+- In the Template, click the **ADD SURVEY** button (you have to save the job template to make the button active!)
 
 - Under **ADD SURVEY PROMPT** fill in:
 

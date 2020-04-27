@@ -7,7 +7,7 @@ weight = 2
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<N\>" and "\<LABID\>") and log in as `admin`. The password will be provided by the instructor.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
 
 Create the inventory:
 
@@ -19,7 +19,7 @@ Create the inventory:
 
   - Click **SAVE**
 
-Now there will be two inventories, the **Demo Inventory** and the **Workshop Inventory**. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
+Go back to the **Inventories** list, there will now be two inventories, the **Demo Inventory** and the **Workshop Inventory**. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
 
 So let's add some hosts. First we need to have the list of all managed hosts which are accessible to you within this lab. These can be found in an Ansible inventory file on the Tower node, it was created during deployment of the environment.
 
@@ -101,11 +101,15 @@ Click the ![plus](../../images/green_plus.png?classes=inline) button to add new 
 
   - **ORGANIZATION:** Click on the magnifying glass, pick **Default** and click **SELECT**
 
-  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** and click **SELECT** (you will have to use the search or page through the options).
+  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** as type and click **SELECT** (you will have to use the search or cycle through the types to find it).
 
   - **USERNAME:** ec2-user
 
   - **PRIVILEGE ESCALATION METHOD:** sudo
+
+{{% notice tip %}}
+Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
+{{% /notice %}}
 
 As we are using SSH key authentication, you have to provide an SSH private key that can be used to access the hosts. You could also configure password authentication here.
 
@@ -124,10 +128,6 @@ MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
 
 Go back to the **RESOURCES -> Credentials -> Workshop Credentials** and note
 that the SSH key is not visible.
-
-{{% notice tip %}}
-Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
-{{% /notice %}}
 
 You have now setup credentials to use later for your inventory hosts.
 
@@ -190,4 +190,8 @@ Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is instal
 
 {{% notice tip %}}
 The yellow output of the command indicates Ansible has actually done something (here it needed to install the package). If you run the ad hoc command a second time, the output will be green and inform you that the package was already installed. So yellow in Ansible doesn’t mean "be careful"…​ ;-).
+{{% /notice %}}
+
+{{% notice tip %}}
+Try to click one of the output lines in the window showing the job output. A small window with a lot of information about the job like module args will open. Have a look and close it again.
 {{% /notice %}}
