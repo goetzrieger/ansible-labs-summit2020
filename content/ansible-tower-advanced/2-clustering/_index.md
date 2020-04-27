@@ -39,7 +39,7 @@ Use the pre-created URLs from the lab landing page or replace **{{< param "labid
 
 **`https://{{< param "external_tower3" >}}`**
 
-Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information rovided, of course there is no capacity used yet and no Jobs have run.
+Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information provided, of course there is no capacity used yet and no Jobs have run.
 
 Right now we have only one instance group named **tower**. When you get more groups, from this view you will see how the instance are distributed over the groups.
 
