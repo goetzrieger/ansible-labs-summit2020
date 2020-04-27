@@ -11,19 +11,19 @@ We’ve incorporated different ways to work with Tower in this lab guide and hop
 **AWX CLI** is the official command-line client for AWX and Red Hat Ansible Tower. It uses naming and structure consistent with the AWX HTTP API, provides consistent output formats with optional machine-parsable formats.
 {{% /notice %}}
 
-We’ll install it on your Tower node 1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install **AWX CLI** as `root`:
+We’ll install it on your Tower node1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install **AWX CLI** as `root`:
 
     [student@ansible ~]$ sudo -i
     [root@ansible ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el7.repo
     [root@ansible ~]# yum install ansible-tower-cli -y
-    [root@ansible ~] exit
+    [root@ansible ~]# exit
     [student@ansible ~]$
 
 {{% notice warning %}}
 Please make sure to leave the root shell after installation of the package!
 {{% /notice %}}
 
-After installing the tool, you have to configure authentication. The preferred way is to create a token and export it into an environment variable. After this you can seemlessly use **awx** commands in this shell. First set a number of env variables to define your connection:
+After installing the tool, you have to configure authentication. The preferred way is to create a token and export it into an environment variable. After this you can seemlessly use **awx** commands in this shell. First set a number of environment variables to define your connection:
 
 {{% notice tip %}}
 Replace student number and labid!
@@ -90,9 +90,13 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
+
+```bash
     [student@ansible ~]$ awx setting list | grep SESSION
     [student@ansible ~]$ awx setting modify SESSION_COOKIE_AGE 7200
     [student@ansible ~]$ awx setting list | grep SESSION
+```
+
 </p>
 </details>
 

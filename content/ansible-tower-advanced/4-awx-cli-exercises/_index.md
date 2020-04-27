@@ -20,7 +20,7 @@ Remember how you used the **awx** help to get down to the needed command.
    [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
 
 {{% notice note %}}
-You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** ganization.
+You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** organization.
 {{% /notice %}}
 </p>
 </details>
@@ -56,8 +56,10 @@ You have run these commands above already, true. But we want to show how to crea
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
-    [student@ansible ~]$ chmod u+x /home/student1/setup-tower.sh
-    [student@ansible ~]$ /home/student1/setup-tower.sh
+```bash
+    [student@ansible ~]$ chmod u+x /home/student<N>/setup-tower.sh
+    [student@ansible ~]$ /home/student<N>/setup-tower.sh
+```
 
 {{% notice tip %}}
 You will see that **awx** is idempotent and recognizes the objects as duplicate, so it’s fine that you did run the **awx** commands already.

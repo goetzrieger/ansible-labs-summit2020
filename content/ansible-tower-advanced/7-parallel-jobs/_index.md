@@ -37,8 +37,8 @@ As mentioned the Github repository contains three Playbooks to enforce different
     [student@ansible ~]$ awx -f human job_template associate --name "Compliance STIG packages" \
                           --credential "Example Credentials"
 
-    [student@ansible ~]$ awx -f human job_template associate --name "Compliance STIG config" \
-                          --credential "Example Credentials"
+    [student@ansible ~]$ awx -f human job_template create --name "Compliance STIG config" \
+                          --credential "Example Credentials" \
                           --job_type run \
                           --inventory "Example Inventory" \
                           --project "Apache" \
@@ -62,11 +62,11 @@ As mentioned the Github repository contains three Playbooks to enforce different
 
 To enable parallel execution of the tasks in these job templates, we will create a workflow. We’ll use the web UI because using **awx** for this is a bit too involved for a lab. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template.
 
-  - Go to the **Templates** view and click the ![plus](../../images/green_plus.png) button. This time choose **Workflow Template**
+  - Go to the **Templates** view and click the ![plus](../../images/green_plus.png?classes=inline) button. This time choose **Workflow Template**
 
       - **NAME:** Compliance Workflow
 
-      - **ORGANIZATION:** Default
+      - **ORGANIZATION:** Default - click on the magnifying glass if necessary
 
       - Click **SAVE**
 
@@ -107,15 +107,15 @@ Go to the **Instance Groups** view and find out how the jobs where distributed o
   - Because the Job Templates called in the workflow didn’t specify an
     instance group, they where distributed evenly over the instances.
 
-Now deactivate instance **student\<N>-ansible.\<LABID>.internal** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
+Now deactivate instance **ansible.\<LABID>.internal** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
 Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **student\<N>-ansible.\<LABID>.internal** didn’t change.
 
-Activate **student\<N>-ansible.\<LABID>.internal** again by sliding the button to "checked".
+Activate **ansible.\<LABID>.internal** again by sliding the button to "checked".
 
 ## Using Instance Groups
 
-So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over what job is executed on which node, so let’s use them.
+So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over which job is executed on which node, so let’s use them.
 
 To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using **awx-manage** on one of the Tower instances. From your VSCode terminal **and as `root`** run the command:
 
@@ -152,12 +152,12 @@ You have done this a couple of times now, you should get along without detailed 
   - Verify\!
 
 {{% notice tip %}}
-**Result:** The workflow and the associated jobs will run on **student\<N>-towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
+**Result:** The workflow and the associated jobs will run on **towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
 {{% /notice %}}
 
 But what’s going to happen if you disable this instance?
 
-  - Disable the **student\<N>-towernode2.\<LABID>.internal** instance in the **Instance Groups** view.
+  - Disable the **towernode2.\<LABID>.internal** instance in the **Instance Groups** view.
 
   - Run the workflow again.
 

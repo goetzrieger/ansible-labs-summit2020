@@ -205,6 +205,8 @@ So we have prepared a basic structure for quite some content - call
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
+
+```bash
     [student@ansible structured-content]$ tree
     .
     ├── group_vars
@@ -248,6 +250,8 @@ So we have prepared a basic structure for quite some content - call
     │           └── main.yml
     ├── site.yml
     └── staging
+```
+
 </p>
 </details>
 
@@ -284,14 +288,16 @@ system in Tower you have to create credentials again, this time to access the Gi
 repository over SSH. This credential is user/key based, and we need the following
 **awx** command:
 
+```bash
     [root@ansible ~]# awx credential create --name="Git Credentials" \
                         --organization "Default" --credential_type "Source Control" \
                         --inputs="{\"username\":\"git\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
-
+```
 
 The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** as user **root** like shown below.
 
+```bash
     [root@ansible ~]# awx project create --name "Structured Content Repository" \
                         --organization Default \
                         --scm_type git \
@@ -299,6 +305,7 @@ web UI or use **awx** as user **root** like shown below.
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential "Git Credentials"
+```
 
 Now you’ve created the Project in Tower. Earlier on the command line
 you’ve setup a staged environment by creating and using two different
@@ -357,6 +364,7 @@ the same time and associate the credentials.
 {{% notice tip %}}
 Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
+```bash
     [student@ansible ~]# awx job_template create --name "Structured Content Execution" \
                         --job_type run --inventory "Structured Content Inventory" \
                         --project "Structured Content Repository" \
@@ -364,6 +372,8 @@ Please note that in a real world use case you might want to have different templ
                         --become_enabled 1
     [student@ansible ~]# awx -f human job_template associate --name "Structured Content Execution" \
                         --credential "Example Credentials"
+```
+
 {{% /notice %}}
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the
@@ -390,12 +400,14 @@ called
 [`roles/requirements.yml`](https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html#installing-multiple-roles-from-a-file),
 for example like this:
 
+```yaml
     # Import directly from Galaxy
     - src: geerlingguy.nginx
     # Import from a local Git repository
     - src: http://control.example.com/gitea/git/external-role.git
       version: master
       name: external-role_locally
+```
 
 The `requirements.yml` needs to be read - either on the command line by
 invoking `ansible-galaxy`, or automatically by Ansible Tower during
@@ -416,12 +428,14 @@ there:
 
 {{% notice warning %}}
 Make sure you work as user **student<X>**
+
 ```bash
     [student@ansible structured-content]$ cat roles/requirements.yml
     - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
       scm: git
       version: master
 ```
+
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -434,6 +448,7 @@ control.
 Next, we reference the role itself in our playbook. Change the
 **site.yml** Playbook to look like this:
 
+```bash
     [student@ansible structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
@@ -443,13 +458,16 @@ Next, we reference the role itself in our playbook. Change the
         - { role: apache}
         - { role: security }
         - { role: shared-apache-role }
+```
 
 Because Tower uses your Git repo, you’ve to add, commit and push the
 changes:
 
+```bash
     [student@ansible structured-content]$ git add site.yml roles/
     [student@ansible structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
     [student@ansible structured-content]$ git push
+```
 
 ## Launch in Tower
 
