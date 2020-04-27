@@ -47,6 +47,7 @@ As mentioned one of the purposes of **awx** is to use it to automatically config
 In **code-server** create a new file **File->New File** and save it (**File->Save As**) as **`setup-tower.sh`**. Add the commands executed above:
 
     #!/bin/bash
+    set +e  # avoid exiting if an object already exists.
     awx -f human inventory create --name "Example Inventory" --organization "Default"
     awx -f human host create --name "{{< param "internal_host1" >}}" \
       --inventory "Example Inventory"
@@ -54,7 +55,9 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
       --inventory "Example Inventory"
 
 {{% notice tip %}}
-You have run these commands above already, true. But we want to show how to create the full script here.
+You have run these commands above already, true. But we want to show how to create
+the full script here. This is why we just ignore errors with `set +e` (notice the
+"Duplicate" output).
 {{% /notice %}}
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
@@ -63,10 +66,6 @@ Next, save the script and make the script executable in the terminal window. The
     [student@ansible ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
     [student@ansible ~]$ /home/student{{< param "student" >}}/setup-tower.sh
 ```
-
-{{% notice tip %}}
-You will see that **awx** is idempotent and recognizes the objects as duplicate, so it’s fine that you did run the **awx** commands already.
-{{% /notice %}}
 
 From now on we’ll explain the needed commands for each of the next steps and add them to the script one-by-one.
 
