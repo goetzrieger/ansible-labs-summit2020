@@ -30,14 +30,14 @@ three nodes web UIs as:
   - password **{{< param "secret_password" >}}**
 
 {{% notice warning %}}
-Replace **{{< param "labid" >}}** with the session ID and **{{< param "student" >}}** with your student number!
+Use the pre-created URLs from the lab landing page or replace **{{< param "labid" >}}** with the session ID and **{{< param "student" >}}** with your student number!
 {{% /notice %}}
 
-**`{{< param "external_tower1" >}}`**
+**`https://{{< param "external_tower1" >}}`**
 
-**`{{< param "external_tower2" >}}`**
+**`https://{{< param "external_tower2" >}}`**
 
-**`{{< param "external_tower3" >}}`**
+**`https://{{< param "external_tower3" >}}`**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information rovided, of course there is no capacity used yet and no Jobs have run.
 

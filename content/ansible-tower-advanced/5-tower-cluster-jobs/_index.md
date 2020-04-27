@@ -11,7 +11,7 @@ After boot-strapping the Tower configuration from bottom up you are ready to sta
 
   - Run it by clicking the rocket icon.
 
-At first this is not different from a standard Tower setup. But as this is a cluster of active Tower instances every instance could have run the job. And the Job output in Tower’s web UI doesn’t tell you where it run, just the instance group.
+At first this is not different from a standard Tower setup. But as this is a cluster of active Tower instances every instance could have run the job.
 
 ## So what Instance run the Job?
 
@@ -38,7 +38,7 @@ Make sure you choose a job with type "Playbook run".
 Bring up the terminal in your VSCode session and run:
 
 {{% notice warning %}}
-Replace **\<ID>** with the job ID you want to query and **{{< param "student" >}}** and **{{< param "labid" >}}** with your values, you should be used to this by now!
+Replace **\<ID>** with the job ID you want to query!
 {{% /notice %}}
 
 ```bash

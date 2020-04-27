@@ -34,21 +34,29 @@ Replace student number and labid!
     [student@ansible ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
     [student@ansible ~]$ export TOWER_VERIFY_SSL=false
 
+{{% notice tip %}}
+Feel free to write this into a new file using the code-server editor and then to use **source \<filename\>** to set the environment variables. This way if you loose connection to code-server you can easily re-set the vars.
+{{% /notice %}}
+
 Then use **awx** to login and print out the access token:
 
-    [student@ansible ~]$ awx login -f human
+    [student@ansible ~]$ awx login -f human | tee token
     export TOWER_TOKEN=<YOUR_TOKEN>
+
+{{% notice tip %}}
+We are saving the **export TOWER_TOKEN=\<YOUR_TOKEN\>** command line output to the file **token** using **tee** here to be able to set the environment variable more easily.
+{{% /notice %}}
 
 Finally set the environment variable with the token using the line the command printed out:
 
-    [student@ansible ~]$ export TOWER_TOKEN=<YOUR_TOKEN>
+    [student@ansible ~]$ source token
 
 Now that the access token is avalable in your shell, test **awx** is working. First run it without arguments to get a
 list of resources you can manage with it:
 
     [student@ansible ~]$ awx --help
 
-And then test something, e.g. (leave out **-f human** if you're a JSON fan...):
+And then test something, e.g. (leave out **-f human** if you're a JSON fan...) ;)
 
     [student@ansible ~]$ awx -f human user list
 

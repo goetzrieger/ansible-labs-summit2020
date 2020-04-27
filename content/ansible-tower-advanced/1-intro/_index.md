@@ -34,7 +34,7 @@ To be honest we got carried away slightly while trying to press all these cool f
 
 ## Want to Use this Lab after Summit?
 
-Definitely, the Asciidoc sources are available here:
+Definitely, the Markdown sources are available here:
 
 **[https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced)**
 
@@ -56,7 +56,7 @@ access to the following hosts:
 | Managed Remote Host 1        |                                    | {{< param "internal_hostremote" >}} |
 
 {{% notice tip %}}
-The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name. {{< param "tip_variable_placeholder" >}}
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name. Make sure to have the **Your Red Hat Summit Lab Credentials** email ready. Your student number, the lab ID and a link to the lab landing page with the access credentials (**Lab Link**) are in there! {{< param "tip_variable_placeholder" >}}
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -64,7 +64,7 @@ Ansible Tower has already been installed and licensed for you, the web UI will b
 {{% /notice %}}
 
 {{% notice info %}}
-Wherever you see the placeholder **{{< param "secret_password" >}}** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
+Wherever you see the placeholder **{{< param "secret_password" >}}** in the following pages, use instead the specific password provided to you on the lab page. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
 {{% /notice %}}
 
 As you can see the lab environment is pretty extensive. You basically
@@ -83,7 +83,7 @@ And to mimic a remote site with isolated nodes:
 
 A diagram says more then a thousand words:
 
-![adv tower diagram.png](../../images/adv_tower_diagram.png)
+![tower diagram.png](../../images/tower_diagram.png)
 
 {{% notice tip %}}
 Access to the isolated node and the managed hosts is actually not restricted in the lab environment. Just imagine filtered, DMZ-like access rules for educational purposes… ;-)
@@ -112,7 +112,7 @@ Your main points of contact with the lab are the Ansible Tower web UI's and **co
 * open virtual terminals
 * edit files
 
-Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
+Now open code-server using the link from the lab landing page or this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
      https://{{< param "external_code" >}}
@@ -120,10 +120,10 @@ Now open code-server using this link in your browser by replacing **\<N\>** by y
 
 ![code-server login](../../images/vscode-pwd.png)
 
-Use the provided password to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
+Use the password provided on the landing page to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
-Read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
+If unsure about the usage, read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
 
 Congrats, you now have a shell terminal on your Ansible Tower node 1. From here you run commands or access the other hosts in your lab environment if the lab task requires it.

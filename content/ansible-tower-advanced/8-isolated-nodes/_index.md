@@ -57,7 +57,7 @@ To edit the inventory file in VSCode editor change the permissions (don't do 777
 
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
 
-'''
+```
     [tower]
     ansible ansible_host={{< param "internal_tower1" >}}
     towernode2 ansible_host={{< param "internal_tower2" >}}
@@ -76,7 +76,7 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
 ```
 
 {{% notice warning %}}
-Only add the isolated_group settings, don't change the other groups and settings!
+Only add the isolated_group settings, don't change the other groups and settings! **And replace student ID and password!**
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -99,7 +99,7 @@ Sit down and watch the tasks flying by...
 
 ## Verify Isolated Nodes
 
-After the installer has finished isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also apply to isolated nodes. For example, using `awx`:
+After the installer has finished isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also apply to isolated nodes. For example, using `awx` as the student user:
 
     [student@ansible ~]$ awx -f human instance_group list
     id name
@@ -131,7 +131,7 @@ In the Tower web UI under **RESOURCES**, click **Inventories**:
 
   - Click **SAVE**
 
-Now you can add managed hosts,the **HOSTS** button is active now. Click it to access the hosts overview. There are no hosts right now, so let’s add one:
+Now you can add managed hosts, the **HOSTS** button is active now. Click it to access the hosts overview. There are no hosts right now, so let’s add one:
 
   - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
 
