@@ -104,11 +104,7 @@ You can again query the API to get this information. Either use the browser to a
 
 or use curl to access the API from the command line in your VSCode terminal:
 
-<<<<<<< HEAD
-`[student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool`
-=======
 `[student@ansible ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python -m json.tool`
->>>>>>> adff6b3d09cb57b1504867be84382ed7723b8ec3
 
 {{% notice tip %}}
 The curl command has to be on one line. Do _not_ forget or oversee the final slash at the end of the URL, it is relevant!
