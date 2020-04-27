@@ -87,7 +87,6 @@ First we need the file Ansible will deploy, let’s just take the one from `node
 
 ```bash
 [student<N>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
-student<N>@11.22.33.44's password:
 httpd.conf
 ```
 

@@ -151,6 +151,7 @@ node1 ansible_host=11.22.33.44
 [student<N>@ansible ansible-files]$ ssh 11.22.33.44
 Last login: Wed May 15 14:03:45 2019 from 44.55.66.77
 Managed by Ansible
+[...]
 [ec2-user@node1 ~]$ rpm -qi httpd
 Name        : httpd
 Version     : 2.4.6

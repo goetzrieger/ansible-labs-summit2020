@@ -14,23 +14,35 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Managed Host 2       | node2          |
 | Managed Host 2       | node3          |
 
-## Access the Environment
+{{% notice warning %}}
+The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Make sure to have the **Your Red Hat Summit Lab Credentials** email ready. Your student number, the lab ID and a link to the lab page with the access credentials (**Lab Link**) are in there!
+{{% /notice %}}
 
-Your Ansible control host runs **code-server**, the server part of an VSCode-like editor running in your browser. It provides access to a virtual terminal/shell and file editing capabilities:
+{{% notice tip %}}
+On the lab landing page you'll find the URLs you need to access complete with student number and lab ID already filled in.
+{{% /notice %}}
 
-    https://student<N>-code.<LABID>. events.opentlc.com
+## Accessing your Lab Environment
 
-Use the above link in your browser by replacing **\<N\>** in student**\<N\>** by the student number and **\<LABID\>** by the workshop name provided to you.
+Your main points of contact with the lab is **code-server**, providing a VSCode-experience in your browser.
+
+Now open code-server using the **VS Code access** link from the lab landing page or use this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
+
+
+     	https://student<N>-code.<LABID>.events.opentlc.com
+
 
 ![code-server login](../../images/vscode-pwd.png)
 
-Use the provided password to login into the code-server and open a new terminal by heading to the menu item "Terminal" at the top of the page and select "New Terminal". A new section will appear in the lower half of the screen and you will be presented a prompt:
+Use the password **provided on the lab landing page** to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
-Read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
+If unsure how to use code-server, read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
 
-Now become root:
+Congrats, you now have a shell terminal on your Ansible control node. From here you run commands or access the other hosts in your lab environment if the lab task requires it.
+
+Now in the terminal become root:
 
     [student<N>@ansible ~]$ sudo -i
 
@@ -55,7 +67,7 @@ Log out of the root account again:
     [root@ansible ~]# exit
     logout
 
-{{% notice tip %}}
+{{% notice warning %}}
 In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
 {{% /notice %}}
 

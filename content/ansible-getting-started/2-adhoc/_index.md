@@ -7,28 +7,34 @@ For our first exercise, we are going to run some ad hoc commands to help you get
 
 ## Work with your Inventory
 
-To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. It looks like:
+To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. Have a look for yourself, in your **code-server terminal** run:
 
 ```bash
+[student<N>@ansible ~]$ cat lab_inventory/hosts
+
 [all:vars]
-ansible_user=student1
-ansible_ssh_pass=PASSWORD
+ansible_user=student<N>
+ansible_ssh_pass=<password>
 ansible_port=22
 
 [web]
-node1 ansible_host=<X.X.X.X>
-node2 ansible_host=<Y.Y.Y.Y>
-node3 ansible_host=<Z.Z.Z.Z>
+node1 ansible_host=<IP address>
+node2 ansible_host=<IP address>
+node3 ansible_host=<IP address>
 
 [control]
-ansible ansible_host=44.55.66.77
+ansible ansible_host=<IP address>
 ```
 
 {{% notice tip %}}
 The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault.
 {{% /notice %}}
 
-Ansible is already configured to use the inventory specific to your environment. We will show you in the next step how that is done. For now, we will execute some simple commands to work with the inventory.
+{{% notice tip %}}
+Note that each student has an individual lab environment so we left out the actual IPs and other data. As with the other cases, replace **\<N\>** with your actual student number.
+{{% /notice %}}
+
+Ansible is already configured to use the inventory specific to your environment, you'll learn how in a minute. For now let's execute some simple commands to work with the inventory.
 
 To reference inventory hosts, you supply a host pattern to the ansible command. Ansible has a `--list-hosts` option which can be useful for clarifying which managed hosts are referenced by the host pattern in an ansible command.
 
@@ -84,29 +90,7 @@ retry_files_enabled = False
 inventory = /home/student<N>/lab_inventory/hosts
 ```
 
-There are multiple configuration flags provided. Most of them are not of interest here, but make sure to note the last line: there the location of the inventory is provided. That is the way Ansible knew in the previous commands what machines to connect to.
-
-Review the content of your dedicated inventory:
-
-```bash
-[student<N>@ansible ~]$ cat /home/student<N>/lab_inventory/hosts
-[all:vars]
-ansible_user=student<N>
-ansible_ssh_pass=ansible
-ansible_port=22
-
-[web]
-node1 ansible_host=11.22.33.44
-node2 ansible_host=22.33.44.55
-node3 ansible_host=33.44.55.66
-
-[control]
-ansible ansible_host=44.55.66.77
-```
-
-{{% notice tip %}}
-Note that each student has an individual lab environment. The IP addresses shown above are only an example and the IP addresses of your individual environments are different. As with the other cases, replace **\<N\>** with your actual student number.
-{{% /notice %}}
+There are multiple configuration flags provided. Most of them are not of interest here, but make sure to note the last line: there the location of the inventory is provided. That is the way Ansible knew in the previous commands what inventory to use to lookup the nodes.
 
 ## Ping a host
 
