@@ -120,3 +120,7 @@ First run the playbook itself, then run curl against `node1` with port `8080` an
 <h1>This is a production webserver, take care!</h1>
 </body>
 ```
+
+# The End
+
+Congratulations, you finished your labs\! We hope you enjoyed your first encounter with Ansible as much as we enjoyed creating the labs.
