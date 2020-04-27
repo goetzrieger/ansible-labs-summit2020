@@ -140,15 +140,9 @@ The final script is also shown here:
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
-<<<<<<< HEAD
-    awx -f human host create --name "student<N>-node1.<LABID>.internal" \
-        --inventory "Example Inventory"
-    awx -f human host create --name "student<N>-node2.<LABID>.internal" \
-=======
     awx -f human host create --name "{{< param "internal_host1" >}}" \
         --inventory "Example Inventory"
     awx -f human host create --name "{{< param "internal_host2" >}}" \
->>>>>>> adff6b3d09cb57b1504867be84382ed7723b8ec3
       --inventory "Example Inventory"
     awx -f human credential create --name "Example Credentials" \
         --organization "Default" \
