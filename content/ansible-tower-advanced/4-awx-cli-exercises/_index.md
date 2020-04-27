@@ -21,7 +21,7 @@ Remember how you used the **awx** help to get down to the needed command.
 [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
 ```
 {{% notice note %}}
-You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** ganization.
+You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** organization.
 {{% /notice %}}
 </p>
 </details>
@@ -42,7 +42,7 @@ Now that we have the empty inventory created, add your two managed hosts using t
 
 ## Create script to contain this and all following awx commands
 
-As mentioned one of the puproses of **awx** is to use it to automatically configure more complex Tower setups. In such cases, multiple **awx** commands are put together in a script. We follow that practice in our example here, and create a shell script on the control host with all commands you have to run to bootstrap Tower. So in the next few paragraphs we describe the steps to do and describe the corresponding **awx** commands. But we will not execute them, but instead write them into a script.
+As mentioned one of the purposes of **awx** is to use it to automatically configure more complex Tower setups. In such cases, multiple **awx** commands are put together in a script. We follow that practice in our example here, and create a shell script on the control host with all commands you have to run to bootstrap Tower. So in the next few paragraphs we describe the steps to do and describe the corresponding **awx** commands. But we will not execute them, but instead write them into a script.
 
 In **code-server** create a new file **File->New File** and save it (**File->Save As**) as **`setup-tower.sh`**. Add the commands executed above:
 
@@ -59,10 +59,16 @@ You have run these commands above already, true. But we want to show how to crea
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
+```bash
     [student@ansible ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
     [student@ansible ~]$ /home/student{{< param "student" >}}/setup-tower.sh
+```
 
-From now on we’ll explain the needed comands for each of the next steps and add them to the script one-by-one.
+{{% notice tip %}}
+You will see that **awx** is idempotent and recognizes the objects as duplicate, so it’s fine that you did run the **awx** commands already.
+{{% /notice %}}
+
+From now on we’ll explain the needed commands for each of the next steps and add them to the script one-by-one.
 
 ## Create Machine Credentials
 

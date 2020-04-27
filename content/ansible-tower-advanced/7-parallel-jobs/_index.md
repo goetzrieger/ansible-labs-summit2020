@@ -62,11 +62,11 @@ As mentioned the Github repository contains three Playbooks to enforce different
 
 To enable parallel execution of the tasks in these job templates, we will create a workflow. We’ll use the web UI because using **awx** for this is a bit too involved for a lab. Workflows are configured in the **Templates** view, you might have noticed you can choose between **Job Template** and **Workflow Template** when adding a template.
 
-  - Go to the **Templates** view and click the ![plus](../../images/green_plus.png) button. This time choose **Workflow Template**
+  - Go to the **Templates** view and click the ![plus](../../images/green_plus.png?classes=inline) button. This time choose **Workflow Template**
 
       - **NAME:** Compliance Workflow
 
-      - **ORGANIZATION:** Default
+      - **ORGANIZATION:** Default - click on the magnifying glass if necessary
 
       - Click **SAVE**
 
@@ -115,7 +115,7 @@ Activate **{{< param "internal_tower1" >}}** again by sliding the button to "che
 
 ## Using Instance Groups
 
-So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over what job is executed on which node, so let’s use them.
+So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over which job is executed on which node, so let’s use them.
 
 To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using **awx-manage** on one of the Tower instances. From your VSCode terminal **and as `root`** run the command:
 
