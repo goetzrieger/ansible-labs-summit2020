@@ -3,9 +3,9 @@ title = "Tower Instance Groups"
 weight = 6
 +++
 
-Ansible Tower clustering allows you to easily add capacity to your Tower infrastructure by adding instances. In a single-group Tower cluster where all instances are within the `tower` group there is no way to influence what node will run a job, the cluster will take care of scheduling Jobs as it sees fit.
+Ansible Tower clustering allows you to easily add capacity to your Tower infrastructure by adding instances. In a single-group Tower cluster where all instances are within the `tower` group there is no way to influence which node will run a job, the cluster will take care of scheduling Jobs as it sees fit.
 
-To enable more control over what node is running a job, Tower 3.2 saw the introduction of the **Instance Groups** feature. Instance groups allow you to organize your cluster nodes into groups. In turn Jobs can be assigned to Instance Groups by configuring the Groups in Organizations, Inventories or Job Templates.
+To enable more control over which node is running a job, Tower 3.2 saw the introduction of the **Instance Groups** feature. Instance groups allow you to organize your cluster nodes into groups. In turn Jobs can be assigned to Instance Groups by configuring the Groups in Organizations, Inventories or Job Templates.
 
 {{% notice tip %}}
 The order of priority is **Job Template > Inventory > Organization**. So Instance Groups configured in Job Templates take precedence over those configured in Inventories, which take precedence over Organizations
@@ -13,18 +13,18 @@ The order of priority is **Job Template > Inventory > Organization**. So Instanc
 
 Some things to keep in mind about Instance Groups:
 
-  - Nodes in an Instance Group share a job queue
+  - Nodes in an Instance Group share a job queue.
 
   - You can have as many Instance Groups as you like as long as there is
-    at least one node in the `tower` group
+    at least one node in the `tower` group.
 
-  - Nodes can be in one or more Instance Groups
+  - Nodes can be in one or more Instance Groups.
 
   - Groups can not be named `instance_group_tower`\!
 
-  - Tower instances can’t have the same name as a group
+  - Tower instances can’t have the same name as a group.
 
-Instance Groups allows for some pretty cool setups, e.g. you could have some nodes shared over the whole cluster (by putting them into all groups) but then have other nodes that are dedicated to one group to reserve some capacity.
+Instance Groups allows some pretty cool setups, e.g. you could have some nodes shared over the whole cluster (by putting them into all groups) but then have other nodes that are dedicated to one group to reserve some capacity.
 
 {{% notice warning %}}
 The base `tower` group does house keeping like processing events from jobs for all groups so the node count of this group has to scale with your overall cluster load, even if these nodes are not used to run Jobs.
@@ -53,9 +53,9 @@ In a basic cluster setup like ours you just have the `[tower]` base group. So le
 
   - **SAVE**
 
-  - Click the **INSTANCES** button and add node **student\<N>-towernode2.\<LABID>.internal** again using the ![plus](../../images/green_plus.png?classes=inline) icon
+  - Click the **INSTANCES** button and add node **towernode2.\<LABID>.internal** again using the ![plus](../../images/green_plus.png?classes=inline) icon
 
-Do the same to create a the new group **prod** with instance **student\<N>-towernode3.\<LABID>.internal**
+Do the same to create a the new group **prod** with instance **towernode3.\<LABID>.internal**
 
 Go back to the **Instance Groups** view, you should now have the following setup:
 
@@ -104,7 +104,7 @@ You can again query the API to get this information. Either use the browser to a
 
 or use curl to access the API from the command line in your VSCode terminal:
 
-`[student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<X>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool`
+`[student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool`
 
 {{% notice tip %}}
 The curl command has to be on one line.

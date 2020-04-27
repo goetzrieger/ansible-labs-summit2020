@@ -28,6 +28,10 @@ But it would still be nice to see where a job run (not the other way round) and 
   - The jobs names are prefixed with the job ID, example **3 - Install
     Apache**
 
+{{% notice note %}}
+Make sure you choose a job with type "Playbook run".
+{{% /notice %}}
+
   - With the ID you can query the API for the instance/node the job was
     executed on
 
@@ -39,7 +43,7 @@ Replace **\<ID>** with the job ID you want to query and **\<N>** and **\<LABID>*
 
     [student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<N>-ansible.<LABID>.internal/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
-        "execution_node": "student1-ansible.gritest3.internal",
+        "execution_node": "student<N>-ansible.<LABID>.internal",
 
 {{% notice tip %}}
 You can use any method you want to access the API and to display the result, of course. The usage of curl and python-tool was just an example.
@@ -69,8 +73,8 @@ You can of course query any Tower node.
 
 Starting with Ansible Tower 3.6, we can also find the information in the Web UI.
 
-- Navigate to the **Jobs** menu
+- Navigate to the **Jobs** menu.
 
-- Click on the job you just
+- Click on the job you just launched.
 
-You will find the Ansible Tower node name in the field **Execution Node**.
+You will find the Ansible Tower node name in the field **Execution Node** in the details box on the left.

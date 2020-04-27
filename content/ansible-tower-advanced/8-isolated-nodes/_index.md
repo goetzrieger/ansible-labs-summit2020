@@ -11,11 +11,11 @@ To solve this, Tower provides **Isolated Nodes**:
 
   - Isolated Nodes can be deployed behind a firewall/VPC or in a remote datacenter, only **ingress SSH traffic** from a **controller** instance to the **isolated** instances is required.
 
-  - When a job is run that targets things managed by an isolated node, the **job** and its **environment** will be **pushed to the isolated node** over SSH
+  - When a job is run that targets things managed by an isolated node, the **job** and its **environment** will be **pushed to the isolated node** over SSH.
 
   - Periodically, the **master Ansible Tower cluster will poll the isolated node** for status on the job.
 
-  - When the **job finishes**, the job status will be **updated in Ansible Tower**
+  - When the **job finishes**, the job status will be **updated in Ansible Tower**.
 
 ## Setting Up Isolated Nodes
 
@@ -50,11 +50,14 @@ The Ansible installer files in `/tmp/tower_install/` are owned by root, but your
 
 To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;)):
 
+```bash
     [student@ansible ~]$ sudo -i
     [root@ansible ~]# chmod 777 /tmp/tower_install/inventory
+```
 
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
 
+'''
     [tower]
     ansible ansible_host=student<N>-ansible.<LABID>.internal
     towernode2 ansible_host=student<N>-towernode2.<LABID>.internal
@@ -70,6 +73,7 @@ Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/invento
     towerdb ansible_host=student<N>-towerdb.<LABID>.internal
 
     [...]
+```
 
 {{% notice warning %}}
 Only add the isolated_group settings, don't change the other groups and settings!
@@ -81,9 +85,15 @@ Each isolated group must have a controller variable set. This variable points to
 
 After editing the inventory, start the installer in the VSCode terminal to make the desired changes:
 
+```bash
     [student@ansible ~]$ sudo -i
     [root@ansible ~]# cd /tmp/tower_install/
     [root@ansible tower_install]# ./setup.sh
+```
+
+{{% notice note %}}
+The setup.sh script will take a couple of minutes to finish execution.
+{{% /notice %}}
 
 ## Verify Isolated Nodes
 
@@ -123,7 +133,7 @@ Now you can add managed hosts,the **HOSTS** button is active now. Click it to ac
 
   - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
 
-  - **NAME:** `student<N>-remote.<LABID>.internal`
+  - **NAME:** `remote.<LABID>.internal`
 
   - Click **SAVE**
 
@@ -160,7 +170,7 @@ Next, launch the template:
 ## Verify Results
 
 Last but not least, let’s check that the job was indeed executed by the
-isolated node `student<N>-isonode.<LABID>.internal`:
+isolated node `isonode.<LABID>.internal`:
 
   - Go to **Instance Groups** in the **ADMINISTRATION** section of the
     web UI
