@@ -72,7 +72,7 @@ To enable parallel execution of the tasks in these job templates, we will create
 
   - Now the **WORKFLOW VISUALIZER** button becomes active and the     graphical workflow designer opens.
 
-  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **JOBS**, **PROJECT SYNC** and **INVENTORY SYNC**.
+  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **TEMPLATE**, **PROJECT SYNC**, **INVENTORY SYNC** or **APPROVAL**.
 
   - In this lab we’ll link multiple jobs to the **START**, so select the **Compliance STIG packages** job template and click **SELECT**. The node gets annotated with the name of the job.
 
@@ -100,18 +100,18 @@ Your workflow is ready to go, launch it.
 
 Go to the **Instance Groups** view and find out how the jobs where distributed over the instances:
 
-  - Open the **INSTANCES** view of the tower instance group.
+  - Open the **INSTANCES** view of the **tower** instance group.
 
   - Look at the **TOTAL JOBS** view of the three instances
 
   - Because the Job Templates called in the workflow didn’t specify an
-    instance group, they where distributed evenly over the instances.
+    instance group, they where distributed (more or less) evenly over the instances.
 
-Now deactivate instance **ansible.\<LABID>.internal** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
+Now deactivate instance **{{< param "internal_tower1" >}}** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
-Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **student\<N>-ansible.\<LABID>.internal** didn’t change.
+Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **{{< param "internal_tower1" >}}** didn’t change.
 
-Activate **ansible.\<LABID>.internal** again by sliding the button to "checked".
+Activate **{{< param "internal_tower1" >}}** again by sliding the button to "checked".
 
 ## Using Instance Groups
 
@@ -152,12 +152,12 @@ You have done this a couple of times now, you should get along without detailed 
   - Verify\!
 
 {{% notice tip %}}
-**Result:** The workflow and the associated jobs will run on **towernode2.\<LABID>.internal**. Okay, big surprise, in the **dev** instance group there is only one instance.
+**Result:** The workflow and the associated jobs will run on **{{< param "internal_tower2" >}}**. Okay, big surprise, in the **dev** instance group there is only one instance.
 {{% /notice %}}
 
 But what’s going to happen if you disable this instance?
 
-  - Disable the **towernode2.\<LABID>.internal** instance in the **Instance Groups** view.
+  - Disable the **{{< param "internal_tower2" >}}** instance in the **Instance Groups** view.
 
   - Run the workflow again.
 
@@ -166,17 +166,17 @@ But what’s going to happen if you disable this instance?
   - Verify\!
 
 {{% notice tip %}}
-**Result:** The workflow and the associated jobs will stay in pending state because there are no instance available in the **dev** instance group.
+**Result:** The workflow is running but the associated jobs will stay in pending state because there are no instance available in the **dev** instance group, and the workflow runs "forever".
 {{% /notice %}}
 
 What’s going to happen if you enable the instance again?
 
-  - Go to the **Instance Groups** view and enable **student\<N>-towernode2.\<LABID>.internal** again.
+  - Go to the **Instance Groups** view and enable **{{< param "internal_tower2" >}}** again.
 
   - Check in the **Jobs** and **Instance Groups** view what’s happening.
 
 {{% notice tip %}}
-**Result:** After the instance is enabled again the jobs will pickup and run on **student\<N>-towernode2.\<LABID>.internal**.
+**Result:** After the instance is enabled again the jobs will pickup and run on **{{< param "internal_tower2" >}}**.
 {{% /notice %}}
 
 {{% notice warning %}}

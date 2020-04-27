@@ -43,20 +43,20 @@ Definitely, the Asciidoc sources are available here:
 In this lab you work in a pre-configured lab environment. You will have
 access to the following hosts:
 
-| Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| -------------------------------- | --------------------------------------- | ------------------------------ |
-| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.events.opentlc.com  | student\<N>-ansible.\<LABID>.internal |
-| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
-| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.events.opentlc.com | student\<N>-towernode2.\<LABID>.internal |
-| Visual Code Web UI               | student\<N>-code.\<LABID>.events.opentlc.com     |                                       |
-| Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
-| Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
-| Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
-| Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
-| Managed Remote Host 1            |                                         | student\<N>-remote.\<LABID>.internal |
+| Role                         | Hostname External (if applicable)  | Hostname Internal                   |
+| ---------------------------- | ---------------------------------- | ----------------------------------- |
+| Ansible Tower Node 1         | {{< param "external_tower1" >}}    | {{< param "internal_tower1" >}}     |
+| Ansible Tower Node 2         | {{< param "external_tower2" >}}    | {{< param "internal_tower2" >}}     |
+| Ansible Tower Node 3         | {{< param "external_tower3" >}}    | {{< param "internal_tower3" >}}     |
+| Visual Code Web UI           | {{< param "external_code" >}}      |                                     |
+| Ansible Tower Database Host  |                                    | {{< param "internal_towerdb" >}}    |
+| Managed RHEL7 Host 1         |                                    | {{< param "internal_host1" >}}      |
+| Managed RHEL7 Host 2         |                                    | {{< param "internal_host2" >}}      |
+| Ansible Tower Isolated Node  |                                    | {{< param "internal_toweriso" >}}   |
+| Managed Remote Host 1        |                                    | {{< param "internal_hostremote" >}} |
 
 {{% notice tip %}}
-The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name.
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name. {{< param "tip_variable_placeholder" >}}
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -64,7 +64,7 @@ Ansible Tower has already been installed and licensed for you, the web UI will b
 {{% /notice %}}
 
 {{% notice info %}}
-Wherever you see the placeholder **MYSECRETPWD** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
+Wherever you see the placeholder **{{< param "secret_password" >}}** in the following pages, use instead the specific password provided to you. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
 {{% /notice %}}
 
 As you can see the lab environment is pretty extensive. You basically
@@ -95,7 +95,7 @@ Some hints to get you started:
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://student\<N>-code.\<LABID>.events.opentlc.com**
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://{{< param "external_code" >}}**
 
 {{% notice tip %}}
 Commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
@@ -115,7 +115,7 @@ Your main points of contact with the lab are the Ansible Tower web UI's and **co
 Now open code-server using this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
 
-     	https://student<N>-code.<LABID>.events.opentlc.com
+     https://{{< param "external_code" >}}
 
 
 ![code-server login](../../images/vscode-pwd.png)

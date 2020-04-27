@@ -17,8 +17,9 @@ Remember how you used the **awx** help to get down to the needed command.
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-   [student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
-
+```
+[student@ansible ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
+```
 {{% notice note %}}
 You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** organization.
 {{% /notice %}}
@@ -27,13 +28,15 @@ You can work with multiple organizations in Tower. In this lab we’ll work in t
 
 ### Add Hosts to the Inventory using **awx**
 
-Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`student<N>-node1.<LABID>.internal`** and **`student<N>-node2.<LABID>.internal`**, again using
+Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`{{< param "internal_host1" >}}`** and **`{{< param "internal_host2" >}}`**, again using
 **awx**.
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
-   [student@ansible ~]$ awx -f human host create --name "student\<N>-node1.\<LABID>.internal" inventory "Example Inventory"
-   [student@ansible ~]$ awx -f human host create --name "student\<N>-node2.\<LABID>.internal" inventory "Example Inventory"
+```
+[student@ansible ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" --inventory "Example Inventory"
+[student@ansible ~]$ awx -f human host create --name "{{< param "internal_host2" >}}" --inventory "Example Inventory"
+```
 </p>
 </details>
 
@@ -45,9 +48,9 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
-    awx -f human host create --name "student<N>-node1.<LABID>.internal" \
+    awx -f human host create --name "{{< param "internal_host1" >}}" \
       --inventory "Example Inventory"
-    awx -f human host create --name "student<N>-node2.<LABID>.internal" \
+    awx -f human host create --name "{{< param "internal_host2" >}}" \
       --inventory "Example Inventory"
 
 {{% notice tip %}}
@@ -57,8 +60,8 @@ You have run these commands above already, true. But we want to show how to crea
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
 ```bash
-    [student@ansible ~]$ chmod u+x /home/student<N>/setup-tower.sh
-    [student@ansible ~]$ /home/student<N>/setup-tower.sh
+    [student@ansible ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
+    [student@ansible ~]$ /home/student{{< param "student" >}}/setup-tower.sh
 ```
 
 {{% notice tip %}}
@@ -70,7 +73,7 @@ From now on we’ll explain the needed commands for each of the next steps and a
 ## Create Machine Credentials
 
 {{% notice tip %}}
-SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login for user **ec2-user** from **student\<N>-ansible.\<LABID>.internal**.
+SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login as user **student{{< param "student" >}}** from **{{< param "internal_control" >}}** using the user **ec2-user**.
 {{% /notice %}}
 
 Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to **`setup-tower.sh`**, but don’t run the script yet:
@@ -137,9 +140,15 @@ The final script is also shown here:
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
+<<<<<<< HEAD
     awx -f human host create --name "student<N>-node1.<LABID>.internal" \
         --inventory "Example Inventory"
     awx -f human host create --name "student<N>-node2.<LABID>.internal" \
+=======
+    awx -f human host create --name "{{< param "internal_host1" >}}" \
+        --inventory "Example Inventory"
+    awx -f human host create --name "{{< param "internal_host2" >}}" \
+>>>>>>> adff6b3d09cb57b1504867be84382ed7723b8ec3
       --inventory "Example Inventory"
     awx -f human credential create --name "Example Credentials" \
         --organization "Default" \

@@ -27,17 +27,17 @@ three nodes web UIs as:
 
   - user **admin**
 
-  - password **MYSECRETPWD**
+  - password **{{< param "secret_password" >}}**
 
 {{% notice warning %}}
-Replace **\<LABID>** with the session ID and **\<N>** with your student number!
+Replace **{{< param "labid" >}}** with the session ID and **{{< param "student" >}}** with your student number!
 {{% /notice %}}
 
-**`https://student<N>-ansible.<LABID>. events.opentlc.com`**
+**`{{< param "external_tower1" >}}`**
 
-**`https://student<N>-towernode2.<LABID>. events.opentlc.com`**
+**`{{< param "external_tower2" >}}`**
 
-**`https://student<N>-towernode3.<LABID>. events.opentlc.com`**
+**`{{< param "external_tower3" >}}`**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information rovided, of course there is no capacity used yet and no Jobs have run.
 
@@ -51,24 +51,24 @@ To dig deeper click on **INSTANCES** to get more information about the instances
 
 You can also get information about your cluster on the command line. Log in to your **code-server** again if you closed it by opening this URL in your browser:
 
-**`https://student<N>-code.<LABID>. events.opentlc.com`**
+**`https://{{< param "external_code" >}}`**
 
 Your VSCode session is running on your Tower node 1. Again if not still open, open a terminal by clicking **Terminal->New Terminal** in the menu bar.
 
 A terminal window opens at the bottom, become root:
 
-    [student1@ansible ~]$ sudo -i
-    [root@ansible ~]#
+    [{{< param "pre_awx_prompt" >}} ~]$ sudo -i
+    [{{< param "awx_prompt" >}} ~]#
 
 In the terminal run the following command:
 
-> Your student number and labid will differ, of course!
+> Your exact hostnames will differ, of course!
 
-    [root@ansible ~]# awx-manage list_instances
+    [{{< param "awx_prompt" >}} ~]# awx-manage list_instances
     [tower capacity=51]
-        student1-ansible.ad34.internal capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:27"
-        student1-towernode2.ad34.internal capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:36"
-        student1-towernode3.ad34.internal capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:38"
+        {{< param "internal_tower1" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:27"
+        {{< param "internal_tower2" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:36"
+        {{< param "internal_tower3" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:38"
 
 So what we’ve got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 17 is allocated to any of our three nodes.
 

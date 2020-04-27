@@ -53,9 +53,9 @@ In a basic cluster setup like ours you just have the `[tower]` base group. So le
 
   - **SAVE**
 
-  - Click the **INSTANCES** button and add node **towernode2.\<LABID>.internal** again using the ![plus](../../images/green_plus.png?classes=inline) icon
+  - Click the **INSTANCES** button and add node **{{< param "internal_tower2" >}}** again using the ![plus](../../images/green_plus.png?classes=inline) icon
 
-Do the same to create a the new group **prod** with instance **towernode3.\<LABID>.internal**
+Do the same to create a the new group **prod** with instance **{{< param "internal_tower3" >}}**
 
 Go back to the **Instance Groups** view, you should now have the following setup:
 
@@ -79,7 +79,7 @@ You can check your instance groups in a number of ways.
 
 You have configured the groups here, open the URL
 
-    https://student<N>-ansible.<LABID>. events.opentlc.com/#/instance_groups
+    https://{{< param "external_tower" >}}/#/instance_groups
 
 in your browser.
 
@@ -100,14 +100,18 @@ In your VSCode terminal, run:
 
 You can again query the API to get this information. Either use the browser to access the URL (you might have to login to the API again):
 
-  `https://student<N>-ansible.<LABID>. events.opentlc.com/api/v2/instance_groups/`
+  `https://{{< param "external_tower" >}}/api/v2/instance_groups/`
 
 or use curl to access the API from the command line in your VSCode terminal:
 
+<<<<<<< HEAD
 `[student@ansible ~]$ curl -s -k -u admin:MYSECRETPWD https://student<N>-ansible.<LABID>.internal/api/v2/instance_groups/| python -m json.tool`
+=======
+`[student@ansible ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python -m json.tool`
+>>>>>>> adff6b3d09cb57b1504867be84382ed7723b8ec3
 
 {{% notice tip %}}
-The curl command has to be on one line.
+The curl command has to be on one line. Do _not_ forget or oversee the final slash at the end of the URL, it is relevant!
 {{% /notice %}}
 
 ## Deactivating Tower Instances

@@ -14,8 +14,9 @@ deployment:
     Tower.
 
   - The number of instances in a cluster should always be an **odd
-    number** and a minimum number of three is strongly recommended with
-    a maximum of 20.
+    number** and a minimum number of three (else it's not a cluster) with
+    a maximum of 20. This concerns only "active" instances, not isolated
+    nodes.
 
   - RabbitMQ is a core component, so a lot of the requirements are
     dictated by it. Like e.g. the odd node count for quorum…
@@ -23,7 +24,7 @@ deployment:
   - Typical cluster considerations apply: All nodes need to be able to
     reliably connect to each other, stable address/hostname resolution,
     geographically co-located with reliable low-latency connections
-    between instances.
+    between instances. Use isolated nodes for remote sites.
 
   - Remember there is no concept of primary/secondary instance, all
     systems are primary.
@@ -55,7 +56,7 @@ straight forward anyway. The inventory file here is just for giving you
 an idea what you are using here and for reference.
 
 {{% notice tip %}}
-Keep in mind when working with clustered Ansible Tower that the database will not be clustered or replicated by the installer. This is something you have to take care of yourself.
+Keep in mind when working with clustered Ansible Tower that the database will not be clustered or replicated by the installer. This is something you would have to take care of yourself.
 {{% /notice %}}
 
     [tower]
@@ -69,21 +70,21 @@ Keep in mind when working with clustered Ansible Tower that the database will no
     [all:vars]
     ansible_become=true
 
-    admin_password='MYSECRETPWD'
+    admin_password='{{< param "secret_password" >}}'
 
     pg_host='towerdb.example.com'
     pg_port='5432'
 
     pg_database='tower'
     pg_username='tower'
-    pg_password='MYSECRETPWD'
+    pg_password='{{< param "secret_password" >}}'
 
     rabbitmq_port=5672
     rabbitmq_vhost=tower
     rabbitmq_username=tower
-    rabbitmq_password='MYSECRETPWD'
+    rabbitmq_password='{{< param "secret_password" >}}'
     rabbitmq_cookie=rabbitmqcookie
 
 {{% notice warning %}}
-In this lab this has been taken care of, but remember all instances have to able to resolve all hostnames and to reach each other\!
+In this lab this has been taken care of for you, but remember: all instances have to be able to resolve all hostnames and to reach each other\!
 {{% /notice %}}
