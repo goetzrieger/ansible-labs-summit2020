@@ -57,9 +57,7 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 {{% notice tip %}}
 You have run these commands above already, true. But we want to show how to create
 the full script here. This is why we just ignore errors with `set +e` (notice the
-"Duplicate" output). Next year we might have teached you the advantages of the idempotent
-[awx collection modules](https://github.com/ansible/awx/tree/devel/awx_collection),
-but the command line tool will do until then.
+"Duplicate" output).
 {{% /notice %}}
 
 Next, save the script and make the script executable in the terminal window. Then launch it:
