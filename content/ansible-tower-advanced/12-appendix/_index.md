@@ -88,3 +88,7 @@ Keep in mind when working with clustered Ansible Tower that the database will no
 {{% notice warning %}}
 In this lab this has been taken care of for you, but remember: all instances have to be able to resolve all hostnames and to reach each other\!
 {{% /notice %}}
+
+# The End
+
+Congratulations, you finished your labs\! We hope you enjoyed your encounter with some advanced features of Ansible Tower as much as we enjoyed creating the labs.
