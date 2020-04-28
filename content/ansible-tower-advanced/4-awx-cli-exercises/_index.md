@@ -82,7 +82,7 @@ Now we want to configure these credentials to access our managed hosts from Towe
         --credential_type "Machine" \
         --inputs '{"username": "ec2-user", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
 
-Don’t run the shell script yet, first got through the following steps to add all commands to it.
+Don’t run the shell script yet, first go through the following steps to add all commands to it.
 
 {{% notice warning %}}
 As the **awx** commands get longer you’ll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \\ on one line, of course.
