@@ -42,7 +42,7 @@ Replace **\<ID>** with the job ID you want to query!
 {{% /notice %}}
 
 ```bash
-    [student@ansible ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
+    curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
 
         "execution_node": "{{< param "internal_tower1" >}}",
 ```
