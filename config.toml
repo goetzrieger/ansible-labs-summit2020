@@ -1,4 +1,5 @@
-baseurl = "https://people.redhat.com/grieger/summit2020_labs/"
+#baseurl = "https://people.redhat.com/grieger/summit2020_labs/"
+baseurl = "https://goetzrieger.github.io/"
 contentdir    = "content"
 layoutdir     = "layouts"
 publishdir    = "public"
@@ -78,5 +79,5 @@ home = [ "HTML", "RSS", "JSON"]
 
 [[menu.shortcuts]]
 name = "<i class='fas fa-home'></i> Homepage"
-url = "https://people.redhat.com/grieger/summit2020_labs/"
+url = "https://goetzrieger.github.io/"
 weight = 10
