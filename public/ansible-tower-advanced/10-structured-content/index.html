@@ -12,20 +12,20 @@
     <title>Well Structured Content Repositories :: Ansible Labs for Red Hat Summit</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1588672793" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1588672793" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1588672868" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1588672868" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1588672793" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1588672868" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1588672793"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1588672868"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1588672793"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1588672793"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1588672868"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1588672868"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1588672793"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1588672868"></script>
 
     
   </div>
@@ -1012,7 +1012,7 @@ In a more typical environment, you would work with GitLab, Gitea, or any other c
 
 <p>Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user <em>ec2-user</em> was already added to the Git user <em>git</em>. Next, clone the repository on the control machine:</p>
 
-<pre><code>[student@ansible ~]$ git clone ec2-user@ansible.internal:projects/structured-content.git
+<pre><code>[student@ansible ~]$ git clone git@ansible.internal:projects/structured-content.git
 # Message &quot;warning: You appear to have cloned an empty repository.&quot; is OK and can be ignored
 [student@ansible ~]$ git config --global push.default simple
 [student@ansible ~]$ git config --global user.name &quot;Your Name&quot;
@@ -1253,7 +1253,7 @@ repository over SSH. This credential is user/key based, and we need the followin
 
 <pre><code class="language-bash">    [student@ansible ~]# awx credential create --name=&quot;Git Credentials&quot; \
                         --organization &quot;Default&quot; --credential_type &quot;Source Control&quot; \
-                        --inputs=&quot;{\&quot;username\&quot;:\&quot;ec2-user\&quot;,\&quot;ssh_key_data\&quot;:\&quot;$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\&quot;}&quot;
+                        --inputs=&quot;{\&quot;username\&quot;:\&quot;git\&quot;,\&quot;ssh_key_data\&quot;:\&quot;$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\&quot;}&quot;
 </code></pre>
 
 <p>The new repository needs to be added as project. Feel free to use the
@@ -1262,7 +1262,7 @@ web UI or use <strong>awx</strong> like shown below.</p>
 <pre><code class="language-bash">    [student@ansible ~]# awx project create --name &quot;Structured Content Repository&quot; \
                         --organization Default \
                         --scm_type git \
-                        --scm_url  ec2-user@ansible.internal:projects/structured-content.git \
+                        --scm_url  git@ansible.internal:projects/structured-content.git \
                         --scm_clean 1 \
                         --scm_update_on_launch 1 \
                         --credential &quot;Git Credentials&quot;
@@ -2011,19 +2011,19 @@ everything generic is consumed from a shared resource.</p></li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1588672793"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1588672868"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1588672793"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1588672793"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1588672868"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1588672868"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1588672793" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1588672793"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1588672868" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1588672868"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
