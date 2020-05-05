@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.59.1" />
+    <meta name="description" content="Ansible and Ansible Tower Labs">
+<meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
+
+    <link rel="icon" href="https://goetzrieger.github.io/images/favicon.png" type="image/png">
+
+    <title>Visual Studio Code Introduction :: Ansible Labs for Red Hat Summit</title>
+
+    
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1588672719" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1588672719" rel="stylesheet">
+    
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1588672719" rel="stylesheet">
+    
+
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1588672719"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vscode-intro/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://goetzrieger.github.io/">
+  <img src="https://goetzrieger.github.io/images/summit-badge.png">
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1588672719"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1588672719"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/goetzrieger.github.io\/";
+    
+</script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1588672719"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/" title="Ansible Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/">
+          Ansible Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/1-setup/" title="Check the Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/1-setup/">
+          Check the Prerequisites
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/2-adhoc/" title="Running ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/2-adhoc/">
+          Running ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/3-playbook/" title="Writing Your First Playbook" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/">
+          Writing Your First Playbook
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/4-variables/" title="Using Variables" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/4-variables/">
+          Using Variables
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/5-handlers/" title="Conditionals, Handlers and Loops" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/5-handlers/">
+          Conditionals, Handlers and Loops
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/6-templates/" title="Templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/6-templates/">
+          Templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/7-bonus/" title="Bonus Labs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/7-bonus/">
+          Bonus Labs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/" title="Ansible Tower Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/">
+          Ansible Tower Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/1-intro/" title="Introduction to Tower" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/1-intro/">
+          Introduction to Tower
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/2-cred/" title="Inventories, credentials and ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/2-cred/">
+          Inventories, credentials and ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/3-projects/" title="Projects &amp; job templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/">
+          Projects &amp; job templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/4-surveys/" title="Surveys" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/4-surveys/">
+          Surveys
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/5-rbac/" title="Role-based access control" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/5-rbac/">
+          Role-based access control
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/6-workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/6-workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/7-wrap/" title="Wrap up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/">
+          Wrap up
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/1-intro/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/1-intro/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/2-clustering/" title="Introduction to Ansible Tower Clustering" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/2-clustering/">
+          Introduction to Ansible Tower Clustering
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/3-awx-cli-intro/" title="There is more to Tower than the Web UI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/3-awx-cli-intro/">
+          There is more to Tower than the Web UI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/4-awx-cli-exercises/" title="Creating Tower Objects Using `awx`" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/4-awx-cli-exercises/">
+          Creating Tower Objects Using `awx`
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/5-tower-cluster-jobs/" title="Run a Job in a Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/5-tower-cluster-jobs/">
+          Run a Job in a Cluster
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/6-instance-groups/" title="Tower Instance Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/6-instance-groups/">
+          Tower Instance Groups
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/7-parallel-jobs/" title="Parallel Jobs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/7-parallel-jobs/">
+          Parallel Jobs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/8-isolated-nodes/" title="Isolated Nodes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/8-isolated-nodes/">
+          Isolated Nodes
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/9-advanced-inventories/" title="Advanced Inventories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/9-advanced-inventories/">
+          Advanced Inventories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/10-structured-content/" title="Well Structured Content Repositories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+          Well Structured Content Repositories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/11-rest-api/" title="Discovering the Tower API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/11-rest-api/">
+          Discovering the Tower API
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/12-appendix/" title="Appendix" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/12-appendix/">
+          Appendix
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vscode-intro/" title="Visual Studio Code Introduction" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://goetzrieger.github.io/vscode-intro/">
+          Visual Studio Code Introduction
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://goetzrieger.github.io/"><i class='fas fa-home'></i> Homepage</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p></p>
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='https://goetzrieger.github.io/'></a> > Visual Studio Code Introduction
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#tested-platforms">Tested platforms</a></li>
+<li><a href="#how-to-login">How to login</a></li>
+<li><a href="#ui-basics">UI Basics</a></li>
+<li><a href="#how-to-use-the-terminal">How to use the Terminal</a></li>
+<li><a href="#how-to-create-and-edit-files">How to create and edit files</a></li>
+<li><a href="#gotchas">Gotchas</a>
+<ul>
+<li><a href="#runs-best-on-chrome">Runs best on Chrome</a></li>
+<li><a href="#copy-paste-and-general-performance">Copy &amp; Paste and general performance</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Visual Studio Code Introduction
+            </h1>
+          
+
+        
+
+
+
+	
+
+<p>To make it easier for you to perform the tasks described in this workshop, we provide an Visual Studio Code Server for you. This web based IDE allows you to write and edit your Ansible Playbooks and execute command with the built-in Terminal. This part of the Workshop documentation will give you a very quick introduction.</p>
+
+<h2 id="tested-platforms">Tested platforms</h2>
+
+<p>There are probably thousands of combinations of Operating Systems and Web Browsers, and we couldn&rsquo;t test them all. We noticed it works best with Google Chrome (or Chromium) on Linux, Windows or Mac. We ran into issues with Copy &amp; Paste with Firefox and Edge on Windows 10. There might be other issues with other combinations, which is why we recommend to use Chrome/Chromium if you run into problems.</p>
+
+<h2 id="how-to-login">How to login</h2>
+
+<p>Each students has it&rsquo;s dedicated lab environment. This also means you have your dedicated instance of Visual Studio Code Server. The URL to open the Web Interface is:</p>
+
+<pre><code>https://student&lt;N&gt;-code.&lt;LABID&gt;.events.opentlc.com
+</code></pre>
+
+<p>Replace &lt;N&gt; with your student number and &lt;LABID&gt;. You will find your LABID in the invite to this event. If you don&rsquo;t know your LABID, ask your instructor.</p>
+
+<p>After opening the URL, you will see a dialog asking for your password. The password was provided to you in the Lab instructions or the invite to this event.</p>
+
+<p><img src="../images/vscode-pwd.png" alt="code-server login" /></p>
+
+<p>If the password was entered correctly, you will see a web page like this:</p>
+
+<p><img src="../images/vscode-terminal.png" alt="code-server terminal" /></p>
+
+<h2 id="ui-basics">UI Basics</h2>
+
+<p>On the very left you will see a column of Icons to switch the UI into different modes. During this workshop you will only need the <strong>Explorer</strong> mode indicated by the two paper icon.</p>
+
+<p>On the upper right you should see a large window with a VS Code Welcome message. When you will start working with files, this will show the file you are working on.</p>
+
+<p>Finally in the lower right you can enable a Terminal session. If you can&rsquo;t see the terminal view, click on <strong>Terminal</strong> and <strong>New Terminal</strong> in the menu navigation on the top.</p>
+
+<p>As usual, you have a menu bar on the top and you can resize the three parts of the UI by moving the dividers.</p>
+
+<h2 id="how-to-use-the-terminal">How to use the Terminal</h2>
+
+<p>You can execute commands on the Linux command line by using the terminal mode. It&rsquo;s usually shown on the lower right part of the UI. If you can&rsquo;t see the terminal view, click on <strong>Terminal</strong> and <strong>New Terminal</strong> in the menu navigation on the top.</p>
+
+<p>The terminal is running on your &ldquo;control node&rdquo; or &ldquo;ansible&rdquo; node - this is how we call this instance in the Workshop Guide.</p>
+
+<p>It&rsquo;s a fully functional terminal with all the features you would expect from Linux. So, yes, you can break and destroy your instance if you try hard enough.</p>
+
+
+<div class="notices warning" ><p>We noticed issues with Copy &amp; Paste. On Linux the best way to paste text is to click the middle mouse button. On Windows 10 in our testing it only worked with Chrome and not with Firefox nor Edge.</p>
+</div>
+
+
+<h2 id="how-to-create-and-edit-files">How to create and edit files</h2>
+
+<p>There are several tasks in the workshop where you will be asked to create and edit files. You can create new files easily by clicking on <strong>File</strong>, <strong>New File</strong>. You can also save your files. Pay attention to the lab instructions since you are working in different directories during your lab exercises.</p>
+
+<p>By clicking on the <strong>Explorer</strong> Mode icon (the two paper sheets in the button column on the far left) you can enable and disable a folder tree, which might help you to navigate between different files and folders.</p>
+
+<h2 id="gotchas">Gotchas</h2>
+
+<h3 id="runs-best-on-chrome">Runs best on Chrome</h3>
+
+<p>Visual Studio Code Server should work well with all modern browsers like Firefox or Chrome. Due to limited resources we did not test all possible combinations. If you run into issues we recommend to use Google Chrome or Chromium.</p>
+
+<p>If you don&rsquo;t have Chrome installed, it is available <a href="https://google.com/chrome">here</a>.</p>
+
+<h3 id="copy-paste-and-general-performance">Copy &amp; Paste and general performance</h3>
+
+<p>Please also keep in mind that the lab is running in the cloud. Sometimes performance is degraded due to high latency. This became particularly challenging when you try to copy &amp; paste something into the editor window. After pressing Ctrl-V to paste, give a few seconds to respond.</p>
+
+<p><a href="../../images/clipboard-chrome.png">allow paste from clipboard in Chrome</a></p>
+
+<p>In Chrome, you might have to allow paste from clipboard, when you use it the first time.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://goetzrieger.github.io/ansible-tower-advanced/12-appendix/" title="Appendix"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://goetzrieger.github.io/ansible-getting-started/" title="Ansible Getting Started" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1588672719"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1588672719"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1588672719"></script>
+
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1588672719" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1588672719"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

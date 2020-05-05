@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ansible Tower Advanced on Ansible Labs for Red Hat Summit</title>
+    <link>https://goetzrieger.github.io/ansible-tower-advanced/</link>
+    <description>Recent content in Ansible Tower Advanced on Ansible Labs for Red Hat Summit</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://goetzrieger.github.io/ansible-tower-advanced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
