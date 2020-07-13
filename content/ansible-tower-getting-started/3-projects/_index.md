@@ -9,7 +9,7 @@ You should definitely keep your Playbooks under version control. In this lab weâ
 
 ## Setup Git Repository
 
-For this lab we will use playbooks stored in this Git repository:
+For this lab we will use playbooks stored in this Git repository, using the [proper tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020):
 
 `https://github.com/ansible/workshop-examples`
 
@@ -70,6 +70,8 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 Now you need the URL to access the repo. You could get the URL in Github as **Clone URL**. Enter the URL into the Project configuration:
 
 - **SCM URL:** `https://github.com/ansible/workshop-examples.git`
+
+- **SCM BRANCH/TAG/COMMIT:** `summit_2020`
 
 - **SCM UPDATE OPTIONS:** Tick all four boxes to always get a fresh copy of the repository and to update the repository when launching a job.
 

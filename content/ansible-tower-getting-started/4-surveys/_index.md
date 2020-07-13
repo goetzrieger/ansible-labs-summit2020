@@ -21,7 +21,7 @@ The survey feature only provides a simple query for data - it does not support f
 
 ## The Apache-configuration Role
 
-The Playbook and the role with the Jinja template already exist in the Github repository **https://github.com/ansible/workshop-examples** in the directory `rhel/apache`.
+The Playbook and the role with the Jinja template already exist in the Github repository **https://github.com/ansible/workshop-examples** (always using the [correct tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020)) in the directory `rhel/apache`.
 
  Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
 

@@ -38,7 +38,7 @@ The web developer team has to:
 To make things somewhat easier for you, everything needed already exists in a Github repository: Playbooks, JavaScript files etc. You just need to glue it together.
 
 {{% notice tip %}}
-In this example we use two different branches of the same repository for the content of the separate teams. In reality the structure of your SCM repositories depends on a lot of factors and could be different.
+In this example we use two different tags (each on its specific branch) of the same repository for the content of the separate teams. In reality the structure of your SCM repositories depends on a lot of factors and could be different.
 {{% /notice %}}
 
 ## Set up Projects
@@ -55,7 +55,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 
   - The URL to access the repo is **https://github.com/ansible/workshop-examples.git**
 
-  - The **SCM BRANCH/TAG/COMMIT** is **webops**
+  - The **SCM BRANCH/TAG/COMMIT** is **webops_summit_2020**
 
   - Do not allow branch overrides
 
@@ -65,7 +65,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 
   - The URL to access the repo is **https://github.com/ansible/workshop-examples.git**
 
-  - The **SCM BRANCH/TAG/COMMIT** is **webdev**
+  - The **SCM BRANCH/TAG/COMMIT** is **webdev_summit_2020**
 
   - Do not allow branch overrides
 
@@ -77,7 +77,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
     - **ORGANIZATION:** Default
     - **SCM TYPE:** Git
     - **SCM URL:** https://github.com/ansible/workshop-examples.git
-    - **SCM BRANCH/TAG/COMMIT:** webops
+    - **SCM BRANCH/TAG/COMMIT:** `webops_summit_2020`
     - **SCM UPDATE OPTIONS:** Tick the first three boxes.
 - Click **SAVE**
 - Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
@@ -85,7 +85,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
     - **ORGANIZATION:** Default
     - **SCM TYPE:** Git
     - **SCM URL:** https://github.com/ansible/workshop-examples.git
-    - **SCM BRANCH/TAG/COMMIT:** webdev
+    - **SCM BRANCH/TAG/COMMIT:** `webdev_summit_2020`
     - **SCM UPDATE OPTIONS:** Tick the first three boxes.
 - Click **SAVE**
 </p>
