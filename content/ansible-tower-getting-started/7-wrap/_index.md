@@ -27,7 +27,7 @@ Your operations team and your application development team like what they see in
 
 ## The Git Repository
 
-All code is already in place - this is a Tower lab after all and not about configuring Apache. Check out the **Ansible Workshop Examples** git repository at **https://github.com/ansible/workshop-examples**. There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
+All code is already in place - this is a Tower lab after all and not about configuring Apache. Check out the **Ansible Workshop Examples** git repository at **https://github.com/ansible/workshop-examples** (again with the [correct tag or branch](https://github.com/ansible/workshop-examples/tree/summit_2020)). There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
 
 Compared to the previous Apache installation role there is a major difference: there are now two versions of an `index.html` template, and a task deploying the template file which has a variable as part of the template file name.
 
