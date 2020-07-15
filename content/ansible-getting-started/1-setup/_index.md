@@ -15,7 +15,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Managed Host 2       | node3          |
 
 {{% notice warning %}}
-The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Make sure to have the **Your Red Hat Summit Lab Credentials** email ready. Your student number, the lab ID and a link to the lab page with the access credentials (**Lab Link**) are in there!
+The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
 {{% /notice %}}
 
 {{% notice tip %}}

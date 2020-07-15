@@ -56,7 +56,7 @@ access to the following hosts:
 | Managed Remote Host 1        |                                    | {{< param "internal_hostremote" >}} |
 
 {{% notice tip %}}
-The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to SSH into the hosts using the external hostnames. Internally the hosts have another DNS name. Make sure to have the **Your Red Hat Summit Lab Credentials** email ready. Your student number, the lab ID and a link to the lab landing page with the access credentials (**Lab Link**) are in there! {{< param "tip_variable_placeholder" >}}
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to access the hosts using the external hostnames. Internally the hosts have another DNS name. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
 {{% /notice %}}
 
 {{% notice tip %}}
