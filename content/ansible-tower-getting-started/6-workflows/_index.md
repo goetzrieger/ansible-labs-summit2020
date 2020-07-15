@@ -157,7 +157,7 @@ And now you finally set up the Workflow. Workflows are configured in the **Templ
 
   - After saving the template the **Workflow Visualizer** opens to allow you to build a workflow. You can later open the **Workflow Visualizer** again by using the button on the template details page.
 
-  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **JOBS**, **PROJECT SYNC** and **INVENTORY SYNC**.
+  - Click on the **START** button, a new node opens. To the right you can assign an action to the node, you can choose between **Template**, **Project Sync**, **Inventory Sync** and **Approval**.
 
   - In this lab we’ll link Jobs together, so select the **Web Infra Deploy** Template and click **SELECT**.
 
