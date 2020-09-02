@@ -15,13 +15,19 @@ At first this is not different from a standard Tower setup. But as this is a clu
 
 ## So what Instance run the Job?
 
+There are a couple of ways to find the node that executed the job.
+
+### From the Job Output
+
+The most obvious way is to look up the **EXECUTION NODE** in the details of the job output. If you closed it already or want to look it up later, go to **VIEWS->Jobs** and look up the job in question.
+
+### From the instance groups
+
 In one of the Tower instances web UI under **ADMINISTRATION** go to the **Instance Groups** view. For the `tower` instance group, the **TOTAL JOBS** counter shows the number of finished jobs. If you click **TOTAL JOBS** you’ll get a detailed list of jobs.
 
-To see on what instance a job actually run go back to the **Instance Groups** view. If you click **INSTANCES** under the **tower** group, you will get an overview of the **TOTAL JOBS** each Tower instance in this group executed. Clicking **TOTAL JOBS** for an instance leads to a detailed job list.
+To see on what instance a job actually run go back to the **Instance Groups** view. If you click **INSTANCES** under the **tower** group, you will get an overview of the **TOTAL JOBS** each Tower instance in this group executed. Clicking **TOTAL JOBS** for an instance leads to a detailed job list for this instance.
 
-## But I just want to know on which Instance my Job Run!
-
-But it would still be nice to see where a job run (not the other way round) and to get an idea how jobs are distributed to the available instances. For this we can utilize the API:
+### Using the API
 
   - First find the job ID: In the web UI access **VIEWS→Jobs**
 
@@ -42,16 +48,16 @@ Replace **\<ID>** with the job ID you want to query!
 {{% /notice %}}
 
 ```bash
-    curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python -m json.tool | grep execution_node
+    curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python3 -m json.tool | grep execution_node
 
         "execution_node": "{{< param "internal_tower1" >}}",
 ```
 
 {{% notice tip %}}
-You can use any method you want to access the API and to display the result, of course. The usage of curl and python-tool was just an example.
+You can use any method you want to access the API and to display the result, of course. The usage of curl and python was just an example.
 {{% /notice %}}
 
-## Via API in the browser
+### Via API in the browser
 
 Another way to query the Tower API is using a browser. For example to have a look at the job details (basically what you did above using curl and friends):
 
@@ -72,13 +78,3 @@ Note you used the internal hostname above, when using your browser, you have to 
 {{% notice tip %}}
 You can of course query any Tower node.
 {{% /notice %}}
-
-## Via Web UI
-
-Starting with Ansible Tower 3.6, we can also find the information in the Web UI.
-
-- Navigate to the **Jobs** menu.
-
-- Click on the job you just launched.
-
-You will find the Ansible Tower node name in the field **Execution Node** in the details box on the left.

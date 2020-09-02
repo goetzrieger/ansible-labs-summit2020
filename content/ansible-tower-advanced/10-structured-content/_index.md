@@ -299,9 +299,10 @@ repository over SSH. This credential is user/key based, and we need the followin
 **awx** command (assuming the `TOWER_` environment variables are still defined):
 
 ```bash
-    [{{< param "awx_prompt" >}} ~]# awx credential create --name="Git Credentials" \
-                        --organization "Default" --credential_type "Source Control" \
-                        --inputs="{\"username\":\"{{< param "git_user" >}}\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' ~/.ssh/aws-private.pem)\n\"}"
+    [{{< param "awx_prompt" >}} ~]# awx -f human credential create --name "Git Credentials" \
+              --organization "Default" \
+              --credential_type "Source Control" \
+              --inputs '{"username": "git", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
 ```
 
 The new repository needs to be added as project. Feel free to use the
@@ -383,7 +384,6 @@ Please note that in a real world use case you might want to have different templ
     [{{< param "control_prompt" >}} ~]# awx -f human job_template associate --name "Structured Content Execution" \
                         --credential "Example Credentials"
 ```
-
 {{% /notice %}}
 
 Now in the Tower web UI go to **RESOURCES→Templates**, launch the

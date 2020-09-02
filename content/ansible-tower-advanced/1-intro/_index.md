@@ -43,20 +43,20 @@ Definitely, the Markdown sources are available here:
 In this lab you work in a pre-configured lab environment. You will have
 access to the following hosts:
 
-| Role                         | Hostname External (if applicable)  | Hostname Internal                   |
+| Role                         | URL for External Access (if applicable)  | Hostname Internal                   |
 | ---------------------------- | ---------------------------------- | ----------------------------------- |
 | Ansible Tower Node 1         | {{< param "external_tower1" >}}    | {{< param "internal_tower1" >}}     |
-| Ansible Tower Node 2         | {{< param "external_tower2" >}}    | {{< param "internal_tower2" >}}     |
-| Ansible Tower Node 3         | {{< param "external_tower3" >}}    | {{< param "internal_tower3" >}}     |
+| Ansible Tower Node 2         |                                    | {{< param "internal_tower2" >}}     |
+| Ansible Tower Node 3         |                                    | {{< param "internal_tower3" >}}     |
 | Visual Code Web UI           | {{< param "external_code" >}}      |                                     |
 | Ansible Tower Database Host  |                                    | {{< param "internal_towerdb" >}}    |
-| Managed RHEL7 Host 1         |                                    | {{< param "internal_host1" >}}      |
-| Managed RHEL7 Host 2         |                                    | {{< param "internal_host2" >}}      |
+| Managed RHEL8 Host 1         |                                    | {{< param "internal_host1" >}}      |
+| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
 | Ansible Tower Isolated Node  |                                    | {{< param "internal_toweriso" >}}   |
 | Managed Remote Host 1        |                                    | {{< param "internal_hostremote" >}} |
 
 {{% notice tip %}}
-The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to access the hosts using the external hostnames. Internally the hosts have another DNS name. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to access the hosts using the external hostnames. Internally the hosts have different names as shown above. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
 {{% /notice %}}
 
 {{% notice tip %}}
@@ -73,13 +73,13 @@ have:
   - A three-node Tower cluster with a separate DB host, accessed via SSH
     or web UI
 
-  - Two managed RHEL 7 hosts
+  - Two managed RHEL 8 hosts
 
 And to mimic a remote site with isolated nodes:
 
-  - One host that acts as an isolated Tower node that can be reached via SSH from the Tower cluster nodes.
+  - One RHEL 8 host that acts as an isolated Tower node that can be reached via SSH from the Tower cluster nodes.
 
-  - One host which acts as a remote managed node that can only be reached from/through the isolated node.
+  - One RHEL 8 host which acts as a remote managed node that can only be reached from/through the isolated node.
 
 A diagram says more then a thousand words:
 
