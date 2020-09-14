@@ -1,5 +1,5 @@
 +++
-title = "Visual Studio Code Introduction"
+title = "Visual Studio Code - Introduction"
 weight = 4
 +++
 
