@@ -6,4 +6,4 @@
 
 [Ansible Tower Advanced](./ansible-tower-advanced/)
 
-[Visual Studio Code Introduction](./vscode-intro)
+[Visual Studio Code - Introduction](./vscode-intro)
