@@ -21,7 +21,7 @@ jobs:
 
     - name: Build
       # run: hugo --minify
-      run: hugo
+      run: hugo -t hugo-theme-learn
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
