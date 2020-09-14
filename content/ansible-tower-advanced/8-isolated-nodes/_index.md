@@ -23,11 +23,7 @@ Because of the setup of this lab environment, before we configure the isolated n
 
 ```bash
     [student@ansible-1 ~]$ scp /etc/hosts isonode:
-    [student@ansible-1 ~]$ ssh isonode
-    [ec2-user@isonode ~]$ sudo -i
-    [root@isonode ~]# mv /home/ec2-user/hosts /etc/
-    [root@isonode ~]# exit
-    [ec2-user@isonode ~]$ exit
+    [student@ansible-1 ~]$ ssh isonode sudo mv /home/ec2-user/hosts /etc/
 ```
 
 ## Setting Up Isolated Nodes
