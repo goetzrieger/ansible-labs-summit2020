@@ -13,11 +13,11 @@ We’ve incorporated different ways to work with Tower in this lab guide and hop
 
 We’ll install it on your Tower node1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install **AWX CLI** as `root`:
 
-    [student@ansible ~]$ sudo -i
-    [root@ansible ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el7.repo
-    [root@ansible ~]# yum install ansible-tower-cli -y
-    [root@ansible ~]# exit
-    [student@ansible ~]$
+    [student@ansible-1 ~]$ sudo -i
+    [root@ansible-1 ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
+    [root@ansible-1 ~]# yum install ansible-tower-cli -y
+    [root@ansible-1 ~]# exit
+    [student@ansible-1 ~]$
 
 {{% notice warning %}}
 Please make sure to leave the root shell after installation of the package!
@@ -29,36 +29,35 @@ After installing the tool, you have to configure authentication. The preferred w
 Replace student number and labid!
 {{% /notice %}}
 
-    [student@ansible ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
-    [student@ansible ~]$ export TOWER_USERNAME=admin
-    [student@ansible ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
-    [student@ansible ~]$ export TOWER_VERIFY_SSL=false
+    [student@ansible-1 ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
+    [student@ansible-1 ~]$ export TOWER_USERNAME=admin
+    [student@ansible-1 ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
+    [student@ansible-1 ~]$ export TOWER_VERIFY_SSL=false
 
 {{% notice tip %}}
 Feel free to write this into a new file using the code-server editor and then to use **source \<filename\>** to set the environment variables. This way if you loose connection to code-server you can easily re-set the vars.
 {{% /notice %}}
 
-Then use **awx** to login and print out the access token:
+Then use **awx** to login and print out the access token and to save it to a file at the same time:
 
-    [student@ansible ~]$ awx login -f human | tee token
-    export TOWER_TOKEN=<YOUR_TOKEN>
+    [student@ansible-1 ~]$ awx login -f human | tee token
 
 {{% notice tip %}}
-We are saving the **export TOWER_TOKEN=\<YOUR_TOKEN\>** command line output to the file **token** using **tee** here to be able to set the environment variable more easily.
+We are saving the **export TOWER_OAUTH_TOKEN=\<YOUR_TOKEN\>** command line output to the file **token** using **tee** here to be able to set the environment variable more easily.
 {{% /notice %}}
 
 Finally set the environment variable with the token using the line the command printed out:
 
-    [student@ansible ~]$ source token
+    [student@ansible-1 ~]$ source token
 
 Now that the access token is avalable in your shell, test **awx** is working. First run it without arguments to get a
 list of resources you can manage with it:
 
-    [student@ansible ~]$ awx --help
+    [student@ansible-1 ~]$ awx --help
 
 And then test something, e.g. (leave out **-f human** if you're a JSON fan...) ;)
 
-    [student@ansible ~]$ awx -f human user list
+    [student@ansible-1 ~]$ awx -f human user list
 
 {{% notice tip %}}
 When trying to find a **awx** command line for something you want to do, just move one by one.
@@ -66,16 +65,16 @@ When trying to find a **awx** command line for something you want to do, just mo
 
 Example: Need to create an inventory...
 
-    [student@ansible ~]$ awx --help
+    [student@ansible-1 ~]$ awx --help
 
 Okay, there is an **inventory** resource. Let’s see…
 
-    [student@ansible ~]$ awx inventory
+    [student@ansible-1 ~]$ awx inventory
 
 Well, the **create** action sounds like what I had in mind. But what arguments do I
 need? Just run:
 
-    [student@ansible ~]$ awx -f human inventory create
+    [student@ansible-1 ~]$ awx inventory create
 
 And you'll get the required and optional arguments for the **create** action!
 
@@ -100,9 +99,9 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 <p>
 
 ```bash
-    [student@ansible ~]$ awx setting list | grep SESSION
-    [student@ansible ~]$ awx setting modify SESSION_COOKIE_AGE 7200
-    [student@ansible ~]$ awx setting list | grep SESSION
+    [student@ansible-1 ~]$ awx setting list | grep SESSION
+    [student@ansible-1 ~]$ awx setting modify SESSION_COOKIE_AGE 7200
+    [student@ansible-1 ~]$ awx setting list | grep SESSION
 ```
 
 </p>

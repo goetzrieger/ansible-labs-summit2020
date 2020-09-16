@@ -35,7 +35,7 @@ For understanding and practice let’s do a lab. Following up on the theme "Let�
 On the ansible control host, as the `student` user, create the directories to hold the variable definitions in `~/ansible-files/`:
 
 ```bash
-[student<N>@ansible ansible-files]$ mkdir host_vars group_vars
+[student<N>@ansible-1 ansible-files]$ mkdir host_vars group_vars
 ```
 
 Now create two files containing variable definitions. We’ll define a variable named `stage` which will point to different environments, `dev` or `prod`:
@@ -106,7 +106,7 @@ Note how the variable "stage" is used in the name of the file to copy.
   - Run the Playbook:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible-playbook deploy_index_html.yml
+[student<N>@ansible-1 ansible-files]$ ansible-playbook deploy_index_html.yml
 ```
 
 ## Test the Result
@@ -114,19 +114,19 @@ Note how the variable "stage" is used in the name of the file to copy.
 The Playbook should copy different files as index.html to the hosts, use `curl` to test it. Check the inventory again if you forgot the IP addresses of your nodes.
 
 ```bash
-[student<N>@ansible ansible-files]$ grep node ~/lab_inventory/hosts
+[student<N>@ansible-1 ansible-files]$ grep node ~/lab_inventory/hosts
 node1 ansible_host=11.22.33.44
 node2 ansible_host=22.33.44.55
 node3 ansible_host=33.44.55.66
-[student<N>@ansible ansible-files]$ curl http://11.22.33.44
+[student<N>@ansible-1 ansible-files]$ curl http://11.22.33.44
 <body>
 <h1>This is a development webserver, have fun!</h1>
 </body>
-[student1@ansible ansible-files]$ curl http://22.33.44.55
+[student1@ansible-1 ansible-files]$ curl http://22.33.44.55
 <body>
 <h1>This is a production webserver, take care!</h1>
 </body>
-[student1@ansible ansible-files]$ curl http://33.44.55.66
+[student1@ansible-1 ansible-files]$ curl http://33.44.55.66
 <body>
 <h1>This is a development webserver, have fun!</h1>
 </body>
@@ -143,18 +143,18 @@ Ansible facts are variables that are automatically discovered by Ansible from a 
 To get an idea what facts Ansible collects by default, on your control node as your student user run:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible node1 -m setup
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup
 ```
 
 This might be a bit too much, you can use filters to limit the output to certain facts, the expression is shell-style wildcard:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
 ```
 Or what about only looking for memory related facts:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible node1 -m setup -a 'filter=ansible_*_mb'
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_*_mb'
 ```
 
 ## Challenge Lab: Facts
@@ -168,8 +168,8 @@ Use grep to find the fact, then apply a filter to only print this fact.
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 ```bash
-[student<N>@ansible ansible-files]$ ansible node1 -m setup|grep distribution
-[student<N>@ansible ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
 ```
 </p>
 </details>
@@ -194,7 +194,7 @@ The "debug" module is handy for e.g. debugging variables or expressions.
 Execute it to see how the facts are printed:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible-playbook facts.yml
+[student<N>@ansible-1 ansible-files]$ ansible-playbook facts.yml
 
 PLAY [Output facts within a playbook] ******************************************
 

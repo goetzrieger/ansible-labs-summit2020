@@ -86,7 +86,7 @@ As a an example, let’s write a Playbook that:
 First we need the file Ansible will deploy, let’s just take the one from `node1`. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
 
 ```bash
-[student<N>@ansible ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
+[student<N>@ansible-1 ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
 httpd.conf
 ```
 
@@ -135,9 +135,9 @@ Listen 8080
 Apache should now listen on port 8080. Easy enough to verify:
 
 ```bash
-[student1@ansible ansible-files]$ curl http://22.33.44.55
+[student1@ansible-1 ansible-files]$ curl http://22.33.44.55
 curl: (7) Failed connect to 22.33.44.55:80; Connection refused
-[student1@ansible ansible-files]$ curl http://22.33.44.55:8080
+[student1@ansible-1 ansible-files]$ curl http://22.33.44.55:8080
 <body>
 <h1>This is a production webserver, take care!</h1>
 </body>
@@ -224,7 +224,7 @@ Check the output:
 Verify that the user `prod_user` was indeed created on `node1`:
 
 ```bash
-[student<N>@ansible ansible-files]$ ansible node1 -m command -a "id dev_user"
+[student<N>@ansible-1 ansible-files]$ ansible node1 -m command -a "id dev_user"
 node1 | CHANGED | rc=0 >>
 uid=1002(dev_user) gid=1002(dev_user) groups=1002(dev_user),50(ftp)
 ```

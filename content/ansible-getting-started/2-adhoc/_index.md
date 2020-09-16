@@ -10,7 +10,7 @@ For our first exercise, we are going to run some ad hoc commands to help you get
 To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. Have a look for yourself, in your **code-server terminal** run:
 
 ```bash
-[student<N>@ansible ~]$ cat lab_inventory/hosts
+[student<N>@ansible-1 ~]$ cat lab_inventory/hosts
 
 [all:vars]
 ansible_user=student<N>
@@ -72,14 +72,14 @@ The recommended practice is to create an `ansible.cfg` file in the directory fro
 In the lab environment provided to you an `.ansible.cfg` file has already been created and filled with the necessary details in the home directory of your `student<N>` user on the control node:
 
 ```bash
-[student<N>@ansible ~]$ ls -la .ansible.cfg
+[student<N>@ansible-1 ~]$ ls -la .ansible.cfg
 -rw-r--r--. 1 student<N> student<N> 231 14. Mai 17:17 .ansible.cfg
 ```
 
 Review the content of the file:
 
 ```bash
-[student<N>@ansible ~]$ cat .ansible.cfg
+[student<N>@ansible-1 ~]$ cat .ansible.cfg
 [defaults]
 stdout_callback = yaml
 connection = smart
@@ -103,7 +103,7 @@ Think of a module as a tool which is designed to accomplish a specific task.
 Ansible needs to know that it should use the `ping` module: The `-m` option defines which Ansible module to use. Options can be passed to the specified module using the `-a` option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group `web`.
 
 ```bash
-[student<N>@ansible ~]$ ansible web -m ping
+[student<N>@ansible-1 ~]$ ansible web -m ping
 node2 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
@@ -121,7 +121,7 @@ As you see each node in the `web` group reports the successful execution and the
 Ansible comes with a lot of modules by default. To list all modules run:
 
 ```bash
-[student<N>@ansible ~]$ ansible-doc -l
+[student<N>@ansible-1 ~]$ ansible-doc -l
 ```
 
 {{% notice tip %}}
@@ -131,13 +131,13 @@ In `ansible-doc` leave by pressing the button `q`. Use the `up`/`down` arrows to
 To find a module try e.g.:
 
 ```bash
-[student<N>@ansible ~]$ ansible-doc -l | grep -i user
+[student<N>@ansible-1 ~]$ ansible-doc -l | grep -i user
 ```
 
 Get help for a specific module including usage examples:
 
 ```bash
-[student<N>@ansible ~]$ ansible-doc user
+[student<N>@ansible-1 ~]$ ansible-doc user
 ```
 
 {{% notice tip %}}
@@ -149,7 +149,7 @@ Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
 Now let's see how we can run a good ol' fashioned Linux command and format the output using the `command` module. It simply executes the specified command on a managed host (note this time not a group but a hostname is used as host pattern):
 
 ```bash
-[student<N>@ansible ~]$ ansible node1 -m command -a "id"
+[student<N>@ansible-1 ~]$ ansible node1 -m command -a "id"
 node1 | CHANGED | rc=0 >>
 uid=1001(student1) gid=1001(student1) Gruppen=1001(student1) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
@@ -158,13 +158,13 @@ In this case the module is called `command` and the option passed with `-a` is t
 Another example: Have a quick look at the kernel versions your hosts are running:
 
 ```bash
-[student<N>@ansible ~]$ ansible all -m command -a 'uname -r'
+[student<N>@ansible-1 ~]$ ansible all -m command -a 'uname -r'
 ```
 
 Sometimes it’s desirable to have the output for a host on one line:
 
 ```bash
-[student<N>@ansible ~]$ ansible all -m command -a 'uname -r' -o
+[student<N>@ansible-1 ~]$ ansible all -m command -a 'uname -r' -o
 ```
 
 {{% notice tip %}}
@@ -178,7 +178,7 @@ Using the `copy` module, execute an ad hoc command on `node1` to change the cont
 Run the following, but **expect an error**:
 
 ```bash
-[student<N>@ansible ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd'
+[student<N>@ansible-1 ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd'
 ```
 
 As mentioned this produces an **error**:
@@ -203,7 +203,7 @@ Ansible will connect to the machines using your current user name (student\<N\> 
 For us it’s okay to connect as `student<N>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
 ```bash
-[student<N>@ansible ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd' -b
+[student<N>@ansible-1 ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd' -b
 ```
 
 This time the command is a success:
@@ -228,7 +228,7 @@ node1 | CHANGED => {
 Use Ansible with the generic `command` module to check the content of the motd file:
 
 ```bash
-[student<N>@ansible ~]$ ansible node1 -m command -a 'cat /etc/motd'
+[student<N>@ansible-1 ~]$ ansible node1 -m command -a 'cat /etc/motd'
 node1 | CHANGED | rc=0 >>
 Managed by Ansible
 ```
@@ -260,9 +260,9 @@ Use the copy ad hoc command from above as a template and change the module and o
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
 ```bash
-[student<N>@ansible ~]$ ansible-doc -l | grep -i yum
-[student<N>@ansible ~]$ ansible-doc yum
-[student<N>@ansible ~]$ ansible all -m yum -a 'name=vim state=latest' -b
+[student<N>@ansible-1 ~]$ ansible-doc -l | grep -i yum
+[student<N>@ansible-1 ~]$ ansible-doc yum
+[student<N>@ansible-1 ~]$ ansible all -m yum -a 'name=vim state=latest' -b
 ```
 </p>
 </details>

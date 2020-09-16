@@ -44,7 +44,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [student<N>@ansible ~]$ sudo -i
+    [student<N>@ansible-1 ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
@@ -54,7 +54,7 @@ Most prerequisite tasks have already been done for you:
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
-    [root@ansible ~]# ansible --version
+    [root@ansible-1 ~]# ansible --version
     ansible 2.9.6
     [...]
 
@@ -64,7 +64,7 @@ Ansible is keeping configuration management simple. Ansible requires no database
 
 Log out of the root account again:
 
-    [root@ansible ~]# exit
+    [root@ansible-1 ~]# exit
     logout
 
 {{% notice warning %}}

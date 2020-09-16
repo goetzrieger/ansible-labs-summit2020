@@ -21,11 +21,11 @@ Don’t get this wrong… we’ve chosen to use Bash to make it as simple as pos
 
 ### The Inventory Source
 
-First you need a source. In **real life** this would be your **cloud provider, your CMDB or what not**. For the sake of this lab we put a file into the Github repository you’ve already used to be our source
+First you need a source. In **real life** this would be your **cloud provider, your CMDB or what not**. For the sake of this lab we put a simple file into a Github repository.
 
 Use curl to query your external inventory source:
 
-    [student@ansible ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
+    [student@ansible-1 ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
     {
         "dyngroup":{
             "hosts":[
@@ -78,11 +78,11 @@ But before we integrate the custom inventory script into our Tower cluster, it�
 - Create the file `dyninv.sh` with the content shown above (use VI or the VSCode editor)
 - Make the script executable:
 
-        [student@ansible ~]$ chmod +x dyninv.sh
+        [student@ansible-1 ~]$ chmod +x dyninv.sh
 
 - Execute it:
 
-        [student@ansible ~]$ ./dyninv.sh --list
+        [student@ansible-1 ~]$ ./dyninv.sh --list
         {
             "dyngroup":{
                 "hosts":[
@@ -201,7 +201,7 @@ Let’s start with a simple string example. In your Tower web UI, open the **RES
 
   - A window **DYNAMIC HOSTS** opens, here you define the search query
 
-To start with you can just use simple search terms. Try **cloud** or **internal** as search terms and see what you get after hitting **ENTER**.
+To start with you can just use simple search terms. Try **cloud** or **example.com** as search terms and see what you get after hitting **ENTER**.
 
 {{% notice tip %}}
 Search terms are automatically saved so make sure to hit **CLEAR ALL** to clear the saved search when testing expressions.
@@ -250,7 +250,7 @@ After you run the templates go back to the host details like you did above and c
 
   - **{{< param "internal_hostremote" >}}** (from the **Remote Inventory**).
 
-The hosts facts should now be populated with a lot of facts.
+The hosts facts should now be populated with a lot of information.
 
 #### Use Facts in Smart Inventory Searches
 
@@ -284,7 +284,7 @@ A small hint: If a fact is deeper in the structure like this:
 The search string would look like this:
 **ansible\_facts.ansible\_eth0.active:true**
 
-### Challenge Lab: Facts
+### Challenge Lab: Smart Inventory with Facts
 
 So a small challenge: Find out if all hosts have the SElinux mode set to "enforcing".
 
@@ -293,6 +293,8 @@ So a small challenge: Find out if all hosts have the SElinux mode set to "enforc
 - Create a Smart Inventory
 
 - Create the proper search string
+
+- Save the new Smart Inventory
 
 <details><summary>**>> Click here for Solution <<**</summary>
 <p>
@@ -306,7 +308,7 @@ And to make this a bit more fun:
 
 - SSH into one of your hosts (say **{{< param "internal_host2" >}}**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
 
-        [student@ansible ~]$ ssh ec2-user@{{< param "internal_host2" >}}
+        [student@ansible-1 ~]$ ssh ec2-user@{{< param "internal_host2" >}}
         [ec2-user@node2 ~]$ sudo -i
         [root@node2 ~]# sudo setenforce 0
 

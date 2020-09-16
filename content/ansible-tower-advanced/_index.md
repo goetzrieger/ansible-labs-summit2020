@@ -15,4 +15,3 @@ weight = 3
 - [Exercise 9 - Advanced Inventories](9-advanced-inventories)
 - [Exercise 10 - OPTIONAL: Well Structured Content Repositories](10-structured-content)
 - [Exercise 11 - OPTIONAL: Discovering the Tower API](11-rest-api)
-- [Appendix](12-appendix)

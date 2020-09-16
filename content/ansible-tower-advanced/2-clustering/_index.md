@@ -22,8 +22,8 @@ The Appendix contains some installation considerations and an installer inventor
 
 ## Access the Tower Web UI
 
-For the first contact to your cluster open your browser and login to all
-three nodes web UIs as:
+For the first contact to your cluster open your browser and login to the
+Tower node 1 web UIs as:
 
   - user **admin**
 
@@ -34,10 +34,6 @@ Use the pre-created URLs from the lab landing page or replace **{{< param "labid
 {{% /notice %}}
 
 **`https://{{< param "external_tower1" >}}`**
-
-**`https://{{< param "external_tower2" >}}`**
-
-**`https://{{< param "external_tower3" >}}`**
 
 Just from the web UI you wouldn’t know you’ve got a Tower cluster at your hands here. To learn more about your cluster and its state, in one of the instances web UI under **ADMINISTRATION** choose **Instance Groups**. Here you will get an overview of the cluster by instance groups. Explore the information provided, of course there is no capacity used yet and no Jobs have run.
 
@@ -66,12 +62,12 @@ In the terminal run the following command:
 
     [{{< param "awx_prompt" >}} ~]# awx-manage list_instances
     [tower capacity=51]
-        {{< param "internal_tower1" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:27"
-        {{< param "internal_tower2" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:36"
-        {{< param "internal_tower3" >}} capacity=17 version=3.6.3 heartbeat="2020-04-08 14:10:38"
+        ansible-1 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:06:21"
+        ansible-2 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:05:58"
+        ansible-3 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:06:00"
 
 So what we’ve got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 17 is allocated to any of our three nodes.
 
 {{% notice tip %}}
-The **awx-manage** (formerly tower-manage) utility can be used to administer a lot of the more internal aspects of Tower. You can e.g. use it to clean up old data, for token and session management and for cluster management.
+The **awx-manage** (formerly tower-manage) utility can be used to manage a lot of the more internal aspects of Tower. You can e.g. use it to clean up old data, for token and session management and for cluster management.
 {{% /notice %}}

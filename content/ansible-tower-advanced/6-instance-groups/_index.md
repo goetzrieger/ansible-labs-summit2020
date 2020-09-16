@@ -61,7 +61,7 @@ Go back to the **Instance Groups** view, you should now have the following setup
 
   - All instances are in the **tower** base group
 
-  - Two more groups (**prod** and **dev**) with one instances each where setup
+  - Two more groups (**prod** and **dev**) with one instances each
 
 {{% notice tip %}}
 We’re using the internal names of the Tower nodes here.
@@ -83,13 +83,13 @@ You have configured the groups here, open the URL
 
 in your browser.
 
-In the **INSTANCE GROUPS** overview all instance groups are listed with details of the group itself like number of instances in the group, running jobs and finished jobs. Like you’ve seen before for the **tower** global group the current capacity of the instance groups is shown in a live view, thus providing a quick insight if there are capacity problems.
+In the **INSTANCE GROUPS** overview all instance groups are listed with details of the group itself like number of instances in the group, running jobs and finished jobs. Like you’ve seen before the current capacity of the instance groups is shown in a live view, thus providing a quick insight if there are capacity problems.
 
 ### Via the `awx` CLI
 
 In your VSCode terminal, run:
 
-    [student@ansible ~]$ awx -k instance_group list -f human
+    [student@ansible-1 ~]$ awx -k instance_group list -f human
     id name
     == =====
     1  tower
@@ -104,7 +104,7 @@ You can again query the API to get this information. Either use the browser to a
 
 or use curl to access the API from the command line in your VSCode terminal:
 
-`[student@ansible ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python -m json.tool`
+`[student@ansible-1 ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python3 -m json.tool`
 
 {{% notice tip %}}
 The curl command has to be on one line. Do _not_ forget or oversee the final slash at the end of the URL, it is relevant!

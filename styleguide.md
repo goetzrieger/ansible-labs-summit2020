@@ -40,9 +40,9 @@ For example solutions, we use the collapse feature:
     <details><summary>**>> Click here for Solution <<**</summary>
     <p>
     ```bash
-    [student<X>@ansible ~]$ ansible-doc -l | grep -i dnf
-    [student<X>@ansible ~]$ ansible-doc dnf
-    [student<X>@ansible ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
+    [student<X>@ansible-1 ~]$ ansible-doc -l | grep -i dnf
+    [student<X>@ansible-1 ~]$ ansible-doc dnf
+    [student<X>@ansible-1 ~]$ ansible all -m dnf -a 'name=vim state=latest' -b
     ```
     </p>
     </details>

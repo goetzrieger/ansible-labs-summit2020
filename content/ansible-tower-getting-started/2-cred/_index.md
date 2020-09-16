@@ -28,7 +28,7 @@ You should already have the **code-server** web UI and a terminal window open fr
 You can find the inventory information for your lab in the file `~/lab_inventory/hosts`. In your code-server terminal, output them with `cat`, they should look like:
 
 ```bash
-[student<N>@ansible ~]$ cat ~/lab_inventory/hosts
+[student<N>@ansible-1 ~]$ cat ~/lab_inventory/hosts
 [all:vars]
 ansible_user=student<N>
 ansible_ssh_pass=<password>
@@ -78,7 +78,7 @@ To test access to the nodes via SSH do the following:
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
-[student1@ansible ~]$ ssh ec2-user@node1
+[student1@ansible-1 ~]$ ssh ec2-user@node1
 [ec2-user@node1 ~]$
 sudo -i
 [root@node1 ~]# exit
@@ -116,7 +116,7 @@ As we are using SSH key authentication, you have to provide an SSH private key t
 Bring up your code-server terminal on Tower, and `cat` the SSH private key:
 
 ```bash
-[student1@ansible ~]$ cat .ssh/aws-private.pem
+[student1@ansible-1 ~]$ cat .ssh/aws-private.pem
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
 [...]
