@@ -131,7 +131,7 @@ Note how the two variables where used by the playbook to create the content of t
 Here is a list of tasks:
 
 {{% notice warning %}}
-Please make sure to finish these steps as the next chapter depends on it!
+**Please make sure to finish these steps as the next chapter depends on it!**
 {{% /notice %}}
 
 - Take the inventory `Webserver` and add node `node2` to it.

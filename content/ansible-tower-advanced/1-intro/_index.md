@@ -81,9 +81,9 @@ And to mimic a remote site with isolated nodes:
 
   - One RHEL 8 host which acts as a remote managed node that can only be reached from/through the isolated node.
 
-A diagram says more then a thousand words:
+<!-- A diagram says more then a thousand words:
 
-![tower diagram.png](../../images/tower_diagram.png)
+![tower diagram.png](../../images/tower_diagram.png) -->
 
 {{% notice tip %}}
 Access to the isolated node and the managed hosts is actually not restricted in the lab environment. Just imagine filtered, DMZ-like access rules for educational purposes… ;-)
@@ -107,6 +107,13 @@ The command line can wrap on the HTML page from time to time. Therefore the outp
 
 ## Accessing your Lab Environment
 
+You'll get the access information for your lab (URL's, password) from a landing page. Getting access to this page depends on how you are consuming the lab:
+
+* If you deployed from RHPDS, you'll receive an email with the landing page URL
+* If you attend this lab at an event, your lab facilitator will lead you to the landing page
+
+Either way you'll get an URL similar to this: `http://{{< param "external_domain" >}}`
+
 Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** to:
 
 * open virtual terminals
@@ -114,9 +121,9 @@ Your main points of contact with the lab are the Ansible Tower web UI's and **co
 
 Now open code-server using the link from the lab landing page or this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-
+```bash
      https://{{< param "external_code" >}}
-
+```
 
 ![code-server login](../../images/vscode-pwd.png)
 

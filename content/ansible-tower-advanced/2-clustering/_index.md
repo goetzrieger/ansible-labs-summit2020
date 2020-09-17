@@ -53,18 +53,22 @@ Your VSCode session is running on your Tower node 1. Again if not still open, op
 
 A terminal window opens at the bottom, become root:
 
+```bash
     [{{< param "pre_awx_prompt" >}} ~]$ sudo -i
     [{{< param "awx_prompt" >}} ~]#
+```
 
 In the terminal run the following command:
 
 > Your exact hostnames will differ, of course!
 
+```bash
     [{{< param "awx_prompt" >}} ~]# awx-manage list_instances
     [tower capacity=51]
         ansible-1 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:06:21"
         ansible-2 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:05:58"
         ansible-3 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:06:00"
+```
 
 So what we’ve got is a three-node Tower cluster, no surprises here. In addition the command tells us the capacity (maximum number of forks/concurrent jobs) per node and for the instance groups. Here the capacity value of 17 is allocated to any of our three nodes.
 

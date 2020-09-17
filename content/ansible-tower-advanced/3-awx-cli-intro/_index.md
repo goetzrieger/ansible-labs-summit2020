@@ -13,11 +13,13 @@ We’ve incorporated different ways to work with Tower in this lab guide and hop
 
 We’ll install it on your Tower node1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install **AWX CLI** as `root`:
 
+```bash
     [student@ansible-1 ~]$ sudo -i
     [root@ansible-1 ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
     [root@ansible-1 ~]# yum install ansible-tower-cli -y
     [root@ansible-1 ~]# exit
     [student@ansible-1 ~]$
+```
 
 {{% notice warning %}}
 Please make sure to leave the root shell after installation of the package!
@@ -29,10 +31,12 @@ After installing the tool, you have to configure authentication. The preferred w
 Replace student number and labid!
 {{% /notice %}}
 
+```bash
     [student@ansible-1 ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
     [student@ansible-1 ~]$ export TOWER_USERNAME=admin
     [student@ansible-1 ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
     [student@ansible-1 ~]$ export TOWER_VERIFY_SSL=false
+```
 
 {{% notice tip %}}
 Feel free to write this into a new file using the code-server editor and then to use **source \<filename\>** to set the environment variables. This way if you loose connection to code-server you can easily re-set the vars.
@@ -40,7 +44,9 @@ Feel free to write this into a new file using the code-server editor and then to
 
 Then use **awx** to login and print out the access token and to save it to a file at the same time:
 
+```bash
     [student@ansible-1 ~]$ awx login -f human | tee token
+```
 
 {{% notice tip %}}
 We are saving the **export TOWER_OAUTH_TOKEN=\<YOUR_TOKEN\>** command line output to the file **token** using **tee** here to be able to set the environment variable more easily.
@@ -48,7 +54,9 @@ We are saving the **export TOWER_OAUTH_TOKEN=\<YOUR_TOKEN\>** command line outpu
 
 Finally set the environment variable with the token using the line the command printed out:
 
+```bash
     [student@ansible-1 ~]$ source token
+```
 
 Now that the access token is avalable in your shell, test **awx** is working. First run it without arguments to get a
 list of resources you can manage with it:
@@ -57,7 +65,9 @@ list of resources you can manage with it:
 
 And then test something, e.g. (leave out **-f human** if you're a JSON fan...) ;)
 
+```bash
     [student@ansible-1 ~]$ awx -f human user list
+```
 
 {{% notice tip %}}
 When trying to find a **awx** command line for something you want to do, just move one by one.

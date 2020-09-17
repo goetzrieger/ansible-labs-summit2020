@@ -71,7 +71,7 @@ no rights.
 </details>
 
 Now log in again as admin and go back to the list of users:
-**https://{{< param "external_tower" >}}/api/v2/users/**
+`https://{{< param "external_tower" >}}/api/v2/users/`
 
   - Click on the **url** field of your new friend John Smith and notice
     a few more things:

@@ -7,7 +7,7 @@ weight = 2
 
 Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://student<N>.<LABID>.events.opentlc.com`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
+  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://{{< param "external_tower1" >}}`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
 
 Create the inventory:
 

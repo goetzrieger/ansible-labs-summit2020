@@ -4,7 +4,7 @@ contentdir    = "content"
 layoutdir     = "layouts"
 publishdir    = "public"
 
-title = "Ansible Labs for Red Hat Summit"
+title = "Ansible Labs for AnsibleFest"
 canonifyurls = true
 paginate = 10
 
@@ -52,16 +52,16 @@ home = [ "HTML", "RSS", "JSON"]
   secret_password = "VERY_SECRET_PASSWORD"
 # tip_variable_placeholder = "We use `${LABID}` and `${N}` more as a place holder in this lab, but you can of course use the fact that those look like shell environment variables on the command line to make your life easier ;-)."
   tip_variable_placeholder = " "
-  external_domain = "<LABID>.events.opentlc.com"
+  external_domain = "<LABID>.open.redhat.com"
   internal_domain = "internal"
   # control or bastion host
   internal_control = "ansible-1"
   # we don't have a load balancer, hence tower1 is same as tower
-  external_tower = "student<N>.<LABID>.rhdemo.io"
-  external_tower1 = "student<N>.<LABID>.rhdemo.io"
+  external_tower = "student<N>.<LABID>.open.redhat.com"
+  external_tower1 = "student<N>.<LABID>.open.redhat.com"
   external_tower2 = "-"
   external_tower3 = "-"
-  external_code = "student<N>-code.<LABID>.rhdemo.io/"
+  external_code = "student<N>-code.<LABID>.open.redhat.com"
   internal_tower1 = "ansible-1"
   internal_tower2 = "ansible-2"
   internal_tower3 = "ansible-3"

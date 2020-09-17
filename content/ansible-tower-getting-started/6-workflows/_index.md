@@ -53,7 +53,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 
   - It should be named **Webops Git Repo**
 
-  - The URL to access the repo is **https://github.com/ansible/workshop-examples.git**
+  - The URL to access the repo is **https\://github.com/ansible/workshop-examples.git**
 
   - The **SCM BRANCH/TAG/COMMIT** is **webops_summit_2020**
 
@@ -63,7 +63,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 
   - It should be named **Webdev Git Repo**
 
-  - The URL to access the repo is **https://github.com/ansible/workshop-examples.git**
+  - The URL to access the repo is **https\://github.com/ansible/workshop-examples.git**
 
   - The **SCM BRANCH/TAG/COMMIT** is **webdev_summit_2020**
 
@@ -76,7 +76,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
     - **NAME:** Webops Git Repo
     - **ORGANIZATION:** Default
     - **SCM TYPE:** Git
-    - **SCM URL:** https://github.com/ansible/workshop-examples.git
+    - **SCM URL:** https\://github.com/ansible/workshop-examples.git
     - **SCM BRANCH/TAG/COMMIT:** `webops_summit_2020`
     - **SCM UPDATE OPTIONS:** Tick the first three boxes.
 - Click **SAVE**
@@ -84,7 +84,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
     - **NAME:** Webdev Git Repo
     - **ORGANIZATION:** Default
     - **SCM TYPE:** Git
-    - **SCM URL:** https://github.com/ansible/workshop-examples.git
+    - **SCM URL:** https\://github.com/ansible/workshop-examples.git
     - **SCM BRANCH/TAG/COMMIT:** `webdev_summit_2020`
     - **SCM UPDATE OPTIONS:** Tick the first three boxes.
 - Click **SAVE**

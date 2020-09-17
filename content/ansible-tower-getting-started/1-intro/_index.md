@@ -19,27 +19,29 @@ Ansible Tower is a web-based UI that provides an enterprise solution for IT auto
 
   - And much more...
 
-## Your Ansible Tower Lab Environment
+# Your Ansible Tower Lab Environment
 
-In this lab you work in a pre-configured lab environment. You will have access to the following hosts:
+In this lab you work in a pre-configured lab environment. You will have
+access to the following hosts:
 
-| Role                         | Inventory name |
-| -----------------------------| ---------------|
-| Ansible Control Host & Tower | ansible        |
-| Managed Host 1               | node1          |
-| Managed Host 2               | node2          |
-| Managed Host 2               | node3          |
-
-{{% notice warning %}}
-The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
-{{% /notice %}}
+| Role                         | URL for External Access (if applicable)  | Hostname Internal                   |
+| ---------------------------- | ---------------------------------- | ----------------------------------- |
+| Ansible Tower                | {{< param "external_tower1" >}}    | {{< param "internal_tower1" >}}     |
+| Visual Code Web UI           | {{< param "external_code" >}}      |                                     |
+| Managed RHEL8 Host 1         |                                    | {{< param "internal_host1" >}}      |
+| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
+| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
 
 {{% notice tip %}}
-On the lab landing page you'll find the URLs you need to access complete with student number and lab ID already filled in.
+The lab environments in this session have a **{{< param "labid" >}}** and are separated by numbered **student{{< param "student" >}}** accounts. You will be able to access the hosts using the external hostnames. Internally the hosts have different names as shown above. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
 {{% /notice %}}
 
 {{% notice tip %}}
 Ansible Tower has already been installed and licensed for you, the web UI will be reachable over HTTP/HTTPS.
+{{% /notice %}}
+
+{{% notice info %}}
+Wherever you see the placeholder **{{< param "secret_password" >}}** in the following pages, use instead the specific password provided to you on the lab page. In general, whenever you need a password, even without the placeholder explicitly written, it's the same one.
 {{% /notice %}}
 
 ## Working the Lab
@@ -48,11 +50,7 @@ Some hints to get you started:
 
   - Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the Tower node and can be accessed through the URL
-
-```
-https://student<N>-code.<LABID>.events.opentlc.com
-```
+  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL `https://{{< param "external_code" >}}`
 
 {{% notice tip %}}
 Commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
@@ -64,27 +62,38 @@ The command line can wrap on the HTML page from time to time. Therefore the outp
 
 ## Accessing your Lab Environment
 
-Your main points of contact with the lab is the Ansible Tower web UI and **code-server**, providing a VSCode-experience in your browser.
+You'll get the access information for your lab (URL's, password) from a landing page. Getting access to this page depends on how you are consuming the lab:
+
+* If you deployed from RHPDS, you'll receive an email with the landing page URL
+* If you attend this lab at an event, your lab facilitator will lead you to the landing page
+
+Either way you'll get an URL similar to this: `http://{{< param "external_domain" >}}`
+
+Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** to:
+
+* open virtual terminals
+* edit files
 
 Now open code-server using the link from the lab landing page or this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-
-     	https://student<N>-code.<LABID>.events.opentlc.com
-
+```bash
+     https://{{< param "external_code" >}}
+```
 
 ![code-server login](../../images/vscode-pwd.png)
 
-Use the password **provided on the lab landing page** to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
+Use the password provided on the landing page to login into the code-server web UI, you can close the **Welcome** tab. Now open a new terminal by heading to the menu item **Terminal** at the top of the page and select **New Terminal**. A new section will appear in the lower half of the screen and you will be greeted with a prompt:
 
 ![code-server terminal](../../images/vscode-terminal.png)
 
-Read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
+If unsure about the usage, read the [Visual Studio Code Server introduction](../../vscode-intro/), to learn more about how to create and edit files, and to work with the Terminal.
 
-Congrats, you now have a shell terminal on your Ansible Tower. From here you run commands or access the other hosts in your lab environment if the lab task requires it.
+Congrats, you now have a shell terminal on your Ansible Tower node 1. From here you run commands or access the other hosts in your lab environment if the lab task requires it.
+
 
 ## Dashboard
 
-Let's have a first look at Tower: Point your browser to the URL you were given on the lab landing page, similar to `https://student<N>.<LABID>.events.opentlc.com` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
+Let's have a first look at Tower: Point your browser to the URL you were given on the lab landing page, similar to `https://{{< param "external_tower1" >}}` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
 
 The web UI of Ansible Tower greets you with a dashboard with a graph showing:
 
