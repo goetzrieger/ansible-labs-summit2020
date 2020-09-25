@@ -5,7 +5,7 @@ weight = 2
 
 ## Create an Inventory
 
-Let’s get started with: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
+Let’s get started: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
   - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://{{< param "external_tower1" >}}`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
 
@@ -19,33 +19,11 @@ Create the inventory:
 
   - Click **SAVE**
 
-Go back to the **Inventories** list, there will now be two inventories, the **Demo Inventory** and the **Workshop Inventory**. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
+Go back to the **Inventories** list, your new **Workshop Inventory** should show up. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
 
-So let's add some hosts. First we need to have the list of all managed hosts which are accessible to you within this lab. These can be found in an Ansible inventory file on the Tower node, it was created during deployment of the environment.
+So let's add some hosts. As mentioned in the intro you have three managed hosts in your lab environment, the names are resolved through the `/etc/hosts` file. The nodes are named `node1`, `node2` and `node3`.
 
-You should already have the **code-server** web UI and a terminal window open from the **Accessing your Lab Environment** section, if not refer back there to open it.
-
-You can find the inventory information for your lab in the file `~/lab_inventory/hosts`. In your code-server terminal, output them with `cat`, they should look like:
-
-```bash
-[student<N>@ansible-1 ~]$ cat ~/lab_inventory/hosts
-[all:vars]
-ansible_user=student<N>
-ansible_ssh_pass=<password>
-ansible_port=22
-
-[web]
-node1 ansible_host=<IP>
-node2 ansible_host=<IP>
-node3 ansible_host=<IP>
-
-[control]
-ansible ansible_host=<IP>
-```
-
-But to make your life easier there is a `/etc/hosts` file that will resolve the nodes `node1`, `node2` and `node3` to their IP addresses. So you can just use the short hostnames.
-
-Now create the inventory in Tower:
+Now add the hosts to the inventory in Tower:
 
   - In the inventory view of the Tower web UI click on your **Workshop Inventory**
 
@@ -57,7 +35,7 @@ Now create the inventory in Tower:
 
   - Click **SAVE**
 
-  - Go back to **HOSTS** and repeat to add **node2** as a second host and **node3** as a third node.
+  - Go back to **HOSTS** or use the frame below the new node frame in the UI and repeat to add **node2** as a second and **node3** as a third node.
 
 You have now created an inventory with three managed hosts.
 
@@ -69,7 +47,7 @@ One of the great features of Ansible Tower is to make credentials usable to user
 This is one of the most important features of Tower: **Credential Separation**\! Credentials are defined separately and not with the hosts or inventory settings.
 {{% /notice %}}
 
-As this is an important part of your Tower setup, why not make sure that connecting to the managed nodes from Tower is working?
+As this is an important part of your Tower setup, why not make sure that connecting to the managed nodes from Tower is working in the first place?
 
 To test access to the nodes via SSH do the following:
 
@@ -129,7 +107,7 @@ MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
 Go back to the **RESOURCES -> Credentials -> Workshop Credentials** and note
 that the SSH key is not visible.
 
-You have now setup credentials to use later for your inventory hosts.
+You have now setup credentials for Ansible to access your managed hosts.
 
 ## Run Ad Hoc Commands
 
@@ -154,11 +132,11 @@ The simple **ping** module doesn’t need options. For other modules you need to
 - **ARGUMENTS:** id
 
 
-{{% notice tip %}}
+<!-- {{% notice tip %}}
 After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to "Arguments". This is handy, give it a try.
-{{% /notice %}}
+{{% /notice %}} -->
 
-How about trying to get some secret information from the system? Try to print out **/etc/shadow**.
+How about trying to get some more private information from the system? Try to print out **/etc/shadow**.
 
 - **MODULE:** command
 

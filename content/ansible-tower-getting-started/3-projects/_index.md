@@ -127,7 +127,7 @@ Since this might take some time, have a closer look at all the details provided:
 
 - Also the time of execution with start and end time is recorded, giving you an idea of how long a job execution actually was.
 
-- On the right side, the output of the playbook run is shown. Click on a node underneath a task and see that detailed information are provided for each task of each node.
+- On the right side, the output of the playbook run is shown. Click on a node underneath a task to get detailed information for the task.
 
 After the Job has finished go to the main **Jobs** view: All jobs are listed here, you should see directly before the Playbook run an SCM update was started. This is the Git update we configured for the **Project** on Job Template launch\!
 
@@ -155,7 +155,7 @@ What about `systemctl status httpd`?
 </p>
 </details>
 
-It should all look good and yellow because there where changes!
+It should all look good!
 
 ## What About Some Practice?
 
@@ -177,7 +177,7 @@ Please make sure to finish these steps as the next chapter depends on it!
 
 - Launch the `Install Apache Ask` template.
 
-- It will now ask for the inventory to use, choose the `Webserver` inventory and click **LAUNCH**
+- It will now ask for the inventory to use, choose the `Webserver` inventory and click **NEXT** and **LAUNCH**
 
 - Wait until the Job has finished and make sure it ran only on `node1`
 

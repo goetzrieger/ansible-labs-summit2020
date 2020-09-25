@@ -95,7 +95,7 @@ Congrats, you now have a shell terminal on your Ansible Tower node 1. From here 
 
 Let's have a first look at Tower: Point your browser to the URL you were given on the lab landing page, similar to `https://{{< param "external_tower1" >}}` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
 
-The web UI of Ansible Tower greets you with a dashboard with a graph showing:
+The web UI of Ansible Tower greets you with a dashboard giving an overview of your automation including:
 
   - recent job activity
 
