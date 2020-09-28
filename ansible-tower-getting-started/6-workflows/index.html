@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="Ansible and Ansible Tower Labs">
+<meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
+
+    <link rel="icon" href="https://goetzrieger.github.io/images/favicon.png" type="image/png">
+
+    <title>Workflows :: Ansible Labs for AnsibleFest</title>
+
+    
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+    
+
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-getting-started/6-workflows/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://goetzrieger.github.io/">
+  <img src="https://goetzrieger.github.io/images/email_ansiblefest-2020.png">
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/goetzrieger.github.io\/";
+    
+</script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/" title="Ansible Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/">
+          Ansible Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/1-setup/" title="Check the Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/1-setup/">
+          Check the Prerequisites
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/2-adhoc/" title="Running ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/2-adhoc/">
+          Running ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/3-playbook/" title="Writing Your First Playbook" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/">
+          Writing Your First Playbook
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/4-variables/" title="Using Variables" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/4-variables/">
+          Using Variables
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/5-handlers/" title="Conditionals, Handlers and Loops" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/5-handlers/">
+          Conditionals, Handlers and Loops
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/6-templates/" title="Templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/6-templates/">
+          Templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/7-bonus/" title="Bonus Labs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/7-bonus/">
+          Bonus Labs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/" title="Ansible Tower Getting Started" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/">
+          Ansible Tower Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/1-intro/" title="Introduction to Tower" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/1-intro/">
+          Introduction to Tower
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/2-cred/" title="Inventories, credentials and ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/2-cred/">
+          Inventories, credentials and ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/3-projects/" title="Projects &amp; job templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/">
+          Projects &amp; job templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/4-surveys/" title="Surveys" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/4-surveys/">
+          Surveys
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/5-rbac/" title="Role-based access control" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/5-rbac/">
+          Role-based access control
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/6-workflows/" title="Workflows" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/6-workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/7-wrap/" title="Wrap up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/">
+          Wrap up
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/1-intro/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/1-intro/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/2-clustering/" title="Introduction to Ansible Tower Clustering" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/2-clustering/">
+          Introduction to Ansible Tower Clustering
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/3-awx-cli-intro/" title="There is more to Tower than the Web UI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/3-awx-cli-intro/">
+          There is more to Tower than the Web UI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/4-awx-cli-exercises/" title="Creating Tower Objects Using `awx`" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/4-awx-cli-exercises/">
+          Creating Tower Objects Using `awx`
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/5-tower-cluster-jobs/" title="Run a Job in a Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/5-tower-cluster-jobs/">
+          Run a Job in a Cluster
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/6-instance-groups/" title="Tower Instance Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/6-instance-groups/">
+          Tower Instance Groups
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/7-parallel-jobs/" title="Parallel Jobs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/7-parallel-jobs/">
+          Parallel Jobs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/8-isolated-nodes/" title="Isolated Nodes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/8-isolated-nodes/">
+          Isolated Nodes
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/9-advanced-inventories/" title="Advanced Inventories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/9-advanced-inventories/">
+          Advanced Inventories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/10-structured-content/" title="Well Structured Content Repositories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+          Well Structured Content Repositories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/11-rest-api/" title="Discovering the Tower API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/11-rest-api/">
+          Discovering the Tower API
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vscode-intro/" title="Visual Studio Code - Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/vscode-intro/">
+          Visual Studio Code - Introduction
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://goetzrieger.github.io/"><i class='fas fa-home'></i> Homepage</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p></p>
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://goetzrieger.github.io/'></a> > <a href='https://goetzrieger.github.io/ansible-tower-getting-started/'>Ansible Tower Getting Started</a> > Workflows
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#lab-scenario">Lab Scenario</a></li>
+<li><a href="#set-up-projects">Set up Projects</a></li>
+<li><a href="#set-up-job-templates">Set up Job Templates</a></li>
+<li><a href="#set-up-the-workflow">Set up the Workflow</a></li>
+<li><a href="#and-action">And Action</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Workflows
+            </h1>
+          
+
+        
+
+
+
+	
+
+<p>Workflows were introduced as a major new feature in Ansible Tower 3.1. The basic idea of a workflow is to link multiple Job Templates together. They may or may not share inventory, Playbooks or even permissions. The links can be conditional:</p>
+
+<ul>
+<li><p>if job template A succeeds, job template B is automatically executed afterwards</p></li>
+
+<li><p>but in case of failure, job template C will be run.</p></li>
+</ul>
+
+<p>And the workflows are not even limited to Job Templates, but can also include project or inventory updates.</p>
+
+<p>This enables new applications for Tower: different Job Templates can build upon each other. E.g. the networking team creates playbooks with their own content, in their own Git repository and even targeting their own inventory, while the operations team also has their own repos, playbooks and inventory.</p>
+
+<p>In this lab you’ll learn how to setup a workflow.</p>
+
+<h2 id="lab-scenario">Lab Scenario</h2>
+
+<p>You have two departements in your organization:</p>
+
+<ul>
+<li><p>The web operations team that is developing Playbooks for deploying web infrastructures in their own Git repository.</p></li>
+
+<li><p>The web applications team, that develops JavaScript web applications for NodeJS in their Git repository.</p></li>
+</ul>
+
+<p>When there is a new NodeJS-based website to deploy, two main steps need to happen:</p>
+
+<p>The web operations team has to:</p>
+
+<ul>
+<li>Install and configure NodeJS to run as a service.</li>
+<li>An Apache instance needs to be installed and configured as proxy to pass requests for the NodeJS content to the NodeJS backend. And a lot of other steps might be needed, too. Like SELinux, firewall&hellip; you know the drill.</li>
+</ul>
+
+<p>The web developer team has to:</p>
+
+<ul>
+<li>Deploy the most recent version of the JavaScript web application.</li>
+<li>Make sure stuff like making sure the directory structure is fine and service restarts happen.</li>
+</ul>
+
+<p>To make things somewhat easier for you, everything needed already exists in a Github repository: Playbooks, JavaScript files etc. You just need to glue it together.</p>
+
+
+<div class="notices tip" ><p>In this example we use two different tags (each on its specific branch) of the same repository for the content of the separate teams. In reality the structure of your SCM repositories depends on a lot of factors and could be different.</p>
+</div>
+
+
+<h2 id="set-up-projects">Set up Projects</h2>
+
+<p>First you have to set up the Git repo as Projects like you normally would. You have done this before, try to do this on your own. Detailed instructions can be found below.</p>
+
+
+<div class="notices warning" ><p>If you are still logged in as user <strong>wweb</strong>, log out of and log in as user <strong>admin</strong> again.</p>
+</div>
+
+
+<ul>
+<li><p>Create the project for web operations:</p>
+
+<ul>
+<li><p>It should be named <strong>Webops Git Repo</strong></p></li>
+
+<li><p>The URL to access the repo is <strong>https://github.com/ansible/workshop-examples.git</strong></p></li>
+
+<li><p>The <strong>SCM BRANCH/TAG/COMMIT</strong> is <strong>webops_summit_2020</strong></p></li>
+
+<li><p>Do not allow branch overrides</p></li>
+</ul></li>
+
+<li><p>Create the project for the application developers:</p>
+
+<ul>
+<li><p>It should be named <strong>Webdev Git Repo</strong></p></li>
+
+<li><p>The URL to access the repo is <strong>https://github.com/ansible/workshop-examples.git</strong></p></li>
+
+<li><p>The <strong>SCM BRANCH/TAG/COMMIT</strong> is <strong>webdev_summit_2020</strong></p></li>
+
+<li><p>Do not allow branch overrides</p></li>
+</ul></li>
+</ul>
+
+<details><summary>**>>Click here for Solution<<**</summary>
+<p>
+
+- Create the project for web operations. In the **Projects** view click the green us button and fill in:
+    - **NAME:** Webops Git Repo
+    - **ORGANIZATION:** Default
+    - **SCM TYPE:** Git
+    - **SCM URL:** https\://github.com/ansible/workshop-examples.git
+    - **SCM BRANCH/TAG/COMMIT:** `webops_summit_2020`
+    - **SCM UPDATE OPTIONS:** Tick the first three boxes.
+- Click **SAVE**
+- Create the project for the application developers. In the **Projects** view click the green plus button and fill in:
+    - **NAME:** Webdev Git Repo
+    - **ORGANIZATION:** Default
+    - **SCM TYPE:** Git
+    - **SCM URL:** https\://github.com/ansible/workshop-examples.git
+    - **SCM BRANCH/TAG/COMMIT:** `webdev_summit_2020`
+    - **SCM UPDATE OPTIONS:** Tick the first three boxes.
+- Click **SAVE**
+</p>
+</details>
+
+<h2 id="set-up-job-templates">Set up Job Templates</h2>
+
+<p>Now you have to create Job Templates like you would for &ldquo;normal&rdquo; Jobs.</p>
+
+
+<div class="notices tip" ><p>We want to install the <strong>NodeJS app on node3 only</strong>. The Inventory <strong>Workshop Inventory</strong> contains all nodes, but we can limit the nodes using the <strong>LIMIT</strong> field!</p>
+</div>
+
+
+<ul>
+<li><p>Go to the <strong>Templates</strong> view, click the green plus button and choose <strong>Job Template</strong>:</p>
+
+<ul>
+<li><p><strong>NAME:</strong> Web Infra Deploy</p></li>
+
+<li><p><strong>JOB TYPE:</strong> Run</p></li>
+
+<li><p><strong>INVENTORY:</strong> Workshop Inventory</p></li>
+
+<li><p><strong>PROJECT:</strong> Webops Git Repo</p></li>
+
+<li><p><strong>PLAYBOOK:</strong> <code>rhel/webops/web_infrastructure.yml</code></p></li>
+
+<li><p><strong>CREDENTIAL:</strong> Workshop Credentials</p></li>
+
+<li><p><strong>LIMIT:</strong> node3</p></li>
+
+<li><p><strong>OPTIONS:</strong> Enable privilege escalation</p></li>
+</ul></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+
+<li><p>Go to the <strong>Templates</strong> view, click the green plus button and choose <strong>Job Template</strong>:</p>
+
+<ul>
+<li><p><strong>NAME:</strong> Web App Deploy</p></li>
+
+<li><p><strong>JOB TYPE:</strong> Run</p></li>
+
+<li><p><strong>INVENTORY:</strong> Workshop Inventory</p></li>
+
+<li><p><strong>PROJECT:</strong> Webdev Git Repo</p></li>
+
+<li><p><strong>PLAYBOOK:</strong> <code>rhel/webdev/install_node_app.yml</code></p></li>
+
+<li><p><strong>CREDENTIALS:</strong> Workshop Credentials</p></li>
+
+<li><p><strong>LIMIT:</strong> node3</p></li>
+
+<li><p><strong>OPTIONS:</strong> Enable privilege escalation</p></li>
+</ul></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+</ul>
+
+
+<div class="notices tip" ><p>If you want to know what the Playbooks look like, check out the Github URL and switch to the appropriate branches.</p>
+</div>
+
+
+<h2 id="set-up-the-workflow">Set up the Workflow</h2>
+
+<p>And now you finally set up the Workflow. Workflows are configured in the <strong>Templates</strong> view, you might have noticed you can choose between <strong>Job Template</strong> and <strong>Workflow Template</strong> when adding a template so this is finally making sense.</p>
+
+<ul>
+<li><p>Go to the <strong>Templates</strong> view and click the the green plus button. This time choose <strong>Workflow Template</strong></p>
+
+<ul>
+<li><p><strong>NAME:</strong> Deploy Webapplication</p></li>
+
+<li><p><strong>ORGANIZATION:</strong> Default</p></li>
+</ul></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+
+<li><p>After saving the template the <strong>Workflow Visualizer</strong> opens to allow you to build a workflow. You can later open the <strong>Workflow Visualizer</strong> again by using the button on the template details page.</p></li>
+
+<li><p>Click on the <strong>START</strong> button, a new node opens. To the right under <strong>ADD A NODE</strong> you can assign an action to the node, you can choose between <strong>Template</strong>, <strong>Project Sync</strong>, <strong>Inventory Sync</strong> and <strong>Approval</strong>.</p></li>
+
+<li><p>In this lab we’ll link Templates together, so select the <strong>Web Infra Deploy</strong> Template and click <strong>SELECT</strong>.</p></li>
+
+<li><p>The node gets annotated with the name of the job. Hover the mouse pointer over the node, you’ll see a red <strong>x</strong>, a green <strong>+</strong> and a blue <strong>chain</strong>-symbol appear.</p></li>
+</ul>
+
+
+<div class="notices tip" ><p>Using the red &ldquo;x&rdquo; allows you to remove the node, the green plus lets you add the next node and the chain-symbol links to another node.</p>
+</div>
+
+
+<ul>
+<li><p>Click the green <strong>+</strong> sign</p></li>
+
+<li><p>Choose <strong>Web App Deploy</strong> as the next Job (you might have to switch to the next page)</p></li>
+
+<li><p>Leave <strong>Run</strong> set to <strong>On Success</strong></p></li>
+</ul>
+
+
+<div class="notices tip" ><p>The type allows for more complex workflows. You could lay out different execution paths for successful and for failed Playbook runs.</p>
+</div>
+
+
+<ul>
+<li><p>Click <strong>SELECT</strong></p></li>
+
+<li><p>Click <strong>SAVE</strong> in the <strong>WORKFLOW VISUALIZER</strong> view</p></li>
+
+<li><p>Click <strong>SAVE</strong> in the <strong>Workflow Template</strong> view</p></li>
+</ul>
+
+
+<div class="notices tip" ><p>The <strong>Workflow Visualizer</strong> has options for setting up more advanced workflows, please refer to the <a href="https://docs.ansible.com/ansible-tower/latest/html/userguide/workflows.html">documentation</a>.</p>
+</div>
+
+
+<h2 id="and-action">And Action</h2>
+
+<p>Your <strong>Deploy Webapplication</strong> workflow is ready to go, launch it.</p>
+
+<ul>
+<li>Click the blue <strong>LAUNCH</strong> button directly or go to the the <strong>Templates</strong> view and launch the <strong>Deploy Webapplication</strong> workflow by clicking the rocket icon.</li>
+</ul>
+
+<p><img src="../../images/job_workflow.png" alt="jobs view of workflow" /></p>
+
+<p>Note how the workflow run is shown in the job view. In contrast to a normal job template job execution this time there is no Playbook output on the right, but a visual representation of the different workflow steps. If you want to look at the actual Jobs behind that, click <strong>DETAILS</strong> in each step. If you want to get back from a details view to the corresponding workflow, just hit your browsers back button.</p>
+
+<p>After the job has finished, check if everything worked fine. In your code-server terminal, run:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ curl http://node3/nodejs</code></pre></div>
+<p>You should be greeted with a friendly <code>Hello World</code></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://goetzrieger.github.io/ansible-tower-getting-started/5-rbac/" title="Role-based access control"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/" title="Wrap up" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

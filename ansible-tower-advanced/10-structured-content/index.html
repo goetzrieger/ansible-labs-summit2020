@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="Ansible and Ansible Tower Labs">
+<meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
+
+    <link rel="icon" href="https://goetzrieger.github.io/images/favicon.png" type="image/png">
+
+    <title>Well Structured Content Repositories :: Ansible Labs for AnsibleFest</title>
+
+    
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+    
+
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://goetzrieger.github.io/">
+  <img src="https://goetzrieger.github.io/images/email_ansiblefest-2020.png">
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/goetzrieger.github.io\/";
+    
+</script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/" title="Ansible Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/">
+          Ansible Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/1-setup/" title="Check the Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/1-setup/">
+          Check the Prerequisites
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/2-adhoc/" title="Running ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/2-adhoc/">
+          Running ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/3-playbook/" title="Writing Your First Playbook" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/">
+          Writing Your First Playbook
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/4-variables/" title="Using Variables" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/4-variables/">
+          Using Variables
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/5-handlers/" title="Conditionals, Handlers and Loops" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/5-handlers/">
+          Conditionals, Handlers and Loops
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/6-templates/" title="Templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/6-templates/">
+          Templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/7-bonus/" title="Bonus Labs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/7-bonus/">
+          Bonus Labs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/" title="Ansible Tower Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/">
+          Ansible Tower Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/1-intro/" title="Introduction to Tower" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/1-intro/">
+          Introduction to Tower
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/2-cred/" title="Inventories, credentials and ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/2-cred/">
+          Inventories, credentials and ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/3-projects/" title="Projects &amp; job templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/">
+          Projects &amp; job templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/4-surveys/" title="Surveys" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/4-surveys/">
+          Surveys
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/5-rbac/" title="Role-based access control" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/5-rbac/">
+          Role-based access control
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/6-workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/6-workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/7-wrap/" title="Wrap up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/">
+          Wrap up
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/" title="Ansible Tower Advanced" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/1-intro/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/1-intro/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/2-clustering/" title="Introduction to Ansible Tower Clustering" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/2-clustering/">
+          Introduction to Ansible Tower Clustering
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/3-awx-cli-intro/" title="There is more to Tower than the Web UI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/3-awx-cli-intro/">
+          There is more to Tower than the Web UI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/4-awx-cli-exercises/" title="Creating Tower Objects Using `awx`" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/4-awx-cli-exercises/">
+          Creating Tower Objects Using `awx`
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/5-tower-cluster-jobs/" title="Run a Job in a Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/5-tower-cluster-jobs/">
+          Run a Job in a Cluster
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/6-instance-groups/" title="Tower Instance Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/6-instance-groups/">
+          Tower Instance Groups
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/7-parallel-jobs/" title="Parallel Jobs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/7-parallel-jobs/">
+          Parallel Jobs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/8-isolated-nodes/" title="Isolated Nodes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/8-isolated-nodes/">
+          Isolated Nodes
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/9-advanced-inventories/" title="Advanced Inventories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/9-advanced-inventories/">
+          Advanced Inventories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/10-structured-content/" title="Well Structured Content Repositories" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+          Well Structured Content Repositories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/11-rest-api/" title="Discovering the Tower API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/11-rest-api/">
+          Discovering the Tower API
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vscode-intro/" title="Visual Studio Code - Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/vscode-intro/">
+          Visual Studio Code - Introduction
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://goetzrieger.github.io/"><i class='fas fa-home'></i> Homepage</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p></p>
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://goetzrieger.github.io/'></a> > <a href='https://goetzrieger.github.io/ansible-tower-advanced/'>Ansible Tower Advanced</a> > Well Structured Content Repositories
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#optional-exercise">OPTIONAL EXERCISE</a></li>
+<li><a href="#example-repository">Example repository</a></li>
+<li><a href="#launch-it">Launch it!</a>
+<ul>
+<li><a href="#from-the-command-line">From the Command Line</a></li>
+<li><a href="#from-tower">From Tower</a></li>
+</ul></li>
+<li><a href="#adding-external-roles">Adding External Roles</a></li>
+<li><a href="#launch-in-tower">Launch in Tower</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Well Structured Content Repositories
+            </h1>
+          
+
+        
+
+
+
+	
+
+<h2 id="optional-exercise">OPTIONAL EXERCISE</h2>
+
+<p>It’s a common part of the learning curve for Ansible and Ansible Tower:
+At some point you will have written so many playbooks that a need for
+structure comes up. Where to put the Playbooks, what about the
+Templates, Files and so on.</p>
+
+<p>The main recommendations are:</p>
+
+<ul>
+<li><p>Put your content in a version control system like Git or SVN. This
+comes naturally since Ansible code is usually in text form anyway,
+and thus can be managed easily.</p></li>
+
+<li><p>Group your code by logical units, called
+&ldquo;<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">roles</a>&ldquo;
+in Ansible.</p>
+
+<ul>
+<li>Example: have all code, config templates and files for the
+apache web server in one role, and all code, configuration and
+sql statements for the database in another role. That way the
+code becomes much better to read and handle, and roles can be
+made re-usable and shared between projects, teams or with the
+global community.</li>
+</ul></li>
+</ul>
+
+<p>Of course, what structure works best in the end depends on the
+individual requirements, but we will highlight some common ground rules
+which apply to almost all use cases.</p>
+
+<p>The first recommendation is to separate <em>specific code</em> from
+<em>reusable/generic code</em> from <em>data</em>:</p>
+
+<ul>
+<li><p>specific code
+Playbooks and their direct dependencies which are not shared outside
+the realm of the project or team.</p></li>
+
+<li><p>generic code
+All content that will be used across multiple projects.</p></li>
+
+<li><p>data
+This is mostly the inventory or the inventory scripts and the
+corresponding variables for hosts and groups. In many use cases it
+is advisable to have a dedicated inventory for each life-cycle
+environment.</p></li>
+</ul>
+
+
+<div class="notices tip" ><p>Data content files can be in the same Git repository, each in its own directory (e.g. dev, test, qa, prod). Alternatively, for example in larger environments or with dedicated teams per environment there can be one Git repository for each environment. We recommend to put special focus on <a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#splitting-out-host-and-group-specific-data">splitting out host and group data</a>.</p>
+</div>
+
+
+
+<div class="notices warning" ><p>Be careful to <em>not</em> have separate code repositories for each environment. It would go against the purpose of testing the <em>same</em> code as you push it through your life-cycle, only varying the data / inventory. If you have difficulties to keep the same code throughout all your environments we recommend to re-think the structure of cour code and what you put into your inventory.</p>
+</div>
+
+
+<h2 id="example-repository">Example repository</h2>
+
+<p>So, let’s get started with an example. The content and repo-structure in
+this lab is mostly aligned to the <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#content-organization">Ansible best
+practices</a>
+and is explained in more detail there (we&rsquo;ve had to simplify a bit for the lab).</p>
+
+<p>Since we want to store all content in a repository, we have to create a simplistic Git server on our control host.
+In a more typical environment, you would work with GitLab, Gitea, or any other commercial Git server.</p>
+<pre><code>[student@ansible-1 ~]$ wget https://raw.githubusercontent.com/ansible-labs-summit-crew/structured-content/master/simple_git.yml
+[student@ansible-1 ~]$ ansible-playbook simple_git.yml</code></pre>
+<p>Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user <em>ec2-user</em> was already added to the Git user <em>git</em>. Next, clone the repository on the control machine:</p>
+<pre><code>[student@ansible-1 ~]$ git clone git@ansible-1:projects/structured-content.git
+# Message &#34;warning: You appear to have cloned an empty repository.&#34; is OK and can be ignored
+[student@ansible-1 ~]$ git config --global push.default simple
+[student@ansible-1 ~]$ git config --global user.name &#34;Your Name&#34;
+[student@ansible-1 ~]$ git config --global user.email you@example.com
+[student@ansible-1 ~]$ cd structured-content/</code></pre>
+
+<div class="notices tip" ><p>The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.</p>
+</div>
+
+
+<p>you are now going to add some default directories and files:</p>
+<pre><code>[student@ansible-1 structured-content]$ touch {staging,production}</code></pre>
+<p>This command creates two inventory files: in this case we have different
+stages with different hosts which we keep them in separate inventory
+files. Note that those files are right now still empty and need to be
+filled with content to work properly.</p>
+
+<p>In the current setup we have two instances. Let’s assume that
+<code>node1</code> is part of the staging environment, and
+<code>node2</code> is part of the production environment. To reflect
+that in the inventory files, edit the two empty inventory files to look
+like this:</p>
+<pre><code>[student@ansible-1 structured-content]$ cat staging
+[staging]
+node1
+
+[student@ansible-1 structured-content]$ cat production
+[production]
+node2</code></pre>
+<p>Next we add some directories:</p>
+
+<ul>
+<li><p>directories for host and group variables</p></li>
+
+<li><p>A <strong>roles</strong> directory where the main part of our automation logic
+will be in.</p></li>
+
+<li><p>For demonstration purpose we also will add a <strong>library</strong> directory:
+it can contain Ansible code related to a project like custom
+modules, plugins, etc.</p></li>
+</ul>
+
+<!-- end list -->
+<pre><code>[student@ansible-1 structured-content]$ mkdir -p {group_vars,host_vars,library,roles}</code></pre>
+<p>Now to the two roles we’ll use in this example. First we’ll create a
+structure where we’ll add content later. This can easily be achieved
+with the command <code>ansible-galaxy</code>: it creates <strong>role skeletons</strong> with
+all appropriate files, directories and so on already in place.</p>
+<pre><code>ansible-galaxy init --offline --init-path=roles security
+ansible-galaxy init --offline --init-path=roles apache</code></pre>
+
+<div class="notices tip" ><p>Even if a good role is generally self-explanatory, it still makes sense to have proper documentation. The right location to document roles is the file <strong>meta/main.yml</strong>.</p>
+</div>
+
+
+<p>The roles are empty, so we need to add a few tasks to each. In the last
+chapters we set up an Apache webserver and used some security tasks.
+Let’s add that code to our roles by editing the two task files:</p>
+
+
+<div class="notices warning" ><p>If you copy and paste text in VI under a comment (#) character, Vi might (depending on settings) add comment signs to the start of each new line. Probably not what you want. Because the role files are being created with a comment line after the YAML start (&mdash;), make sure to delete these lines before pasting the content.</p>
+</div>
+
+<pre><code>[student@ansible-1 structured-content]$ cat roles/apache/tasks/main.yml
+---
+# tasks file for apache
+- name: latest Apache version installed
+  yum:
+    name: httpd
+    state: latest
+- name: latest firewalld version installed
+  yum:
+    name: firewalld
+    state: latest
+- name: firewalld enabled and running
+  service:
+    name: firewalld
+    enabled: true
+    state: started
+- name: firewalld permits http service
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    immediate: yes
+- name: Apache enabled and running
+  service:
+    name: httpd
+    enabled: true
+    state: started
+
+[student@ansible-1 structured-content]$ cat roles/security/tasks/main.yml
+---
+# tasks file for security
+- name: &#34;HIGH | RHEL-07-010290 | PATCH | The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords.&#34;
+  replace:
+    dest: &#34;{{ item }}&#34;
+    follow: true
+    regexp: &#39;nullok ?&#39;
+  with_items:
+    - /etc/pam.d/system-auth
+    - /etc/pam.d/password-auth
+
+- name: &#34;MEDIUM | RHEL-07-010210 | PATCH | The Red Hat Enterprise Linux operating system must be configured to use the shadow file to store only encrypted representations of passwords.&#34;
+  lineinfile:
+    dest: /etc/login.defs
+    regexp: ^#?ENCRYPT_METHOD
+    line: &#34;ENCRYPT_METHOD SHA512&#34;
+
+- name: &#34;SCORED | 1.1.1.2 | PATCH | Remove freevxfs module&#34;
+  modprobe:
+    name: freevxfs
+    state: absent</code></pre>
+<p>We also need to create a playbook to call the roles from. This is often
+call <code>site.yml</code>, since it keeps the main code for the setup of our
+environment. Create the file:</p>
+<pre><code>[student@ansible-1 structured-content]$ cat site.yml
+---
+- name: Execute apache and security roles
+  hosts: all
+
+  roles:
+    - { role: apache }
+    - { role: security }</code></pre>
+<p>So we have prepared a basic structure for quite some content - call
+<code>tree</code> to look at it.</p>
+
+<details><summary>**>> Click here for Solution <<**</summary>
+<p>
+
+``` bash
+[student@ansible-1 structured-content]$ tree
+.
+├── group_vars
+├── host_vars
+├── library
+├── production
+├── roles
+│   ├── apache
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── README.md
+│   │   ├── tasks
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   ├── tests
+│   │   │   ├── inventory
+│   │   │   └── test.yml
+│   │   └── vars
+│   │       └── main.yml
+│   └── security
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       ├── handlers
+│       │   └── main.yml
+│       ├── meta
+│       │   └── main.yml
+│       ├── README.md
+│       ├── tasks
+│       │   └── main.yml
+│       ├── templates
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       └── vars
+│           └── main.yml
+├── site.yml
+└── staging
+```
+
+
+<div class="notices tip" ><p>In real life, you should remove the unnecessary roles sub-directories to keep the
+structure easier to understand and maintain.</p>
+</div>
+
+</p>
+</details>
+
+<p>Since we so far created the code only locally on the control host, we
+need to add it to the repository and push it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git add production roles site.yml staging
+    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git commit -m <span style="color:#e6db74">&#34;Adding inventories and apache security roles&#34;</span>
+    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git push</code></pre></div>
+<h2 id="launch-it">Launch it!</h2>
+
+<h3 id="from-the-command-line">From the Command Line</h3>
+
+<p>The code can now be launched. We start at the command line. Call the
+playbook <code>site.yml</code> with the appropriate inventory and privilege
+escalation:</p>
+<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i staging site.yml -b</code></pre>
+<p>Watch how the changes are done to the target machines. Afterwards,
+we could similarly execute the playbook against the production stage, but we want
+to keep something for Tower to do, so we just check it:</p>
+<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i production site.yml -b --list-hosts --list-tasks</code></pre>
+<p>Call e.g. <code>curl node1</code> to get the default page.</p>
+
+<h3 id="from-tower">From Tower</h3>
+
+<p>To configure and use this repository as a <strong>Source Control Management (SCM)</strong>
+system in Tower you have to create credentials again, this time to access the Git
+repository over SSH. This credential is user/key based, and we need the following
+<strong>awx</strong> command (assuming the <code>TOWER_</code> environment variables are still defined):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx -f human credential create --name &#34;Git Credentials&#34; \</span>
+              --organization <span style="color:#e6db74">&#34;Default&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>              --credential_type <span style="color:#e6db74">&#34;Source Control&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>              --inputs <span style="color:#e6db74">&#39;{&#34;username&#34;: &#34;git&#34;, &#34;ssh_key_data&#34;: &#34;@~/.ssh/aws-private.pem&#34;}&#39;</span></code></pre></div>
+<p>The new repository needs to be added as project. Feel free to use the
+web UI or use <strong>awx</strong> like shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx project create --name &#34;Structured Content Repository&#34; \</span>
+                        --organization Default <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --scm_type git <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --scm_url  git@ansible-1:projects/structured-content.git <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --scm_clean <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --scm_update_on_launch <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --credential <span style="color:#e6db74">&#34;Git Credentials&#34;</span></code></pre></div>
+<p>Now you’ve created the Project in Tower. Earlier on the command line
+you’ve setup a staged environment by creating and using two different
+inventory files. But how can we get the same setup in Tower? We use
+another way to define Inventories! It is possible to use inventory
+files provided in a SCM repository as an inventory source. This way we
+can use the inventory files we keep in Git.</p>
+
+<p>In your Tower web UI, open the <strong>RESOURCES→Inventories</strong> view. Then click
+the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button and choose to create a new
+<strong>Inventory</strong>. In the next view:</p>
+
+<ul>
+<li><p><strong>NAME:</strong> Structured Content Inventory</p></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+
+<li><p>Click the button <strong>SOURCES</strong> which is now active at the top</p></li>
+
+<li><p>Click the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button (the top right one)</p></li>
+
+<li><p><strong>NAME:</strong> Production</p></li>
+
+<li><p><strong>SOURCE:</strong> Pick <strong>Sourced from a Project</strong></p></li>
+
+<li><p><strong>PROJECT:</strong> Structured Content Repository</p></li>
+
+<li><p>In the <strong>INVENTORY FILE</strong> drop down menu, pick <strong>production</strong></p></li>
+
+<li><p>Click the green <strong>SAVE</strong> button</p></li>
+</ul>
+
+<p>And now for the staging inventory:</p>
+
+<ul>
+<li><p>Down below in the view, click the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button again</p></li>
+
+<li><p>In the next view, add as <strong>NAME:</strong> Staging</p></li>
+
+<li><p><strong>SOURCE:</strong> Pick <strong>Sourced from a Project</strong></p></li>
+
+<li><p><strong>PROJECT:</strong> Structured Content Repository</p></li>
+
+<li><p>In the <strong>INVENTORY FILE</strong> drop down menu, pick <strong>staging</strong></p></li>
+
+<li><p>Click the green <strong>SAVE</strong> button</p></li>
+
+<li><p>In the screen below, click the sync button for both sources, or <strong>SYNC ALL</strong>
+once so that the cloud icon on the left site next to the name of each
+inventory turns green.</p></li>
+</ul>
+
+<p>To make sure that the project based inventory worked, click on the
+<strong>HOSTS</strong> button of the Inventory and make sure the two hosts are listed
+and tagged with the respective stages as <strong>RELATED GROUPS</strong>.</p>
+
+<p>Now create a template to execute the <code>site.yml</code> against both stages at
+the same time and associate the credentials.</p>
+
+
+<div class="notices tip" ><p>Please note that in a real world use case you might want to have different templates to address the different stages separatly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx job_template create --name &#34;Structured Content Execution&#34; \</span>
+                        --job_type run --inventory <span style="color:#e6db74">&#34;Structured Content Inventory&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --project <span style="color:#e6db74">&#34;Structured Content Repository&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --playbook <span style="color:#e6db74">&#34;site.yml&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>                        --become_enabled <span style="color:#ae81ff">1</span>
+    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx -f human job_template associate --name &#34;Structured Content Execution&#34; \</span>
+                        --credential <span style="color:#e6db74">&#34;Example Credentials&#34;</span></code></pre></div></div>
+
+
+<p>Now in the Tower web UI go to <strong>RESOURCES→Templates</strong>, launch the
+job template <strong>Structured Content Execution</strong> and watch the results.</p>
+
+<h2 id="adding-external-roles">Adding External Roles</h2>
+
+<p>So far we have only worked with content inside a single repository.
+While this drastically reduces complexity already, the largest benefit
+is in sharing roles among multiple teams or departments and keeping them
+in a central place. In this section we will show how to reference shared
+roles in your code and execute them together on your behalf.</p>
+
+<p>In enterprise environments it is common to share roles via internal git
+repositories, often one git repository per role. If a role might be
+interesting and re-used by the world wide Ansible community, they can be
+shared on our central platform <a href="https://galaxy.ansible.com/">Ansible
+Galaxy</a>. The advantage of Ansible Galaxy is
+that it features basic automatic testing and community ratings to give
+the interested users an idea of the quality and reusability of a role.</p>
+
+<p>To use external roles in a project, they need to be referenced in a file
+called
+<a href="https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html#installing-multiple-roles-from-a-file"><code>roles/requirements.yml</code></a>,
+for example like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="color:#75715e"># Import directly from Galaxy</span>
+    - <span style="color:#f92672">src</span>: <span style="color:#ae81ff">geerlingguy.nginx</span>
+    <span style="color:#75715e"># Import from a local Git repository</span>
+    - <span style="color:#f92672">src</span>: <span style="color:#ae81ff">http://control.example.com/gitea/git/external-role.git</span>
+      <span style="color:#f92672">version</span>: <span style="color:#ae81ff">master</span>
+      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">external-role_locally</span></code></pre></div>
+<p>The <code>requirements.yml</code> needs to be read - either on the command line by
+invoking <code>ansible-galaxy</code>, or automatically by Ansible Tower during
+project check outs. In both cases the file is read, and the roles are
+checked out and stored locally, and the roles can be called in
+playbooks. The advantage of Tower here is that it takes care of all that
+- including authorization to the Git repo, finding a proper place to
+store the role, updating it when needed and so on.</p>
+
+<p>In this example, we will include a role which ships a simple
+<code>index.html</code> file as template and reloads the apache web server. The
+role is already shared in GitHub at
+<strong><a href="https://github.com/ansible-labs-summit-crew/shared-apache-role">https://github.com/ansible-labs-summit-crew/shared-apache-role</a></strong>.</p>
+
+<p>To include it with the existing structured content, first we have to
+create a file called <code>roles/requirements.yml</code> and reference the role
+there:</p>
+
+
+<div class="notices warning" ><p>Make sure you work as user <strong>student<X></strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ cat roles/requirements.yml
+- src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
+  scm: git
+  version: master</code></pre></div></div>
+
+
+
+<div class="notices tip" ><p>In a production environment you may want to change the version to a fixed version or tag, to make sure that only tested and verified code is checked out and used. But this strongly depends on how you develop your code and which branching model you use.</p>
+</div>
+
+
+<p>Here we add the source for the role and identify the type of source
+control.</p>
+
+<p>Next, we reference the role itself in our playbook. Change the
+<strong>site.yml</strong> Playbook to look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ cat site.yml
+    ---
+    - name: Execute apache and security roles
+      hosts: all
+
+      roles:
+        - <span style="color:#f92672">{</span> role: apache<span style="color:#f92672">}</span>
+        - <span style="color:#f92672">{</span> role: security <span style="color:#f92672">}</span>
+        - <span style="color:#f92672">{</span> role: shared-apache-role <span style="color:#f92672">}</span></code></pre></div>
+<p>Because Tower uses your Git repo, you’ve to add, commit and push the
+changes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git add site.yml roles/
+    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git commit -m <span style="color:#e6db74">&#34;Add roles/requirements.yml referencing shared role&#34;</span>
+    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git push</code></pre></div>
+<h2 id="launch-in-tower">Launch in Tower</h2>
+
+<p>Just in case, make sure to update the Project in Tower: in the menu at
+<strong>RESOURCES</strong>, pick <strong>Projects</strong>, and click on the sync button next to
+<strong>Structured Content Repository</strong>.</p>
+
+<p>Afterwards, go to <strong>RESOURCES→Templates</strong> and launch the <strong>Structured
+Content Execution</strong> job template. As you will see in the job output, the
+external role is called just the way the other roles are called:</p>
+<pre><code>TASK [shared-apache-role : deploy content] *************************************
+changed: [node2]
+changed: [node1]</code></pre>
+<p>Validate again with <code>curl</code> the result and you are done!</p>
+
+<p>This was quite something to follow through, so let’s review:</p>
+
+<ul>
+<li><p>You successfully integrated a shared role provided from a central
+source into your automation code.</p></li>
+
+<li><p>This way, you can limit your automation code to things really
+relevant and individual to the task and your environment, while
+everything generic is consumed from a shared resource.</p></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://goetzrieger.github.io/ansible-tower-advanced/9-advanced-inventories/" title="Advanced Inventories"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://goetzrieger.github.io/ansible-tower-advanced/11-rest-api/" title="Discovering the Tower API" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

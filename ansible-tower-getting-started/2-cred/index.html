@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="description" content="Ansible and Ansible Tower Labs">
+<meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
+
+    <link rel="icon" href="https://goetzrieger.github.io/images/favicon.png" type="image/png">
+
+    <title>Inventories, credentials and ad hoc commands :: Ansible Labs for AnsibleFest</title>
+
+    
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+    
+
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-getting-started/2-cred/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://goetzrieger.github.io/">
+  <img src="https://goetzrieger.github.io/images/email_ansiblefest-2020.png">
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/goetzrieger.github.io\/";
+    
+</script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/" title="Ansible Getting Started" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/">
+          Ansible Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/1-setup/" title="Check the Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/1-setup/">
+          Check the Prerequisites
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/2-adhoc/" title="Running ad hoc commands" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/2-adhoc/">
+          Running ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/3-playbook/" title="Writing Your First Playbook" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/">
+          Writing Your First Playbook
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/4-variables/" title="Using Variables" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/4-variables/">
+          Using Variables
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/5-handlers/" title="Conditionals, Handlers and Loops" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/5-handlers/">
+          Conditionals, Handlers and Loops
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/6-templates/" title="Templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/6-templates/">
+          Templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-getting-started/7-bonus/" title="Bonus Labs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-getting-started/7-bonus/">
+          Bonus Labs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/" title="Ansible Tower Getting Started" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/">
+          Ansible Tower Getting Started
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/1-intro/" title="Introduction to Tower" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/1-intro/">
+          Introduction to Tower
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/2-cred/" title="Inventories, credentials and ad hoc commands" class="dd-item 
+        parent
+        active
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/2-cred/">
+          Inventories, credentials and ad hoc commands
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/3-projects/" title="Projects &amp; job templates" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/">
+          Projects &amp; job templates
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/4-surveys/" title="Surveys" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/4-surveys/">
+          Surveys
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/5-rbac/" title="Role-based access control" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/5-rbac/">
+          Role-based access control
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/6-workflows/" title="Workflows" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/6-workflows/">
+          Workflows
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-getting-started/7-wrap/" title="Wrap up" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/">
+          Wrap up
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/1-intro/" title="Ansible Tower Advanced" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/1-intro/">
+          Ansible Tower Advanced
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/2-clustering/" title="Introduction to Ansible Tower Clustering" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/2-clustering/">
+          Introduction to Ansible Tower Clustering
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/3-awx-cli-intro/" title="There is more to Tower than the Web UI" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/3-awx-cli-intro/">
+          There is more to Tower than the Web UI
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/4-awx-cli-exercises/" title="Creating Tower Objects Using `awx`" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/4-awx-cli-exercises/">
+          Creating Tower Objects Using `awx`
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/5-tower-cluster-jobs/" title="Run a Job in a Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/5-tower-cluster-jobs/">
+          Run a Job in a Cluster
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/6-instance-groups/" title="Tower Instance Groups" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/6-instance-groups/">
+          Tower Instance Groups
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/7-parallel-jobs/" title="Parallel Jobs" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/7-parallel-jobs/">
+          Parallel Jobs
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/8-isolated-nodes/" title="Isolated Nodes" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/8-isolated-nodes/">
+          Isolated Nodes
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/9-advanced-inventories/" title="Advanced Inventories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/9-advanced-inventories/">
+          Advanced Inventories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/10-structured-content/" title="Well Structured Content Repositories" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+          Well Structured Content Repositories
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/ansible-tower-advanced/11-rest-api/" title="Discovering the Tower API" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/ansible-tower-advanced/11-rest-api/">
+          Discovering the Tower API
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vscode-intro/" title="Visual Studio Code - Introduction" class="dd-item 
+        
+        
+        
+        ">
+      <a href="https://goetzrieger.github.io/vscode-intro/">
+          Visual Studio Code - Introduction
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://goetzrieger.github.io/"><i class='fas fa-home'></i> Homepage</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p></p>
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='https://goetzrieger.github.io/'></a> > <a href='https://goetzrieger.github.io/ansible-tower-getting-started/'>Ansible Tower Getting Started</a> > Inventories, credentials and ad hoc commands
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#create-an-inventory">Create an Inventory</a></li>
+<li><a href="#machine-credentials">Machine Credentials</a></li>
+<li><a href="#configure-machine-credentials">Configure Machine Credentials</a></li>
+<li><a href="#run-ad-hoc-commands">Run Ad Hoc Commands</a></li>
+<li><a href="#challenge-lab-ad-hoc-commands">Challenge Lab: Ad Hoc Commands</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Inventories, credentials and ad hoc commands
+            </h1>
+          
+
+        
+
+
+
+	
+
+<h2 id="create-an-inventory">Create an Inventory</h2>
+
+<p>Let’s get started: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.</p>
+
+<ul>
+<li>You should already have the web UI open, if not: Point your browser to the URL you were given, similar to <strong><code>https://student&lt;N&gt;.&lt;LABID&gt;.open.redhat.com</code></strong> (replace &ldquo;&lt;N&gt;&rdquo; and &ldquo;&lt;LABID&gt;&rdquo;) and log in as <code>admin</code> with the password given on the lab landing page.</li>
+</ul>
+
+<p>Create the inventory:</p>
+
+<ul>
+<li><p>In the web UI menu on the left side, go to <strong>RESOURCES</strong> → <strong>Inventories</strong>, click the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button on the right side and choose <strong>Inventory</strong>.</p></li>
+
+<li><p><strong>NAME:</strong> Workshop Inventory</p></li>
+
+<li><p><strong>ORGANIZATION:</strong> Default</p></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+</ul>
+
+<p>Go back to the <strong>Inventories</strong> list, your new <strong>Workshop Inventory</strong> should show up. Open the <strong>Workshop Inventory</strong> and click the <strong>HOSTS</strong> button, the list will be empty since we have not added any hosts yet.</p>
+
+<p>So let&rsquo;s add some hosts. As mentioned in the intro you have three managed hosts in your lab environment, the names are resolved through the <code>/etc/hosts</code> file. The nodes are named <code>node1</code>, <code>node2</code> and <code>node3</code>.</p>
+
+<p>Now add the hosts to the inventory in Tower:</p>
+
+<ul>
+<li><p>In the inventory view of the Tower web UI click on your <strong>Workshop Inventory</strong></p></li>
+
+<li><p>Click on  the <strong>HOSTS</strong> button</p></li>
+
+<li><p>To the right click the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button.</p></li>
+
+<li><p><strong>HOST NAME:</strong> node1</p></li>
+
+<li><p>Click <strong>SAVE</strong></p></li>
+
+<li><p>Go back to <strong>HOSTS</strong> or use the frame below the new node frame in the UI and repeat to add <strong>node2</strong> as a second and <strong>node3</strong> as a third node.</p></li>
+</ul>
+
+<p>You have now created an inventory with three managed hosts.</p>
+
+<h2 id="machine-credentials">Machine Credentials</h2>
+
+<p>One of the great features of Ansible Tower is to make credentials usable to users without making them visible. To allow Tower to execute jobs on remote hosts, you must configure connection credentials.</p>
+
+
+<div class="notices tip" ><p>This is one of the most important features of Tower: <strong>Credential Separation</strong>! Credentials are defined separately and not with the hosts or inventory settings.</p>
+</div>
+
+
+<p>As this is an important part of your Tower setup, why not make sure that connecting to the managed nodes from Tower is working in the first place?</p>
+
+<p>To test access to the nodes via SSH do the following:</p>
+
+<ul>
+<li>In your browser bring up the terminal window in code-server (remember this runs on the Tower node)</li>
+<li>From here as user <code>ec2-user</code> SSH into <code>node1</code> or one of the other nodes and execute <code>sudo -i</code>.</li>
+
+<li><p>For the SSH connection use the node password from the inventory file, <code>sudo -i</code> works without password.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student1@ansible-1 ~<span style="color:#f92672">]</span>$ ssh ec2-user@node1
+<span style="color:#f92672">[</span>ec2-user@node1 ~<span style="color:#f92672">]</span>$
+sudo -i
+<span style="color:#f92672">[</span>root@node1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># exit</span>
+<span style="color:#f92672">[</span>ec2-user@node1 ~<span style="color:#f92672">]</span>$ exit</code></pre></div></li>
+</ul>
+
+<p>What does this mean?</p>
+
+<ul>
+<li><p>Tower user <strong>student&lt;N&gt;</strong> can connect to the managed hosts with SSH key authentication as user <strong>ec2-user</strong>.</p></li>
+
+<li><p>User <strong>ec2-user</strong> can execute commands on the managed hosts as <strong>root</strong> with <code>sudo</code>.</p></li>
+</ul>
+
+<h2 id="configure-machine-credentials">Configure Machine Credentials</h2>
+
+<p>Now we will configure the credentials to access our managed hosts from Tower. In the <strong>RESOURCES</strong> menu choose <strong>Credentials</strong>. Now:</p>
+
+<p>Click the <img src="../../images/green_plus.png?classes=inline" alt="plus" /> button to add new credentials</p>
+
+<ul>
+<li><p><strong>NAME:</strong> Workshop Credentials</p></li>
+
+<li><p><strong>ORGANIZATION:</strong> Click on the magnifying glass, pick <strong>Default</strong> and click <strong>SELECT</strong></p></li>
+
+<li><p><strong>CREDENTIAL TYPE:</strong> Click on the magnifying glass, pick <strong>Machine</strong> as type and click <strong>SELECT</strong> (you will have to use the search or cycle through the types to find it).</p></li>
+
+<li><p><strong>USERNAME:</strong> ec2-user</p></li>
+
+<li><p><strong>PRIVILEGE ESCALATION METHOD:</strong> sudo</p></li>
+</ul>
+
+
+<div class="notices tip" ><p>Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.</p>
+</div>
+
+
+<p>As we are using SSH key authentication, you have to provide an SSH private key that can be used to access the hosts. You could also configure password authentication here.</p>
+
+<p>Bring up your code-server terminal on Tower, and <code>cat</code> the SSH private key:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student1@ansible-1 ~<span style="color:#f92672">]</span>$ cat .ssh/aws-private.pem
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
+<span style="color:#f92672">[</span>...<span style="color:#f92672">]</span>
+-----END RSA PRIVATE KEY-----</code></pre></div>
+<ul>
+<li>Copy the <strong>complete private key</strong> (including &ldquo;BEGIN&rdquo; and &ldquo;END&rdquo; lines) and paste it into the <strong>SSH PRIVATE KEY</strong> field in the web UI.</li>
+<li>Click <strong>SAVE</strong></li>
+</ul>
+
+<p>Go back to the <strong>RESOURCES -&gt; Credentials -&gt; Workshop Credentials</strong> and note
+that the SSH key is not visible.</p>
+
+<p>You have now setup credentials for Ansible to access your managed hosts.</p>
+
+<h2 id="run-ad-hoc-commands">Run Ad Hoc Commands</h2>
+
+<p>As you’ve probably done with Ansible before you can run ad hoc commands from Tower as well.</p>
+
+<ul>
+<li><p>In the web UI go to <strong>RESOURCES → Inventories → Workshop Inventory</strong></p></li>
+
+<li><p>Click the <strong>HOSTS</strong> button to change into the hosts view and select the three hosts by checking the boxes to the left of the host entries.</p></li>
+
+<li><p>Click <strong>RUN COMMANDS</strong>. In the next screen you have to specify the ad hoc command:</p>
+
+<ul>
+<li><p>As <strong>MODULE</strong> choose <strong>ping</strong></p></li>
+
+<li><p>For <strong>MACHINE CREDENTIAL</strong> click the magnifying glass icon and select <strong>Workshop Credentials</strong>.</p></li>
+
+<li><p>Click <strong>LAUNCH</strong>, and watch the output.</p></li>
+</ul></li>
+</ul>
+
+<p>The simple <strong>ping</strong> module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the <strong>command</strong> module to find the user ID of the executing user using an ad hoc command.</p>
+
+<ul>
+<li><p><strong>MODULE:</strong> command</p></li>
+
+<li><p><strong>ARGUMENTS:</strong> id</p></li>
+</ul>
+
+<!-- 
+<div class="notices tip" ><p>After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to &ldquo;Arguments&rdquo;. This is handy, give it a try.</p>
+</div>
+ -->
+
+<p>How about trying to get some more private information from the system? Try to print out <strong>/etc/shadow</strong>.</p>
+
+<ul>
+<li><p><strong>MODULE:</strong> command</p></li>
+
+<li><p><strong>ARGUMENTS:</strong> cat /etc/shadow</p></li>
+</ul>
+
+
+<div class="notices warning" ><p>Expect an error!</p>
+</div>
+
+
+<p>Oops, the last one didn’t went well, all red.</p>
+
+<p>Re-run the last ad hoc command but this time tick the <strong>ENABLE PRIVILEGE ESCALATION</strong> box.</p>
+
+<p>As you see, this time it worked. For tasks that have to run as root you need to escalate the privileges. This is the same as the <strong>become: yes</strong> you’ve probably used often in your Ansible Playbooks.</p>
+
+<h2 id="challenge-lab-ad-hoc-commands">Challenge Lab: Ad Hoc Commands</h2>
+
+<p>Okay, a small challenge: Run an ad hoc to make sure the package &ldquo;tmux&rdquo; is installed on all hosts. If unsure, consult the documentation either via the web UI as shown above or by running <code>ansible-doc yum</code> on your Tower control host.</p>
+
+<details><summary>**>>Click here for Solution<<**</summary>
+<p>
+
+- **MODULE:** yum
+- **ARGUMENTS:** name=tmux
+- Tick **ENABLE PRIVILEGE ESCALATION**
+
+</p>
+</details>
+
+
+<div class="notices tip" ><p>The yellow output of the command indicates Ansible has actually done something (here it needed to install the package). If you run the ad hoc command a second time, the output will be green and inform you that the package was already installed. So yellow in Ansible doesn’t mean &ldquo;be careful&rdquo;…​ ;-).</p>
+</div>
+
+
+
+<div class="notices tip" ><p>Try to click one of the output lines in the window showing the job output. A small window with a lot of information about the job like module args will open. Have a look and close it again.</p>
+</div>
+
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="https://goetzrieger.github.io/ansible-tower-getting-started/1-intro/" title="Introduction to Tower"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/" title="Projects &amp; job templates" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
