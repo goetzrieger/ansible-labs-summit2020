@@ -340,6 +340,8 @@ EOF
 
 Run the test playbook. Since some tasks require privilege escalation use the `-K` option to authenticate via sudo.
 
+TODO: Replace playbook output with correct output!
+
 ```bash
 $ ansible-playbook playbook.yml
 
@@ -370,7 +372,7 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-# Takeaways
+## Takeaways
 
 - Collections can be installed from Galaxy of from Red Hat Automation Hub. Default collections search paths or custom paths can be used.
 

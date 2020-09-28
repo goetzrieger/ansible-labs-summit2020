@@ -65,11 +65,11 @@ Log out of the root account again:
 
 {{% notice warning %}}
 In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
-{{% /notice %}}>
-
-# Guide
+{{% /notice %}}
 
 ## Introduction: what are collections and why should I care?
+
+TODO: Looks like something is missing here!
 
 ## Understand collections lookup
 
@@ -135,7 +135,7 @@ In the portal of Automation Hub, users have direct access to trusted content col
 
 Automation Hub is a one-stop-shop for Ansible content that is backed by support from Red Hat to deliver additional reassurance for customers. Additional supportability claims for these collections may be provided under the "Maintained and Supported By" one of Red Hat Partners.
 
-## Ansible Galaxy
+### Ansible Galaxy
 
 It is the location for wider Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be dropped into Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
 

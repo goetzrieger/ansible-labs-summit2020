@@ -235,7 +235,7 @@ localhost                  : ok=4    changed=2    unreachable=0    failed=0    s
 
 The Playbook should run in the same way with the same output like above, where you loaded the collection using the role metadata.
 
-# Takeaways
+## Takeaways
 
 - Collections can be called from roles using the `collections` list defined in `meta/main.yml`.
 
