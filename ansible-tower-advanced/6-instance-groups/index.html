@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Tower Instance Groups :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/6-instance-groups/">
+  <body class="" data-url="/ansible-tower-advanced/6-instance-groups/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -998,7 +998,10 @@ at least one node in the <code>tower</code> group.</p></li>
 <h3 id="via-the-web-ui">Via the Web UI</h3>
 
 <p>You have configured the groups here, open the URL</p>
-<pre><code>https://student&lt;N&gt;.&lt;LABID&gt;.open.redhat.com/#/instance_groups</code></pre>
+
+<pre><code>https://student&lt;N&gt;.&lt;LABID&gt;.open.redhat.com/#/instance_groups
+</code></pre>
+
 <p>in your browser.</p>
 
 <p>In the <strong>INSTANCE GROUPS</strong> overview all instance groups are listed with details of the group itself like number of instances in the group, running jobs and finished jobs. Like you’ve seen before the current capacity of the instance groups is shown in a live view, thus providing a quick insight if there are capacity problems.</p>
@@ -1006,12 +1009,15 @@ at least one node in the <code>tower</code> group.</p></li>
 <h3 id="via-the-awx-cli">Via the <code>awx</code> CLI</h3>
 
 <p>In your VSCode terminal, run:</p>
+
 <pre><code>[student@ansible-1 ~]$ awx -k instance_group list -f human
 id name
 == =====
 1  tower
 2  dev
-3  prod</code></pre>
+3  prod
+</code></pre>
+
 <h3 id="via-the-api">Via the API</h3>
 
 <p>You can again query the API to get this information. Either use the browser to access the URL (you might have to login to the API again):</p>
@@ -1576,19 +1582,19 @@ id name
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

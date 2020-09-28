@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Running ad hoc commands :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-getting-started/2-adhoc/">
+  <body class="" data-url="/ansible-getting-started/2-adhoc/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -915,20 +915,23 @@
 <h2 id="work-with-your-inventory">Work with your Inventory</h2>
 
 <p>To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. Have a look for yourself, in your <strong>code-server terminal</strong> run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ cat lab_inventory/hosts
 
-<span style="color:#f92672">[</span>all:vars<span style="color:#f92672">]</span>
-ansible_user<span style="color:#f92672">=</span>student&lt;N&gt;
-ansible_ssh_pass<span style="color:#f92672">=</span>&lt;password&gt;
-ansible_port<span style="color:#f92672">=</span><span style="color:#ae81ff">22</span>
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ cat lab_inventory/hosts
 
-<span style="color:#f92672">[</span>web<span style="color:#f92672">]</span>
-node1 ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;
-node2 ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;
-node3 ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;
+[all:vars]
+ansible_user=student&lt;N&gt;
+ansible_ssh_pass=&lt;password&gt;
+ansible_port=22
 
-<span style="color:#f92672">[</span>control<span style="color:#f92672">]</span>
-ansible ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;</code></pre></div>
+[web]
+node1 ansible_host=&lt;IP address&gt;
+node2 ansible_host=&lt;IP address&gt;
+node3 ansible_host=&lt;IP address&gt;
+
+[control]
+ansible ansible_host=&lt;IP address&gt;
+</code></pre>
+
 
 <div class="notices tip" ><p>The environment for this lab uses SSH with password authentication to login to the managed nodes. For the sake of keeping things simple the password is put into the inventory file in clear text. In real world scenarios you would either use SSH key authentication or supply the password in a secure way, e.g. by using Ansible Vault.</p>
 </div>
@@ -944,14 +947,20 @@ ansible ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;</code
 <p>To reference inventory hosts, you supply a host pattern to the ansible command. Ansible has a <code>--list-hosts</code> option which can be useful for clarifying which managed hosts are referenced by the host pattern in an ansible command.</p>
 
 <p>The most basic host pattern is the name for a single managed host listed in the inventory file. This specifies that the host will be the only one in the inventory file that will be acted upon by the ansible command. Run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;X@&gt;ansible ~<span style="color:#f92672">]</span>$ ansible node1 --list-hosts
-  hosts <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>:
-    node1</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;X@&gt;ansible ~]$ ansible node1 --list-hosts
+  hosts (1):
+    node1
+</code></pre>
+
 <p>An inventory file can contain a lot more information, it can organize your hosts in groups or define variables. In our example, the current inventory has the groups <code>web</code> and <code>control</code>. Run Ansible with these host patterns and observe the output:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;X@&gt;ansible ~<span style="color:#f92672">]</span>$ ansible web --list-hosts
-<span style="color:#f92672">[</span>student&lt;X@&gt;ansible ~<span style="color:#f92672">]</span>$ ansible web,ansible --list-hosts
-<span style="color:#f92672">[</span>student&lt;X@&gt;ansible ~<span style="color:#f92672">]</span>$ ansible <span style="color:#e6db74">&#39;node*&#39;</span> --list-hosts
-<span style="color:#f92672">[</span>student&lt;X@&gt;ansible ~<span style="color:#f92672">]</span>$ ansible all --list-hosts</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;X@&gt;ansible ~]$ ansible web --list-hosts
+[student&lt;X@&gt;ansible ~]$ ansible web,ansible --list-hosts
+[student&lt;X@&gt;ansible ~]$ ansible 'node*' --list-hosts
+[student&lt;X@&gt;ansible ~]$ ansible all --list-hosts
+</code></pre>
+
 <p>As you see it is OK to put systems in more than one group. For instance, a server could be both a web server and a database server. Note that in Ansible the groups are not necessarily hierarchical.</p>
 
 
@@ -969,18 +978,24 @@ ansible ansible_host<span style="color:#f92672">=</span>&lt;IP address&gt;</code
 
 
 <p>In the lab environment provided to you an <code>.ansible.cfg</code> file has already been created and filled with the necessary details in the home directory of your <code>student&lt;N&gt;</code> user on the control node:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ls -la .ansible.cfg
--rw-r--r--. <span style="color:#ae81ff">1</span> student&lt;N&gt; student&lt;N&gt; <span style="color:#ae81ff">231</span> 14. Mai 17:17 .ansible.cfg</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ls -la .ansible.cfg
+-rw-r--r--. 1 student&lt;N&gt; student&lt;N&gt; 231 14. Mai 17:17 .ansible.cfg
+</code></pre>
+
 <p>Review the content of the file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ cat .ansible.cfg
-<span style="color:#f92672">[</span>defaults<span style="color:#f92672">]</span>
-stdout_callback <span style="color:#f92672">=</span> yaml
-connection <span style="color:#f92672">=</span> smart
-timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>
-deprecation_warnings <span style="color:#f92672">=</span> False
-host_key_checking <span style="color:#f92672">=</span> False
-retry_files_enabled <span style="color:#f92672">=</span> False
-inventory <span style="color:#f92672">=</span> /home/student&lt;N&gt;/lab_inventory/hosts</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ cat .ansible.cfg
+[defaults]
+stdout_callback = yaml
+connection = smart
+timeout = 60
+deprecation_warnings = False
+host_key_checking = False
+retry_files_enabled = False
+inventory = /home/student&lt;N&gt;/lab_inventory/hosts
+</code></pre>
+
 <p>There are multiple configuration flags provided. Most of them are not of interest here, but make sure to note the last line: there the location of the inventory is provided. That is the way Ansible knew in the previous commands what inventory to use to lookup the nodes.</p>
 
 <h2 id="ping-a-host">Ping a host</h2>
@@ -993,30 +1008,42 @@ inventory <span style="color:#f92672">=</span> /home/student&lt;N&gt;/lab_invent
 
 
 <p>Ansible needs to know that it should use the <code>ping</code> module: The <code>-m</code> option defines which Ansible module to use. Options can be passed to the specified module using the <code>-a</code> option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group <code>web</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible web -m ping
-node2 | SUCCESS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;ansible_facts&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#e6db74">&#34;/usr/bin/python&#34;</span>
-    <span style="color:#f92672">}</span>,
-    <span style="color:#e6db74">&#34;changed&#34;</span>: false,
-    <span style="color:#e6db74">&#34;ping&#34;</span>: <span style="color:#e6db74">&#34;pong&#34;</span>
-<span style="color:#f92672">}</span>
-<span style="color:#f92672">[</span>...<span style="color:#f92672">]</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible web -m ping
+node2 | SUCCESS =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;ping&quot;: &quot;pong&quot;
+}
+[...]
+</code></pre>
+
 <p>As you see each node in the <code>web</code> group reports the successful execution and the actual result - here &ldquo;pong&rdquo;.</p>
 
 <h2 id="listing-modules-and-getting-help">Listing Modules and Getting Help</h2>
 
 <p>Ansible comes with a lot of modules by default. To list all modules run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible-doc -l</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible-doc -l
+</code></pre>
+
 
 <div class="notices tip" ><p>In <code>ansible-doc</code> leave by pressing the button <code>q</code>. Use the <code>up</code>/<code>down</code> arrows to scroll through the content.</p>
 </div>
 
 
 <p>To find a module try e.g.:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible-doc -l | grep -i user</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible-doc -l | grep -i user
+</code></pre>
+
 <p>Get help for a specific module including usage examples:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible-doc user</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible-doc user
+</code></pre>
+
 
 <div class="notices tip" ><p>Mandatory options are marked by a &ldquo;=&rdquo; in <code>ansible-doc</code>, optional ones by a &ldquo;-&rdquo;.</p>
 </div>
@@ -1025,15 +1052,24 @@ node2 | SUCCESS <span style="color:#f92672">=</span>&gt; <span style="color:#f92
 <h2 id="use-the-command-module">Use the command module</h2>
 
 <p>Now let&rsquo;s see how we can run a good ol&rsquo; fashioned Linux command and format the output using the <code>command</code> module. It simply executes the specified command on a managed host (note this time not a group but a hostname is used as host pattern):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible node1 -m command -a <span style="color:#e6db74">&#34;id&#34;</span>
-node1 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
-uid<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>student1<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>student1<span style="color:#f92672">)</span> Gruppen<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>student1<span style="color:#f92672">)</span> Kontext<span style="color:#f92672">=</span>unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible node1 -m command -a &quot;id&quot;
+node1 | CHANGED | rc=0 &gt;&gt;
+uid=1001(student1) gid=1001(student1) Gruppen=1001(student1) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+</code></pre>
+
 <p>In this case the module is called <code>command</code> and the option passed with <code>-a</code> is the actual command to run. Try to run this ad hoc command on all managed hosts using the <code>all</code> host pattern.</p>
 
 <p>Another example: Have a quick look at the kernel versions your hosts are running:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible all -m command -a <span style="color:#e6db74">&#39;uname -r&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible all -m command -a 'uname -r'
+</code></pre>
+
 <p>Sometimes it’s desirable to have the output for a host on one line:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible all -m command -a <span style="color:#e6db74">&#39;uname -r&#39;</span> -o</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible all -m command -a 'uname -r' -o
+</code></pre>
+
 
 <div class="notices tip" ><p>Like many Linux commands, <code>ansible</code> allows long-form options as well as short-form.  For example <code>ansible web --module-name ping</code> is the same as running <code>ansible web -m ping</code>.  We are going to be using the short-form options throughout this workshop.</p>
 </div>
@@ -1044,14 +1080,20 @@ uid<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>s
 <p>Using the <code>copy</code> module, execute an ad hoc command on <code>node1</code> to change the contents of the <code>/etc/motd</code> file. <strong>The content is handed to the module through an option in this case</strong>.</p>
 
 <p>Run the following, but <strong>expect an error</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible node1 -m copy -a <span style="color:#e6db74">&#39;content=&#34;Managed by Ansible\n&#34; dest=/etc/motd&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible node1 -m copy -a 'content=&quot;Managed by Ansible\n&quot; dest=/etc/motd'
+</code></pre>
+
 <p>As mentioned this produces an <strong>error</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    node1 | FAILED! <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;changed&#34;</span>: false,
-        <span style="color:#e6db74">&#34;checksum&#34;</span>: <span style="color:#e6db74">&#34;a314620457effe3a1db7e02eacd2b3fe8a8badca&#34;</span>,
-        <span style="color:#e6db74">&#34;failed&#34;</span>: true,
-        <span style="color:#e6db74">&#34;msg&#34;</span>: <span style="color:#e6db74">&#34;Destination /etc not writable&#34;</span>
-    <span style="color:#f92672">}</span></code></pre></div>
+
+<pre><code class="language-bash">    node1 | FAILED! =&gt; {
+        &quot;changed&quot;: false,
+        &quot;checksum&quot;: &quot;a314620457effe3a1db7e02eacd2b3fe8a8badca&quot;,
+        &quot;failed&quot;: true,
+        &quot;msg&quot;: &quot;Destination /etc not writable&quot;
+    }
+</code></pre>
+
 <p>The output of the ad hoc command is screaming <strong>FAILED</strong> in red at you. Why? Because user <strong>student&lt;N&gt;</strong> is not allowed to write the motd file.</p>
 
 <p>Now this is a case for privilege escalation and the reason <code>sudo</code> has to be setup properly. We need to instruct Ansible to use <code>sudo</code> to run the command as root by using the parameter <code>-b</code> (think &ldquo;become&rdquo;).</p>
@@ -1062,26 +1104,35 @@ uid<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>s
 
 
 <p>For us it’s okay to connect as <code>student&lt;N&gt;</code> because <code>sudo</code> is set up. Change the command to use the <code>-b</code> parameter and run again:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible node1 -m copy -a <span style="color:#e6db74">&#39;content=&#34;Managed by Ansible\n&#34; dest=/etc/motd&#39;</span> -b</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible node1 -m copy -a 'content=&quot;Managed by Ansible\n&quot; dest=/etc/motd' -b
+</code></pre>
+
 <p>This time the command is a success:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">node1 | CHANGED <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;changed&#34;</span>: true,
-    <span style="color:#e6db74">&#34;checksum&#34;</span>: <span style="color:#e6db74">&#34;4458b979ede3c332f8f2128385df4ba305e58c27&#34;</span>,
-    <span style="color:#e6db74">&#34;dest&#34;</span>: <span style="color:#e6db74">&#34;/etc/motd&#34;</span>,
-    <span style="color:#e6db74">&#34;gid&#34;</span>: 0,
-    <span style="color:#e6db74">&#34;group&#34;</span>: <span style="color:#e6db74">&#34;root&#34;</span>,
-    <span style="color:#e6db74">&#34;md5sum&#34;</span>: <span style="color:#e6db74">&#34;65a4290ee5559756ad04e558b0e0c4e3&#34;</span>,
-    <span style="color:#e6db74">&#34;mode&#34;</span>: <span style="color:#e6db74">&#34;0644&#34;</span>,
-    <span style="color:#e6db74">&#34;owner&#34;</span>: <span style="color:#e6db74">&#34;root&#34;</span>,
-    <span style="color:#e6db74">&#34;secontext&#34;</span>: <span style="color:#e6db74">&#34;system_u:object_r:etc_t:s0&#34;</span>,
-    <span style="color:#e6db74">&#34;size&#34;</span>: 19,
-    <span style="color:#e6db74">&#34;src&#34;</span>: <span style="color:#e6db74">&#34;/home/student1/.ansible/tmp/ansible-tmp-1557857641.21-120920996103312/source&#34;</span>,
-    <span style="color:#e6db74">&#34;state&#34;</span>: <span style="color:#e6db74">&#34;file&#34;</span>,
-    <span style="color:#e6db74">&#34;uid&#34;</span>: <span style="color:#ae81ff">0</span></code></pre></div>
+
+<pre><code class="language-bash">node1 | CHANGED =&gt; {
+    &quot;changed&quot;: true,
+    &quot;checksum&quot;: &quot;4458b979ede3c332f8f2128385df4ba305e58c27&quot;,
+    &quot;dest&quot;: &quot;/etc/motd&quot;,
+    &quot;gid&quot;: 0,
+    &quot;group&quot;: &quot;root&quot;,
+    &quot;md5sum&quot;: &quot;65a4290ee5559756ad04e558b0e0c4e3&quot;,
+    &quot;mode&quot;: &quot;0644&quot;,
+    &quot;owner&quot;: &quot;root&quot;,
+    &quot;secontext&quot;: &quot;system_u:object_r:etc_t:s0&quot;,
+    &quot;size&quot;: 19,
+    &quot;src&quot;: &quot;/home/student1/.ansible/tmp/ansible-tmp-1557857641.21-120920996103312/source&quot;,
+    &quot;state&quot;: &quot;file&quot;,
+    &quot;uid&quot;: 0
+</code></pre>
+
 <p>Use Ansible with the generic <code>command</code> module to check the content of the motd file:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible node1 -m command -a <span style="color:#e6db74">&#39;cat /etc/motd&#39;</span>
-node1 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
-Managed by Ansible</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible node1 -m command -a 'cat /etc/motd'
+node1 | CHANGED | rc=0 &gt;&gt;
+Managed by Ansible
+</code></pre>
+
 <p>Run the <code>ansible node1 -m copy …​</code> command from above again. Note:</p>
 
 <ul>
@@ -1114,15 +1165,16 @@ Managed by Ansible</code></pre></div>
 </div>
 
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
-```bash
-[student<N>@ansible-1 ~]$ ansible-doc -l | grep -i yum
-[student<N>@ansible-1 ~]$ ansible-doc yum
-[student<N>@ansible-1 ~]$ ansible all -m yum -a 'name=vim state=latest' -b
-```
-</p>
-</details>
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible-doc -l | grep -i yum
+[student&lt;N&gt;@ansible-1 ~]$ ansible-doc yum
+[student&lt;N&gt;@ansible-1 ~]$ ansible all -m yum -a 'name=vim state=latest' -b
+</code></pre>
+
+<p></p>
+</details></p>
 
 
 
@@ -1658,19 +1710,19 @@ Managed by Ansible</code></pre></div>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

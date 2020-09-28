@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Isolated Nodes :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/8-isolated-nodes/">
+  <body class="" data-url="/ansible-tower-advanced/8-isolated-nodes/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -928,8 +928,11 @@
 <h2 id="prepare-the-isolated-node">Prepare the Isolated Node</h2>
 
 <p>Because of the setup of this lab environment, before we configure the isolated node we need to do some preparation. As your student user in your VSCode terminal, execute the following steps:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ scp /etc/hosts isonode:
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ ssh isonode sudo mv /home/ec2-user/hosts /etc/</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ scp /etc/hosts isonode:
+    [student@ansible-1 ~]$ ssh isonode sudo mv /home/ec2-user/hosts /etc/
+</code></pre>
+
 <h2 id="setting-up-isolated-nodes">Setting Up Isolated Nodes</h2>
 
 <p>Isolated nodes are defined in the installer inventory file and setup by the Ansible Tower installer. Isolated nodes make up their own instance groups that are specified in the inventory file prefixed with <strong>isolated_group_</strong>. In the isolated instance group model, <strong>controller</strong> instances interact with <strong>isolated</strong> instances via a series of Ansible playbooks over SSH.</p>
@@ -937,6 +940,7 @@
 <p><strong>So for the fun of it, let’s set one up.</strong></p>
 
 <p>First have a look at the Tower installer inventory file that was used for lab setup. In your VSCode terminal on your Tower node 1 change into the Ansible installer directory and do the following:</p>
+
 <pre><code>[student@ansible-1 ~]$ cd /tmp/tower_install/
 [student@ansible-1 tower_install]$ cat inventory
 
@@ -948,7 +952,9 @@ ansible-3
 [database]
 ansible-4
 
-[...]</code></pre>
+[...]
+</code></pre>
+
 <p>You can see we have the tower base group and one for the database node. For the isolated node we will define a new <strong>isolated_group_</strong> named <strong>dmz</strong> with one entirely new node, called <strong>isonode</strong> which we’ll use to manage other hosts in the remote location.</p>
 
 
@@ -957,10 +963,14 @@ ansible-4
 
 
 <p>To edit the inventory file in VSCode editor change the permissions (don&rsquo;t do 777 in real life&hellip; ;-)):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ sudo -i
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># chmod 777 /tmp/tower_install/inventory</span>
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># exit</span></code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ sudo -i
+    [root@ansible-1 ~]# chmod 777 /tmp/tower_install/inventory
+    [root@ansible-1 ~]# exit
+</code></pre>
+
 <p>Then do <strong>File -&gt; Open File</strong> in VSCode, navigate to <code>/tmp/tower_install/inventory</code> file and open it. Add the isolated node to the inventory to look like this:</p>
+
 <pre><code>    [tower]
     ansible-1
     ansible-2
@@ -975,7 +985,9 @@ ansible-4
     [database]
     ansible-4
 
-    [...]</code></pre>
+    [...]
+</code></pre>
+
 
 <div class="notices warning" ><p>Only add the isolated_group settings, don&rsquo;t change the other groups and settings! <strong>And replace student ID and password!</strong></p>
 </div>
@@ -987,9 +999,12 @@ ansible-4
 
 
 <p>After editing the inventory, start the installer in the VSCode terminal to make the desired changes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ sudo -i
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># cd /tmp/tower_install/</span>
-    <span style="color:#f92672">[</span>root@ansible-1 tower_install<span style="color:#f92672">]</span><span style="color:#75715e"># ./setup.sh</span></code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ sudo -i
+    [root@ansible-1 ~]# cd /tmp/tower_install/
+    [root@ansible-1 tower_install]# ./setup.sh
+</code></pre>
+
 
 <div class="notices note" ><p>The setup.sh script will take a couple of minutes to finish execution.</p>
 </div>
@@ -1000,13 +1015,16 @@ ansible-4
 <h2 id="verify-isolated-nodes">Verify Isolated Nodes</h2>
 
 <p>After the installer has finished isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also apply to isolated nodes. For example, using <code>awx</code> as the student user:</p>
+
 <pre><code>[student@ansible-1 ~]$ awx -f human instance_group list
 id name
 == =====
 1  tower
 2  dev
 3  prod
-4  dmz</code></pre>
+4  dmz
+</code></pre>
+
 <p>You can see your <strong>dmz</strong> isolated group has been setup. Like other instance groups, isolated node groups can be assigned at the level of an organization, an inventory, or an individual job template.</p>
 
 <h2 id="create-isolated-node-specific-inventory">Create Isolated Node specific Inventory</h2>
@@ -1625,19 +1643,19 @@ web UI</p></li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

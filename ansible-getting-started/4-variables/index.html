@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Using Variables :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-getting-started/4-variables/">
+  <body class="" data-url="/ansible-getting-started/4-variables/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -917,7 +917,10 @@
 <p>Ansible supports variables to store values that can be used in Playbooks. Variables can be defined in a variety of places and have a clear precedence. Ansible substitutes the variable with its value when a task is executed.</p>
 
 <p>Variables are referenced in Playbooks by placing the variable name in double curly braces:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">Here comes a variable {{ variable1 }}</span></code></pre></div>
+
+<pre><code class="language-yaml">Here comes a variable {{ variable1 }}
+</code></pre>
+
 <p>Variables and their values can be defined in various places: the inventory, additional files, on the command line, etc.</p>
 
 <p>The recommended practice to provide variables in the inventory is to define them in files located in two directories named <code>host_vars</code> and <code>group_vars</code>:</p>
@@ -938,17 +941,24 @@
 <p>For understanding and practice let’s do a lab. Following up on the theme &ldquo;Let’s build a webserver. Or two. Or even more…​&rdquo;, you will change the <code>index.html</code> to show the development environment (dev/prod) a server is deployed in.</p>
 
 <p>On the ansible control host, as the <code>student</code> user, create the directories to hold the variable definitions in <code>~/ansible-files/</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ mkdir host_vars group_vars</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ mkdir host_vars group_vars
+</code></pre>
+
 <p>Now create two files containing variable definitions. We’ll define a variable named <code>stage</code> which will point to different environments, <code>dev</code> or <code>prod</code>:</p>
 
 <ul>
 <li><p>Create the file <code>~/ansible-files/group_vars/web</code> with this content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-<span style="color:#f92672">stage</span>: <span style="color:#ae81ff">dev</span></code></pre></div></li>
+
+<pre><code class="language-yaml">---
+stage: dev
+</code></pre></li>
 
 <li><p>Create the file <code>~/ansible-files/host_vars/node2</code> with this content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-<span style="color:#f92672">stage</span>: <span style="color:#ae81ff">prod</span></code></pre></div></li>
+
+<pre><code class="language-yaml">---
+stage: prod
+</code></pre></li>
 </ul>
 
 <p>What is this about?</p>
@@ -964,13 +974,19 @@
 <p>Now create two files in <code>~/ansible-files/</code>:</p>
 
 <p>One called <code>prod_index.html</code> with the following content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
-&lt;<span style="color:#f92672">h1</span>&gt;This is a production webserver, take care!&lt;/<span style="color:#f92672">h1</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;</code></pre></div>
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;h1&gt;This is a production webserver, take care!&lt;/h1&gt;
+&lt;/body&gt;
+</code></pre>
+
 <p>And the other called <code>dev_index.html</code> with the following content:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
-&lt;<span style="color:#f92672">h1</span>&gt;This is a development webserver, have fun!&lt;/<span style="color:#f92672">h1</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;</code></pre></div>
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
+&lt;/body&gt;
+</code></pre>
+
 <h2 id="create-the-playbook">Create the Playbook</h2>
 
 <p>Now you need a Playbook that copies the prod or dev <code>index.html</code> file - according to the &ldquo;stage&rdquo; variable.</p>
@@ -981,39 +997,47 @@
 <div class="notices tip" ><p>Note how the variable &ldquo;stage&rdquo; is used in the name of the file to copy.</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Copy index.html</span>
-  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">web</span>
-  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">yes</span>
-  <span style="color:#f92672">tasks</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">copy index.html</span>
-    <span style="color:#f92672">copy</span>:
-      <span style="color:#f92672">src</span>: <span style="color:#ae81ff">~/ansible-files/{{ stage }}_index.html</span>
-      <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/var/www/html/index.html</span></code></pre></div>
+
+<pre><code class="language-yaml">---
+- name: Copy index.html
+  hosts: web
+  become: yes
+  tasks:
+  - name: copy index.html
+    copy:
+      src: ~/ansible-files/{{ stage }}_index.html
+      dest: /var/www/html/index.html
+</code></pre>
+
 <ul>
 <li><p>Run the Playbook:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible-playbook deploy_index_html.yml</code></pre></div></li>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible-playbook deploy_index_html.yml
+</code></pre></li>
 </ul>
 
 <h2 id="test-the-result">Test the Result</h2>
 
 <p>The Playbook should copy different files as index.html to the hosts, use <code>curl</code> to test it. Check the inventory again if you forgot the IP addresses of your nodes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ grep node ~/lab_inventory/hosts
-node1 ansible_host<span style="color:#f92672">=</span>11.22.33.44
-node2 ansible_host<span style="color:#f92672">=</span>22.33.44.55
-node3 ansible_host<span style="color:#f92672">=</span>33.44.55.66
-<span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ curl http://11.22.33.44
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ grep node ~/lab_inventory/hosts
+node1 ansible_host=11.22.33.44
+node2 ansible_host=22.33.44.55
+node3 ansible_host=33.44.55.66
+[student&lt;N&gt;@ansible-1 ansible-files]$ curl http://11.22.33.44
 &lt;body&gt;
 &lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
 &lt;/body&gt;
-<span style="color:#f92672">[</span>student1@ansible-1 ansible-files<span style="color:#f92672">]</span>$ curl http://22.33.44.55
+[student1@ansible-1 ansible-files]$ curl http://22.33.44.55
 &lt;body&gt;
 &lt;h1&gt;This is a production webserver, take care!&lt;/h1&gt;
 &lt;/body&gt;
-<span style="color:#f92672">[</span>student1@ansible-1 ansible-files<span style="color:#f92672">]</span>$ curl http://33.44.55.66
+[student1@ansible-1 ansible-files]$ curl http://33.44.55.66
 &lt;body&gt;
 &lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
-&lt;/body&gt;</code></pre></div>
+&lt;/body&gt;
+</code></pre>
+
 
 <div class="notices tip" ><p>If by now you think: There has to be a smarter way to change content in files…​ you are absolutely right. This lab was done to introduce variables, you are about to learn about templates in one of the next chapters.</p>
 </div>
@@ -1024,11 +1048,20 @@ node3 ansible_host<span style="color:#f92672">=</span>33.44.55.66
 <p>Ansible facts are variables that are automatically discovered by Ansible from a managed host. Remember the &ldquo;Gathering Facts&rdquo; task listed in the output of each <code>ansible-playbook</code> execution? At that moment the facts are gathered for each managed node. Facts can also be pulled by the <code>setup</code> module. They contain useful information stored into variables that administrators can reuse.</p>
 
 <p>To get an idea what facts Ansible collects by default, on your control node as your student user run:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible node1 -m setup</code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1 -m setup
+</code></pre>
+
 <p>This might be a bit too much, you can use filters to limit the output to certain facts, the expression is shell-style wildcard:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible node1 -m setup -a <span style="color:#e6db74">&#39;filter=ansible_eth0&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
+</code></pre>
+
 <p>Or what about only looking for memory related facts:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible node1 -m setup -a <span style="color:#e6db74">&#39;filter=ansible_*_mb&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_*_mb'
+</code></pre>
+
 <h2 id="challenge-lab-facts">Challenge Lab: Facts</h2>
 
 <ul>
@@ -1040,56 +1073,63 @@ node3 ansible_host<span style="color:#f92672">=</span>33.44.55.66
 </div>
 
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
-```bash
-[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution
-[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
-```
-</p>
-</details>
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
+</code></pre>
+
+<p></p>
+</details></p>
 
 <h2 id="using-facts-in-playbooks">Using Facts in Playbooks</h2>
 
 <p>Facts can be used in a Playbook like variables, using the proper naming, of course. Create this Playbook as <code>facts.yml</code> in the <code>~/ansible-files/</code> directory:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Output facts within a playbook</span>
-  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">all</span>
-  <span style="color:#f92672">tasks</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Prints Ansible facts</span>
-    <span style="color:#f92672">debug</span>:
-      <span style="color:#f92672">msg</span>: <span style="color:#ae81ff">The default IPv4 address of {{ ansible_fqdn }} is {{ ansible_default_ipv4.address }}</span></code></pre></div>
+
+<pre><code class="language-yaml">---
+- name: Output facts within a playbook
+  hosts: all
+  tasks:
+  - name: Prints Ansible facts
+    debug:
+      msg: The default IPv4 address of {{ ansible_fqdn }} is {{ ansible_default_ipv4.address }}
+</code></pre>
+
 
 <div class="notices tip" ><p>The &ldquo;debug&rdquo; module is handy for e.g. debugging variables or expressions.</p>
 </div>
 
 
 <p>Execute it to see how the facts are printed:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible-playbook facts.yml
 
-PLAY <span style="color:#f92672">[</span>Output facts within a playbook<span style="color:#f92672">]</span> ******************************************
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible-playbook facts.yml
 
-TASK <span style="color:#f92672">[</span>Gathering Facts<span style="color:#f92672">]</span> *********************************************************
-ok: <span style="color:#f92672">[</span>node3<span style="color:#f92672">]</span>
-ok: <span style="color:#f92672">[</span>node2<span style="color:#f92672">]</span>
-ok: <span style="color:#f92672">[</span>node1<span style="color:#f92672">]</span>
-ok: <span style="color:#f92672">[</span>ansible<span style="color:#f92672">]</span>
+PLAY [Output facts within a playbook] ******************************************
 
-TASK <span style="color:#f92672">[</span>Prints Ansible facts<span style="color:#f92672">]</span> ****************************************************
-ok: <span style="color:#f92672">[</span>node1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span>&gt;
+TASK [Gathering Facts] *********************************************************
+ok: [node3]
+ok: [node2]
+ok: [node1]
+ok: [ansible]
+
+TASK [Prints Ansible facts] ****************************************************
+ok: [node1] =&gt;
   msg: The default IPv4 address of node1 is 172.16.190.143
-ok: <span style="color:#f92672">[</span>node2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span>&gt;
+ok: [node2] =&gt;
   msg: The default IPv4 address of node2 is 172.16.30.170
-ok: <span style="color:#f92672">[</span>node3<span style="color:#f92672">]</span> <span style="color:#f92672">=</span>&gt;
+ok: [node3] =&gt;
   msg: The default IPv4 address of node3 is 172.16.140.196
-ok: <span style="color:#f92672">[</span>ansible<span style="color:#f92672">]</span> <span style="color:#f92672">=</span>&gt;
+ok: [ansible] =&gt;
   msg: The default IPv4 address of ansible is 172.16.2.10
 
 PLAY RECAP *********************************************************************
-ansible                    : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>    changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-node1                      : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>    changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-node2                      : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>    changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-node3                      : ok<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>    changed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    unreachable<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>    failed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span></code></pre></div>
+ansible                    : ok=2    changed=0    unreachable=0    failed=0
+node1                      : ok=2    changed=0    unreachable=0    failed=0
+node2                      : ok=2    changed=0    unreachable=0    failed=0
+node3                      : ok=2    changed=0    unreachable=0    failed=0
+</code></pre>
+
 
 
 
@@ -1624,19 +1664,19 @@ node3                      : ok<span style="color:#f92672">=</span><span style="
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

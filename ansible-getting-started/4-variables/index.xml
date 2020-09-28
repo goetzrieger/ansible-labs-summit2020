@@ -4,6 +4,10 @@
     <title>Using Variables on Ansible Labs for AnsibleFest</title>
     <link>https://goetzrieger.github.io/ansible-getting-started/4-variables/</link>
     <description>Recent content in Using Variables on Ansible Labs for AnsibleFest</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://goetzrieger.github.io/ansible-getting-started/4-variables/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://goetzrieger.github.io/ansible-getting-started/4-variables/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>There is more to Tower than the Web UI :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/3-awx-cli-intro/">
+  <body class="" data-url="/ansible-tower-advanced/3-awx-cli-intro/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -914,11 +914,14 @@
 
 
 <p>We’ll install it on your Tower node1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install <strong>AWX CLI</strong> as <code>root</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ sudo -i
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo</span>
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># yum install ansible-tower-cli -y</span>
-    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># exit</span>
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ sudo -i
+    [root@ansible-1 ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
+    [root@ansible-1 ~]# yum install ansible-tower-cli -y
+    [root@ansible-1 ~]# exit
+    [student@ansible-1 ~]$
+</code></pre>
+
 
 <div class="notices warning" ><p>Please make sure to leave the root shell after installation of the package!</p>
 </div>
@@ -930,41 +933,65 @@
 <div class="notices tip" ><p>Replace student number and labid!</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ export TOWER_HOST<span style="color:#f92672">=</span>https://student&lt;N&gt;.&lt;LABID&gt;.open.redhat.com
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ export TOWER_USERNAME<span style="color:#f92672">=</span>admin
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ export TOWER_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;VERY_SECRET_PASSWORD&#39;</span>
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ export TOWER_VERIFY_SSL<span style="color:#f92672">=</span>false</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ export TOWER_HOST=https://student&lt;N&gt;.&lt;LABID&gt;.open.redhat.com
+    [student@ansible-1 ~]$ export TOWER_USERNAME=admin
+    [student@ansible-1 ~]$ export TOWER_PASSWORD='VERY_SECRET_PASSWORD'
+    [student@ansible-1 ~]$ export TOWER_VERIFY_SSL=false
+</code></pre>
+
 
 <div class="notices tip" ><p>Feel free to write this into a new file using the code-server editor and then to use <strong>source &lt;filename&gt;</strong> to set the environment variables. This way if you loose connection to code-server you can easily re-set the vars.</p>
 </div>
 
 
 <p>Then use <strong>awx</strong> to login and print out the access token and to save it to a file at the same time:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ awx login -f human | tee token</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ awx login -f human | tee token
+</code></pre>
+
 
 <div class="notices tip" ><p>We are saving the <strong>export TOWER_OAUTH_TOKEN=&lt;YOUR_TOKEN&gt;</strong> command line output to the file <strong>token</strong> using <strong>tee</strong> here to be able to set the environment variable more easily.</p>
 </div>
 
 
 <p>Finally set the environment variable with the token using the line the command printed out:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ source token</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ source token
+</code></pre>
+
 <p>Now that the access token is avalable in your shell, test <strong>awx</strong> is working. First run it without arguments to get a
 list of resources you can manage with it:</p>
-<pre><code>[student@ansible-1 ~]$ awx --help</code></pre>
+
+<pre><code>[student@ansible-1 ~]$ awx --help
+</code></pre>
+
 <p>And then test something, e.g. (leave out <strong>-f human</strong> if you&rsquo;re a JSON fan&hellip;) ;)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ awx -f human user list</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ awx -f human user list
+</code></pre>
+
 
 <div class="notices tip" ><p>When trying to find a <strong>awx</strong> command line for something you want to do, just move one by one.</p>
 </div>
 
 
 <p>Example: Need to create an inventory&hellip;</p>
-<pre><code>[student@ansible-1 ~]$ awx --help</code></pre>
+
+<pre><code>[student@ansible-1 ~]$ awx --help
+</code></pre>
+
 <p>Okay, there is an <strong>inventory</strong> resource. Let’s see…</p>
-<pre><code>[student@ansible-1 ~]$ awx inventory</code></pre>
+
+<pre><code>[student@ansible-1 ~]$ awx inventory
+</code></pre>
+
 <p>Well, the <strong>create</strong> action sounds like what I had in mind. But what arguments do I
 need? Just run:</p>
-<pre><code>[student@ansible-1 ~]$ awx inventory create</code></pre>
+
+<pre><code>[student@ansible-1 ~]$ awx inventory create
+</code></pre>
+
 <p>And you&rsquo;ll get the required and optional arguments for the <strong>create</strong> action!</p>
 
 <h2 id="challenge-lab-awx">Challenge Lab: awx</h2>
@@ -987,17 +1014,16 @@ change it.</p></li>
 </div>
 
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
 
-```bash
-    [student@ansible-1 ~]$ awx setting list | grep SESSION
+<pre><code class="language-bash">    [student@ansible-1 ~]$ awx setting list | grep SESSION
     [student@ansible-1 ~]$ awx setting modify SESSION_COOKIE_AGE 7200
     [student@ansible-1 ~]$ awx setting list | grep SESSION
-```
+</code></pre>
 
-</p>
-</details>
+<p></p>
+</details></p>
 
 <p>If you want to, go to the web UI of any node (not just the one you connected <strong>awx</strong> to) and check the setting under <strong>ADMINISTRATION→Settings→System</strong>.</p>
 
@@ -1538,19 +1564,19 @@ change it.</p></li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

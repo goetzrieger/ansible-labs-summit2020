@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Parallel Jobs :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/7-parallel-jobs/">
+  <body class="" data-url="/ansible-tower-advanced/7-parallel-jobs/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -940,36 +940,39 @@
 <h3 id="first-step-create-three-templates">First Step: Create three Templates</h3>
 
 <p>As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates and attach credentials using the <code>awx</code> CLI in the VSCode terminal:</p>
-<pre><code>[student@ansible-1 ~]$ awx job_template create --name &#34;Compliance STIG packages&#34; \
+
+<pre><code>[student@ansible-1 ~]$ awx job_template create --name &quot;Compliance STIG packages&quot; \
                       --job-type run \
-                      --inventory &#34;Example Inventory&#34; \
-                      --project &#34;Apache&#34;  \
-                      --playbook &#34;stig-packages.yml&#34; \
+                      --inventory &quot;Example Inventory&quot; \
+                      --project &quot;Apache&quot;  \
+                      --playbook &quot;stig-packages.yml&quot; \
                       --become_enabled 1
 
-[student@ansible-1 ~]$ awx -f human job_template associate --name &#34;Compliance STIG packages&#34; \
-                      --credential &#34;Example Credentials&#34;
+[student@ansible-1 ~]$ awx -f human job_template associate --name &quot;Compliance STIG packages&quot; \
+                      --credential &quot;Example Credentials&quot;
 
-[student@ansible-1 ~]$ awx -f human job_template create --name &#34;Compliance STIG config&#34; \
-                      --credential &#34;Example Credentials&#34; \
+[student@ansible-1 ~]$ awx -f human job_template create --name &quot;Compliance STIG config&quot; \
+                      --credential &quot;Example Credentials&quot; \
                       --job_type run \
-                      --inventory &#34;Example Inventory&#34; \
-                      --project &#34;Apache&#34; \
-                      --playbook &#34;stig-config.yml&#34; \
+                      --inventory &quot;Example Inventory&quot; \
+                      --project &quot;Apache&quot; \
+                      --playbook &quot;stig-config.yml&quot; \
                       --become_enabled 1
 
-[student@ansible-1 ~]$ awx -f human job_template associate --name &#34;Compliance STIG config&#34; \
-                      --credential &#34;Example Credentials&#34;
+[student@ansible-1 ~]$ awx -f human job_template associate --name &quot;Compliance STIG config&quot; \
+                      --credential &quot;Example Credentials&quot;
 
-[student@ansible-1 ~]$ awx job_template create --name &#34;Compliance CIS&#34; \
+[student@ansible-1 ~]$ awx job_template create --name &quot;Compliance CIS&quot; \
                       --job-type run  \
-                      --inventory &#34;Example Inventory&#34; \
-                      --project &#34;Apache&#34; \
-                      --playbook &#34;cis.yml&#34; \
+                      --inventory &quot;Example Inventory&quot; \
+                      --project &quot;Apache&quot; \
+                      --playbook &quot;cis.yml&quot; \
                       --become_enabled 1
 
-[student@ansible-1 ~]$ awx -f human job_template associate --name &#34;Compliance CIS&#34; \
-                      --credential &#34;Example Credentials&#34;</code></pre>
+[student@ansible-1 ~]$ awx -f human job_template associate --name &quot;Compliance CIS&quot; \
+                      --credential &quot;Example Credentials&quot;
+</code></pre>
+
 <h2 id="create-parallel-workflow">Create Parallel Workflow</h2>
 
 <p>To enable parallel execution of the tasks in these job templates, we will create a workflow. We’ll use the web UI because using <strong>awx</strong> for this is a bit too involved for a lab. Workflows are configured in the <strong>Templates</strong> view, you might have noticed you can choose between <strong>Job Template</strong> and <strong>Workflow Template</strong> when adding a template.</p>
@@ -1038,13 +1041,16 @@ instance group, they where distributed (more or less) evenly over the instances.
 <p>So we have seen how a Tower cluster is distributing jobs over Tower instances by default. We have already created instance groups which allow us to take control over which job is executed on which node, so let’s use them.</p>
 
 <p>To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using <strong>awx-manage</strong> on one of the Tower instances. From your VSCode terminal <strong>and as <code>root</code></strong> run the command:</p>
+
 <pre><code>  [student@ansible-1 ~]$ sudo -i
   [root@ansible-1 ~]# awx-manage cleanup_jobs  --days=0
-  deleting &#34;2020-04-08 15:43:12.121133+00:00-2-failed&#34; (2 host summaries, 8 events)
+  deleting &quot;2020-04-08 15:43:12.121133+00:00-2-failed&quot; (2 host summaries, 8 events)
   [...]
   notifications: 0 deleted, 0 skipped.
   [root@ansible-1 ~]# exit
-  logout</code></pre>
+  logout
+</code></pre>
+
 <h3 id="assign-jobs-to-instance-groups">Assign Jobs to Instance Groups</h3>
 
 <p>One way to assign a job to an instance group is in the job template. As our compliance workflow uses three job templates, do this for all of them:</p>
@@ -1652,19 +1658,19 @@ instance group, they where distributed (more or less) evenly over the instances.
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

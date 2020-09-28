@@ -4,6 +4,10 @@
     <title>Ansible Tower Advanced on Ansible Labs for AnsibleFest</title>
     <link>https://goetzrieger.github.io/ansible-tower-advanced/</link>
     <description>Recent content in Ansible Tower Advanced on Ansible Labs for AnsibleFest</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://goetzrieger.github.io/ansible-tower-advanced/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://goetzrieger.github.io/ansible-tower-advanced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

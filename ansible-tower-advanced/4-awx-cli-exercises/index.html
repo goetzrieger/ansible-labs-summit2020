@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Creating Tower Objects Using `awx` :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/4-awx-cli-exercises/">
+  <body class="" data-url="/ansible-tower-advanced/4-awx-cli-exercises/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -928,44 +928,49 @@
 </div>
 
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
-```
-[student@ansible-1 ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
-```
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
 
+<pre><code>[student@ansible-1 ~]$ awx -f human inventory create --name &quot;Example Inventory&quot; --organization &quot;Default&quot;
+</code></pre>
+
+<p>
 <div class="notices note" ><p>You can work with multiple organizations in Tower. In this lab we’ll work in the <strong>Default</strong> organization.</p>
 </div>
 
 </p>
-</details>
+</details></p>
 
 <h3 id="add-hosts-to-the-inventory-using-awx">Add Hosts to the Inventory using <strong>awx</strong></h3>
 
 <p>Now that we have the empty inventory created, add your two managed hosts using their internal hostnames <strong><code>node1</code></strong> and <strong><code>node2</code></strong>, again using
 <strong>awx</strong>.</p>
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
-```
-[student@ansible-1 ~]$ awx -f human host create --name "node1" --inventory "Example Inventory"
-[student@ansible-1 ~]$ awx -f human host create --name "node2" --inventory "Example Inventory"
-```
-</p>
-</details>
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
+
+<pre><code>[student@ansible-1 ~]$ awx -f human host create --name &quot;node1&quot; --inventory &quot;Example Inventory&quot;
+[student@ansible-1 ~]$ awx -f human host create --name &quot;node2&quot; --inventory &quot;Example Inventory&quot;
+</code></pre>
+
+<p></p>
+</details></p>
 
 <h2 id="create-script-to-contain-this-and-all-following-awx-commands">Create script to contain this and all following awx commands</h2>
 
 <p>As mentioned one of the purposes of <strong>awx</strong> is to use it to automatically configure more complex Tower setups. In such cases, multiple <strong>awx</strong> commands are put together in a script. We follow that practice in our example here, and create a shell script on the control host with all commands you have to run to bootstrap Tower. So in the next few paragraphs we describe the steps to do and describe the corresponding <strong>awx</strong> commands. But we will not execute them, but instead write them into a script.</p>
 
 <p>In <strong>code-server</strong> create a new file <strong>File-&gt;New File</strong> and save it (<strong>File-&gt;Save As</strong>) as <strong><code>setup-tower.sh</code></strong>. Add the commands executed above:</p>
+
 <pre><code>#!/bin/bash
 set +e  # avoid exiting if an object already exists.
-awx -f human inventory create --name &#34;Example Inventory&#34; --organization &#34;Default&#34;
-awx -f human host create --name &#34;node1&#34; \
-  --inventory &#34;Example Inventory&#34;
-awx -f human host create --name &#34;node2&#34; \
-  --inventory &#34;Example Inventory&#34;</code></pre>
+awx -f human inventory create --name &quot;Example Inventory&quot; --organization &quot;Default&quot;
+awx -f human host create --name &quot;node1&quot; \
+  --inventory &quot;Example Inventory&quot;
+awx -f human host create --name &quot;node2&quot; \
+  --inventory &quot;Example Inventory&quot;
+</code></pre>
+
 
 <div class="notices tip" ><p>You have run these commands above already, true. But we want to show how to create
 the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because the objects already exist.</p>
@@ -973,8 +978,11 @@ the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because 
 
 
 <p>Next, save the script and make the script executable in the terminal window. Then launch it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ chmod u+x /home/student&lt;N&gt;/setup-tower.sh
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span>$ /home/student&lt;N&gt;/setup-tower.sh</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]$ chmod u+x /home/student&lt;N&gt;/setup-tower.sh
+    [student@ansible-1 ~]$ /home/student&lt;N&gt;/setup-tower.sh
+</code></pre>
+
 <p>From now on we’ll explain the needed commands for each of the next steps and add them to the script one-by-one.</p>
 
 <h2 id="create-machine-credentials">Create Machine Credentials</h2>
@@ -985,10 +993,13 @@ the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because 
 
 
 <p>Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to <strong><code>setup-tower.sh</code></strong>, but don’t run the script yet:</p>
-<pre><code>awx -f human credential create --name &#34;Example Credentials&#34; \
-    --organization &#34;Default&#34; \
-    --credential_type &#34;Machine&#34; \
-    --inputs &#39;{&#34;username&#34;: &#34;ec2-user&#34;, &#34;ssh_key_data&#34;: &#34;@~/.ssh/aws-private.pem&#34;}&#39;</code></pre>
+
+<pre><code>awx -f human credential create --name &quot;Example Credentials&quot; \
+    --organization &quot;Default&quot; \
+    --credential_type &quot;Machine&quot; \
+    --inputs '{&quot;username&quot;: &quot;ec2-user&quot;, &quot;ssh_key_data&quot;: &quot;@~/.ssh/aws-private.pem&quot;}'
+</code></pre>
+
 <p>Don’t run the shell script yet, first go through the following steps to add all commands to it.</p>
 
 
@@ -999,12 +1010,15 @@ the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because 
 <h2 id="create-the-project">Create the Project</h2>
 
 <p>The Ansible content used in this lab is hosted on Github. The next step is to add a project to import the playbooks. Add the appropriate <strong>awx</strong> command to the script <strong><code>setup-tower.sh</code></strong>:</p>
-<pre><code>awx -f human project create --name=&#34;Apache&#34; \
+
+<pre><code>awx -f human project create --name=&quot;Apache&quot; \
     --scm_type=git \
-    --scm_url=&#34;https://github.com/goetzrieger/ansible-labs-playbooks.git&#34; \
-    --organization &#34;Default&#34; \
+    --scm_url=&quot;https://github.com/goetzrieger/ansible-labs-playbooks.git&quot; \
+    --organization &quot;Default&quot; \
     --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
-    --wait</code></pre>
+    --wait
+</code></pre>
+
 
 <div class="notices tip" ><p>Note that the first parameter to <strong>awx</strong> is different here since we work on the resource <strong>project</strong>.</p>
 </div>
@@ -1013,17 +1027,23 @@ the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because 
 <h2 id="create-a-job-template">Create a Job Template</h2>
 
 <p>Before running an Ansible <strong>Job</strong> from your Tower cluster you must create a <strong>Job Template</strong>, again business as usual for Tower users. Here <strong>awx</strong> will work on the resource <strong>job_template</strong>. Add the following command to your script <strong><code>setup-tower.sh</code></strong>. Don’t run the script yet.</p>
+
 <pre><code>awx -f human job_templates create  \
-    --name=&#34;Install Apache&#34; \
-    --inventory=&#34;Example Inventory&#34; \
+    --name=&quot;Install Apache&quot; \
+    --inventory=&quot;Example Inventory&quot; \
     --project=Apache \
     --playbook=apache_install.yml \
-    --become_enabled=&#34;yes&#34;</code></pre>
+    --become_enabled=&quot;yes&quot;
+</code></pre>
+
 <h2 id="attach-credentials-to-job-template">Attach Credentials to Job Template</h2>
 
 <p>And finally we need to attach the credentials we created above to the Job Template. Add the following command to your script <strong><code>setup-tower.sh</code></strong>. Don’t run the script yet.</p>
-<pre><code>awx -f human job_template associate --name &#34;Install Apache&#34; \
-    --credential &#34;Example Credentials&#34;</code></pre>
+
+<pre><code>awx -f human job_template associate --name &quot;Install Apache&quot; \
+    --credential &quot;Example Credentials&quot;
+</code></pre>
+
 <h2 id="review-the-final-script-and-execute-it">Review the final script and execute it</h2>
 
 <p>Verify that your script has all the pieces needed to properly configure Tower:</p>
@@ -1039,31 +1059,34 @@ the full script here. You&rsquo;ll get &ldquo;Duplicate&rdquo; messages because 
 </ul>
 
 <p>The final script is also shown here:</p>
-<pre><code>#!/bin/bash
-awx -f human inventory create --name &#34;Example Inventory&#34; --organization &#34;Default&#34;
-awx -f human host create --name &#34;node1&#34; \
-    --inventory &#34;Example Inventory&#34;
-awx -f human host create --name &#34;node2&#34; \
-  --inventory &#34;Example Inventory&#34;
-awx -f human credential create --name &#34;Example Credentials&#34; \
-    --organization &#34;Default&#34; \
-    --credential_type &#34;Machine&#34; \
-    --inputs &#39;{&#34;username&#34;: &#34;ec2-user&#34;, &#34;ssh_key_data&#34;: &#34;@~/.ssh/aws-private.pem&#34;}&#39;
 
-awx -f human project create --name=&#34;Apache&#34; \
+<pre><code>#!/bin/bash
+awx -f human inventory create --name &quot;Example Inventory&quot; --organization &quot;Default&quot;
+awx -f human host create --name &quot;node1&quot; \
+    --inventory &quot;Example Inventory&quot;
+awx -f human host create --name &quot;node2&quot; \
+  --inventory &quot;Example Inventory&quot;
+awx -f human credential create --name &quot;Example Credentials&quot; \
+    --organization &quot;Default&quot; \
+    --credential_type &quot;Machine&quot; \
+    --inputs '{&quot;username&quot;: &quot;ec2-user&quot;, &quot;ssh_key_data&quot;: &quot;@~/.ssh/aws-private.pem&quot;}'
+
+awx -f human project create --name=&quot;Apache&quot; \
     --scm_type=git \
-    --scm_url=&#34;https://github.com/goetzrieger/ansible-labs-playbooks.git&#34; \
-    --organization &#34;Default&#34; \
+    --scm_url=&quot;https://github.com/goetzrieger/ansible-labs-playbooks.git&quot; \
+    --organization &quot;Default&quot; \
     --scm_clean=true --scm_delete_on_update=true --scm_update_on_launch=true \
     --wait
 awx -f human job_templates create  \
-    --name=&#34;Install Apache&#34; \
-    --inventory=&#34;Example Inventory&#34; \
+    --name=&quot;Install Apache&quot; \
+    --inventory=&quot;Example Inventory&quot; \
     --project=Apache \
     --playbook=apache_install.yml \
-    --become_enabled=&#34;yes&#34;
-awx -f human job_template associate --name &#34;Install Apache&#34; \
-    --credential &#34;Example Credentials&#34;</code></pre>
+    --become_enabled=&quot;yes&quot;
+awx -f human job_template associate --name &quot;Install Apache&quot; \
+    --credential &quot;Example Credentials&quot;
+</code></pre>
+
 <p><strong>And now: Run the script, and verify that all resources were properly created in the web UI.</strong></p>
 
 <h2 id="take-away">Take away</h2>
@@ -1613,19 +1636,19 @@ awx -f human job_template associate --name &#34;Install Apache&#34; \
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

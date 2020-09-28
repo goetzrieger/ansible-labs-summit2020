@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Projects &amp; job templates :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-getting-started/3-projects/">
+  <body class="" data-url="/ansible-tower-getting-started/3-projects/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -919,39 +919,42 @@
 <p><code>https://github.com/ansible/workshop-examples</code></p>
 
 <p>A Playbook to install the Apache webserver has already been commited to the directory <strong>rhel/apache</strong>, <code>apache_install.yml</code>, here for reference:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Apache server installed</span>
-  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">all</span>
 
-  <span style="color:#f92672">tasks</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">latest Apache version installed</span>
-    <span style="color:#f92672">yum</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">httpd</span>
-      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">latest</span>
+<pre><code class="language-yaml">---
+- name: Apache server installed
+  hosts: all
 
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">latest firewalld version installed</span>
-    <span style="color:#f92672">yum</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">firewalld</span>
-      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">latest</span>
+  tasks:
+  - name: latest Apache version installed
+    yum:
+      name: httpd
+      state: latest
 
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">firewalld enabled and running</span>
-    <span style="color:#f92672">service</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">firewalld</span>
-      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span>
+  - name: latest firewalld version installed
+    yum:
+      name: firewalld
+      state: latest
 
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">firewalld permits http service</span>
-    <span style="color:#f92672">firewalld</span>:
-      <span style="color:#f92672">service</span>: <span style="color:#ae81ff">http</span>
-      <span style="color:#f92672">permanent</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">enabled</span>
-      <span style="color:#f92672">immediate</span>: <span style="color:#66d9ef">yes</span>
+  - name: firewalld enabled and running
+    service:
+      name: firewalld
+      enabled: true
+      state: started
 
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Apache enabled and running</span>
-    <span style="color:#f92672">service</span>:
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">httpd</span>
-      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
-      <span style="color:#f92672">state</span>: <span style="color:#ae81ff">started</span></code></pre></div>
+  - name: firewalld permits http service
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+      immediate: yes
+
+  - name: Apache enabled and running
+    service:
+      name: httpd
+      enabled: true
+      state: started
+</code></pre>
+
 
 <div class="notices tip" ><p>Note the difference to other Playbooks you might have written! Most importantly there is no <code>become</code> and <code>hosts</code> is set to <code>all</code>.</p>
 </div>
@@ -1059,17 +1062,19 @@
 </div>
 
 
-<details><summary>**>>Click here for Solution<<**</summary>
-<p>
+<p><details><summary><strong>&gt;&gt;Click here for Solution&lt;&lt;</strong></summary>
+<p></p>
 
-- Go to **Inventories** → **Workshop Inventory**
-- In the **HOSTS** view select all hosts and click **RUN COMMANDS**
-- **MODULE:** command
-- **ARGUMENTS:** systemctl status httpd
-- **MACHINE CREDENTIALS:** Workshop Credentials
-- Click **LAUNCH**
+<ul>
+<li>Go to <strong>Inventories</strong> → <strong>Workshop Inventory</strong></li>
+<li>In the <strong>HOSTS</strong> view select all hosts and click <strong>RUN COMMANDS</strong></li>
+<li><strong>MODULE:</strong> command</li>
+<li><strong>ARGUMENTS:</strong> systemctl status httpd</li>
+<li><strong>MACHINE CREDENTIALS:</strong> Workshop Credentials</li>
+<li>Click <strong>LAUNCH</strong>
 </p>
-</details>
+</details></li>
+</ul>
 
 <p>It should all look good!</p>
 
@@ -1642,19 +1647,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -4,6 +4,10 @@
     <title>Writing Your First Playbook on Ansible Labs for AnsibleFest</title>
     <link>https://goetzrieger.github.io/ansible-getting-started/3-playbook/</link>
     <description>Recent content in Writing Your First Playbook on Ansible Labs for AnsibleFest</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="https://goetzrieger.github.io/ansible-getting-started/3-playbook/index.xml" rel="self" type="application/rss+xml" />
+    
+    
   </channel>
 </rss>

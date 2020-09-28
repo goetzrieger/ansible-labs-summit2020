@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Wrap up :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-getting-started/7-wrap/">
+  <body class="" data-url="/ansible-tower-getting-started/7-wrap/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -950,16 +950,20 @@
 
 <ul>
 <li><p>rhel/apache/roles/role_webcontent/templates/dev_index.html.j2</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
-&lt;<span style="color:#f92672">h1</span>&gt;This is a development webserver, have fun!&lt;/<span style="color:#f92672">h1</span>&gt;
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
 {{ dev_content }}
-&lt;/<span style="color:#f92672">body</span>&gt;</code></pre></div></li>
+&lt;/body&gt;
+</code></pre></li>
 
 <li><p>rhel/apache/roles/role_webcontent/templates/prod_index.html.j2</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">body</span>&gt;
-&lt;<span style="color:#f92672">h1</span>&gt;This is a production webserver, take care!&lt;/<span style="color:#f92672">h1</span>&gt;
+
+<pre><code class="language-html">&lt;body&gt;
+&lt;h1&gt;This is a production webserver, take care!&lt;/h1&gt;
 {{ prod_content }}
-&lt;/<span style="color:#f92672">body</span>&gt;</code></pre></div></li>
+&lt;/body&gt;
+</code></pre></li>
 
 <li><p>rhel/apache/roles/role_webcontent/tasks/main.yml</p></li>
 </ul>
@@ -968,12 +972,15 @@
 <div class="notices tip" ><p>Only the part deploying the template is shown</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">[<span style="color:#ae81ff">...]</span>
-- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy index.html from template</span>
-  <span style="color:#f92672">template</span>:
-    <span style="color:#f92672">src</span>: <span style="color:#e6db74">&#34;{{ stage }}_index.html.j2&#34;</span>
-    <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/var/www/html/index.html</span>
-  <span style="color:#f92672">notify</span>: <span style="color:#ae81ff">apache-restart</span></code></pre></div>
+
+<pre><code class="language-yaml">[...]
+- name: Deploy index.html from template
+  template:
+    src: &quot;{{ stage }}_index.html.j2&quot;
+    dest: /var/www/html/index.html
+  notify: apache-restart
+</code></pre>
+
 <h2 id="prepare-inventory">Prepare Inventory</h2>
 
 <p>There is of course more then one way to accomplish this, but here is what you should do:</p>
@@ -1030,26 +1037,29 @@
 <div class="notices tip" ><p>We are using the <code>ansible_host</code> variable in the URL to access every node in the inventory group.</p>
 </div>
 
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;@ansible-1 ~<span style="color:#f92672">]</span>$ ansible web -m command -a <span style="color:#e6db74">&#34;curl -s http://{{ ansible_host }}&#34;</span>
- <span style="color:#f92672">[</span>WARNING<span style="color:#f92672">]</span>: Consider using the get_url or uri module rather than running <span style="color:#e6db74">&#39;curl&#39;</span>.  If you need to use command because get_url or uri is insufficient you can add <span style="color:#e6db74">&#39;warn: false&#39;</span> to this command task or set <span style="color:#e6db74">&#39;command_warnings=False&#39;</span> in ansible.cfg to get rid of this message.
 
-node2 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ~]$ ansible web -m command -a &quot;curl -s http://{{ ansible_host }}&quot;
+ [WARNING]: Consider using the get_url or uri module rather than running 'curl'.  If you need to use command because get_url or uri is insufficient you can add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
+
+node2 | CHANGED | rc=0 &gt;&gt;
 &lt;body&gt;
 &lt;h1&gt;This is a production webserver, take care!&lt;/h1&gt;
 prod wweb
 &lt;/body&gt;
 
-node1 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
+node1 | CHANGED | rc=0 &gt;&gt;
 &lt;body&gt;
 &lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
 dev wweb
 &lt;/body&gt;
 
-node3 | CHANGED | rc<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> &gt;&gt;
+node3 | CHANGED | rc=0 &gt;&gt;
 &lt;body&gt;
 &lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
 dev wweb
-&lt;/body&gt;</code></pre></div>
+&lt;/body&gt;
+</code></pre>
+
 <p>Note the warning in the first line about not to use <code>curl</code> via the <code>command</code> module since there are better modules right within Ansible. We will come back to that in the next part.</p>
 
 <h2 id="add-survey">Add Survey</h2>
@@ -1063,37 +1073,40 @@ dev wweb
 </ul>
 
 <p>Check the results again from your code-server terminal. Since we got a warning last time using <code>curl</code> via the <code>command</code> module, this time we will use the dedicated <code>uri</code> module. As arguments it needs the actual URL and a flag to output the body in the results.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student&lt;N&gt;ansible ~<span style="color:#f92672">]</span>$ ansible web -m uri -a <span style="color:#e6db74">&#34;url=http://{{ ansible_host }} return_content=yes&#34;</span>
-node3 | SUCCESS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span>
-    <span style="color:#e6db74">&#34;accept_ranges&#34;</span>: <span style="color:#e6db74">&#34;bytes&#34;</span>,
-    <span style="color:#e6db74">&#34;ansible_facts&#34;</span>: <span style="color:#f92672">{</span>
-        <span style="color:#e6db74">&#34;discovered_interpreter_python&#34;</span>: <span style="color:#e6db74">&#34;/usr/bin/python&#34;</span>
-    <span style="color:#f92672">}</span>,
-    <span style="color:#e6db74">&#34;changed&#34;</span>: false,
-    <span style="color:#e6db74">&#34;connection&#34;</span>: <span style="color:#e6db74">&#34;close&#34;</span>,
-    <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;&lt;body&gt;\n&lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;\nwerners dev content\n&lt;/body&gt;\n&#34;</span>,
-    <span style="color:#e6db74">&#34;content_length&#34;</span>: <span style="color:#e6db74">&#34;87&#34;</span>,
-    <span style="color:#e6db74">&#34;content_type&#34;</span>: <span style="color:#e6db74">&#34;text/html; charset=UTF-8&#34;</span>,
-    <span style="color:#e6db74">&#34;cookies&#34;</span>: <span style="color:#f92672">{}</span>,
-    <span style="color:#e6db74">&#34;cookies_string&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
-    <span style="color:#e6db74">&#34;date&#34;</span>: <span style="color:#e6db74">&#34;Tue, 29 Oct 2019 11:14:24 GMT&#34;</span>,
-    <span style="color:#e6db74">&#34;elapsed&#34;</span>: 0,
-    <span style="color:#e6db74">&#34;etag&#34;</span>: <span style="color:#e6db74">&#34;\&#34;57-5960ab74fc401\&#34;&#34;</span>,
-    <span style="color:#e6db74">&#34;last_modified&#34;</span>: <span style="color:#e6db74">&#34;Tue, 29 Oct 2019 11:14:12 GMT&#34;</span>,
-    <span style="color:#e6db74">&#34;msg&#34;</span>: <span style="color:#e6db74">&#34;OK (87 bytes)&#34;</span>,
-    <span style="color:#e6db74">&#34;redirected&#34;</span>: false,
-    <span style="color:#e6db74">&#34;server&#34;</span>: <span style="color:#e6db74">&#34;Apache/2.4.6 (Red Hat Enterprise Linux)&#34;</span>,
-    <span style="color:#e6db74">&#34;status&#34;</span>: 200,
-    <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;http://18.205.236.208&#34;</span>
-<span style="color:#f92672">}</span>
-<span style="color:#f92672">[</span>...<span style="color:#f92672">]</span></code></pre></div>
+
+<pre><code class="language-bash">[student&lt;N&gt;ansible ~]$ ansible web -m uri -a &quot;url=http://{{ ansible_host }} return_content=yes&quot;
+node3 | SUCCESS =&gt; {
+    &quot;accept_ranges&quot;: &quot;bytes&quot;,
+    &quot;ansible_facts&quot;: {
+        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python&quot;
+    },
+    &quot;changed&quot;: false,
+    &quot;connection&quot;: &quot;close&quot;,
+    &quot;content&quot;: &quot;&lt;body&gt;\n&lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;\nwerners dev content\n&lt;/body&gt;\n&quot;,
+    &quot;content_length&quot;: &quot;87&quot;,
+    &quot;content_type&quot;: &quot;text/html; charset=UTF-8&quot;,
+    &quot;cookies&quot;: {},
+    &quot;cookies_string&quot;: &quot;&quot;,
+    &quot;date&quot;: &quot;Tue, 29 Oct 2019 11:14:24 GMT&quot;,
+    &quot;elapsed&quot;: 0,
+    &quot;etag&quot;: &quot;\&quot;57-5960ab74fc401\&quot;&quot;,
+    &quot;last_modified&quot;: &quot;Tue, 29 Oct 2019 11:14:12 GMT&quot;,
+    &quot;msg&quot;: &quot;OK (87 bytes)&quot;,
+    &quot;redirected&quot;: false,
+    &quot;server&quot;: &quot;Apache/2.4.6 (Red Hat Enterprise Linux)&quot;,
+    &quot;status&quot;: 200,
+    &quot;url&quot;: &quot;http://18.205.236.208&quot;
+}
+[...]
+</code></pre>
+
 <h2 id="solution">Solution</h2>
 
-<details><summary>**>>Solution NOT below<<**</summary>
+<p><details><summary><strong>&gt;&gt;Solution NOT below&lt;&lt;</strong></summary>
 <p>
 You have to figure this one out by yourself! ;-)
 </p>
-</details>
+</details></p>
 
 <p>You have done all the required configuration steps in the lab already. If unsure, just refer back to the respective chapters.</p>
 
@@ -1638,19 +1651,19 @@ You have to figure this one out by yourself! ;-)
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

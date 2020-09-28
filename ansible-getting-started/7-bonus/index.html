@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Bonus Labs :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-getting-started/7-bonus/">
+  <body class="" data-url="/ansible-getting-started/7-bonus/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -933,20 +933,21 @@
 </div>
 
 
-<details><summary>**>>Click here for Solution<<**</summary>
+<p><details><summary><strong>&gt;&gt;Click here for Solution&lt;&lt;</strong></summary>
 <p>
-Your commands could look like these:
-```bash
-[student<N>@ansible-1 ansible-files]$ ansible-doc -l | grep -i user
-[student<N>@ansible-1 ansible-files]$ ansible-doc user
-[student<N>@ansible-1 ansible-files]$ ansible node1,node3 -m user -a "name=testuser comment='Test D User'" -b
-[student<N>@ansible-1 ansible-files]$ ansible node1,node3 -m command -a " id testuser" -b
-[student<N>@ansible-1 ansible-files]$ ansible node2 -m command -a " id testuser" -b
-[student<N>@ansible-1 ansible-files]$ ansible node1,node3 -m user -a "name=testuser state=absent remove=yes" -b
-[student<N>@ansible-1 ansible-files]$ ansible web -m command -a " id testuser" -b
-```
-</p>
-</details>
+Your commands could look like these:</p>
+
+<pre><code class="language-bash">[student&lt;N&gt;@ansible-1 ansible-files]$ ansible-doc -l | grep -i user
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible-doc user
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1,node3 -m user -a &quot;name=testuser comment='Test D User'&quot; -b
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1,node3 -m command -a &quot; id testuser&quot; -b
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node2 -m command -a &quot; id testuser&quot; -b
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible node1,node3 -m user -a &quot;name=testuser state=absent remove=yes&quot; -b
+[student&lt;N&gt;@ansible-1 ansible-files]$ ansible web -m command -a &quot; id testuser&quot; -b
+</code></pre>
+
+<p></p>
+</details></p>
 
 <h2 id="bonus-lab-templates-and-variables">Bonus Lab: Templates and Variables</h2>
 
@@ -972,9 +973,15 @@ Your commands could look like these:
 <h3 id="define-the-variables">Define the variables:</h3>
 
 <p>Add this line to <code>group_vars/web</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">listen_port: 8080</span></code></pre></div>
+
+<pre><code class="language-ini">listen_port: 8080
+</code></pre>
+
 <p>Add this line to <code>host_vars/node2</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#a6e22e">listen_port: 80</span></code></pre></div>
+
+<pre><code class="language-ini">listen_port: 80
+</code></pre>
+
 <h3 id="prepare-the-template">Prepare the template:</h3>
 
 <ul>
@@ -984,43 +991,52 @@ Your commands could look like these:
 </ul>
 
 <!-- {% raw %} -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[...]</span>
-<span style="color:#a6e22e">Listen {{ listen_port }}</span>
-<span style="color:#66d9ef">[...]</span></code></pre></div>
+
+<pre><code class="language-ini">[...]
+Listen {{ listen_port }}
+[...]
+</code></pre>
+
 <!-- {% endraw %} -->
 
 <h3 id="create-the-playbook">Create the Playbook</h3>
 
 <p>Create a playbook called <code>apache_config_tpl.yml</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
-- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Apache httpd.conf</span>
-  <span style="color:#f92672">hosts</span>: <span style="color:#ae81ff">web</span>
-  <span style="color:#f92672">become</span>: <span style="color:#66d9ef">yes</span>
-  <span style="color:#f92672">tasks</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Create Apache configuration file from template</span>
-    <span style="color:#f92672">template</span>:
-      <span style="color:#f92672">src</span>: <span style="color:#ae81ff">httpd.conf.j2</span>
-      <span style="color:#f92672">dest</span>: <span style="color:#ae81ff">/etc/httpd/conf/httpd.conf</span>
-    <span style="color:#f92672">notify</span>:
-        - <span style="color:#ae81ff">restart apache</span>
-  <span style="color:#f92672">handlers</span>:
-    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">restart apache</span>
-      <span style="color:#f92672">service</span>:
-        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">httpd</span>
-        <span style="color:#f92672">state</span>: <span style="color:#ae81ff">restarted</span></code></pre></div>
+
+<pre><code class="language-yaml">---
+- name: Apache httpd.conf
+  hosts: web
+  become: yes
+  tasks:
+  - name: Create Apache configuration file from template
+    template:
+      src: httpd.conf.j2
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+        - restart apache
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+</code></pre>
+
 <h3 id="run-and-test">Run and test</h3>
 
 <p>First run the playbook itself, then run curl against <code>node1</code> with port <code>8080</code> and <code>node2</code> with port <code>80</code>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student1@ansible-1 ansible-files<span style="color:#f92672">]</span>$ ansible-playbook apache_config_tpl.yml
-<span style="color:#f92672">[</span>...<span style="color:#f92672">]</span>
-<span style="color:#f92672">[</span>student1@ansible-1 ansible-files<span style="color:#f92672">]</span>$ curl http://18.195.235.231:8080
+
+<pre><code class="language-bash">[student1@ansible-1 ansible-files]$ ansible-playbook apache_config_tpl.yml
+[...]
+[student1@ansible-1 ansible-files]$ curl http://18.195.235.231:8080
 &lt;body&gt;
 &lt;h1&gt;This is a development webserver, have fun!&lt;/h1&gt;
 &lt;/body&gt;
-<span style="color:#f92672">[</span>student1@ansible-1 ansible-files<span style="color:#f92672">]</span>$ curl http://35.156.28.209:80
+[student1@ansible-1 ansible-files]$ curl http://35.156.28.209:80
 &lt;body&gt;
 &lt;h1&gt;This is a production webserver, take care!&lt;/h1&gt;
-&lt;/body&gt;</code></pre></div>
+&lt;/body&gt;
+</code></pre>
+
 <h1 id="the-end">The End</h1>
 
 <p>Congratulations, you finished your labs! We hope you enjoyed your first encounter with Ansible as much as we enjoyed creating the labs.</p>
@@ -1559,19 +1575,19 @@ Your commands could look like these:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

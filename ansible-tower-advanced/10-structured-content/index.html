@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.75.1" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="Ansible and Ansible Tower Labs">
 <meta name="author" content="Christian, Eric, Götz, Ismail, Joachim">
 
@@ -12,20 +12,20 @@
     <title>Well Structured Content Repositories :: Ansible Labs for AnsibleFest</title>
 
     
-    <link href="https://goetzrieger.github.io/css/nucleus.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hybrid.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/theme.css?1601306300" rel="stylesheet">
-    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601306300" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/nucleus.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/fontawesome-all.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hybrid.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/featherlight.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/perfect-scrollbar.min.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/auto-complete.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/atom-one-dark-reasonable.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/theme.css?1601307334" rel="stylesheet">
+    <link href="https://goetzrieger.github.io/css/hugo-theme.css?1601307334" rel="stylesheet">
     
-      <link href="https://goetzrieger.github.io/css/theme-red.css?1601306300" rel="stylesheet">
+      <link href="https://goetzrieger.github.io/css/theme-red.css?1601307334" rel="stylesheet">
     
 
-    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/jquery-3.3.1.min.js?1601307334"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="https://goetzrieger.github.io/ansible-tower-advanced/10-structured-content/">
+  <body class="" data-url="/ansible-tower-advanced/10-structured-content/">
     <nav id="sidebar" class="">
 
 
@@ -58,14 +58,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601306300"></script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/lunr.min.js?1601307334"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/auto-complete.js?1601307334"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/goetzrieger.github.io\/";
     
 </script>
-<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601306300"></script>
+<script type="text/javascript" src="https://goetzrieger.github.io/js/search.js?1601307334"></script>
 
     
   </div>
@@ -981,22 +981,31 @@ and is explained in more detail there (we&rsquo;ve had to simplify a bit for the
 
 <p>Since we want to store all content in a repository, we have to create a simplistic Git server on our control host.
 In a more typical environment, you would work with GitLab, Gitea, or any other commercial Git server.</p>
+
 <pre><code>[student@ansible-1 ~]$ wget https://raw.githubusercontent.com/ansible-labs-summit-crew/structured-content/master/simple_git.yml
-[student@ansible-1 ~]$ ansible-playbook simple_git.yml</code></pre>
+[student@ansible-1 ~]$ ansible-playbook simple_git.yml
+</code></pre>
+
 <p>Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user <em>ec2-user</em> was already added to the Git user <em>git</em>. Next, clone the repository on the control machine:</p>
+
 <pre><code>[student@ansible-1 ~]$ git clone git@ansible-1:projects/structured-content.git
-# Message &#34;warning: You appear to have cloned an empty repository.&#34; is OK and can be ignored
+# Message &quot;warning: You appear to have cloned an empty repository.&quot; is OK and can be ignored
 [student@ansible-1 ~]$ git config --global push.default simple
-[student@ansible-1 ~]$ git config --global user.name &#34;Your Name&#34;
+[student@ansible-1 ~]$ git config --global user.name &quot;Your Name&quot;
 [student@ansible-1 ~]$ git config --global user.email you@example.com
-[student@ansible-1 ~]$ cd structured-content/</code></pre>
+[student@ansible-1 ~]$ cd structured-content/
+</code></pre>
+
 
 <div class="notices tip" ><p>The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.</p>
 </div>
 
 
 <p>you are now going to add some default directories and files:</p>
-<pre><code>[student@ansible-1 structured-content]$ touch {staging,production}</code></pre>
+
+<pre><code>[student@ansible-1 structured-content]$ touch {staging,production}
+</code></pre>
+
 <p>This command creates two inventory files: in this case we have different
 stages with different hosts which we keep them in separate inventory
 files. Note that those files are right now still empty and need to be
@@ -1007,13 +1016,16 @@ filled with content to work properly.</p>
 <code>node2</code> is part of the production environment. To reflect
 that in the inventory files, edit the two empty inventory files to look
 like this:</p>
+
 <pre><code>[student@ansible-1 structured-content]$ cat staging
 [staging]
 node1
 
 [student@ansible-1 structured-content]$ cat production
 [production]
-node2</code></pre>
+node2
+</code></pre>
+
 <p>Next we add some directories:</p>
 
 <ul>
@@ -1028,13 +1040,19 @@ modules, plugins, etc.</p></li>
 </ul>
 
 <!-- end list -->
-<pre><code>[student@ansible-1 structured-content]$ mkdir -p {group_vars,host_vars,library,roles}</code></pre>
+
+<pre><code>[student@ansible-1 structured-content]$ mkdir -p {group_vars,host_vars,library,roles}
+</code></pre>
+
 <p>Now to the two roles we’ll use in this example. First we’ll create a
 structure where we’ll add content later. This can easily be achieved
 with the command <code>ansible-galaxy</code>: it creates <strong>role skeletons</strong> with
 all appropriate files, directories and so on already in place.</p>
+
 <pre><code>ansible-galaxy init --offline --init-path=roles security
-ansible-galaxy init --offline --init-path=roles apache</code></pre>
+ansible-galaxy init --offline --init-path=roles apache
+</code></pre>
+
 
 <div class="notices tip" ><p>Even if a good role is generally self-explanatory, it still makes sense to have proper documentation. The right location to document roles is the file <strong>meta/main.yml</strong>.</p>
 </div>
@@ -1047,6 +1065,7 @@ Let’s add that code to our roles by editing the two task files:</p>
 
 <div class="notices warning" ><p>If you copy and paste text in VI under a comment (#) character, Vi might (depending on settings) add comment signs to the start of each new line. Probably not what you want. Because the role files are being created with a comment line after the YAML start (&mdash;), make sure to delete these lines before pasting the content.</p>
 </div>
+
 
 <pre><code>[student@ansible-1 structured-content]$ cat roles/apache/tasks/main.yml
 ---
@@ -1079,28 +1098,31 @@ Let’s add that code to our roles by editing the two task files:</p>
 [student@ansible-1 structured-content]$ cat roles/security/tasks/main.yml
 ---
 # tasks file for security
-- name: &#34;HIGH | RHEL-07-010290 | PATCH | The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords.&#34;
+- name: &quot;HIGH | RHEL-07-010290 | PATCH | The Red Hat Enterprise Linux operating system must not have accounts configured with blank or null passwords.&quot;
   replace:
-    dest: &#34;{{ item }}&#34;
+    dest: &quot;{{ item }}&quot;
     follow: true
-    regexp: &#39;nullok ?&#39;
+    regexp: 'nullok ?'
   with_items:
     - /etc/pam.d/system-auth
     - /etc/pam.d/password-auth
 
-- name: &#34;MEDIUM | RHEL-07-010210 | PATCH | The Red Hat Enterprise Linux operating system must be configured to use the shadow file to store only encrypted representations of passwords.&#34;
+- name: &quot;MEDIUM | RHEL-07-010210 | PATCH | The Red Hat Enterprise Linux operating system must be configured to use the shadow file to store only encrypted representations of passwords.&quot;
   lineinfile:
     dest: /etc/login.defs
     regexp: ^#?ENCRYPT_METHOD
-    line: &#34;ENCRYPT_METHOD SHA512&#34;
+    line: &quot;ENCRYPT_METHOD SHA512&quot;
 
-- name: &#34;SCORED | 1.1.1.2 | PATCH | Remove freevxfs module&#34;
+- name: &quot;SCORED | 1.1.1.2 | PATCH | Remove freevxfs module&quot;
   modprobe:
     name: freevxfs
-    state: absent</code></pre>
+    state: absent
+</code></pre>
+
 <p>We also need to create a playbook to call the roles from. This is often
 call <code>site.yml</code>, since it keeps the main code for the setup of our
 environment. Create the file:</p>
+
 <pre><code>[student@ansible-1 structured-content]$ cat site.yml
 ---
 - name: Execute apache and security roles
@@ -1108,15 +1130,16 @@ environment. Create the file:</p>
 
   roles:
     - { role: apache }
-    - { role: security }</code></pre>
+    - { role: security }
+</code></pre>
+
 <p>So we have prepared a basic structure for quite some content - call
 <code>tree</code> to look at it.</p>
 
-<details><summary>**>> Click here for Solution <<**</summary>
-<p>
+<p><details><summary><strong>&gt;&gt; Click here for Solution &lt;&lt;</strong></summary>
+<p></p>
 
-``` bash
-[student@ansible-1 structured-content]$ tree
+<pre><code class="language-bash">[student@ansible-1 structured-content]$ tree
 .
 ├── group_vars
 ├── host_vars
@@ -1159,21 +1182,24 @@ environment. Create the file:</p>
 │           └── main.yml
 ├── site.yml
 └── staging
-```
+</code></pre>
 
-
+<p>
 <div class="notices tip" ><p>In real life, you should remove the unnecessary roles sub-directories to keep the
 structure easier to understand and maintain.</p>
 </div>
 
 </p>
-</details>
+</details></p>
 
 <p>Since we so far created the code only locally on the control host, we
 need to add it to the repository and push it:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git add production roles site.yml staging
-    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git commit -m <span style="color:#e6db74">&#34;Adding inventories and apache security roles&#34;</span>
-    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git push</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 structured-content]$ git add production roles site.yml staging
+    [student@ansible-1 structured-content]$ git commit -m &quot;Adding inventories and apache security roles&quot;
+    [student@ansible-1 structured-content]$ git push
+</code></pre>
+
 <h2 id="launch-it">Launch it!</h2>
 
 <h3 id="from-the-command-line">From the Command Line</h3>
@@ -1181,11 +1207,17 @@ need to add it to the repository and push it:</p>
 <p>The code can now be launched. We start at the command line. Call the
 playbook <code>site.yml</code> with the appropriate inventory and privilege
 escalation:</p>
-<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i staging site.yml -b</code></pre>
+
+<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i staging site.yml -b
+</code></pre>
+
 <p>Watch how the changes are done to the target machines. Afterwards,
 we could similarly execute the playbook against the production stage, but we want
 to keep something for Tower to do, so we just check it:</p>
-<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i production site.yml -b --list-hosts --list-tasks</code></pre>
+
+<pre><code>[[student@ansible-1 structured-content]$ ansible-playbook -i production site.yml -b --list-hosts --list-tasks
+</code></pre>
+
 <p>Call e.g. <code>curl node1</code> to get the default page.</p>
 
 <h3 id="from-tower">From Tower</h3>
@@ -1194,19 +1226,25 @@ to keep something for Tower to do, so we just check it:</p>
 system in Tower you have to create credentials again, this time to access the Git
 repository over SSH. This credential is user/key based, and we need the following
 <strong>awx</strong> command (assuming the <code>TOWER_</code> environment variables are still defined):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx -f human credential create --name &#34;Git Credentials&#34; \</span>
-              --organization <span style="color:#e6db74">&#34;Default&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>              --credential_type <span style="color:#e6db74">&#34;Source Control&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>              --inputs <span style="color:#e6db74">&#39;{&#34;username&#34;: &#34;git&#34;, &#34;ssh_key_data&#34;: &#34;@~/.ssh/aws-private.pem&#34;}&#39;</span></code></pre></div>
+
+<pre><code class="language-bash">    [root@ansible-1 ~]# awx -f human credential create --name &quot;Git Credentials&quot; \
+              --organization &quot;Default&quot; \
+              --credential_type &quot;Source Control&quot; \
+              --inputs '{&quot;username&quot;: &quot;git&quot;, &quot;ssh_key_data&quot;: &quot;@~/.ssh/aws-private.pem&quot;}'
+</code></pre>
+
 <p>The new repository needs to be added as project. Feel free to use the
 web UI or use <strong>awx</strong> like shown below.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>root@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx project create --name &#34;Structured Content Repository&#34; \</span>
-                        --organization Default <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --scm_type git <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --scm_url  git@ansible-1:projects/structured-content.git <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --scm_clean <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --scm_update_on_launch <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --credential <span style="color:#e6db74">&#34;Git Credentials&#34;</span></code></pre></div>
+
+<pre><code class="language-bash">    [root@ansible-1 ~]# awx project create --name &quot;Structured Content Repository&quot; \
+                        --organization Default \
+                        --scm_type git \
+                        --scm_url  git@ansible-1:projects/structured-content.git \
+                        --scm_clean 1 \
+                        --scm_update_on_launch 1 \
+                        --credential &quot;Git Credentials&quot;
+</code></pre>
+
 <p>Now you’ve created the Project in Tower. Earlier on the command line
 you’ve setup a staged environment by creating and using two different
 inventory files. But how can we get the same setup in Tower? We use
@@ -1267,13 +1305,16 @@ the same time and associate the credentials.</p>
 
 
 <div class="notices tip" ><p>Please note that in a real world use case you might want to have different templates to address the different stages separatly.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx job_template create --name &#34;Structured Content Execution&#34; \</span>
-                        --job_type run --inventory <span style="color:#e6db74">&#34;Structured Content Inventory&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --project <span style="color:#e6db74">&#34;Structured Content Repository&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --playbook <span style="color:#e6db74">&#34;site.yml&#34;</span> <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>                        --become_enabled <span style="color:#ae81ff">1</span>
-    <span style="color:#f92672">[</span>student@ansible-1 ~<span style="color:#f92672">]</span><span style="color:#75715e"># awx -f human job_template associate --name &#34;Structured Content Execution&#34; \</span>
-                        --credential <span style="color:#e6db74">&#34;Example Credentials&#34;</span></code></pre></div></div>
+
+<pre><code class="language-bash">    [student@ansible-1 ~]# awx job_template create --name &quot;Structured Content Execution&quot; \
+                        --job_type run --inventory &quot;Structured Content Inventory&quot; \
+                        --project &quot;Structured Content Repository&quot; \
+                        --playbook &quot;site.yml&quot; \
+                        --become_enabled 1
+    [student@ansible-1 ~]# awx -f human job_template associate --name &quot;Structured Content Execution&quot; \
+                        --credential &quot;Example Credentials&quot;
+</code></pre>
+</div>
 
 
 <p>Now in the Tower web UI go to <strong>RESOURCES→Templates</strong>, launch the
@@ -1299,12 +1340,15 @@ the interested users an idea of the quality and reusability of a role.</p>
 called
 <a href="https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html#installing-multiple-roles-from-a-file"><code>roles/requirements.yml</code></a>,
 for example like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="color:#75715e"># Import directly from Galaxy</span>
-    - <span style="color:#f92672">src</span>: <span style="color:#ae81ff">geerlingguy.nginx</span>
-    <span style="color:#75715e"># Import from a local Git repository</span>
-    - <span style="color:#f92672">src</span>: <span style="color:#ae81ff">http://control.example.com/gitea/git/external-role.git</span>
-      <span style="color:#f92672">version</span>: <span style="color:#ae81ff">master</span>
-      <span style="color:#f92672">name</span>: <span style="color:#ae81ff">external-role_locally</span></code></pre></div>
+
+<pre><code class="language-yaml">    # Import directly from Galaxy
+    - src: geerlingguy.nginx
+    # Import from a local Git repository
+    - src: http://control.example.com/gitea/git/external-role.git
+      version: master
+      name: external-role_locally
+</code></pre>
+
 <p>The <code>requirements.yml</code> needs to be read - either on the command line by
 invoking <code>ansible-galaxy</code>, or automatically by Ansible Tower during
 project check outs. In both cases the file is read, and the roles are
@@ -1324,10 +1368,13 @@ there:</p>
 
 
 <div class="notices warning" ><p>Make sure you work as user <strong>student<X></strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ cat roles/requirements.yml
+
+<pre><code class="language-bash">[student@ansible-1 structured-content]$ cat roles/requirements.yml
 - src: https://github.com/ansible-labs-summit-crew/shared-apache-role.git
   scm: git
-  version: master</code></pre></div></div>
+  version: master
+</code></pre>
+</div>
 
 
 
@@ -1340,20 +1387,26 @@ control.</p>
 
 <p>Next, we reference the role itself in our playbook. Change the
 <strong>site.yml</strong> Playbook to look like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ cat site.yml
+
+<pre><code class="language-bash">    [student@ansible-1 structured-content]$ cat site.yml
     ---
     - name: Execute apache and security roles
       hosts: all
 
       roles:
-        - <span style="color:#f92672">{</span> role: apache<span style="color:#f92672">}</span>
-        - <span style="color:#f92672">{</span> role: security <span style="color:#f92672">}</span>
-        - <span style="color:#f92672">{</span> role: shared-apache-role <span style="color:#f92672">}</span></code></pre></div>
+        - { role: apache}
+        - { role: security }
+        - { role: shared-apache-role }
+</code></pre>
+
 <p>Because Tower uses your Git repo, you’ve to add, commit and push the
 changes:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git add site.yml roles/
-    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git commit -m <span style="color:#e6db74">&#34;Add roles/requirements.yml referencing shared role&#34;</span>
-    <span style="color:#f92672">[</span>student@ansible-1 structured-content<span style="color:#f92672">]</span>$ git push</code></pre></div>
+
+<pre><code class="language-bash">    [student@ansible-1 structured-content]$ git add site.yml roles/
+    [student@ansible-1 structured-content]$ git commit -m &quot;Add roles/requirements.yml referencing shared role&quot;
+    [student@ansible-1 structured-content]$ git push
+</code></pre>
+
 <h2 id="launch-in-tower">Launch in Tower</h2>
 
 <p>Just in case, make sure to update the Project in Tower: in the menu at
@@ -1363,9 +1416,12 @@ changes:</p>
 <p>Afterwards, go to <strong>RESOURCES→Templates</strong> and launch the <strong>Structured
 Content Execution</strong> job template. As you will see in the job output, the
 external role is called just the way the other roles are called:</p>
+
 <pre><code>TASK [shared-apache-role : deploy content] *************************************
 changed: [node2]
-changed: [node1]</code></pre>
+changed: [node1]
+</code></pre>
+
 <p>Validate again with <code>curl</code> the result and you are done!</p>
 
 <p>This was quite something to follow through, so let’s review:</p>
@@ -1916,19 +1972,19 @@ everything generic is consumed from a shared resource.</p></li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/clipboard.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/perfect-scrollbar.jquery.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/jquery.sticky.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/featherlight.min.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/highlight.pack.js?1601307334"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/learn.js?1601306300"></script>
-    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601306300"></script>
+    <script src="https://goetzrieger.github.io/js/modernizr.custom-3.6.0.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/learn.js?1601307334"></script>
+    <script src="https://goetzrieger.github.io/js/hugo-learn.js?1601307334"></script>
 
-    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601306300" rel="stylesheet" />
-    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601306300"></script>
+    <link href="https://goetzrieger.github.io/mermaid/mermaid.css?1601307334" rel="stylesheet" />
+    <script src="https://goetzrieger.github.io/mermaid/mermaid.js?1601307334"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
