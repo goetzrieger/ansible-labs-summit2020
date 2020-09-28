@@ -36,9 +36,9 @@ Collection have two default lookup paths that are searched:
 
 - System scoped path `/usr/share/ansible/collections`
 
-> **TIP**: Users can customized the collections path by modifying the `collections_path` key in the
-> `ansible.cfg` file or by setting the environment variable `ANSIBLE_COLLECTIONS_PATHS` with the desired
-> search path.
+{{% notice tip %}}
+Users can customized the collections path by modifying the `collections_path` key in the `ansible.cfg` file or by setting the environment variable `ANSIBLE_COLLECTIONS_PATHS` with the desired search path.
+{{% /notice %}}
 
 ### Inspecting the contents of the collection
 
@@ -229,7 +229,9 @@ The last step of this exercise will be focused on a role creation inside the cus
 
 Generate the new role skeleton using the `ansible-galaxy init` command:
 
-> **NOTE:** Make sure you are in the root directory of your ansible collection before executing this command.
+{{% notice tip %}}
+Make sure you are in the root directory of your ansible collection before executing this command.
+{{% /notice %}}
 
 ```bash
 $ pwd
@@ -257,7 +259,9 @@ Create the following tasks in the `roles/hello_motd/tasks/main.yml` file:
 
 Notice the usage of the `demo_hello` module, installed in the collection, to generate the greeting string.
 
-> **NOTE**: When a collection role calls a module in the same collection namespace, the module is automatically resolved.
+{{% notice tip %}}
+When a collection role calls a module in the same collection namespace, the module is automatically resolved.
+{{% /notice %}}
 
 Create the following variables in the `roles/hello_motd/defaults/main.yml`:
 

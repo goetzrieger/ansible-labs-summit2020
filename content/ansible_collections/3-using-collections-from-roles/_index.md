@@ -21,14 +21,17 @@ oriented modules and plugins for systems management. You should have installed t
 [student<X@>ansible-1 ~]$ ansible-galaxy collection install ansible.posix
 ```
 
-> **NOTE**
-> See how the command didn't fail or complain if the collection was installed already but just let's you know it was already there.
+{{% notice tip %}}
+See how the command didn't fail or complain if the collection was installed already but just let's you know it was already there.
+{{% /notice %}}
 
 ### Approach 1: Collections loaded as metadata
 
 The first option is to specify the collection you want to use in your roles metadata.
 
-> **TIP**: You can go through the exercise steps or copy the finished role from `solutions/selinux_manage_meta`.
+{{% notice tip %}}
+You can go through the exercise steps or copy the finished role from `solutions/selinux_manage_meta`.
+{{% /notice %}}
 
 First we'll create a simple role. Start with creating a new role scaffold using the `ansible-galaxy init` command (make sure you changed into your exercise folder):
 
@@ -69,8 +72,9 @@ A role without some tasks is not too interesting, go and edit the `roles/selinux
   loop: "{{ sebooleans_disable }}"
 ```
 
-> **NOTE:** We're using the simple module name. Ansible uses the information from the
-> `collections` list in the metadata file to locate the collection(s) used.
+{{% notice tip %}}
+We're using the simple module name. Ansible uses the information from the `collections` list in the metadata file to locate the collection(s) used.
+{{% /notice %}}
 
 Every well-written role should come with sensible defaults, edit the `roles/selinux_manage_meta/defaults/main.yml` to define default values for role variables:
 
@@ -149,7 +153,9 @@ localhost                  : ok=4    changed=2    unreachable=0    failed=0    s
 
 The second approach to use collections in roles uses the collection FQCN to call the related modules and plugins. To better demonstrate the differences, we will implement a new version of the previous role with the FQCN approach without changing the inner logic.
 
-> **TIP**: You can go though the exercise steps or copy the finished role from `solutions/selinux_manage_fqcn`.
+{{% notice tip %}}
+You can go though the exercise steps or copy the finished role from `solutions/selinux_manage_fqcn`.
+{{% /notice %}}
 
 To make this easy we'll just copy and edit the role we created above:
 
@@ -182,9 +188,9 @@ Now change the file `roles/selinux_manage_fqcn/tasks/main.yml` so it uses the FQ
   loop: "{{ sebooleans_disable }}"
 ```
 
-> **NOTE**: Notice the usage of the modules FQCN in the role tasks. Ansible will directly
-> look for the installed collection from within the role task, no matter if
-> the `collections` keyword is defined at playbook level.
+{{% notice tip %}}
+Notice the usage of the modules FQCN in the role tasks. Ansible will directly look for the installed collection from within the role task, no matter if the `collections` keyword is defined at playbook level.
+{{% /notice %}}
 
 The remaining files can stay unchanged. To test the FQCN role modify the previously created `playbook.yml` file to use the new role:
 

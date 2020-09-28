@@ -16,11 +16,13 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Managed Host 2       | node2          |
 | Managed Host 2       | node3          |
 
-> **Warning**
-> The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
+{{% notice warning %}}
+The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
+{{% /notice %}}
 
-> **Tip**
-> On the lab landing page you'll find the URLs you need to access complete with student number and lab ID already filled in.
+{{% notice tip %}}
+On the lab landing page you'll find the URLs you need to access complete with student number and lab ID already filled in.
+{{% /notice %}}
 
 ## Accessing your Lab Environment
 
@@ -46,9 +48,9 @@ Now in the terminal become root:
 
 Most prerequisite tasks have already been done for you:
 
-  - Ansible software is installed
+- Ansible software is installed
 
-  - `sudo` has been configured on the managed hosts to run commands that require root privileges.
+- `sudo` has been configured on the managed hosts to run commands that require root privileges.
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
@@ -61,8 +63,9 @@ Log out of the root account again:
     [root@ansible-1 ~]# exit
     logout
 
-> **Warning**
-> In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
+{{% notice warning %}}
+In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
+{{% /notice %}}>
 
 # Guide
 
@@ -120,7 +123,9 @@ Explain the concept of content repositories.
 
 It is a service that is provided as part of the Red Hat SaaS Offering. It consists of the location where to discover and download only supported and certified Ansible Content Collections by Red Hat and its Partners. These content collections contain ways to consume automation, how-to-guides to implement them in your infrastructure. The support for Automation Hub is included with Red Hat Automation Platform subscription.
 
-> **NOTE**: Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub): requires Red Hat customer portal credentials and a valid Red Hat Automation Platform subscription.
+{{% notice tip %}}
+Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub): requires Red Hat customer portal credentials and a valid Red Hat Automation Platform subscription.
+{{% /notice %}}
 
 ### Certified Content
 

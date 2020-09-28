@@ -117,18 +117,19 @@ You can use the `collections` keyword to skip defining the namespace with every 
       state: enforcing
 ```
 
-> **NOTE**: Although the syntax looks similar to how you specify roles, this works different. They keyword `roles` will execute the `tasks/main.yml` in each role. The `collections` keyword is merely a shortcut so you can skip the author and namespace every time you use a module in a task.
+{{% notice tip %}}
+Although the syntax looks similar to how you specify roles, this works different. They keyword `roles` will execute the `tasks/main.yml` in each role. The `collections` keyword is merely a shortcut so you can skip the author and namespace every time you use a module in a task.
+{{% /notice %}}
 
 ### Test the change
 
 Now run the Playbook again, you shouldn't see any difference in the output. As explained before, the `collections` keyword only simplifies writing your Playbook!
 
-> **WARNING**
-> We are explaining the `collections` keyword here for completeness. It is however recommended to always use the fully qualified collection name. The internal lookup can deliver unexpected results if there are many overlapping or overriding module names, which can be avoided by always using the full name. Since most modern code editors provide auto completion, it's not too much of an issue when typing the code either.
+{{% notice warning %}}
+We are explaining the `collections` keyword here for completeness. It is however recommended to always use the fully qualified collection name. The internal lookup can deliver unexpected results if there are many overlapping or overriding module names, which can be avoided by always using the full name. Since most modern code editors provide auto completion, it's not too much of an issue when typing the code either.
+{{% /notice %}}
 
 During the next chapter of this lab you'll learn more details on how the internal lookup works.
-
-
 
 ----
 **Navigation**

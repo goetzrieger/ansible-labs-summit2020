@@ -13,7 +13,9 @@ In this exercise you will learn how to define an Ansible Collection as a require
 
 Red Hat Ansible Tower can download and install Ansible Collections automatically before executing a Job Template. If a `collections/requirements.yml` exists, it will be parsed and Ansible Collections specified in this file will be automatically installed.
 
-> **NOTE**: Starting with Red Hat Ansible Tower 3.6 the working directory for the Job Template is in `/tmp`. Since the Ansible Collection is downloaded into this directory before the Job Template is executed, you will not find temporary files of your Ansible Collection in `/var/lib/awx/projects/`.
+{{% notice tip %}}
+Starting with Red Hat Ansible Tower 3.6 the working directory for the Job Template is in `/tmp`. Since the Ansible Collection is downloaded into this directory before the Job Template is executed, you will not find temporary files of your Ansible Collection in `/var/lib/awx/projects/`.
+{{% /notice %}}
 
 The format of the `requirements.yml` for Ansible Collections is very similar to the one for roles, however it is very important to store in the folder `collections`.
 
@@ -41,7 +43,9 @@ If there is a problem while parsing your `requirements.yml` it worth testing it 
 ansible-galaxy collections install -r collections/requirements.yml -f
 ```
 
-> **NOTE**: The `-f` switch will forces a fresh installation of the specified Ansible Collections, otherwise `ansible-galaxy` will only install it, if it wasn't already installed. You can also use the `--force-with-deps` switch to make sure Ansible Collections which have dependencies to others are refreshed as well.
+{{% notice tip %}}
+The `-f` switch will forces a fresh installation of the specified Ansible Collections, otherwise `ansible-galaxy` will only install it, if it wasn't already installed. You can also use the `--force-with-deps` switch to make sure Ansible Collections which have dependencies to others are refreshed as well.
+{{% /notice %}}
 
 ----
 **Navigation**

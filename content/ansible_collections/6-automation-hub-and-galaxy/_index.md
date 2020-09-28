@@ -35,7 +35,9 @@ Authenticating Ansible Tower requires a token. It can be achieved using the step
 
 1. Set **PRIMARY GALAXY SERVER TOKEN** to <COPIED_TOKEN>
 
-> **TIP**: It is recommended using Red Hat Automation Hub as primary Galaxy Server URL to ensure using certified and supported content by Red Hat and its partners via Red Hat Ansible Automation subscription.
+{{% notice tip %}}
+It is recommended using Red Hat Automation Hub as primary Galaxy Server URL to ensure using certified and supported content by Red Hat and its partners via Red Hat Ansible Automation subscription.
+{{% /notice %}}
 
   ![test image size](screenshots/token.png)
 
