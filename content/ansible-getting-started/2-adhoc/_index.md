@@ -258,6 +258,7 @@ Use the copy ad hoc command from above as a template and change the module and o
 {{% /notice %}}
 
 <details><summary>**Click here for Solution**</summary>
+
 <p>
 ```bash
 [student<N>@ansible-1 ~]$ ansible-doc -l | grep -i yum
