@@ -50,7 +50,7 @@ through it:
         name John Smith (user name doesn’t matter)
 
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 The JSON should roughly look like this:
 ```JSON
@@ -84,7 +84,7 @@ Now log in again as admin and go back to the list of users:
 
 So why not patch the user to be named "Johnny" instead of "John"?
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 Add this to the **CONTENT** field:
 ```JSON
@@ -99,7 +99,7 @@ And press the **PATCH** button.
 Now try to **PUT** **last\_name** "Smithy" using the same approach. What
 happens?
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 Enter this into the **CONTENT** field and press **PUT**:
 ```JSON

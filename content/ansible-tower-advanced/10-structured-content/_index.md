@@ -208,7 +208,7 @@ environment. Create the file:
 So we have prepared a basic structure for quite some content - call
 `tree` to look at it.
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 
 ``` bash
