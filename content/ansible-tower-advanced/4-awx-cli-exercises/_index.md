@@ -15,7 +15,7 @@ First we create a static inventory, we’ll get to dynamic inventories later on.
 Remember how you used the **awx** help to get down to the needed command.
 {{% /notice %}}
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 ```
 [student@ansible-1 ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
@@ -31,7 +31,7 @@ You can work with multiple organizations in Tower. In this lab we’ll work in t
 Now that we have the empty inventory created, add your two managed hosts using their internal hostnames **`{{< param "internal_host1" >}}`** and **`{{< param "internal_host2" >}}`**, again using
 **awx**.
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 ```
 [student@ansible-1 ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" --inventory "Example Inventory"

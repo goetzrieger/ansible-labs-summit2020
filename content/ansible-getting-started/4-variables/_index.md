@@ -27,7 +27,6 @@ The recommended practice to provide variables in the inventory is to define them
 Host variables take precedence over group variables (more about precedence can be found in the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)).
 {{% /notice %}}
 
-
 ## Create Variable Files
 
 For understanding and practice let’s do a lab. Following up on the theme "Let’s build a webserver. Or two. Or even more…​", you will change the `index.html` to show the development environment (dev/prod) a server is deployed in.
@@ -56,9 +55,9 @@ stage: prod
 
 What is this about?
 
-  - For all servers in the `web` group the variable `stage` with value `dev` is defined. So as default we flag them as members of the dev environment.
+- For all servers in the `web` group the variable `stage` with value `dev` is defined. So as default we flag them as members of the dev environment.
 
-  - For server `node2` this is overriden and the host is flagged as a production server.
+- For server `node2` this is overridden and the host is flagged as a production server.
 
 ## Create index.html Files
 
@@ -102,8 +101,7 @@ Note how the variable "stage" is used in the name of the file to copy.
       dest: /var/www/html/index.html
 ```
 
-
-  - Run the Playbook:
+- Run the Playbook:
 
 ```bash
 [student<N>@ansible-1 ansible-files]$ ansible-playbook deploy_index_html.yml
@@ -151,6 +149,7 @@ This might be a bit too much, you can use filters to limit the output to certain
 ```bash
 [student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
 ```
+
 Or what about only looking for memory related facts:
 
 ```bash
@@ -165,7 +164,7 @@ Or what about only looking for memory related facts:
 Use grep to find the fact, then apply a filter to only print this fact.
 {{% /notice %}}
 
-<details><summary>**>> Click here for Solution <<**</summary>
+<details><summary>**Click here for Solution**</summary>
 <p>
 ```bash
 [student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution
@@ -187,6 +186,7 @@ Facts can be used in a Playbook like variables, using the proper naming, of cour
     debug:
       msg: The default IPv4 address of {{ ansible_fqdn }} is {{ ansible_default_ipv4.address }}
 ```
+
 {{% notice tip %}}
 The "debug" module is handy for e.g. debugging variables or expressions.
 {{% /notice %}}
