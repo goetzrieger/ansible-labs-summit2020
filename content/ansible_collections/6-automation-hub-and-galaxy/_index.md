@@ -1,5 +1,5 @@
 +++
-title = "Ansible Galaxy vs Automation Hub"
+title = "Accessing Collections"
 weight = 6
 +++
 

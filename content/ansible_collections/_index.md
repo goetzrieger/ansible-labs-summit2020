@@ -30,11 +30,13 @@ Concepts are explained when they are introduced along with the practice exercise
 <!-- The workshop is structured in a set of progressive exercises, covering collections creation,
 usage from playbooks, roles and Tower and an introduction to Ansible Automation Hub. -->
 
-- [Exercise 1 - Create Collections](./1-create-collections)
-- [Exercise 2 - Collections from playbook](./2-collections-from-playbook)
-- [Exercise 3 - Collections from roles](./3-collections-from-roles)
-- [Exercise 4 - Collections from tower](./4-collections-from-tower)
-- [Exercise 5 - Use Automation Hub](./5-use-automation-hub)
+- [Exercise 1 - Introduction](1-introduction)
+- [Exercise 2 - Collections from playbook](2-using-collections-from-playbooks)
+- [Exercise 3 - Collections from roles](3-using-collections-from-roles)
+- [Exercise 4 - Collections from tower](4-using-collections-from-tower)
+- [Exercise 5 - Creating Collections](5-creating-collections)
+- [Exercise 6 - Accessing Collections](6-automation-hub-and-galaxy)
+- [Exercise 7 - Advanced Inventory Collections](7-advanced-inventory-collections)
 
 ## Additional Resources
 
