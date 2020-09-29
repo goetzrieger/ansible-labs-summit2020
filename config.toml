@@ -84,7 +84,7 @@ url = "https://goetzrieger.github.io/"
 weight = 10
 
 [markup]
-defaultMarkdownHandler = "blackfriday"
-#  [markup.goldmark]
-#    [markup.goldmark.renderer]
-#      unsafe = true
+#defaultMarkdownHandler = "blackfriday"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
