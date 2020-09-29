@@ -3,7 +3,7 @@ title = "Ansible Collections"
 weight = 1
 +++
 
-# Ansible Collections Workshop
+## Ansible Collections Workshop
 
 <!-- This workshop is a step by step series of exercises to demonstrate
 features and benefits of Ansible Collections, a unique distribution
