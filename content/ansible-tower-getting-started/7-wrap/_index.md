@@ -174,9 +174,11 @@ node3 | SUCCESS => {
 
 ## Solution
 
-<details><summary>**>>Solution NOT below<<**</summary>
+<details><summary><b>Solution NOT below</b></summary>
 <p>
+
 You have to figure this one out by yourself! ;-)
+
 </p>
 </details>
 
