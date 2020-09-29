@@ -3,7 +3,7 @@ title = "Introduction"
 weight = 1
 +++
 
-This chapter will explain the theoretical knowledge to understand the importance of Ansible Collections, what they are and where existing collections can be found and consumed.
+This chapter will introduce you to your lab environment and introdoce you to the importance of Ansible Collections, what they are and where existing collections can be found and consumed.
 
 ## Your Lab Environment
 
