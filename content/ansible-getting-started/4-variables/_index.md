@@ -166,10 +166,12 @@ Use grep to find the fact, then apply a filter to only print this fact.
 
 <details><summary><b>Click here for Solution</b></summary>
 <p>
+
 ```bash
 [student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution
 [student<N>@ansible-1 ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
 ```
+
 </p>
 </details>
 
