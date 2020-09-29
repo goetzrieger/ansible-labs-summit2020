@@ -159,7 +159,7 @@ As you see, this time it worked. For tasks that have to run as root you need to 
 
 Okay, a small challenge: Run an ad hoc to make sure the package "tmux" is installed on all hosts. If unsure, consult the documentation either via the web UI as shown above or by running `ansible-doc yum` on your Tower control host.
 
-<details><summary>**Click here for Solution**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 
 - **MODULE:** yum
