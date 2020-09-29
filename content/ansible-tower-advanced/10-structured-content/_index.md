@@ -166,7 +166,7 @@ We also need to create a playbook to call the roles from. This is often call `si
 
 So we have prepared a basic structure for quite some content - call `tree` to look at it.
 
-<details><summary>**Click here for Solution**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 
 ``` bash

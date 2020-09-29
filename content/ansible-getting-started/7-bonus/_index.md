@@ -21,7 +21,7 @@ Create a new user `testuser` on `node1` and `node3` with a comment using an ad h
 Remember privilege escalation…​
 {{% /notice %}}
 
-<details><summary>**>>Click here for Solution<<**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 Your commands could look like these:
 ```bash

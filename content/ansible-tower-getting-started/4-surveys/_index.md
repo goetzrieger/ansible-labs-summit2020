@@ -59,7 +59,7 @@ Now you create a new Template that includes a survey.
 
 Try for yourself, the solution is below.
 
-<details><summary>**>>Click here for Solution<<**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 
 - **NAME:** Create index.html

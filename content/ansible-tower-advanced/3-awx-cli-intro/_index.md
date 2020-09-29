@@ -104,7 +104,7 @@ To practice your **awx** skills, here is a challenge:
 The configuration parameter is called **SESSION\_COOKIE\_AGE**
 {{% /notice %}}
 
-<details><summary>**Click here for Solution**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 
 ```bash

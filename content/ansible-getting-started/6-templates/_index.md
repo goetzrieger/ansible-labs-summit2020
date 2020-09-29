@@ -67,7 +67,7 @@ Do a `grep -i` for kernel
 
 - Check motd by logging in to node1
 
-<details><summary> **>>Click here for Solution<<** </summary>
+<details><summary> <b>Click here for Solution</b> </summary>
 <p>
 
 - Find the fact:

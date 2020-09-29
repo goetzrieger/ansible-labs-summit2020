@@ -260,7 +260,7 @@ This makes it a lot easier to spot changes and what Ansible actually did.
 Use the copy ad hoc command from above as a template and change the module and options.
 {{% /notice %}}
 
-<details><summary>**Click here for Solution**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 
 <p>
 ```bash

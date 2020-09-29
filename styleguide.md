@@ -37,7 +37,7 @@ This is a warning
 For example solutions, we use the collapse feature:
 
 ```
-    <details><summary>**Click here for Solution**</summary>
+    <details><summary><b>Click here for Solution</b></summary>
     <p>
     ```bash
     [student<X>@ansible-1 ~]$ ansible-doc -l | grep -i dnf

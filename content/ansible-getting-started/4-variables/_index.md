@@ -164,7 +164,7 @@ Or what about only looking for memory related facts:
 Use grep to find the fact, then apply a filter to only print this fact.
 {{% /notice %}}
 
-<details><summary>**Click here for Solution**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 ```bash
 [student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep distribution

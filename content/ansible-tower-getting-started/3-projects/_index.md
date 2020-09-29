@@ -143,7 +143,7 @@ You have already been through all the steps needed, so try this for yourself.
 What about `systemctl status httpd`?
 {{% /notice %}}
 
-<details><summary>**>>Click here for Solution<<**</summary>
+<details><summary><b>Click here for Solution</b></summary>
 <p>
 
 - Go to **Inventories** → **Workshop Inventory**
