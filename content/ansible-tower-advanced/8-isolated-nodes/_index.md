@@ -7,15 +7,15 @@ Ansible is used to manage complex infrastructures with machines and networks liv
 
 To solve this, Tower provides **Isolated Nodes**:
 
-  - Isolated Nodes **don’t have a full installation of Tower**, but a minimal set of utilities used to run jobs.
+- Isolated Nodes **don’t have a full installation of Tower**, but a minimal set of utilities used to run jobs.
 
-  - Isolated Nodes can be deployed behind a firewall/VPC or in a remote datacenter, only **ingress SSH traffic** from a **controller** instance to the **isolated** instances is required.
+- Isolated Nodes can be deployed behind a firewall/VPC or in a remote datacenter, only **ingress SSH traffic** from a **controller** instance to the **isolated** instances is required.
 
-  - When a job is run that targets things managed by an isolated node, the **job** and its **environment** will be **pushed to the isolated node** over SSH.
+- When a job is run that targets things managed by an isolated node, the **job** and its **environment** will be **pushed to the isolated node** over SSH.
 
-  - Periodically, the **master Ansible Tower cluster will poll the isolated node** for status on the job.
+- Periodically, the **master Ansible Tower cluster will poll the isolated node** for status on the job.
 
-  - When the **job finishes**, the job status will be **updated in Ansible Tower**.
+- When the **job finishes**, the job status will be **updated in Ansible Tower**.
 
 ## Prepare the Isolated Node
 
@@ -125,8 +125,7 @@ For this you have to create a new inventory in your Tower cluster. You can do th
 
 In the Tower web UI under **RESOURCES**, click **Inventories**:
 
-  - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new
-    inventory
+- Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new inventory
 
   - **NAME:** Remote Inventory
 
@@ -139,11 +138,11 @@ In the Tower web UI under **RESOURCES**, click **Inventories**:
 
 Now you can add managed hosts, the **HOSTS** button is active now. Click it to access the hosts overview. There are no hosts right now, so let’s add one:
 
-  - Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
+- Click the ![plus](../../images/green_plus.png?classes=inline) button to add a new host
 
-  - **NAME:** `{{< param "internal_hostremote" >}}`
+- **NAME:** `{{< param "internal_hostremote" >}}`
 
-  - Click **SAVE**
+- Click **SAVE**
 
 ## Create Template for Isolated Node
 
@@ -151,37 +150,36 @@ Next we need to assign a job template to the node. Since the node is in a DMZ, w
 
 Go to **Templates** in the **RESOURCES** section of the menu, click the ![plus](../../images/green_plus.png?classes=inline) button and choose **Job Template**.
 
-  - **NAME:** Remote CIS Compliance
+- **NAME:** Remote CIS Compliance
 
-  - **JOB TYPE:** Run
+- **JOB TYPE:** Run
 
-  - **INVENTORY:** Remote Inventory
+- **INVENTORY:** Remote Inventory
 
-  - **PROJECT:** Apache
+- **PROJECT:** Apache
 
-  - **PLAYBOOK:** `cis.yml`
+- **PLAYBOOK:** `cis.yml`
 
-  - **CREDENTIAL:** Example Credentials
+- **CREDENTIAL:** Example Credentials
 
-  - **INSTANCE GROUPS:** `dmz`
+- **INSTANCE GROUPS:** `dmz`
 
-  - We need to run the tasks as root so check **Enable privilege escalation**
+- We need to run the tasks as root so check **Enable privilege escalation**
 
-  - Click **SAVE**
+- Click **SAVE**
 
 Next, launch the template:
 
-  - In the **Templates** view launch the **Remote CIS Compliance** job by clicking the rocket icon.
+- In the **Templates** view launch the **Remote CIS Compliance** job by clicking the rocket icon.
 
-  - Wait until the job has finished.
+- Wait until the job has finished.
 
 ## Verify Results
 
 Last but not least, let’s check that the job was indeed executed by the isolated node `{{< param "internal_toweriso" >}}`:
 
-  - Go to **Instance Groups** in the **ADMINISTRATION** section of the
-    web UI
+- Go to **Instance Groups** in the **ADMINISTRATION** section of the web UI
 
-  - Click on the **dmz** group.
+- Click on the **dmz** group.
 
-  - Click on the jobs button at the top to see the executed job.
+- Click on the jobs button at the top to see the executed job.

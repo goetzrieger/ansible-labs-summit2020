@@ -31,7 +31,7 @@ collections:
 
 When using Ansible Collections in your Playbook, there are no additional options to set in your Red Hat Ansible Tower Job Template. You specify the repository in which your Playbook is stored, inventory, credentials and other parameters, and execute it by clicking on the **Launch** button.
 
-# Troubleshooting
+## Troubleshooting
 
 Since Red Hat Ansible Tower does only check for updates in the the repository in which you stored your Playbook, it might not do a refresh if there was a change in the Ansible Collection used by your Playbook. This happens particularly if you also combine Roles and Collections.
 

@@ -23,19 +23,19 @@ Let’s create a user:
 
 - Fill in the values for the new user:
 
-    - **FIRST NAME:** Werner
+  - **FIRST NAME:** Werner
 
-    - **LAST NAME:** Web
+  - **LAST NAME:** Web
 
-    - **EMAIL:** wweb@example.com
+  - **EMAIL:** wweb@example.com
 
-    - **USERNAME:** wweb
+  - **USERNAME:** wweb
 
-    - **USER TYPE:** Normal User
+  - **USER TYPE:** Normal User
 
-    - **PASSWORD:** ansible
+  - **PASSWORD:** ansible
 
-    - Confirm password
+  - Confirm password
 
 - Click **SAVE**
 
@@ -71,13 +71,13 @@ Add the permission to use the template:
 
 - A new window opens. You can choose to set permissions for a number of resources.
 
-    - Select the resource type **JOB TEMPLATES**
+  - Select the resource type **JOB TEMPLATES**
 
-    - Choose the `Create index.html` Template by checking the box next to it.
+  - Choose the `Create index.html` Template by checking the box next to it.
 
 - The second part of the window opens, here you assign roles to the selected resource.
 
-    - Choose **EXECUTE**
+  - Choose **EXECUTE**
 
 - Click **SAVE**
 
@@ -94,19 +94,17 @@ Now log out of Tower’s web UI and in again as the **wweb** user.
 
 Check the result: In the code-server terminal execute `curl` to pull the content of the webserver on `node1` (you could of course check `node2`, too):
 
-```bash
-$ curl http://node1
-```
+    curl http://node1
 
 - In the web UI, log out user **wweb** and in again as **admin**.
 
 Just recall what you have just done: You enabled a restricted user to run an Ansible Playbook
 
-  - Without having access to the credentials
+- Without having access to the credentials
 
-  - Without being able to change the Playbook itself
+- Without being able to change the Playbook itself
 
-  - But with the ability to change variables you predefined\!
+- But with the ability to change variables you predefined\!
 
 Effectively you provided the power to execute automation to another user without handing out your credentials or giving the user the ability to change the automation code. And yet, at the same time the user can still modify things based on the surveys you created.
 

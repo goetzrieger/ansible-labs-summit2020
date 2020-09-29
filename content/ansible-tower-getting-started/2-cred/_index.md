@@ -7,17 +7,17 @@ weight = 2
 
 Let’s get started: The first thing we need is an inventory of your managed hosts. This is the equivalent of an inventory file in Ansible Engine. There is a lot more to it (like dynamic inventories) but let’s start with the basics.
 
-  - You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://{{< param "external_tower1" >}}`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
+- You should already have the web UI open, if not: Point your browser to the URL you were given, similar to **`https://{{< param "external_tower1" >}}`** (replace "\<N\>" and "\<LABID\>") and log in as `admin` with the password given on the lab landing page.
 
 Create the inventory:
 
-  - In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../../images/green_plus.png?classes=inline) button on the right side and choose **Inventory**.
+- In the web UI menu on the left side, go to **RESOURCES** → **Inventories**, click the ![plus](../../images/green_plus.png?classes=inline) button on the right side and choose **Inventory**.
 
-  - **NAME:** Workshop Inventory
+- **NAME:** Workshop Inventory
 
-  - **ORGANIZATION:** Default
+- **ORGANIZATION:** Default
 
-  - Click **SAVE**
+- Click **SAVE**
 
 Go back to the **Inventories** list, your new **Workshop Inventory** should show up. Open the **Workshop Inventory** and click the **HOSTS** button, the list will be empty since we have not added any hosts yet.
 
@@ -25,17 +25,17 @@ So let's add some hosts. As mentioned in the intro you have three managed hosts 
 
 Now add the hosts to the inventory in Tower:
 
-  - In the inventory view of the Tower web UI click on your **Workshop Inventory**
+- In the inventory view of the Tower web UI click on your **Workshop Inventory**
 
-  - Click on  the **HOSTS** button
+- Click on  the **HOSTS** button
 
-  - To the right click the ![plus](../../images/green_plus.png?classes=inline) button.
+- To the right click the ![plus](../../images/green_plus.png?classes=inline) button.
 
-  - **HOST NAME:** node1
+- **HOST NAME:** node1
 
-  - Click **SAVE**
+- Click **SAVE**
 
-  - Go back to **HOSTS** or use the frame below the new node frame in the UI and repeat to add **node2** as a second and **node3** as a third node.
+- Go back to **HOSTS** or use the frame below the new node frame in the UI and repeat to add **node2** as a second and **node3** as a third node.
 
 You have now created an inventory with three managed hosts.
 
@@ -52,7 +52,9 @@ As this is an important part of your Tower setup, why not make sure that connect
 To test access to the nodes via SSH do the following:
 
 - In your browser bring up the terminal window in code-server (remember this runs on the Tower node)
+
 - From here as user `ec2-user` SSH into `node1` or one of the other nodes and execute `sudo -i`.
+
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
@@ -65,9 +67,9 @@ sudo -i
 
 What does this mean?
 
-  - Tower user **student\<N\>** can connect to the managed hosts with SSH key authentication as user **ec2-user**.
+- Tower user **student\<N\>** can connect to the managed hosts with SSH key authentication as user **ec2-user**.
 
-  - User **ec2-user** can execute commands on the managed hosts as **root** with `sudo`.
+- User **ec2-user** can execute commands on the managed hosts as **root** with `sudo`.
 
 ## Configure Machine Credentials
 
@@ -75,15 +77,15 @@ Now we will configure the credentials to access our managed hosts from Tower. In
 
 Click the ![plus](../../images/green_plus.png?classes=inline) button to add new credentials
 
-  - **NAME:** Workshop Credentials
+- **NAME:** Workshop Credentials
 
-  - **ORGANIZATION:** Click on the magnifying glass, pick **Default** and click **SELECT**
+- **ORGANIZATION:** Click on the magnifying glass, pick **Default** and click **SELECT**
 
-  - **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** as type and click **SELECT** (you will have to use the search or cycle through the types to find it).
+- **CREDENTIAL TYPE:** Click on the magnifying glass, pick **Machine** as type and click **SELECT** (you will have to use the search or cycle through the types to find it).
 
-  - **USERNAME:** ec2-user
+- **USERNAME:** ec2-user
 
-  - **PRIVILEGE ESCALATION METHOD:** sudo
+- **PRIVILEGE ESCALATION METHOD:** sudo
 
 {{% notice tip %}}
 Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
@@ -102,6 +104,7 @@ MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
 ```
 
 - Copy the **complete private key** (including "BEGIN" and "END" lines) and paste it into the **SSH PRIVATE KEY** field in the web UI.
+
 - Click **SAVE**
 
 Go back to the **RESOURCES -> Credentials -> Workshop Credentials** and note
@@ -113,17 +116,17 @@ You have now setup credentials for Ansible to access your managed hosts.
 
 As you’ve probably done with Ansible before you can run ad hoc commands from Tower as well.
 
-  - In the web UI go to **RESOURCES → Inventories → Workshop Inventory**
+- In the web UI go to **RESOURCES → Inventories → Workshop Inventory**
 
-  - Click the **HOSTS** button to change into the hosts view and select the three hosts by checking the boxes to the left of the host entries.
+- Click the **HOSTS** button to change into the hosts view and select the three hosts by checking the boxes to the left of the host entries.
 
-  - Click **RUN COMMANDS**. In the next screen you have to specify the ad hoc command:
+- Click **RUN COMMANDS**. In the next screen you have to specify the ad hoc command:
 
-      - As **MODULE** choose **ping**
+  - As **MODULE** choose **ping**
 
-      - For **MACHINE CREDENTIAL** click the magnifying glass icon and select **Workshop Credentials**.
+  - For **MACHINE CREDENTIAL** click the magnifying glass icon and select **Workshop Credentials**.
 
-      - Click **LAUNCH**, and watch the output.
+  - Click **LAUNCH**, and watch the output.
 
 The simple **ping** module doesn’t need options. For other modules you need to supply the command to run as an argument. Try the **command** module to find the user ID of the executing user using an ad hoc command.
 

@@ -15,23 +15,23 @@ Your operations team and your application development team like what they see in
 
 - As the webservers can be used for development purposes or in production, there has to be a way to flag them accordingly as "stage dev" or "stage prod".
 
-    - Currently `node1` and `node3` should be used as a development systems and `node2` in production.
+  - Currently `node1` and `node3` should be used as a development systems and `node2` in production.
 
 - Of course the content of the world famous application "index.html" will be different between dev and prod stages.
 
-    - There should be a title on the page stating the environment.
+  - There should be a title on the page stating the environment.
 
-    - There should be a content field.
+  - There should be a content field.
 
 - The content writer `wweb` should have access to a survey to change the content for dev and prod servers.
 
 ## The Git Repository
 
-All code is already in place - this is a Tower lab after all and not about configuring Apache. Check out the **Ansible Workshop Examples** git repository at **https\://github.com/ansible/workshop-examples** (again with the [correct tag or branch](https://github.com/ansible/workshop-examples/tree/summit_2020)). There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
+All code is already in place - this is a Tower lab after all and not about configuring Apache. Check out the **Ansible Workshop Examples** git repository at [https://github.com/ansible/workshop-examples](https://github.com/ansible/workshop-examples) (again with the [correct tag or branch](https://github.com/ansible/workshop-examples/tree/summit_2020)). There you will find the playbook `webcontent.yml`, which calls the role `role_webcontent`.
 
 Compared to the previous Apache installation role there is a major difference: there are now two versions of an `index.html` template, and a task deploying the template file which has a variable as part of the template file name.
 
-Here are the files for you to review (path is relativ to the Github repository):
+Here are the files for you to review (path is relative to the Github repository):
 
 - rhel/apache/roles/role_webcontent/templates/dev_index.html.j2
 
@@ -74,7 +74,7 @@ There is of course more then one way to accomplish this, but here is what you sh
 
 - Define a variable `stage` with the value `dev` for the `Webserver` inventory:
 
-    - Add `stage: dev` to the inventory `Webserver` by putting it into the **VARIABLES** field beneath the three start-yaml dashes. Click **SAVE**
+  - Add `stage: dev` to the inventory `Webserver` by putting it into the **VARIABLES** field beneath the three start-yaml dashes. Click **SAVE**
 
 {{% notice warning %}}
 Make sure to add the variable to the inventory and **not** to the new node3!
@@ -84,7 +84,6 @@ Make sure to add the variable to the inventory and **not** to the new node3!
 
 This way the host variable overrides the variable set at the Inventory level because it's more specific and takes precedence.
 
-
 {{% notice tip %}}
 Make sure to keep the three dashes that mark the YAML start in place!
 {{% /notice %}}
@@ -93,13 +92,13 @@ Make sure to keep the three dashes that mark the YAML start in place!
 
 - Create a new **Job Template** named `Create Web Content` that
 
-    - targets the `Webserver` inventory
+  - targets the `Webserver` inventory
 
-    - uses the Playbook `rhel/apache/webcontent.yml` from the **Ansible Workshop Examples** Project
+  - uses the Playbook `rhel/apache/webcontent.yml` from the **Ansible Workshop Examples** Project
 
-    - Defines two variables: `dev_content: default dev content` and `prod_content: default prod content` in the **EXTRA VARIABLES FIELD**
+  - Defines two variables: `dev_content: default dev content` and `prod_content: default prod content` in the **EXTRA VARIABLES FIELD**
 
-    - Uses `Workshop Credentials` and runs with privilege escalation.
+  - Uses `Workshop Credentials` and runs with privilege escalation.
 
 - Save and run the template.
 
@@ -183,6 +182,6 @@ You have to figure this one out by yourself! ;-)
 
 You have done all the required configuration steps in the lab already. If unsure, just refer back to the respective chapters.
 
-# The End
+## The End
 
 Congratulations, you finished your labs\! We hope you enjoyed your first encounter with Ansible Tower as much as we enjoyed creating the labs.

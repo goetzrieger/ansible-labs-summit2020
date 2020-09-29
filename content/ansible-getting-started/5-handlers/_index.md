@@ -18,7 +18,7 @@ To implement a conditional, the `when` statement must be used, followed by the c
 | <   | true if the left hand side is lower than the right hand side.          |
 | <= | true if the left hand side is lower or equal to the right hand side.   |
 
-There are many options to control execution flow in Ansible. More examples of supported conditionals can be located here: http://jinja.pocoo.org/docs/dev/templates/#comparisons
+There are many options to control execution flow in Ansible. More examples of supported conditionals can be located here: [http://jinja.pocoo.org/docs/dev/templates/#comparisons](http://jinja.pocoo.org/docs/dev/templates/#comparisons)
 
 As an example you would like to install an FTP server, but only on hosts that are in the **ftpserver** inventory group.
 
@@ -79,9 +79,9 @@ Here Ansible’s handlers come into play. Handlers can be seen as inactive tasks
 
 As a an example, let’s write a Playbook that:
 
-  - manages Apache’s configuration file `httpd.conf` on all hosts in the `web` group
+- manages Apache’s configuration file `httpd.conf` on all hosts in the `web` group
 
-  - restarts Apache when the file has changed
+- restarts Apache when the file has changed
 
 First we need the file Ansible will deploy, let’s just take the one from `node1`. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
 
@@ -113,24 +113,23 @@ Next, create the Playbook `httpd_conf.yml`. Make sure that you are in the direct
 
 So what’s new here?
 
-  - The `notify` section calls the handler only when the copy task actually changes the file. That way the service is only restarted if needed - and not each time the playbook is run.
+- The `notify` section calls the handler only when the copy task actually changes the file. That way the service is only restarted if needed - and not each time the playbook is run.
 
-  - The `handlers` section defines a task that is only run on notification.
+- The `handlers` section defines a task that is only run on notification.
 
 Run the Playbook. We didn’t change anything in the file yet so there should not be any `changed` lines in the output and of course the handler shouldn’t have fired.
 
-  - Now change the `Listen 80` line in httpd.conf to:
-
+- Now change the `Listen 80` line in httpd.conf to:
 
 ```ini
 Listen 8080
 ```
 
-  - Run the Playbook again. Now Ansible’s output should be a lot more interesting:
+- Run the Playbook again. Now Ansible’s output should be a lot more interesting:
 
-      - httpd.conf should have been copied over
+  - httpd.conf should have been copied over
 
-      - The handler should have restarted Apache
+  - The handler should have restarted Apache
 
 Apache should now listen on port 8080. Easy enough to verify:
 
@@ -142,6 +141,7 @@ curl: (7) Failed connect to 22.33.44.55:80; Connection refused
 <h1>This is a production webserver, take care!</h1>
 </body>
 ```
+
 Feel free to change the `httpd.conf` file again and run the Playbook.
 
 ## Simple Loops
@@ -173,11 +173,11 @@ Lines starting with a variable need to be quoted.
 
 Understand the playbook and the output:
 
-  - The names are not provided to the user module directly. Instead, there is only a variable called `{{ item }}` for the parameter `name`.
+- The names are not provided to the user module directly. Instead, there is only a variable called `{{ item }}` for the parameter `name`.
 
-  - The `loop` keyword lists the actual user names. Those replace the `{{ item }}` during the actual execution of the playbook.
+- The `loop` keyword lists the actual user names. Those replace the `{{ item }}` during the actual execution of the playbook.
 
-  - During execution the task is only listed once, but there are three changes listed underneath it.
+- During execution the task is only listed once, but there are three changes listed underneath it.
 
 ## Loops over hashes
 
@@ -219,7 +219,7 @@ Let's rewrite the playbook to create the users with additional user rights:
 
 Check the output:
 
-  - Again the task is listed once, but three changes are listed. Each loop with its content is shown.
+- Again the task is listed once, but three changes are listed. Each loop with its content is shown.
 
 Verify that the user `prod_user` was indeed created on `node1`:
 

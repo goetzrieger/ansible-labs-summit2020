@@ -13,16 +13,15 @@ The order of priority is **Job Template > Inventory > Organization**. So Instanc
 
 Some things to keep in mind about Instance Groups:
 
-  - Nodes in an Instance Group share a job queue.
+- Nodes in an Instance Group share a job queue.
 
-  - You can have as many Instance Groups as you like as long as there is
-    at least one node in the `tower` group.
+- You can have as many Instance Groups as you like as long as there is at least one node in the `tower` group.
 
-  - Nodes can be in one or more Instance Groups.
+- Nodes can be in one or more Instance Groups.
 
-  - Groups can not be named `instance_group_tower`\!
+- Groups can not be named `instance_group_tower`\!
 
-  - Tower instances can’t have the same name as a group.
+- Tower instances can’t have the same name as a group.
 
 Instance Groups allows some pretty cool setups, e.g. you could have some nodes shared over the whole cluster (by putting them into all groups) but then have other nodes that are dedicated to one group to reserve some capacity.
 
@@ -46,22 +45,21 @@ Having the introduction out of the way, let’s get back to our lab and give Ins
 
 In a basic cluster setup like ours you just have the `[tower]` base group. So let’s go and setup two instance groups:
 
-  - In the **Instance Groups** add a new group by clicking the green
-    **+** icon and then **CREATE INSTANCE GROUP**
+- In the **Instance Groups** add a new group by clicking the green **+** icon and then **CREATE INSTANCE GROUP**
 
-  - Name the new group **dev**
+- Name the new group **dev**
 
-  - **SAVE**
+- **SAVE**
 
-  - Click the **INSTANCES** button and add node **{{< param "internal_tower2" >}}** again using the ![plus](../../images/green_plus.png?classes=inline) icon
+- Click the **INSTANCES** button and add node **{{< param "internal_tower2" >}}** again using the ![plus](../../images/green_plus.png?classes=inline) icon
 
 Do the same to create a the new group **prod** with instance **{{< param "internal_tower3" >}}**
 
 Go back to the **Instance Groups** view, you should now have the following setup:
 
-  - All instances are in the **tower** base group
+- All instances are in the **tower** base group
 
-  - Two more groups (**prod** and **dev**) with one instances each
+- Two more groups (**prod** and **dev**) with one instances each
 
 {{% notice tip %}}
 We’re using the internal names of the Tower nodes here.
@@ -114,8 +112,8 @@ The curl command has to be on one line. Do _not_ forget or oversee the final sla
 
 While in the **INSTANCES GROUPS** overview in the web UI click the **INSTANCES** link for, say, the **dev** group. In the next view you’ll see a slide button next to each Tower instance (only one in this case).
 
-  - The button should be set to "checked" meaning "active". Clicking it would deactivate the corresponding instance and would prevent that further jobs are assigned to it.
+- The button should be set to "checked" meaning "active". Clicking it would deactivate the corresponding instance and would prevent that further jobs are assigned to it.
 
-  - Running jobs on an instance which is set to "OFF" are finished in a normal way.
+- Running jobs on an instance which is set to "OFF" are finished in a normal way.
 
-  - Further to the right a slider can change the amount of forks scheduled on an instance. This way it is possible to influence in which ratio the jobs are assigned.
+- Further to the right a slider can change the amount of forks scheduled on an instance. This way it is possible to influence in which ratio the jobs are assigned.

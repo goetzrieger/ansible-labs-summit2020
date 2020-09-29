@@ -10,21 +10,21 @@ look into Tower? Or you are already using Tower? Cool. We prepared this
 lab to give a hands-on introduction to some of the more advanced
 features of Tower. You’ll learn about:
 
-  - Using command line tools to manage Ansible Tower
+- Using command line tools to manage Ansible Tower
 
-  - Ansible Tower clustering
+- Ansible Tower clustering
 
-  - Working with Instance Groups
+- Working with Instance Groups
 
-  - Using isolated nodes to manage remote locations
+- Using isolated nodes to manage remote locations
 
-  - Ways to provide inventories (importing inventory, dynamic inventory)
+- Ways to provide inventories (importing inventory, dynamic inventory)
 
-  - The Smart Inventory feature
+- The Smart Inventory feature
 
-  - Optional: How to structure Ansible content in Git repos
+- Optional: How to structure Ansible content in Git repos
 
-  - Optional: How to work with the Tower API
+- Optional: How to work with the Tower API
 
 ## So little time and so much to do…
 
@@ -38,7 +38,7 @@ Definitely, the Markdown sources are available here:
 
 **[https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/master/content/ansible-tower-advanced)**
 
-# Your Ansible Tower Lab Environment
+## Your Ansible Tower Lab Environment
 
 In this lab you work in a pre-configured lab environment. You will have
 access to the following hosts:
@@ -70,16 +70,15 @@ Wherever you see the placeholder **{{< param "secret_password" >}}** in the foll
 As you can see the lab environment is pretty extensive. You basically
 have:
 
-  - A three-node Tower cluster with a separate DB host, accessed via SSH
-    or web UI
+- A three-node Tower cluster with a separate DB host, accessed via SSH or web UI
 
-  - Two managed RHEL 8 hosts
+- Two managed RHEL 8 hosts
 
 And to mimic a remote site with isolated nodes:
 
-  - One RHEL 8 host that acts as an isolated Tower node that can be reached via SSH from the Tower cluster nodes.
+- One RHEL 8 host that acts as an isolated Tower node that can be reached via SSH from the Tower cluster nodes.
 
-  - One RHEL 8 host which acts as a remote managed node that can only be reached from/through the isolated node.
+- One RHEL 8 host which acts as a remote managed node that can only be reached from/through the isolated node.
 
 <!-- A diagram says more then a thousand words:
 
@@ -93,9 +92,9 @@ Access to the isolated node and the managed hosts is actually not restricted in 
 
 Some hints to get you started:
 
-  - Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
+- Don’t type everything manually, use copy & paste from the browser when appropriate. But don’t stop to think and understand… ;-)
 
-  - To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://{{< param "external_code" >}}**
+- To **edit files** or **open a terminal window**, we provide **code-server**, basically the great VSCode Editor running in your browser. It's running on the first Tower node and can be accessed through the URL **https://{{< param "external_code" >}}**
 
 {{% notice tip %}}
 Commands you are supposed to run are shown with or without the expected output, whatever makes more sense in the context.
@@ -109,15 +108,17 @@ The command line can wrap on the HTML page from time to time. Therefore the outp
 
 You'll get the access information for your lab (URL's, password) from a landing page. Getting access to this page depends on how you are consuming the lab:
 
-* If you deployed from RHPDS, you'll receive an email with the landing page URL
-* If you attend this lab at an event, your lab facilitator will lead you to the landing page
+- If you deployed from RHPDS, you'll receive an email with the landing page URL
+
+- If you attend this lab at an event, your lab facilitator will lead you to the landing page
 
 Either way you'll get an URL similar to this: `http://{{< param "external_domain" >}}`
 
 Your main points of contact with the lab are the Ansible Tower web UI's and **code-server**, providing a VSCode-experience in your browser. You'll use **code-server** to:
 
-* open virtual terminals
-* edit files
+- open virtual terminals
+
+- edit files
 
 Now open code-server using the link from the lab landing page or this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 

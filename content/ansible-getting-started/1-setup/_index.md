@@ -28,9 +28,7 @@ Your main points of contact with the lab is **code-server**, providing a VSCode-
 
 Now open code-server using the **VS Code access** link from the lab landing page or use this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-
-     	https://student<N>-code.<LABID>.events.opentlc.com
-
+    https://student<N>-code.<LABID>.events.opentlc.com
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -48,9 +46,9 @@ Now in the terminal become root:
 
 Most prerequisite tasks have already been done for you:
 
-  - Ansible software is installed
+- Ansible software is installed
 
-  - `sudo` has been configured on the managed hosts to run commands that require root privileges.
+- `sudo` has been configured on the managed hosts to run commands that require root privileges.
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 

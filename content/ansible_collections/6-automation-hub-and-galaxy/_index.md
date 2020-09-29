@@ -45,7 +45,7 @@ It is recommended using Red Hat Automation Hub as primary Galaxy Server URL to e
 
 After authenticating Ansible Tower to access Automation Hub, using `collections/requirements.yml` file will automatically fetches the content collections from Automation Hub as first source.
 
-# Takeaways
+## Takeaways
 
 - The Red Hat Automation Hub provides certified collections that supported by Red Hat and its Partners. It's available via Red Hat Ansible Automation Platform.
 - Ansible Galaxy hosts upstream community content collections.
