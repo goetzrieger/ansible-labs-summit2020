@@ -115,55 +115,54 @@ So now you have a source of (slightly static) dynamic inventory data (talk about
 
 The first step is to add the inventory script to Tower:
 
-  - In the web UI, open **RESOURCES→Inventory Scripts**.
+- In the web UI, open **RESOURCES→Inventory Scripts**.
 
-  - To create a new custom inventory script, click the
-    ![plus](../../images/green_plus.png?classes=inline) button.
+- To create a new custom inventory script, click the ![plus](../../images/green_plus.png?classes=inline) button.
 
-  - Fill in the needed data:
+- Fill in the needed data:
 
-      - **NAME:** Cloud Inventory Script
+  - **NAME:** Cloud Inventory Script
 
-      - Copy the Bash script from above and paste it into the **CUSTOM
-        SCRIPT** field
+  - Copy the Bash script from above and paste it into the **CUSTOM
+    SCRIPT** field
 
-  - Click **SAVE**
+- Click **SAVE**
 
 Finally the new inventory script can be used in an actual **Inventory**.
 
-  - Go to **RESOURCES→Inventories**
+- Go to **RESOURCES→Inventories**
 
-  - Click the ![plus](../../images/green_plus.png?classes=inline) button and choose
-    **Inventory**.
+- Click the ![plus](../../images/green_plus.png?classes=inline) button and choose
+  **Inventory**.
 
-  - **NAME:** Cloud Inventory
+- **NAME:** Cloud Inventory
 
-  - Click **SAVE**
+- Click **SAVE**
 
-  - The **SOURCES** button on top becomes active now, click it
+- The **SOURCES** button on top becomes active now, click it
 
-  - Click the ![plus](../../images/green_plus.png?classes=inline) to add a new source
+- Click the ![plus](../../images/green_plus.png?classes=inline) to add a new source
 
-  - **NAME:** Cloud Custom Script
+- **NAME:** Cloud Custom Script
 
-  - From the **SOURCE** drop-down choose **Custom Script**
+- From the **SOURCE** drop-down choose **Custom Script**
 
-  - Now the dialog for the source opens, your custom script **Cloud Inventory Script** should already be selected in the **CUSTOM INVENTORY SCRIPT**.
+- Now the dialog for the source opens, your custom script **Cloud Inventory Script** should already be selected in the **CUSTOM INVENTORY SCRIPT**.
 
-  - Under **UPDATE OPTIONS** check **Overwrite** and **Overwrite Variables**
+- Under **UPDATE OPTIONS** check **Overwrite** and **Overwrite Variables**
 
-  - Click **SAVE**
+- Click **SAVE**
 
 To sync your new source into the inventory:
 
-  - Open the **Cloud Inventory** again
+- Open the **Cloud Inventory** again
 
-  - Click the **SOURCES** button
+- Click the **SOURCES** button
 
-  - To the right click the circular arrow to start the sync process for
-    your custom source.
+- To the right click the circular arrow to start the sync process for
+  your custom source.
 
-  - After the sync has finished click the **HOSTS** button (the top one).
+- After the sync has finished click the **HOSTS** button (the top one).
 
 You should now see a list of hosts according to what you got from the curl command above. Click the hosts to make sure the host variables are there, too.
 
@@ -171,11 +170,11 @@ You should now see a list of hosts according to what you got from the curl comma
 
 Using this simple example you have:
 
-  - Created a script to query an inventory source
+- Created a script to query an inventory source
 
-  - Integrated the script into Tower
+- Integrated the script into Tower
 
-  - Populated an inventory using the custom script
+- Populated an inventory using the custom script
 
 ## Smart Inventories
 
@@ -185,21 +184,21 @@ This is where Smart Inventory comes in. A Smart Inventory is a collection of hos
 
 The base rules of a search are:
 
-  - A search typically consists of a field (left-hand side) and a value     (right-hand side)
+- A search typically consists of a field (left-hand side) and a value (right-hand side)
 
-  - A colon separates the field that you want to search from the value
+- A colon separates the field that you want to search from the value
 
-  - A search string without a colon is treated as a simple string
+- A search string without a colon is treated as a simple string
 
 ### A Simple Smart Inventory
 
 Let’s start with a simple string example. In your Tower web UI, open the **RESOURCES→Inventories** view. Then click the ![plus](../../images/green_plus.png?classes=inline) button and choose to create a new **Smart Inventory**. In the next view:
 
-  - **NAME:** Smart Inventory Simple
+- **NAME:** Smart Inventory Simple
 
-  - Click the magnifying glass icon next to **SMART HOST FILTER**
+- Click the magnifying glass icon next to **SMART HOST FILTER**
 
-  - A window **DYNAMIC HOSTS** opens, here you define the search query
+- A window **DYNAMIC HOSTS** opens, here you define the search query
 
 To start with you can just use simple search terms. Try **cloud** or **example.com** as search terms and see what you get after hitting **ENTER**.
 
@@ -228,27 +227,28 @@ Fact caching is not enabled by default\!
 Fact caching can be enabled for **Templates** and is not enabled by default. So first we have to enable it. Check **{{< param "internal_host1" >}}** and **{{< param "internal_host2" >}}** have no facts stored:
 
 - In **RESOURCES→Inventories** open the **Example Inventory** and click the **HOSTS** button.
+
 - Now inspect both hosts by opening the host details and clicking the **FACTS** button at the top.
 
 - For both hosts the **FACTS** field should be empty
 
 Now enable fact caching for the **Install Apache** template:
 
-  - In **RESOURCES→Templates** open the **Install Apache** template.
+- In **RESOURCES→Templates** open the **Install Apache** template.
 
-  - Check the **ENABLE FACT CACHE** tick box and click **SAVE**
+- Check the **ENABLE FACT CACHE** tick box and click **SAVE**
 
 To gather and save the facts you have to run the job template.
 
-  - In the **Templates** list start **Install Apache** by clicking the rocket icon
+- In the **Templates** list start **Install Apache** by clicking the rocket icon
 
 Now enable fact caching for the **Remote CIS Compliance** template and run it, too. This way we’ll get cached facts for the remote DMZ host.
 
 After you run the templates go back to the host details like you did above and check the **FACTS** fields for
 
-  - **{{< param "internal_host1" >}}** and **{{< param "internal_host2" >}}** (from the **Example Inventory**)
+- **{{< param "internal_host1" >}}** and **{{< param "internal_host2" >}}** (from the **Example Inventory**)
 
-  - **{{< param "internal_hostremote" >}}** (from the **Remote Inventory**).
+- **{{< param "internal_hostremote" >}}** (from the **Remote Inventory**).
 
 The hosts facts should now be populated with a lot of information.
 
@@ -256,9 +256,9 @@ The hosts facts should now be populated with a lot of information.
 
 Now that we got the facts for the hosts in the facts cache, we can use facts in our searches.
 
-  - Create a new Smart Inventory named **Smart Inventory Facts**
+- Create a new Smart Inventory named **Smart Inventory Facts**
 
-  - Open the **SMART HOST FILTER** window to enter the search
+- Open the **SMART HOST FILTER** window to enter the search
 
 To search for facts the search field (left side of a search query) has to start with **ansible\_facts.** followed by the fact. The value is separated by a colon on the right side.
 

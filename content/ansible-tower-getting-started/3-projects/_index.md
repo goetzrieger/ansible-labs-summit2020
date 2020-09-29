@@ -11,10 +11,9 @@ You should definitely keep your Playbooks under version control. In this lab we�
 
 For this lab we will use playbooks stored in this Git repository, using the [proper tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020):
 
-`https://github.com/ansible/workshop-examples`
+[https://github.com/ansible/workshop-examples](https://github.com/ansible/workshop-examples)
 
-
-A Playbook to install the Apache webserver has already been commited to the directory **rhel/apache**, `apache_install.yml`, here for reference:
+A Playbook to install the Apache webserver has already been committed to the directory **rhel/apache**, `apache_install.yml`, here for reference:
 
 ```yaml
 ---
@@ -51,6 +50,7 @@ A Playbook to install the Apache webserver has already been commited to the dire
       enabled: true
       state: started
 ```
+
 {{% notice tip %}}
 Note the difference to other Playbooks you might have written\! Most importantly there is no `become` and `hosts` is set to `all`.
 {{% /notice %}}
@@ -59,13 +59,13 @@ To configure and use this repository as a **Source Control Management (SCM)** sy
 
 ## Create the Project
 
-  - Go to **RESOURCES → Projects** in the side menu view click the ![plus](../../images/green_plus.png?classes=inline) button. Fill in the form:
+- Go to **RESOURCES → Projects** in the side menu view click the ![plus](../../images/green_plus.png?classes=inline) button. Fill in the form:
 
-  - **NAME:** Ansible Workshop Examples
+- **NAME:** Ansible Workshop Examples
 
-  - **ORGANIZATION:** Default
+- **ORGANIZATION:** Default
 
-  - **SCM TYPE:** Git
+- **SCM TYPE:** Git
 
 Now you need the URL to access the repo. You could get the URL in Github as **Clone URL**. Enter the URL into the Project configuration:
 
@@ -96,7 +96,7 @@ A job template is a definition and set of parameters for running an Ansible job.
 Okay, let’s just do that: Go to the **Templates** view, click the ![plus](../../images/green_plus.png?classes=inline) button and choose **Job Template**.
 
 {{% notice tip %}}
-Remember that you can often click on magnfying glasses to get an overview of options to pick to fill in fields.
+Remember that you can often click on magnifying glasses to get an overview of options to pick to fill in fields.
 {{% /notice %}}
 
 - **NAME:** Install Apache
@@ -117,7 +117,7 @@ Remember that you can often click on magnfying glasses to get an overview of opt
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time:
 
-![job exection](../../images/job_overview.png)
+![job execution](../../images/job_overview.png)
 
 Since this might take some time, have a closer look at all the details provided:
 
@@ -135,7 +135,7 @@ After the Job has finished go to the main **Jobs** view: All jobs are listed her
 
 Time for a little challenge:
 
-  - Use an ad hoc command on all hosts to make sure Apache has been installed and is running.
+- Use an ad hoc command on all hosts to make sure Apache has been installed and is running.
 
 You have already been through all the steps needed, so try this for yourself.
 
@@ -147,11 +147,17 @@ What about `systemctl status httpd`?
 <p>
 
 - Go to **Inventories** → **Workshop Inventory**
+
 - In the **HOSTS** view select all hosts and click **RUN COMMANDS**
+
 - **MODULE:** command
+
 - **ARGUMENTS:** systemctl status httpd
+
 - **MACHINE CREDENTIALS:** Workshop Credentials
+
 - Click **LAUNCH**
+
 </p>
 </details>
 

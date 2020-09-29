@@ -7,15 +7,15 @@ weight = 7
 
 <!-- TOC -->
 
-    - [Table of Contents](#table-of-contents)
+- [Table of Contents](#table-of-contents)
 - [Objective](#objective)
 - [advanced lab](#advanced-lab)
 
 <!-- /TOC -->
 
-# Objective
+## Objective
 
-# advanced lab
+## advanced lab
 
 Write a lab based on this blog post
 

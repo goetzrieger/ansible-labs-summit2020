@@ -5,11 +5,11 @@ weight = 5
 
 After boot-strapping the Tower configuration from bottom up you are ready to start a job in your Tower cluster. In one of your Tower nodes web UI’s:
 
-  - Open the **Templates** view
+- Open the **Templates** view
 
-  - Look for the **Install Apache** Template you created with the script
+- Look for the **Install Apache** Template you created with the script
 
-  - Run it by clicking the rocket icon.
+- Run it by clicking the rocket icon.
 
 At first this is not different from a standard Tower setup. But as this is a cluster of active Tower instances every instance could have run the job.
 
@@ -29,17 +29,15 @@ To see on what instance a job actually run go back to the **Instance Groups** vi
 
 ### Using the API
 
-  - First find the job ID: In the web UI access **VIEWS→Jobs**
+- First find the job ID: In the web UI access **VIEWS→Jobs**
 
-  - The jobs names are prefixed with the job ID, example **3 - Install
-    Apache**
+- The jobs names are prefixed with the job ID, example **3 - Install Apache**
 
 {{% notice note %}}
 Make sure you choose a job with type "Playbook run".
 {{% /notice %}}
 
-  - With the ID you can query the API for the instance/node the job was
-    executed on
+- With the ID you can query the API for the instance/node the job was executed on
 
 Bring up the terminal in your VSCode session and run:
 
@@ -65,15 +63,15 @@ Another way to query the Tower API is using a browser. For example to have a loo
 Note you used the internal hostname above, when using your browser, you have to use the external hostname, of course.
 {{% /notice %}}
 
-  - Find the job ID
+- Find the job ID
 
-  - Now get the job details via the API interface:
+- Now get the job details via the API interface:
 
-      - Login to the API with user `admin` and password `{{< param "secret_password" >}}`: `https://{{< param "external_tower" >}}/api/`
+  - Login to the API with user `admin` and password `{{< param "secret_password" >}}`: `https://{{< param "external_tower" >}}/api/`
 
-      - Open the URL `https://{{< param "external_tower" >}}/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
+  - Open the URL `https://{{< param "external_tower" >}}/api/v2/jobs/<ID>/` where `<ID>` is the number of the job you just looked up in the UI.
 
-      - Search the page for the string you are interested in, e.g. `execution_node`
+  - Search the page for the string you are interested in, e.g. `execution_node`
 
 {{% notice tip %}}
 You can of course query any Tower node.

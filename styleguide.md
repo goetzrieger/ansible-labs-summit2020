@@ -66,3 +66,23 @@ In these labs the users often have to interact with UIs, and thus pieces of the 
 ```
 Click on **INVENTORY** and afterwards note the **TYPE** column with the key word **Inventory**.
 ```
+
+## VS Code Extensions and settings
+
+If using Visual Studio Code the following extension can be used to simplify editing and making sure best practices are followed:
+
+- Markdown TOC - automatically creates TOC and makes sure they are up to date
+
+- markdownlint - will highlight violations of Markdown best practices - note there is a .markdownlint.json in the root of the project with some exception rules
+
+- Code Spell Checker - will check for typos - note there is a local dictionary in this project with some exceptions
+
+- also make sure you have the following configuration:
+
+  - remove trailing white space at the end of a line
+
+    "files.trimTrailingWhitespace": true
+
+  - remove trailing empty lines at the end of the file
+
+    "files.trimFinalNewlines": true

@@ -19,9 +19,9 @@ Variables and their values can be defined in various places: the inventory, addi
 
 The recommended practice to provide variables in the inventory is to define them in files located in two directories named `host_vars` and `group_vars`:
 
-  - To define variables for a group `servers`, a YAML file named `group_vars/servers` with the variable definitions is created.
+- To define variables for a group `servers`, a YAML file named `group_vars/servers` with the variable definitions is created.
 
-  - To define variables specifically for a host `node1`, the file `host_vars/node1` with the variable definitions is created.
+- To define variables specifically for a host `node1`, the file `host_vars/node1` with the variable definitions is created.
 
 {{% notice tip %}}
 Host variables take precedence over group variables (more about precedence can be found in the [docs](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable)).
@@ -39,14 +39,14 @@ On the ansible control host, as the `student` user, create the directories to ho
 
 Now create two files containing variable definitions. We’ll define a variable named `stage` which will point to different environments, `dev` or `prod`:
 
-  - Create the file `~/ansible-files/group_vars/web` with this content:
+- Create the file `~/ansible-files/group_vars/web` with this content:
 
 ```yaml
 ---
 stage: dev
 ```
 
-  - Create the file `~/ansible-files/host_vars/node2` with this content:
+- Create the file `~/ansible-files/host_vars/node2` with this content:
 
 ```yaml
 ---
@@ -158,7 +158,7 @@ Or what about only looking for memory related facts:
 
 ## Challenge Lab: Facts
 
-  - Try to find and print the distribution (Red Hat) of your managed hosts. On one line, please.
+- Try to find and print the distribution (Red Hat) of your managed hosts. On one line, please.
 
 {{% notice tip %}}
 Use grep to find the fact, then apply a filter to only print this fact.

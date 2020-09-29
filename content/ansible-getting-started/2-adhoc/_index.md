@@ -153,6 +153,7 @@ Now let's see how we can run a good ol' fashioned Linux command and format the o
 node1 | CHANGED | rc=0 >>
 uid=1001(student1) gid=1001(student1) Gruppen=1001(student1) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
+
 In this case the module is called `command` and the option passed with `-a` is the actual command to run. Try to run this ad hoc command on all managed hosts using the `all` host pattern.
 
 Another example: Have a quick look at the kernel versions your hosts are running:
@@ -235,9 +236,11 @@ Managed by Ansible
 
 Run the `ansible node1 -m copy …​` command from above again. Note:
 
-  - The different output color (proper terminal config provided).
-  - The change from `"changed": true,` to `"changed": false,`.
-  - The first line says `SUCCESS` instead of `CHANGED`.
+- The different output color (proper terminal config provided).
+
+- The change from `"changed": true,` to `"changed": false,`.
+
+- The first line says `SUCCESS` instead of `CHANGED`.
 
 {{% notice tip %}}
 This makes it a lot easier to spot changes and what Ansible actually did.
@@ -245,13 +248,13 @@ This makes it a lot easier to spot changes and what Ansible actually did.
 
 ## Challenge Lab: Modules
 
-  - Using `ansible-doc`
+- Using `ansible-doc`
 
-      - Find a module that uses yum to manage software packages.
+  - Find a module that uses yum to manage software packages.
 
-      - Look up the help examples for the module to learn how to install a package in the latest version.
+  - Look up the help examples for the module to learn how to install a package in the latest version.
 
-  - Run an Ansible ad hoc command to install the package "vim" in the latest version on all available nodes.
+- Run an Ansible ad hoc command to install the package "vim" in the latest version on all available nodes.
 
 {{% notice tip %}}
 Use the copy ad hoc command from above as a template and change the module and options.

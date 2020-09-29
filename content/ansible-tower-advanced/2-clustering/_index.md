@@ -25,9 +25,9 @@ The Appendix contains some installation considerations and an installer inventor
 For the first contact to your cluster open your browser and login to the
 Tower node 1 web UIs as:
 
-  - user **admin**
+- user **admin**
 
-  - password **{{< param "secret_password" >}}**
+- password **{{< param "secret_password" >}}**
 
 {{% notice warning %}}
 Use the pre-created URLs from the lab landing page or replace **{{< param "labid" >}}** with the session ID and **{{< param "student" >}}** with your student number!
@@ -43,7 +43,7 @@ To dig deeper click on **INSTANCES** to get more information about the instances
 
 > You’ll learn more about this later.
 
-## Access your Tower Cluster via Commandline
+## Access your Tower Cluster via Command line
 
 You can also get information about your cluster on the command line. Log in to your **code-server** again if you closed it by opening this URL in your browser:
 

@@ -21,12 +21,13 @@ The survey feature only provides a simple query for data - it does not support f
 
 ## The Apache-configuration Role
 
-The Playbook and the role with the Jinja template already exist in the Github repository **https://github.com/ansible/workshop-examples** (always using the [correct tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020)) in the directory `rhel/apache`.
+The Playbook and the role with the Jinja template already exist in the Github repository [https://github.com/ansible/workshop-examples](https://github.com/ansible/workshop-examples) (always using the [correct tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020)) in the directory `rhel/apache`.
 
  Head over to the Github UI and have a look at the content: the playbook `apache_role_install.yml` merely references the role. The role can be found in the `roles/role_apache` subdirectory.
 
- - Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\.
- - Also, check out the tasks in `tasks/main.yml` that deploy the file from the template.
+- Inside the role, note the two variables in the `templates/index.html.j2` template file marked by `{{…​}}`\.
+
+- Also, check out the tasks in `tasks/main.yml` that deploy the file from the template.
 
 What is this Playbook doing? It creates a file (**dest**) on the managed hosts from the template (**src**).
 
@@ -46,15 +47,15 @@ Now you create a new Template that includes a survey.
 
 - Configure the template to:
 
-    - Use the `Webserver` Inventory
+  - Use the `Webserver` Inventory
 
-    - Use the `Ansible Workshop Examples` **Project**
+  - Use the `Ansible Workshop Examples` **Project**
 
-    - Use the `apache_role_install.yml` **Playbook**
+  - Use the `apache_role_install.yml` **Playbook**
 
-    - Use the `Workshop Credentials`
+  - Use the `Workshop Credentials`
 
-    - To run with privilege escalation
+  - To run with privilege escalation
 
 Try for yourself, the solution is below.
 
@@ -62,13 +63,21 @@ Try for yourself, the solution is below.
 <p>
 
 - **NAME:** Create index.html
+
 - **JOB TYPE:** Run
+
 - **INVENTORY:** Webserver
+
 - **PROJECT:** Ansible Workshop Examples
+
 - **PLAYBOOK:** `rhel/apache/apache_role_install.yml`
+
 - **CREDENTIAL:** Workshop Credentials
+
 - **OPTIONS:** Enable Privilege Escalation
+
 - Click **SAVE**
+
 </p>
 </details>
 
@@ -82,21 +91,21 @@ Do not run the template yet!
 
 - Under **ADD SURVEY PROMPT** fill in:
 
-    - **PROMPT:** First Line
+  - **PROMPT:** First Line
 
-    - **ANSWER VARIABLE NAME:** first_line
+  - **ANSWER VARIABLE NAME:** first_line
 
-    - **ANSWER TYPE:** Text
+  - **ANSWER TYPE:** Text
 
 - Click **+ADD**
 
 - In the same way add a second **Survey Prompt**
 
-    - **PROMPT:** Second Line
+  - **PROMPT:** Second Line
 
-    - **ANSWER VARIABLE NAME:** second_line
+  - **ANSWER VARIABLE NAME:** second_line
 
-    - **ANSWER TYPE:** Text
+  - **ANSWER TYPE:** Text
 
 - Click **+ADD**
 
@@ -124,6 +133,7 @@ $ curl http://node1
 <h1>This is survey field "Second Line": line two</h1>
 </body>
 ```
+
 Note how the two variables where used by the playbook to create the content of the `index.html` file.
 
 ## What About Some Practice?

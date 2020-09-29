@@ -3,7 +3,7 @@ title = "Templates"
 weight = 6
 +++
 
-Ansible uses Jinja2 templating to modify files before they are distributed to managed hosts. Jinja2 is one of the most used templating engines for Python (<http://jinja.pocoo.org/>).
+Ansible uses Jinja2 templating to modify files before they are distributed to managed hosts. [Jinja2](http://jinja.pocoo.org) is one of the most used templating engines for Python.
 
 ## Using Templates in Playbooks
 
@@ -41,13 +41,13 @@ Next we need a playbook to use this template. In the `~/ansible-files/` director
 
 You have done this a couple of times by now:
 
-  - Understand what the Playbook does.
+- Understand what the Playbook does.
 
-  - Execute the Playbook `motd-facts.yml`.
+- Execute the Playbook `motd-facts.yml`.
 
-  - Login to `node1` via SSH and check the message of the day content.
+- Login to `node1` via SSH and check the message of the day content.
 
-  - Log out of `node1`.
+- Log out of `node1`.
 
 You should see how Ansible replaces the variables with the facts it discovered from the system.
 
@@ -55,18 +55,17 @@ You should see how Ansible replaces the variables with the facts it discovered f
 
 Add a line to the template to list the current kernel of the managed node.
 
-  - Find a fact that contains the kernel version using the commands you learned in the "Ansible Facts" chapter.
+- Find a fact that contains the kernel version using the commands you learned in the "Ansible Facts" chapter.
 
 {{% notice tip %}}
 Do a `grep -i` for kernel
 {{% /notice %}}
 
+- Change the template to use the fact you found.
 
-  - Change the template to use the fact you found.
+- Run the Playbook again.
 
-  - Run the Playbook again.
-
-  - Check motd by logging in to node1
+- Check motd by logging in to node1
 
 <details><summary> **>>Click here for Solution<<** </summary>
 <p>

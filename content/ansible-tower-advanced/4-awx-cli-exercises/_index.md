@@ -106,7 +106,6 @@ Note that the first parameter to **awx** is different here since we work on the 
 
 Before running an Ansible **Job** from your Tower cluster you must create a **Job Template**, again business as usual for Tower users. Here **awx** will work on the resource **job\_template**. Add the following command to your script **`setup-tower.sh`**. Don’t run the script yet.
 
-
     awx -f human job_templates create  \
         --name="Install Apache" \
         --inventory="Example Inventory" \
@@ -121,18 +120,17 @@ And finally we need to attach the credentials we created above to the Job Templa
     awx -f human job_template associate --name "Install Apache" \
         --credential "Example Credentials"
 
-
 ## Review the final script and execute it
 
 Verify that your script has all the pieces needed to properly configure Tower:
 
-  - inventory with hosts
+- inventory with hosts
 
-  - machine credentials and credentials for Git
+- machine credentials and credentials for Git
 
-  - project
+- project
 
-  - job template
+- job template
 
 The final script is also shown here:
 
