@@ -27,8 +27,8 @@ Concepts are explained when they are introduced along with the practice exercise
 
 <!-- ## Ansible Collections Exercises -->
 
-The workshop is structured in a set of progressive exercises, covering collections creation,
-usage from playbooks, roles and Tower and an introduction to Ansible Automation Hub.
+<!-- The workshop is structured in a set of progressive exercises, covering collections creation,
+usage from playbooks, roles and Tower and an introduction to Ansible Automation Hub. -->
 
 - [Exercise 1 - Create Collections](./1-create-collections)
 - [Exercise 2 - Collections from playbook](./2-collections-from-playbook)
@@ -36,14 +36,11 @@ usage from playbooks, roles and Tower and an introduction to Ansible Automation 
 - [Exercise 4 - Collections from tower](./4-collections-from-tower)
 - [Exercise 5 - Use Automation Hub](./5-use-automation-hub)
 
-## Additional Information
+## Additional Resources
 
 - [Ansible Docs: Using Collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html)
-
 - [Ansible Collections Overview](https://github.com/ansible-collections/overview)
-
 - [Ansible Docs: Developing Collections](https://docs.ansible.com/ansible/devel/dev_guide/developing_collections.html)
-
 - [Blog Post: Introducing: The AWX and Ansible Tower Collections](https://www.ansible.com/blog/introducing-the-awx-collection)
 
 <!-- ## Authors
