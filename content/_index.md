@@ -6,4 +6,6 @@
 
 [Ansible Tower Advanced](./ansible-tower-advanced/)
 
+[Ansible Collections](./ansible-collections/)
+
 [Visual Studio Code - Introduction](./vscode-intro)
