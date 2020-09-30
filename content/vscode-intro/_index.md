@@ -1,6 +1,6 @@
 +++
 title = "Visual Studio Code - Introduction"
-weight = 4
+weight = 5
 +++
 
 To make it easier for you to perform the tasks described in this workshop, we provide an Visual Studio Code Server for you. This web based IDE allows you to write and edit your Ansible Playbooks and execute command with the built-in Terminal. This part of the Workshop documentation will give you a very quick introduction.

@@ -1,6 +1,6 @@
 +++
 title = "Ansible Collections"
-weight = 1
+weight = 4
 +++
 
 ## Ansible Collections Workshop

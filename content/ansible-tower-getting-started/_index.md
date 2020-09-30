@@ -1,6 +1,6 @@
 +++
 title = "Ansible Tower Getting Started"
-weight = 2
+weight = 3
 +++
 
 ## Ansible Tower Getting Started
