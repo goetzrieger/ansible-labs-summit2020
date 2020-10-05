@@ -100,10 +100,6 @@ Even if a good role is generally self-explanatory, it still makes sense to have 
 
 The roles are empty, so we need to add a few tasks to each. In the last chapters we set up an Apache webserver and used some security tasks. Let’s add that code to our roles by editing the two task files:
 
-{{% notice warning %}}
-If you copy and paste text in VI under a comment (\#) character, Vi might (depending on settings) add comment signs to the start of each new line. Probably not what you want. Because the role files are being created with a comment line after the YAML start (---), make sure to delete these lines before pasting the content.
-{{% /notice %}}
-
     [{{< param "control_prompt" >}} structured-content]$ cat roles/apache/tasks/main.yml
     ---
     # tasks file for apache
