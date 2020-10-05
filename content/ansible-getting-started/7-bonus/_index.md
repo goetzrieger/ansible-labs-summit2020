@@ -9,13 +9,13 @@ You have finished the lab already. But it doesn’t have to end here. We prepare
 
 Create a new user `testuser` on `node1` and `node3` with a comment using an ad hoc command, make sure that it is not created on `node2`!
 
-  - Find the parameters for the appropriate module using `ansible-doc user` (leave with `q`)
+- Find the parameters for the appropriate module using `ansible-doc user` (leave with `q`)
 
-  - Use an Ansible ad hoc command to create the user with the comment `Test D User`
+- Use an Ansible ad hoc command to create the user with the comment `Test D User`
 
-  - Use the `command` module with the proper invocation to find the userid
+- Use the `command` module with the proper invocation to find the userid
 
-  - Delete the user and check it has been deleted
+- Delete the user and check it has been deleted
 
 {{% notice tip %}}
 Remember privilege escalation…​
@@ -42,13 +42,13 @@ You have learned the basics about Ansible templates, variables and handlers. Let
 
 Instead of editing and copying `httpd.conf` why don’t you just define a variable for the listen port and use it in a template? Here is your job:
 
-  - Define a variable `listen_port` for the `web` group with the value `8080` and another for `node2` with the value `80` using the proper files.
+- Define a variable `listen_port` for the `web` group with the value `8080` and another for `node2` with the value `80` using the proper files.
 
-  - Copy the `httpd.conf` file into the template `httpd.conf.j2` that uses the `listen_port` variable instead of the hard-coded port number.
+- Copy the `httpd.conf` file into the template `httpd.conf.j2` that uses the `listen_port` variable instead of the hard-coded port number.
 
-  - Write a Playbook that deploys the template and restarts Apache on changes using a handler.
+- Write a Playbook that deploys the template and restarts Apache on changes using a handler.
 
-  - Run the Playbook and test the result using `curl`.
+- Run the Playbook and test the result using `curl`.
 
 {{% notice tip %}}
 Remember the `group_vars` and `host_vars` directories? If not, refer to the chapter [Using Variables](../4-variables/).
@@ -67,11 +67,12 @@ Add this line to `host_vars/node2`:
 ```ini
 listen_port: 80
 ```
+
 ### Prepare the template:
 
-  - Copy `httpd.conf` to `httpd.conf.j2`
+- Copy `httpd.conf` to `httpd.conf.j2`
 
-  - Edit the `Listen` directive in `httpd.conf.j2` to make it look like this:
+- Edit the `Listen` directive in `httpd.conf.j2` to make it look like this:
 
 <!-- {% raw %} -->
 ```ini
@@ -121,6 +122,6 @@ First run the playbook itself, then run curl against `node1` with port `8080` an
 </body>
 ```
 
-# The End
+## The End
 
 Congratulations, you finished your labs\! We hope you enjoyed your first encounter with Ansible as much as we enjoyed creating the labs.

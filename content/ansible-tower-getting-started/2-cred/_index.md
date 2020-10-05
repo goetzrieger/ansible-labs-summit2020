@@ -134,7 +134,6 @@ The simple **ping** module doesn’t need options. For other modules you need to
 
 - **ARGUMENTS:** id
 
-
 <!-- {{% notice tip %}}
 After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to "Arguments". This is handy, give it a try.
 {{% /notice %}} -->
