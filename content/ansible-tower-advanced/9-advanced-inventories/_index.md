@@ -25,28 +25,30 @@ First you need a source. In **real life** this would be your **cloud provider, y
 
 Use curl to query your external inventory source:
 
-    [student@ansible-1 ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
-    {
-        "dyngroup":{
-            "hosts":[
-                "cloud1.cloud.example.com",
-                "cloud2.cloud.example.com"
-            ],
-            "vars":{
-                "var1": true
-            }
-        },
-        "_meta":{
-            "hostvars":{
-                "cloud1.cloud.example.com":{
-                    "type":"web"
-                },
-                "cloud2.cloud.example.com":{
-                    "type":"database"
-                }
+```bash
+[{{< param "control_prompt" >}} ~]$ curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
+{
+    "dyngroup":{
+        "hosts":[
+            "cloud1.cloud.example.com",
+            "cloud2.cloud.example.com"
+        ],
+        "vars":{
+            "var1": true
+        }
+    },
+    "_meta":{
+        "hostvars":{
+            "cloud1.cloud.example.com":{
+                "type":"web"
+            },
+            "cloud2.cloud.example.com":{
+                "type":"database"
             }
         }
     }
+}
+```
 
 Well, this is handy, the output is already configured as JSON like Ansible would expect… ;-)
 
@@ -60,15 +62,17 @@ An inventory script has to follow some conventions. It must accept the **--list*
 
 As looping over all hosts and calling the script with **--host** can be pretty slow, it is possible to return a top level element called "\_meta" with all of the host variables in one script run. And this is what we’ll do. So this is our custom inventory script:
 
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    if [ "$1" == "--list" ] ; then
-      curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
-    elif [ "$1" == "--host" ]; then
-      echo '{"_meta": {"hostvars": {}}}'
-    else
-      echo "{ }"
-    fi
+if [ "$1" == "--list" ] ; then
+    curl https://raw.githubusercontent.com/goetzrieger/ansible-labs-playbooks/master/inventory_list
+elif [ "$1" == "--host" ]; then
+    echo '{"_meta": {"hostvars": {}}}'
+else
+    echo "{ }"
+fi
+```
 
 What it basically does is to return the data collected by curl when called with **--list** and as the data includes **\_meta** information about the host variables Ansible will not call it with **--host**. The curl command is of course the place where your script would get data by whatever means, format it as proper JSON and return it.
 
@@ -78,32 +82,36 @@ But before we integrate the custom inventory script into our Tower cluster, it�
 - Create the file `dyninv.sh` with the content shown above (use VI or the VSCode editor)
 - Make the script executable:
 
-        [student@ansible-1 ~]$ chmod +x dyninv.sh
+```bash
+[{{< param "control_prompt" >}} ~]$ chmod +x dyninv.sh
+```
 
 - Execute it:
 
-        [student@ansible-1 ~]$ ./dyninv.sh --list
-        {
-            "dyngroup":{
-                "hosts":[
-                    "cloud1.cloud.example.com",
-                    "cloud2.cloud.example.com"
-                ],
-                "vars":{
-                    "var1": true
-                }
+```bash
+[{{< param "control_prompt" >}} ~]$ ./dyninv.sh --list
+{
+    "dyngroup":{
+        "hosts":[
+            "cloud1.cloud.example.com",
+            "cloud2.cloud.example.com"
+        ],
+        "vars":{
+            "var1": true
+        }
+    },
+    "_meta":{
+        "hostvars":{
+            "cloud1.cloud.example.com":{
+                "type":"web"
             },
-            "_meta":{
-                "hostvars":{
-                    "cloud1.cloud.example.com":{
-                        "type":"web"
-                    },
-                    "cloud2.cloud.example.com":{
-                        "type":"database"
-                    }
-                }
+            "cloud2.cloud.example.com":{
+                "type":"database"
             }
         }
+    }
+}
+```
 
 The script should output the JSON-formatted output shown above.
 
@@ -308,9 +316,11 @@ And to make this a bit more fun:
 
 - SSH into one of your hosts (say **{{< param "internal_host2" >}}**) as     `ec2-user` from your VSCode terminal and set SELinux to permissive:
 
-        [student@ansible-1 ~]$ ssh ec2-user@{{< param "internal_host2" >}}
-        [ec2-user@node2 ~]$ sudo -i
-        [root@node2 ~]# sudo setenforce 0
+```bash
+[{{< param "control_prompt" >}} ~]$ ssh ec2-user@{{< param "internal_host2" >}}
+[ec2-user@node2 ~]$ sudo -i
+[root@node2 ~]# sudo setenforce 0
+```
 
 - Run the **Install Apache** template again to update the facts.
 

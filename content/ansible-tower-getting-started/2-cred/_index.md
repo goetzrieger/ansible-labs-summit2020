@@ -88,7 +88,7 @@ Click the ![plus](../../images/green_plus.png?classes=inline) button to add new 
 - **PRIVILEGE ESCALATION METHOD:** sudo
 
 {{% notice tip %}}
-Whenever you see a magnifiying glass icon next to an input field, clicking it will open a list to choose from.
+Whenever you see a magnifying glass icon next to an input field, clicking it will open a list to choose from.
 {{% /notice %}}
 
 As we are using SSH key authentication, you have to provide an SSH private key that can be used to access the hosts. You could also configure password authentication here.
@@ -133,7 +133,6 @@ The simple **ping** module doesn’t need options. For other modules you need to
 - **MODULE:** command
 
 - **ARGUMENTS:** id
-
 
 <!-- {{% notice tip %}}
 After choosing the module to run, Tower will provide a link to the docs page for the module when clicking the question mark next to "Arguments". This is handy, give it a try.

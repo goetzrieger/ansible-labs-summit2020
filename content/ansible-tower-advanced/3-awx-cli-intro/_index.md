@@ -14,11 +14,10 @@ We’ve incorporated different ways to work with Tower in this lab guide and hop
 We’ll install it on your Tower node1 using the official repository RPM packages. Use the VSCode terminal window you opened before to install **AWX CLI** as `root`:
 
 ```bash
-    [student@ansible-1 ~]$ sudo -i
-    [{{< param "internal_control" >}} ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
-    [{{< param "internal_control" >}} ~]# yum install ansible-tower-cli -y
-    [{{< param "internal_control" >}} ~]# exit
-    [student@ansible-1 ~]$
+[{{< param "control_prompt" >}} ~]$ sudo -i
+[{{< param "internal_control" >}} ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
+[{{< param "internal_control" >}} ~]# yum install ansible-tower-cli -y
+[{{< param "internal_control" >}} ~]# exit
 ```
 
 {{% notice warning %}}
@@ -32,10 +31,10 @@ Replace student number and labid!
 {{% /notice %}}
 
 ```bash
-    [student@ansible-1 ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
-    [student@ansible-1 ~]$ export TOWER_USERNAME=admin
-    [student@ansible-1 ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
-    [student@ansible-1 ~]$ export TOWER_VERIFY_SSL=false
+[{{< param "control_prompt" >}} ~]$ export TOWER_HOST=https://{{< param "external_tower" >}}
+[{{< param "control_prompt" >}} ~]$ export TOWER_USERNAME=admin
+[{{< param "control_prompt" >}} ~]$ export TOWER_PASSWORD='{{< param "secret_password" >}}'
+[{{< param "control_prompt" >}} ~]$ export TOWER_VERIFY_SSL=false
 ```
 
 {{% notice tip %}}
@@ -45,7 +44,7 @@ Feel free to write this into a new file using the code-server editor and then to
 Then use **awx** to login and print out the access token and to save it to a file at the same time:
 
 ```bash
-    [student@ansible-1 ~]$ awx login -f human | tee token
+[{{< param "control_prompt" >}} ~]$ awx login -f human | tee token
 ```
 
 {{% notice tip %}}
@@ -55,18 +54,18 @@ We are saving the **export TOWER_OAUTH_TOKEN=\<YOUR_TOKEN\>** command line outpu
 Finally set the environment variable with the token using the line the command printed out:
 
 ```bash
-    [student@ansible-1 ~]$ source token
+[{{< param "control_prompt" >}} ~]$ source token
 ```
 
 Now that the access token is available in your shell, test **awx** is working. First run it without arguments to get a
 list of resources you can manage with it:
 
-    [student@ansible-1 ~]$ awx --help
+    [{{< param "control_prompt" >}} ~]$ awx --help
 
 And then test something, e.g. (leave out **-f human** if you're a JSON fan...) ;)
 
 ```bash
-    [student@ansible-1 ~]$ awx -f human user list
+[{{< param "control_prompt" >}} ~]$ awx -f human user list
 ```
 
 {{% notice tip %}}
@@ -75,16 +74,16 @@ When trying to find a **awx** command line for something you want to do, just mo
 
 Example: Need to create an inventory...
 
-    [student@ansible-1 ~]$ awx --help
+    [{{< param "control_prompt" >}} ~]$ awx --help
 
 Okay, there is an **inventory** resource. Let’s see…
 
-    [student@ansible-1 ~]$ awx inventory
+    [{{< param "control_prompt" >}} ~]$ awx inventory
 
 Well, the **create** action sounds like what I had in mind. But what arguments do I
 need? Just run:
 
-    [student@ansible-1 ~]$ awx inventory create
+    [{{< param "control_prompt" >}} ~]$ awx inventory create
 
 And you'll get the required and optional arguments for the **create** action!
 
@@ -108,9 +107,9 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 <p>
 
 ```bash
-    [student@ansible-1 ~]$ awx setting list | grep SESSION
-    [student@ansible-1 ~]$ awx setting modify SESSION_COOKIE_AGE 7200
-    [student@ansible-1 ~]$ awx setting list | grep SESSION
+[{{< param "control_prompt" >}} ~]$ awx setting list | grep SESSION
+[{{< param "control_prompt" >}} ~]$ awx setting modify SESSION_COOKIE_AGE 7200
+[{{< param "control_prompt" >}} ~]$ awx setting list | grep SESSION
 ```
 
 </p>

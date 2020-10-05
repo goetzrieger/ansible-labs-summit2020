@@ -26,8 +26,8 @@ Create a directory in your lab named `dir_name` and cd into it. This directory w
 whole exercise.
 
 ```bash
-mkdir exercise-05
-cd exercise-05
+[{{< param "control_prompt" >}} ~]$ mkdir exercise-05
+[{{< param "control_prompt" >}} exercise-05 ]$ cd exercise-05
 ```
 
 Collection have two default lookup paths that are searched:
@@ -94,7 +94,7 @@ customized lately.
 Create the following collection:
 
 ```bash
-ansible-galaxy collection init --init-path ansible_collections redhat.workshop_demo_collection
+[{{< param "control_prompt" >}} ~]$ ansible-galaxy collection init --init-path ansible_collections redhat.workshop_demo_collection
 ```
 
 The `--init-path` flag is used to define a custom path in which the skeleton will be initialized.
@@ -104,7 +104,7 @@ the `workshop_demo_collection` in the `redhat` namespace.
 The command created the following skeleton:
 
 ```bash
-$ tree ansible_collections/redhat/workshop_demo_collection/
+[{{< param "control_prompt" >}} ~]$ tree ansible_collections/redhat/workshop_demo_collection/
 ansible_collections/redhat/workshop_demo_collection/
 ├── docs
 ├── galaxy.yml
@@ -125,8 +125,8 @@ In this workshop we are going to create a minimal *Hello World* module and insta
 First, create the `plugins/modules` directory:
 
 ```bash
-cd ansible_collections/redhat/workshop_demo_collection
-mkdir plugins/modules
+[{{< param "control_prompt" >}} ~]$ cd ansible_collections/redhat/workshop_demo_collection
+[{{< param "control_prompt" >}} workshop_demo_collection}} ]$ mkdir plugins/modules
 ```
 
 Create the `demo_hello.py` module in the the new folder. The `demo_hello` module says Hello in different languages to custom defined users. Take your time to look at the module code and understand its behavior.
@@ -234,9 +234,7 @@ Make sure you are in the root directory of your ansible collection before execut
 {{% /notice %}}
 
 ```bash
-$ pwd
-exercise-05/ansible_collections/redhat/workshop_demo_collection
-$ ansible-galaxy init --init-path roles hello_motd
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy init --init-path roles hello_motd
 ```
 
 Create the following tasks in the `roles/hello_motd/tasks/main.yml` file:
@@ -274,7 +272,7 @@ friend_name: "John Doe"
 The skeleton generates a complete structure files and folder. We can clean up the unused ones:
 
 ```bash
-rm -rf roles/demo_image_builder/{handlers,vars,tests}
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ rm -rf roles/demo_image_builder/{handlers,vars,tests}
 ```
 
 Customize the `roles/hello_motd/meta/main.yml` file to define Galaxy metadata and potential dependencies of the role. Use this sample minimal content:
@@ -300,7 +298,7 @@ Once completed the creation task we can build the collection and generate a .tar
 From the collection folder run the following command:
 
 ```bash
-ansible-galaxy collection build
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection build
 ```
 
 The above command will create the file `redhat-workshop_demo_collection-1.0.0.tar.gz`. Notice the semantic x.y.z versioning.
@@ -308,7 +306,7 @@ The above command will create the file `redhat-workshop_demo_collection-1.0.0.ta
 Once created the file can be installed in the `COLLECTIONS_PATH` to be tested locally:
 
 ```bash
-ansible-galaxy collection install redhat-workshop_demo_collection-1.0.0.tar.gz
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection install redhat-workshop_demo_collection-1.0.0.tar.gz
 ```
 
 By default the collection will be installed in the `~/.ansible/collections/ansible_collections` folder. Now the collection can be tested locally.
@@ -318,15 +316,15 @@ By default the collection will be installed in the `~/.ansible/collections/ansib
 Create the `exercise-05/collections_test` folder to execute the local test:
 
 ```bash
-cd ~/exercise-05
-mkdir collections_test
-cd collections_test
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ cd ~/exercise-05
+[{{< param "control_prompt" >}} exercise-05 ]$ mkdir collections_test
+[{{< param "control_prompt" >}} exercise-05 ]$ cd collections_test
 ```
 
 Create a basic `playbook.yml` file with the following contents:
 
 ```bash
-cat > playbook.yml << EOF
+[{{< param "control_prompt" >}} collections_test ]$ cat > playbook.yml << EOF
 ---
 - hosts: localhost
 
@@ -343,7 +341,7 @@ Run the test playbook. Since some tasks require privilege escalation use the `-K
 TODO: Replace playbook output with correct output!
 
 ```bash
-$ ansible-playbook playbook.yml
+[{{< param "control_prompt" >}} collections_test ]$ ansible-playbook playbook.yml
 
 PLAY [localhost] ********************************************************************************************
 

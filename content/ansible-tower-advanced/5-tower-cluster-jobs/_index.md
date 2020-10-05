@@ -46,9 +46,9 @@ Replace **\<ID>** with the job ID you want to query!
 {{% /notice %}}
 
 ```bash
-    curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python3 -m json.tool | grep execution_node
+[{{< param "control_prompt" >}} ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/jobs/<ID>/ | python3 -m json.tool | grep execution_node
 
-        "execution_node": "{{< param "internal_tower1" >}}",
+    "execution_node": "{{< param "internal_tower1" >}}",
 ```
 
 {{% notice tip %}}

@@ -17,12 +17,15 @@ Remember how you used the **awx** help to get down to the needed command.
 
 <details><summary><b>Click here for Solution</b></summary>
 <p>
+
+```bash
+[{{< param "control_prompt" >}} ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
 ```
-[student@ansible-1 ~]$ awx -f human inventory create --name "Example Inventory" --organization "Default"
-```
+
 {{% notice note %}}
 You can work with multiple organizations in Tower. In this lab we’ll work in the **Default** organization.
 {{% /notice %}}
+
 </p>
 </details>
 
@@ -33,10 +36,12 @@ Now that we have the empty inventory created, add your two managed hosts using t
 
 <details><summary><b>Click here for Solution</b></summary>
 <p>
+
+```bash
+[{{< param "control_prompt" >}} ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" --inventory "Example Inventory"
+[{{< param "control_prompt" >}} ~]$ awx -f human host create --name "{{< param "internal_host2" >}}" --inventory "Example Inventory"
 ```
-[student@ansible-1 ~]$ awx -f human host create --name "{{< param "internal_host1" >}}" --inventory "Example Inventory"
-[student@ansible-1 ~]$ awx -f human host create --name "{{< param "internal_host2" >}}" --inventory "Example Inventory"
-```
+
 </p>
 </details>
 
@@ -46,13 +51,15 @@ As mentioned one of the purposes of **awx** is to use it to automatically config
 
 In **code-server** create a new file **File->New File** and save it (**File->Save As**) as **`setup-tower.sh`**. Add the commands executed above:
 
-    #!/bin/bash
-    set +e  # avoid exiting if an object already exists.
-    awx -f human inventory create --name "Example Inventory" --organization "Default"
-    awx -f human host create --name "{{< param "internal_host1" >}}" \
-      --inventory "Example Inventory"
-    awx -f human host create --name "{{< param "internal_host2" >}}" \
-      --inventory "Example Inventory"
+```bash
+#!/bin/bash
+set +e  # avoid exiting if an object already exists.
+awx -f human inventory create --name "Example Inventory" --organization "Default"
+awx -f human host create --name "{{< param "internal_host1" >}}" \
+    --inventory "Example Inventory"
+awx -f human host create --name "{{< param "internal_host2" >}}" \
+    --inventory "Example Inventory"
+```
 
 {{% notice tip %}}
 You have run these commands above already, true. But we want to show how to create
@@ -62,8 +69,8 @@ the full script here. You'll get "Duplicate" messages because the objects alread
 Next, save the script and make the script executable in the terminal window. Then launch it:
 
 ```bash
-    [student@ansible-1 ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
-    [student@ansible-1 ~]$ /home/student{{< param "student" >}}/setup-tower.sh
+[{{< param "control_prompt" >}} ~]$ chmod u+x /home/student{{< param "student" >}}/setup-tower.sh
+[{{< param "control_prompt" >}} ~]$ /home/student{{< param "student" >}}/setup-tower.sh
 ```
 
 From now on we’ll explain the needed commands for each of the next steps and add them to the script one-by-one.

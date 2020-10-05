@@ -89,8 +89,10 @@ Next we add some directories:
 
 Now to the two roles we’ll use in this example. First we’ll create a structure where we’ll add content later. This can easily be achieved with the command `ansible-galaxy`: it creates **role skeletons** with all appropriate files, directories and so on already in place.
 
-    ansible-galaxy init --offline --init-path=roles security
-    ansible-galaxy init --offline --init-path=roles apache
+```bash
+[{{< param "control_prompt" >}} structured-content]$ ansible-galaxy init --offline --init-path=roles security
+[{{< param "control_prompt" >}} structured-content]$ ansible-galaxy init --offline --init-path=roles apache
+```
 
 {{% notice tip %}}
 Even if a good role is generally self-explanatory, it still makes sense to have proper documentation. The right location to document roles is the file **meta/main.yml**.
@@ -224,9 +226,9 @@ In real life, you should remove the unnecessary roles sub-directories to keep th
 Since we so far created the code only locally on the control host, we need to add it to the repository and push it:
 
 ```bash
-    [{{< param "control_prompt" >}} structured-content]$ git add production roles site.yml staging
-    [{{< param "control_prompt" >}} structured-content]$ git commit -m "Adding inventories and apache security roles"
-    [{{< param "control_prompt" >}} structured-content]$ git push
+[{{< param "control_prompt" >}} structured-content]$ git add production roles site.yml staging
+[{{< param "control_prompt" >}} structured-content]$ git commit -m "Adding inventories and apache security roles"
+[{{< param "control_prompt" >}} structured-content]$ git push
 ```
 
 ## Launch it\!
@@ -248,23 +250,23 @@ Call e.g. `curl {{< param "internal_host1" >}}` to get the default page.
 To configure and use this repository as a **Source Control Management (SCM)** system in Tower you have to create credentials again, this time to access the Git repository over SSH. This credential is user/key based, and we need the following **awx** command (assuming the `TOWER_` environment variables are still defined):
 
 ```bash
-    [{{< param "awx_prompt" >}} ~]# awx -f human credential create --name "Git Credentials" \
-              --organization "Default" \
-              --credential_type "Source Control" \
-              --inputs '{"username": "git", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
+[{{< param "awx_prompt" >}} ~]# awx -f human credential create --name "Git Credentials" \
+          --organization "Default" \
+          --credential_type "Source Control" \
+          --inputs '{"username": "git", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
 ```
 
 The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** like shown below.
 
 ```bash
-    [{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
-                        --organization Default \
-                        --scm_type git \
-                        --scm_url  {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
-                        --scm_clean 1 \
-                        --scm_update_on_launch 1 \
-                        --credential "Git Credentials"
+[{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
+                    --organization Default \
+                    --scm_type git \
+                    --scm_url  {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
+                    --scm_clean 1 \
+                    --scm_update_on_launch 1 \
+                    --credential "Git Credentials"
 ```
 
 Now you’ve created the Project in Tower. Earlier on the command line you’ve setup a staged environment by creating and using two different inventory files. But how can we get the same setup in Tower? We use another way to define Inventories\! It is possible to use inventory files provided in a SCM repository as an inventory source. This way we can use the inventory files we keep in Git.
@@ -313,13 +315,13 @@ Now create a template to execute the `site.yml` against both stages at the same 
 Please note that in a real world use case you might want to have different templates to address the different stages separatly.
 
 ```bash
-    [{{< param "control_prompt" >}} ~]# awx job_template create --name "Structured Content Execution" \
-                        --job_type run --inventory "Structured Content Inventory" \
-                        --project "Structured Content Repository" \
-                        --playbook "site.yml" \
-                        --become_enabled 1
-    [{{< param "control_prompt" >}} ~]# awx -f human job_template associate --name "Structured Content Execution" \
-                        --credential "Example Credentials"
+[{{< param "control_prompt" >}} ~]# awx job_template create --name "Structured Content Execution" \
+                    --job_type run --inventory "Structured Content Inventory" \
+                    --project "Structured Content Repository" \
+                    --playbook "site.yml" \
+                    --become_enabled 1
+[{{< param "control_prompt" >}} ~]# awx -f human job_template associate --name "Structured Content Execution" \
+                    --credential "Example Credentials"
 ```
 
 {{% /notice %}}
@@ -336,12 +338,12 @@ In enterprise environments it is common to share roles via internal git reposito
 To use external roles in a project, they need to be referenced in a file called [`roles/requirements.yml`](https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html#installing-multiple-roles-from-a-file), for example like this:
 
 ```yaml
-    # Import directly from Galaxy
-    - src: geerlingguy.nginx
-    # Import from a local Git repository
-    - src: http://control.example.com/gitea/git/external-role.git
-      version: master
-      name: external-role_locally
+# Import directly from Galaxy
+- src: geerlingguy.nginx
+# Import from a local Git repository
+- src: http://control.example.com/gitea/git/external-role.git
+  version: master
+  name: external-role_locally
 ```
 
 The `requirements.yml` needs to be read - either on the command line by invoking `ansible-galaxy`, or automatically by Ansible Tower during project check outs. In both cases the file is read, and the roles are checked out and stored locally, and the roles can be called in playbooks. The advantage of Tower here is that it takes care of all that - including authorization to the Git repo, finding a proper place to store the role, updating it when needed and so on.
@@ -373,24 +375,24 @@ Next, we reference the role itself in our playbook. Change the
 **site.yml** Playbook to look like this:
 
 ```bash
-    [{{< param "control_prompt" >}} structured-content]$ cat site.yml
-    ---
-    - name: Execute apache and security roles
-      hosts: all
+[{{< param "control_prompt" >}} structured-content]$ cat site.yml
+---
+- name: Execute apache and security roles
+  hosts: all
 
-      roles:
-        - { role: apache}
-        - { role: security }
-        - { role: shared-apache-role }
+  roles:
+    - { role: apache}
+    - { role: security }
+    - { role: shared-apache-role }
 ```
 
 Because Tower uses your Git repo, you’ve to add, commit and push the
 changes:
 
 ```bash
-    [{{< param "control_prompt" >}} structured-content]$ git add site.yml roles/
-    [{{< param "control_prompt" >}} structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
-    [{{< param "control_prompt" >}} structured-content]$ git push
+[{{< param "control_prompt" >}} structured-content]$ git add site.yml roles/
+[{{< param "control_prompt" >}} structured-content]$ git commit -m "Add roles/requirements.yml referencing shared role"
+[{{< param "control_prompt" >}} structured-content]$ git push
 ```
 
 ## Launch in Tower

@@ -18,7 +18,7 @@ For this lab, we will use the `ansible.posix` collection again, which contains a
 oriented modules and plugins for systems management. You should have installed the collection in the first exercise, if not, just do it now:
 
 ```bash
-[{{< param "internal_control" >}} ~]$ ansible-galaxy collection install ansible.posix
+[{{< param "control_prompt" >}} ~]$ ansible-galaxy collection install ansible.posix
 ```
 
 {{% notice tip %}}
@@ -36,7 +36,7 @@ You can go through the exercise steps or copy the finished role from `solutions/
 First we'll create a simple role. Start with creating a new role scaffold using the `ansible-galaxy init` command (make sure you changed into your exercise folder):
 
 ```bash
-[{{< param "internal_control" >}} exercise-03]$ ansible-galaxy init --init-path roles selinux_manage_meta
+[{{< param "control_prompt" >}} exercise-03]$ ansible-galaxy init --init-path roles selinux_manage_meta
 ```
 
 Now you have to edit a couple of files. First edit the role metadata in `roles/selinux_manage_meta/meta/main.yml` and append the following lines at the end of the file, don't change anything else:
@@ -95,7 +95,7 @@ rm -rf roles/selinux_manage_meta/{tests,vars,handlers,files,templates}
 And you are done with the role! Run `tree` to check everything looks good:
 
 ```bash
-[{{< param "internal_control" >}} exercise-03]$ tree
+[{{< param "control_prompt" >}} exercise-03]$ tree
 .
 └── roles
     └── selinux_manage_meta
@@ -127,7 +127,7 @@ We can now test the new role with a basic playbook. Create the `playbook.yml` fi
 Run the playbook and check the results:
 
 ```bash
-[{{< param "internal_control" >}} exercise-03]$ ansible-playbook playbook.yml
+[{{< param "control_prompt" >}} exercise-03]$ ansible-playbook playbook.yml
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 
 PLAY [localhost] ******************************************************************************************************
@@ -160,7 +160,7 @@ You can go though the exercise steps or copy the finished role from `solutions/s
 To make this easy we'll just copy and edit the role we created above:
 
 ```bash
-[{{< param "internal_control" >}} exercise-03]$ cp -r roles/selinux_manage_meta/ roles/selinux_manage_fqcn
+[{{< param "control_prompt" >}} exercise-03]$ cp -r roles/selinux_manage_meta/ roles/selinux_manage_fqcn
 ```
 
 Now change the file `roles/selinux_manage_fqcn/tasks/main.yml` so it uses the FQCN for the modules. It should look like this:
@@ -211,7 +211,7 @@ The remaining files can stay unchanged. To test the FQCN role modify the previou
 Run the playbook again and check the results:
 
 ```bash
-[{{< param "internal_control" >}} exercise-03]$ ansible-playbook playbook.yml
+[{{< param "control_prompt" >}} exercise-03]$ ansible-playbook playbook.yml
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 
 PLAY [localhost] ******************************************************************************************************

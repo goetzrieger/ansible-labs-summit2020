@@ -27,17 +27,17 @@ The Playbooks can be found in the Github repository you already setup as a **Pro
 
 As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates and attach credentials using the `awx` CLI in the VSCode terminal:
 
-    [student@ansible-1 ~]$ awx job_template create --name "Compliance STIG packages" \
+    [{{< param "control_prompt" >}} ~]$ awx job_template create --name "Compliance STIG packages" \
                           --job-type run \
                           --inventory "Example Inventory" \
                           --project "Apache"  \
                           --playbook "stig-packages.yml" \
                           --become_enabled 1
 
-    [student@ansible-1 ~]$ awx -f human job_template associate --name "Compliance STIG packages" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template associate --name "Compliance STIG packages" \
                           --credential "Example Credentials"
 
-    [student@ansible-1 ~]$ awx -f human job_template create --name "Compliance STIG config" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template create --name "Compliance STIG config" \
                           --credential "Example Credentials" \
                           --job_type run \
                           --inventory "Example Inventory" \
@@ -45,17 +45,17 @@ As mentioned the Github repository contains three Playbooks to enforce different
                           --playbook "stig-config.yml" \
                           --become_enabled 1
 
-    [student@ansible-1 ~]$ awx -f human job_template associate --name "Compliance STIG config" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template associate --name "Compliance STIG config" \
                           --credential "Example Credentials"
 
-    [student@ansible-1 ~]$ awx job_template create --name "Compliance CIS" \
+    [{{< param "control_prompt" >}} ~]$ awx job_template create --name "Compliance CIS" \
                           --job-type run  \
                           --inventory "Example Inventory" \
                           --project "Apache" \
                           --playbook "cis.yml" \
                           --become_enabled 1
 
-    [student@ansible-1 ~]$ awx -f human job_template associate --name "Compliance CIS" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template associate --name "Compliance CIS" \
                           --credential "Example Credentials"
 
 ## Create Parallel Workflow
@@ -118,13 +118,14 @@ So we have seen how a Tower cluster is distributing jobs over Tower instances by
 
 To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using **awx-manage** on one of the Tower instances. From your VSCode terminal **and as `root`** run the command:
 
-      [student@ansible-1 ~]$ sudo -i
-      [{{< param "internal_control" >}} ~]# awx-manage cleanup_jobs  --days=0
-      deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
-      [...]
-      notifications: 0 deleted, 0 skipped.
-      [{{< param "internal_control" >}} ~]# exit
-      logout
+```bash
+[{{< param "control_prompt" >}} ~]$ sudo -i
+[{{< param "internal_control" >}} ~]# awx-manage cleanup_jobs  --days=0
+deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
+[...]
+notifications: 0 deleted, 0 skipped.
+[{{< param "internal_control" >}} ~]# exit
+```
 
 ### Assign Jobs to Instance Groups
 

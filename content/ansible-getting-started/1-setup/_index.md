@@ -42,7 +42,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [{{< param "internal_control" >}} ~]$ sudo -i
+    [{{< param "control_prompt" >}} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
