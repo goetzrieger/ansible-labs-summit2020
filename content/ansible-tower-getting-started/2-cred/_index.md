@@ -58,7 +58,7 @@ To test access to the nodes via SSH do the following:
 - For the SSH connection use the node password from the inventory file, `sudo -i` works without password.
 
 ```bash
-[student1@ansible-1 ~]$ ssh ec2-user@node1
+[{{ control_prompt }} ~]$ ssh ec2-user@node1
 [ec2-user@node1 ~]$
 sudo -i
 [root@node1 ~]# exit
@@ -96,7 +96,7 @@ As we are using SSH key authentication, you have to provide an SSH private key t
 Bring up your code-server terminal on Tower, and `cat` the SSH private key:
 
 ```bash
-[student1@ansible-1 ~]$ cat .ssh/aws-private.pem
+[{{ control_prompt }} ~]$ cat .ssh/aws-private.pem
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA2nnL3m5sKvoSy37OZ8DQCTjTIPVmCJt/M02KgDt53+baYAFu1TIkC3Yk+HK1
 [...]

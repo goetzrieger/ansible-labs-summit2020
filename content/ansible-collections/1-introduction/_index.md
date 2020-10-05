@@ -11,10 +11,10 @@ In this lab you work in a pre-configured lab environment. You will have access t
 
 | Role                 | Inventory name |
 | ---------------------| ---------------|
-| Ansible Control Host | ansible        |
-| Managed Host 1       | node1          |
-| Managed Host 2       | node2          |
-| Managed Host 2       | node3          |
+| Ansible Control Host | {{< param "internal_control" >}} |
+| Managed Host 1       | {{< param "internal_host1" >}} |
+| Managed Host 2       | {{< param "internal_host2" >}} |
+| Managed Host 2       | {{< param "internal_host3" >}} |
 
 {{% notice warning %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
@@ -30,7 +30,9 @@ Your main points of contact with the lab is **code-server**, providing a VSCode-
 
 Now open code-server using the **VS Code access** link from the lab landing page or use this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-    https://student<N>-code.<LABID>.events.opentlc.com
+```bash
+     https://{{< param "external_code" >}}
+```
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -44,7 +46,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [student<N>@ansible-1 ~]$ sudo -i
+    [{{ control_prompt }} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
@@ -54,13 +56,13 @@ Most prerequisite tasks have already been done for you:
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
-    [root@ansible-1 ~]# ansible --version
+    [{{ control_prompt }} ~]# ansible --version
     ansible 2.9.6
     [...]
 
 Log out of the root account again:
 
-    [root@ansible-1 ~]# exit
+    [{{ control_prompt }} ~]# exit
     logout
 
 {{% notice warning %}}

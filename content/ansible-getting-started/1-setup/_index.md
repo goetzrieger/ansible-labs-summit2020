@@ -28,7 +28,7 @@ Your main points of contact with the lab is **code-server**, providing a VSCode-
 
 Now open code-server using the **VS Code access** link from the lab landing page or use this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-    https://student<N>-code.<LABID>.events.opentlc.com
+    https://{{ external_code }
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -42,7 +42,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [student<N>@ansible-1 ~]$ sudo -i
+    [{{ internal_control }} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
