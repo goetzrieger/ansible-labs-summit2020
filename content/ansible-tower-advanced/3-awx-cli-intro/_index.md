@@ -15,9 +15,9 @@ We’ll install it on your Tower node1 using the official repository RPM package
 
 ```bash
     [student@ansible-1 ~]$ sudo -i
-    [root@ansible-1 ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
-    [root@ansible-1 ~]# yum install ansible-tower-cli -y
-    [root@ansible-1 ~]# exit
+    [{{< param "internal_control" >}} ~]# yum-config-manager --add-repo https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-el8.repo
+    [{{< param "internal_control" >}} ~]# yum install ansible-tower-cli -y
+    [{{< param "internal_control" >}} ~]# exit
     [student@ansible-1 ~]$
 ```
 

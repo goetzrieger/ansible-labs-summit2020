@@ -12,7 +12,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Ansible Control Host | ansible        |
 | Managed Host 1       | node1          |
 | Managed Host 2       | node2          |
-| Managed Host 2       | node3          |
+| Managed Host 3       | node3          |
 
 {{% notice warning %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
@@ -28,7 +28,7 @@ Your main points of contact with the lab is **code-server**, providing a VSCode-
 
 Now open code-server using the **VS Code access** link from the lab landing page or use this link in your browser by replacing **\<N\>** by your student number and the **\<LABID\>**:
 
-    https://{{ external_code }
+    https://{{< param "external_code" >}}
 
 ![code-server login](../../images/vscode-pwd.png)
 
@@ -42,7 +42,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [{{ internal_control }} ~]$ sudo -i
+    [{{< param "internal_control" >}} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
@@ -52,7 +52,7 @@ Most prerequisite tasks have already been done for you:
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
-    [root@ansible-1 ~]# ansible --version
+    [root@{{< param "internal_control" >}} ~]# ansible --version
     ansible 2.9.6
     [...]
 
@@ -62,11 +62,11 @@ Ansible is keeping configuration management simple. Ansible requires no database
 
 Log out of the root account again:
 
-    [root@ansible-1 ~]# exit
+    [root@{{< param "internal_control" >}} ~]# exit
     logout
 
 {{% notice warning %}}
-In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
+In all subsequent exercises you should work as the student{{< param "student" >}} user on the control node if not explicitly told differently.
 {{% /notice %}}
 
 ## Working the Labs

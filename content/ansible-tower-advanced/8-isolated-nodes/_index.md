@@ -57,8 +57,8 @@ To edit the inventory file in VSCode editor change the permissions (don't do 777
 
 ```bash
     [student@ansible-1 ~]$ sudo -i
-    [root@ansible-1 ~]# chmod 777 /tmp/tower_install/inventory
-    [root@ansible-1 ~]# exit
+    [{{< param "internal_control" >}} ~]# chmod 777 /tmp/tower_install/inventory
+    [{{< param "internal_control" >}} ~]# exit
 ```
 
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
@@ -93,8 +93,8 @@ After editing the inventory, start the installer in the VSCode terminal to make 
 
 ```bash
     [student@ansible-1 ~]$ sudo -i
-    [root@ansible-1 ~]# cd /tmp/tower_install/
-    [root@ansible-1 tower_install]# ./setup.sh
+    [{{< param "internal_control" >}} ~]# cd /tmp/tower_install/
+    [{{< param "internal_control" >}} tower_install]# ./setup.sh
 ```
 
 {{% notice note %}}

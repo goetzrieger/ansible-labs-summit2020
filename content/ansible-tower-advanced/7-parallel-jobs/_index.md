@@ -119,11 +119,11 @@ So we have seen how a Tower cluster is distributing jobs over Tower instances by
 To make it easier to spot where the jobs were run, let’s first empty the jobs history. This can be done using **awx-manage** on one of the Tower instances. From your VSCode terminal **and as `root`** run the command:
 
       [student@ansible-1 ~]$ sudo -i
-      [root@ansible-1 ~]# awx-manage cleanup_jobs  --days=0
+      [{{< param "internal_control" >}} ~]# awx-manage cleanup_jobs  --days=0
       deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
       [...]
       notifications: 0 deleted, 0 skipped.
-      [root@ansible-1 ~]# exit
+      [{{< param "internal_control" >}} ~]# exit
       logout
 
 ### Assign Jobs to Instance Groups

@@ -351,7 +351,7 @@ In this example, we will include a role which ships a simple `index.html` file a
 To include it with the existing structured content, first we have to create a file called `roles/requirements.yml` and reference the role there:
 
 {{% notice warning %}}
-Make sure you work as user **student{{ student }}**
+Make sure you work as user **student{{< param "student" >}}**
 
 ```bash
 [{{< param "control_prompt" >}} structured-content]$ cat roles/requirements.yml

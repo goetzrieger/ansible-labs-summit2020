@@ -63,8 +63,8 @@ Instead, we are going to create a very simple directory structure for our playbo
 In your browser, bring up your **code-server** terminal (you opened one in the first section) and create a directory called `ansible-files` in your home directory and change into it:
 
 ```bash
-[{{ internal_control }} ~]$ mkdir ansible-files
-[{{ internal_control }} ~]$ cd ansible-files/
+[{{< param "internal_control" >}} ~]$ mkdir ansible-files
+[{{< param "internal_control" >}} ~]$ cd ansible-files/
 ```
 
 Now use **code-server** to add a file called `apache.yml` with the following content.
@@ -133,13 +133,13 @@ Save your playbook.
 Playbooks are executed using the `ansible-playbook` command on the control node. Before you run a new Playbook it’s a good idea to check for syntax errors. Head over to the **code-server** terminal and run:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook --syntax-check apache.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook --syntax-check apache.yml
 ```
 
 Now you should be ready to run your Playbook:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook apache.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook apache.yml
 ```
 
 The output should not report any errors but provide an overview of the tasks executed and a **Play Recap** summarizing what has been done. There is also a task called **Gathering Facts** listed: this is a built-in task that runs automatically at the beginning of each **Play**. It collects information about the managed nodes. Exercises later on will cover this in more detail.
@@ -147,9 +147,9 @@ The output should not report any errors but provide an overview of the tasks exe
 Use SSH to make sure Apache has been installed on `node1`. The necessary IP address is provided in the inventory. Grep for the IP address there and use it to SSH to the node.
 
 ```bash
-[{{ internal_control }} ansible-files]$ grep node1 ~/lab_inventory/hosts
+[{{< param "internal_control" >}} ansible-files]$ grep node1 ~/lab_inventory/hosts
 node1 ansible_host=11.22.33.44
-[{{ internal_control }} ansible-files]$ ssh 11.22.33.44
+[{{< param "internal_control" >}} ansible-files]$ ssh 11.22.33.44
 Last login: Wed May 15 14:03:45 2019 from 44.55.66.77
 Managed by Ansible
 [...]
@@ -162,7 +162,7 @@ Version     : 2.4.6
 Log out of `node1` with the command `exit` so that you are back on the control host, and verify the installed package with an Ansible ad hoc command\!
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m command -a 'rpm -qi httpd'
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m command -a 'rpm -qi httpd'
 ```
 
 Run the Playbook a second time, and compare the output: The output changed from **changed** to **ok**, and the color changed from yellow to green. Also the **PLAY RECAP** output is different now. This make it easy to spot what Ansible actually did.
@@ -201,7 +201,7 @@ Again: what these lines do is easy to understand:
 With the second task we make sure the Apache server is indeed running on the target machine. Run your extended Playbook:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook apache.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook apache.yml
 ```
 
 Note the output now: Some tasks are shown as **ok** in green and one is shown as **changed** in yellow.
@@ -219,7 +219,7 @@ Expect a lot of red lines and a 403 status
 {{% /notice %}}
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible localhost -m uri -a "url=http://<IP>"
+[{{< param "internal_control" >}} ansible-files]$ ansible localhost -m uri -a "url=http://<IP>"
 ```
 
 There are a lot of red lines and an error: As long as there is not at least an `index.html` file to be served by Apache, it will throw an ugly **HTTP Error 403: Forbidden** status and Ansible will report an error.
@@ -262,7 +262,7 @@ You are getting used to the Playbook syntax, so what happens? The new task uses 
 Run your extended Playbook:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook apache.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook apache.yml
 ```
 
 - Have a good look at the output
@@ -314,7 +314,7 @@ Change the Playbook to point to the group `web`:
 Now run the Playbook:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook apache.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook apache.yml
 ```
 
 Finally check if Apache is now running on all servers. Identify the IP addresses of the nodes in your inventory first, and afterwards use them each in the ad hoc command with the uri module as we already did with the `node1` above. All output should be green.

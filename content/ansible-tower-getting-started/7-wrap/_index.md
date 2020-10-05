@@ -111,7 +111,7 @@ We are using the `ansible_host` variable in the URL to access every node in the 
 {{% /notice %}}
 
 ```bash
-[{{ internal_control }} ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
+[{{< param "internal_control" >}} ~]$ ansible web -m command -a "curl -s http://{{ ansible_host }}"
  [WARNING]: Consider using the get_url or uri module rather than running 'curl'.  If you need to use command because get_url or uri is insufficient you can add 'warn: false' to this command task or set 'command_warnings=False' in ansible.cfg to get rid of this message.
 
 node2 | CHANGED | rc=0 >>
@@ -146,7 +146,7 @@ Note the warning in the first line about not to use `curl` via the `command` mod
 Check the results again from your code-server terminal. Since we got a warning last time using `curl` via the `command` module, this time we will use the dedicated `uri` module. As arguments it needs the actual URL and a flag to output the body in the results.
 
 ```bash
-[student{{ student }}ansible ~]$ ansible web -m uri -a "url=http://{{ ansible_host }} return_content=yes"
+[student{{< param "student" >}}ansible ~]$ ansible web -m uri -a "url=http://{{ ansible_host }} return_content=yes"
 node3 | SUCCESS => {
     "accept_ranges": "bytes",
     "ansible_facts": {

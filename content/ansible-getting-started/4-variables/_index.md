@@ -34,7 +34,7 @@ For understanding and practice let’s do a lab. Following up on the theme "Let�
 On the ansible control host, as the `student` user, create the directories to hold the variable definitions in `~/ansible-files/`:
 
 ```bash
-[{{ internal_control }} ansible-files]$ mkdir host_vars group_vars
+[{{< param "internal_control" >}} ansible-files]$ mkdir host_vars group_vars
 ```
 
 Now create two files containing variable definitions. We’ll define a variable named `stage` which will point to different environments, `dev` or `prod`:
@@ -104,7 +104,7 @@ Note how the variable "stage" is used in the name of the file to copy.
 - Run the Playbook:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook deploy_index_html.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook deploy_index_html.yml
 ```
 
 ## Test the Result
@@ -112,19 +112,19 @@ Note how the variable "stage" is used in the name of the file to copy.
 The Playbook should copy different files as index.html to the hosts, use `curl` to test it. Check the inventory again if you forgot the IP addresses of your nodes.
 
 ```bash
-[{{ internal_control }} ansible-files]$ grep node ~/lab_inventory/hosts
+[{{< param "internal_control" >}} ansible-files]$ grep node ~/lab_inventory/hosts
 node1 ansible_host=11.22.33.44
 node2 ansible_host=22.33.44.55
 node3 ansible_host=33.44.55.66
-[{{ internal_control }} ansible-files]$ curl http://11.22.33.44
+[{{< param "internal_control" >}} ansible-files]$ curl http://11.22.33.44
 <body>
 <h1>This is a development webserver, have fun!</h1>
 </body>
-[{{ control_prompt }} ansible-files]$ curl http://22.33.44.55
+[{{< param "internal_control" >}} ansible-files]$ curl http://22.33.44.55
 <body>
 <h1>This is a production webserver, take care!</h1>
 </body>
-[{{ control_prompt }} ansible-files]$ curl http://33.44.55.66
+[{{< param "internal_control" >}} ansible-files]$ curl http://33.44.55.66
 <body>
 <h1>This is a development webserver, have fun!</h1>
 </body>
@@ -141,19 +141,19 @@ Ansible facts are variables that are automatically discovered by Ansible from a 
 To get an idea what facts Ansible collects by default, on your control node as your student user run:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m setup
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m setup
 ```
 
 This might be a bit too much, you can use filters to limit the output to certain facts, the expression is shell-style wildcard:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_eth0'
 ```
 
 Or what about only looking for memory related facts:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_*_mb'
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_*_mb'
 ```
 
 ## Challenge Lab: Facts
@@ -168,8 +168,8 @@ Use grep to find the fact, then apply a filter to only print this fact.
 <p>
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m setup|grep distribution
-[{{ internal_control }} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m setup|grep distribution
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m setup -a 'filter=ansible_distribution' -o
 ```
 
 </p>
@@ -196,7 +196,7 @@ The "debug" module is handy for e.g. debugging variables or expressions.
 Execute it to see how the facts are printed:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible-playbook facts.yml
+[{{< param "internal_control" >}} ansible-files]$ ansible-playbook facts.yml
 
 PLAY [Output facts within a playbook] ******************************************
 

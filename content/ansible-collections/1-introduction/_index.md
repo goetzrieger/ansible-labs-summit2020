@@ -46,7 +46,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [{{ control_prompt }} ~]$ sudo -i
+    [{{< param "internal_control" >}} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
@@ -56,17 +56,17 @@ Most prerequisite tasks have already been done for you:
 
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
-    [{{ control_prompt }} ~]# ansible --version
+    [{{< param "internal_control" >}} ~]# ansible --version
     ansible 2.9.6
     [...]
 
 Log out of the root account again:
 
-    [{{ control_prompt }} ~]# exit
+    [{{< param "internal_control" >}} ~]# exit
     logout
 
 {{% notice warning %}}
-In all subsequent exercises you should work as the student\<N\> user on the control node if not explicitly told differently.
+In all subsequent exercises you should work as the student{{< param "student" >}} user on the control node if not explicitly told differently.
 {{% /notice %}}
 
 ## Introduction: what are collections and why should I care?

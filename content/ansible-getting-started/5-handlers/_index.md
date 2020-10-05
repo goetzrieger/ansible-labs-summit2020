@@ -26,7 +26,7 @@ To do that, first edit the inventory to add another group, and place `node2` in 
 
 ```ini
 [all:vars]
-ansible_user=student{{ student }}
+ansible_user=student{{< param "student" >}}
 ansible_ssh_pass=xxx
 ansible_port=22
 
@@ -86,7 +86,7 @@ As a an example, let’s write a Playbook that:
 First we need the file Ansible will deploy, let’s just take the one from `node1`. Remember to replace the IP address shown in the listing below with the IP address from your individual `node1`.
 
 ```bash
-[{{ internal_control }} ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
+[{{< param "internal_control" >}} ansible-files]$ scp 11.22.33.44:/etc/httpd/conf/httpd.conf ~/ansible-files/
 httpd.conf
 ```
 
@@ -134,9 +134,9 @@ Listen 8080
 Apache should now listen on port 8080. Easy enough to verify:
 
 ```bash
-[{{ control_prompt }} ansible-files]$ curl http://22.33.44.55
+[{{< param "internal_control" >}} ansible-files]$ curl http://22.33.44.55
 curl: (7) Failed connect to 22.33.44.55:80; Connection refused
-[{{ control_prompt }} ansible-files]$ curl http://22.33.44.55:8080
+[{{< param "internal_control" >}} ansible-files]$ curl http://22.33.44.55:8080
 <body>
 <h1>This is a production webserver, take care!</h1>
 </body>
@@ -224,7 +224,7 @@ Check the output:
 Verify that the user `prod_user` was indeed created on `node1`:
 
 ```bash
-[{{ internal_control }} ansible-files]$ ansible node1 -m command -a "id dev_user"
+[{{< param "internal_control" >}} ansible-files]$ ansible node1 -m command -a "id dev_user"
 node1 | CHANGED | rc=0 >>
 uid=1002(dev_user) gid=1002(dev_user) groups=1002(dev_user),50(ftp)
 ```
