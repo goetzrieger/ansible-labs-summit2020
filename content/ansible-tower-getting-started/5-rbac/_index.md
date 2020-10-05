@@ -94,7 +94,7 @@ Now log out of Tower’s web UI and in again as the **wweb** user.
 
 Check the result: In the code-server terminal execute `curl` to pull the content of the webserver on `node1` (you could of course check `node2`, too):
 
-    curl http://node1
+    [{{< param "control_prompt" >}} ~]$ curl http://node1
 
 - In the web UI, log out user **wweb** and in again as **admin**.
 

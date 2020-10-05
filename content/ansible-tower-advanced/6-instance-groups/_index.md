@@ -87,7 +87,7 @@ In the **INSTANCE GROUPS** overview all instance groups are listed with details 
 
 In your VSCode terminal, run:
 
-    [student@ansible-1 ~]$ awx -k instance_group list -f human
+    [{{< param "control_prompt" >}} ~]$ awx -k instance_group list -f human
     id name
     == =====
     1  tower
@@ -102,7 +102,7 @@ You can again query the API to get this information. Either use the browser to a
 
 or use curl to access the API from the command line in your VSCode terminal:
 
-`[student@ansible-1 ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python3 -m json.tool`
+`[{{< param "control_prompt" >}} ~]$ curl -s -k -u admin:{{< param "secret_password" >}} https://{{< param "internal_tower1" >}}/api/v2/instance_groups/| python3 -m json.tool`
 
 {{% notice tip %}}
 The curl command has to be on one line. Do _not_ forget or oversee the final slash at the end of the URL, it is relevant!

@@ -73,7 +73,7 @@ Do a `grep -i` for kernel
 - Find the fact:
 
 ```bash
-[student<N>@ansible-1 ansible-files]$ ansible node1 -m setup|grep -i kernel
+[{{< param "control_prompt" >}} ansible-files]$ ansible node1 -m setup|grep -i kernel
        "ansible_kernel": "3.10.0-693.el7.x86_64",
 ```
 

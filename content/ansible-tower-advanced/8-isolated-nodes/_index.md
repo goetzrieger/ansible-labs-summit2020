@@ -22,8 +22,8 @@ To solve this, Tower provides **Isolated Nodes**:
 Because of the setup of this lab environment, before we configure the isolated node we need to do some preparation. As your student user in your VSCode terminal, execute the following steps:
 
 ```bash
-    [student@ansible-1 ~]$ scp /etc/hosts isonode:
-    [student@ansible-1 ~]$ ssh isonode sudo mv /home/ec2-user/hosts /etc/
+[{{< param "control_prompt" >}} ~]$ scp /etc/hosts isonode:
+[{{< param "control_prompt" >}} ~]$ ssh isonode sudo mv /home/ec2-user/hosts /etc/
 ```
 
 ## Setting Up Isolated Nodes
@@ -34,8 +34,8 @@ Isolated nodes are defined in the installer inventory file and setup by the Ansi
 
 First have a look at the Tower installer inventory file that was used for lab setup. In your VSCode terminal on your Tower node 1 change into the Ansible installer directory and do the following:
 
-    [student@ansible-1 ~]$ cd /tmp/tower_install/
-    [student@ansible-1 tower_install]$ cat inventory
+    [{{< param "control_prompt" >}} ~]$ cd /tmp/tower_install/
+    [{{< param "control_prompt" >}} tower_install]$ cat inventory
 
     [tower]
     ansible-1
@@ -56,29 +56,29 @@ The Ansible installer files in `/tmp/tower_install/` are owned by root, but your
 To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;-)):
 
 ```bash
-    [student@ansible-1 ~]$ sudo -i
-    [root@ansible-1 ~]# chmod 777 /tmp/tower_install/inventory
-    [root@ansible-1 ~]# exit
+[{{< param "control_prompt" >}} ~]$ sudo -i
+[{{< param "internal_control" >}} ~]# chmod 777 /tmp/tower_install/inventory
+[{{< param "internal_control" >}} ~]# exit
 ```
 
 Then do **File -> Open File** in VSCode, navigate to `/tmp/tower_install/inventory` file and open it. Add the isolated node to the inventory to look like this:
 
-```
-    [tower]
-    ansible-1
-    ansible-2
-    ansible-3
+```ini
+[tower]
+ansible-1
+ansible-2
+ansible-3
 
-    [isolated_group_dmz]
-    isonode ansible_host=isonode ansible_become=true
+[isolated_group_dmz]
+isonode ansible_host=isonode ansible_become=true
 
-    [isolated_group_dmz:vars]
-    controller=tower
+[isolated_group_dmz:vars]
+controller=tower
 
-    [database]
-    ansible-4
+[database]
+ansible-4
 
-    [...]
+[...]
 ```
 
 {{% notice warning %}}
@@ -92,9 +92,9 @@ Each isolated group must have a controller variable set. This variable points to
 After editing the inventory, start the installer in the VSCode terminal to make the desired changes:
 
 ```bash
-    [student@ansible-1 ~]$ sudo -i
-    [root@ansible-1 ~]# cd /tmp/tower_install/
-    [root@ansible-1 tower_install]# ./setup.sh
+[{{< param "control_prompt" >}} ~]$ sudo -i
+[{{< param "internal_control" >}} ~]# cd /tmp/tower_install/
+[{{< param "internal_control" >}} tower_install]# ./setup.sh
 ```
 
 {{% notice note %}}
@@ -107,13 +107,15 @@ Sit down and watch the tasks flying by...
 
 After the installer has finished isolated groups can be listed in the same way like instance groups and Ansible Tower cluster configuration. So the methods listed above discussing instance groups also apply to isolated nodes. For example, using `awx` as the student user:
 
-    [student@ansible-1 ~]$ awx -f human instance_group list
-    id name
-    == =====
-    1  tower
-    2  dev
-    3  prod
-    4  dmz
+```bash
+[{{< param "control_prompt" >}} ~]$ awx -f human instance_group list
+id name
+== =====
+1  tower
+2  dev
+3  prod
+4  dmz
+```
 
 You can see your **dmz** isolated group has been setup. Like other instance groups, isolated node groups can be assigned at the level of an organization, an inventory, or an individual job template.
 

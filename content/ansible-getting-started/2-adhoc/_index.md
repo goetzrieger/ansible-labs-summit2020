@@ -10,10 +10,10 @@ For our first exercise, we are going to run some ad hoc commands to help you get
 To use the ansible command for host management, you need to provide an inventory file which defines a list of hosts to be managed from the control node. In this lab the inventory is provided by your instructor. The inventory is an ini formatted file listing your hosts, sorted in groups, additionally providing some variables. Have a look for yourself, in your **code-server terminal** run:
 
 ```bash
-[student<N>@ansible-1 ~]$ cat lab_inventory/hosts
+[{{< param "control_prompt" >}} ~]$ cat lab_inventory/hosts
 
 [all:vars]
-ansible_user=student<N>
+ansible_user=student{{< param "student" >}}
 ansible_ssh_pass=<password>
 ansible_port=22
 
@@ -41,7 +41,7 @@ To reference inventory hosts, you supply a host pattern to the ansible command. 
 The most basic host pattern is the name for a single managed host listed in the inventory file. This specifies that the host will be the only one in the inventory file that will be acted upon by the ansible command. Run:
 
 ```bash
-[student<X@>ansible ~]$ ansible node1 --list-hosts
+[{{< param "control_prompt" >}} ~]$ ansible node1 --list-hosts
   hosts (1):
     node1
 ```
@@ -49,10 +49,10 @@ The most basic host pattern is the name for a single managed host listed in the 
 An inventory file can contain a lot more information, it can organize your hosts in groups or define variables. In our example, the current inventory has the groups `web` and `control`. Run Ansible with these host patterns and observe the output:
 
 ```bash
-[student<X@>ansible ~]$ ansible web --list-hosts
-[student<X@>ansible ~]$ ansible web,ansible --list-hosts
-[student<X@>ansible ~]$ ansible 'node*' --list-hosts
-[student<X@>ansible ~]$ ansible all --list-hosts
+[{{< param "control_prompt" >}} ~]$ ansible web --list-hosts
+[{{< param "control_prompt" >}} ~]$ ansible web,ansible --list-hosts
+[{{< param "control_prompt" >}} ~]$ ansible 'node*' --list-hosts
+[{{< param "control_prompt" >}} ~]$ ansible all --list-hosts
 ```
 
 As you see it is OK to put systems in more than one group. For instance, a server could be both a web server and a database server. Note that in Ansible the groups are not necessarily hierarchical.
@@ -69,17 +69,17 @@ The behavior of Ansible can be customized by modifying settings in Ansible’s i
 The recommended practice is to create an `ansible.cfg` file in the directory from which you run Ansible commands. This directory would also contain any files used by your Ansible project, such as the inventory and playbooks. Another recommended practice is to create a file `.ansible.cfg` in your home directory.
 {{% /notice %}}
 
-In the lab environment provided to you an `.ansible.cfg` file has already been created and filled with the necessary details in the home directory of your `student<N>` user on the control node:
+In the lab environment provided to you an `.ansible.cfg` file has already been created and filled with the necessary details in the home directory of your `student{{< param "student" >}}` user on the control node:
 
 ```bash
-[student<N>@ansible-1 ~]$ ls -la .ansible.cfg
--rw-r--r--. 1 student<N> student<N> 231 14. Mai 17:17 .ansible.cfg
+[{{< param "control_prompt" >}} ~]$ ls -la .ansible.cfg
+-rw-r--r--. 1 student{{< param "student" >}} student{{< param "student" >}} 231 14. Mai 17:17 .ansible.cfg
 ```
 
 Review the content of the file:
 
 ```bash
-[student<N>@ansible-1 ~]$ cat .ansible.cfg
+[{{< param "control_prompt" >}} ~]$ cat .ansible.cfg
 [defaults]
 stdout_callback = yaml
 connection = smart
@@ -87,7 +87,7 @@ timeout = 60
 deprecation_warnings = False
 host_key_checking = False
 retry_files_enabled = False
-inventory = /home/student<N>/lab_inventory/hosts
+inventory = /home/student{{student}}/lab_inventory/hosts
 ```
 
 There are multiple configuration flags provided. Most of them are not of interest here, but make sure to note the last line: there the location of the inventory is provided. That is the way Ansible knew in the previous commands what inventory to use to lookup the nodes.
@@ -103,7 +103,7 @@ Think of a module as a tool which is designed to accomplish a specific task.
 Ansible needs to know that it should use the `ping` module: The `-m` option defines which Ansible module to use. Options can be passed to the specified module using the `-a` option. In addition to the module Ansible needs to know what hosts it should run the task on, here you supply the group `web`.
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible web -m ping
+[{{< param "control_prompt" >}} ~]$ ansible web -m ping
 node2 | SUCCESS => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
@@ -121,7 +121,7 @@ As you see each node in the `web` group reports the successful execution and the
 Ansible comes with a lot of modules by default. To list all modules run:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible-doc -l
+[{{< param "control_prompt" >}} ~]$ ansible-doc -l
 ```
 
 {{% notice tip %}}
@@ -131,13 +131,13 @@ In `ansible-doc` leave by pressing the button `q`. Use the `up`/`down` arrows to
 To find a module try e.g.:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible-doc -l | grep -i user
+[{{< param "control_prompt" >}} ~]$ ansible-doc -l | grep -i user
 ```
 
 Get help for a specific module including usage examples:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible-doc user
+[{{< param "control_prompt" >}} ~]$ ansible-doc user
 ```
 
 {{% notice tip %}}
@@ -149,9 +149,9 @@ Mandatory options are marked by a "=" in `ansible-doc`, optional ones by a "-".
 Now let's see how we can run a good ol' fashioned Linux command and format the output using the `command` module. It simply executes the specified command on a managed host (note this time not a group but a hostname is used as host pattern):
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible node1 -m command -a "id"
+[{{< param "control_prompt" >}} ~]$ ansible node1 -m command -a "id"
 node1 | CHANGED | rc=0 >>
-uid=1001(student1) gid=1001(student1) Gruppen=1001(student1) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+uid=1001(student{{< param "student" >}}) gid=1001(student{{ student }) Gruppen=1001(student{{< param "student" >}}) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
 
 In this case the module is called `command` and the option passed with `-a` is the actual command to run. Try to run this ad hoc command on all managed hosts using the `all` host pattern.
@@ -159,13 +159,13 @@ In this case the module is called `command` and the option passed with `-a` is t
 Another example: Have a quick look at the kernel versions your hosts are running:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible all -m command -a 'uname -r'
+[{{< param "control_prompt" >}} ~]$ ansible all -m command -a 'uname -r'
 ```
 
 Sometimes it’s desirable to have the output for a host on one line:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible all -m command -a 'uname -r' -o
+[{{< param "control_prompt" >}} ~]$ ansible all -m command -a 'uname -r' -o
 ```
 
 {{% notice tip %}}
@@ -179,7 +179,7 @@ Using the `copy` module, execute an ad hoc command on `node1` to change the cont
 Run the following, but **expect an error**:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd'
+[{{< param "control_prompt" >}} ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd'
 ```
 
 As mentioned this produces an **error**:
@@ -193,18 +193,18 @@ As mentioned this produces an **error**:
     }
 ```
 
-The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student\<N\>** is not allowed to write the motd file.
+The output of the ad hoc command is screaming **FAILED** in red at you. Why? Because user **student{{< param "student" >}}** is not allowed to write the motd file.
 
 Now this is a case for privilege escalation and the reason `sudo` has to be setup properly. We need to instruct Ansible to use `sudo` to run the command as root by using the parameter `-b` (think "become").
 
 {{% notice tip %}}
-Ansible will connect to the machines using your current user name (student\<N\> in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
+Ansible will connect to the machines using your current user name (student{{< param "student" >}} in this case), just like SSH would. To override the remote user name, you could use the `-u` parameter.
 {{% /notice %}}
 
-For us it’s okay to connect as `student<N>` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
+For us it’s okay to connect as `student{{< param "student" >}}` because `sudo` is set up. Change the command to use the `-b` parameter and run again:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd' -b
+[{{< param "control_prompt" >}} ~]$ ansible node1 -m copy -a 'content="Managed by Ansible\n" dest=/etc/motd' -b
 ```
 
 This time the command is a success:
@@ -221,7 +221,7 @@ node1 | CHANGED => {
     "owner": "root",
     "secontext": "system_u:object_r:etc_t:s0",
     "size": 19,
-    "src": "/home/student1/.ansible/tmp/ansible-tmp-1557857641.21-120920996103312/source",
+    "src": "/home/student{{< param "student" >}}/.ansible/tmp/ansible-tmp-1557857641.21-120920996103312/source",
     "state": "file",
     "uid": 0
 ```
@@ -229,7 +229,7 @@ node1 | CHANGED => {
 Use Ansible with the generic `command` module to check the content of the motd file:
 
 ```bash
-[student<N>@ansible-1 ~]$ ansible node1 -m command -a 'cat /etc/motd'
+[{{< param "control_prompt" >}} ~]$ ansible node1 -m command -a 'cat /etc/motd'
 node1 | CHANGED | rc=0 >>
 Managed by Ansible
 ```
@@ -263,10 +263,12 @@ Use the copy ad hoc command from above as a template and change the module and o
 <details><summary><b>Click here for Solution</b></summary>
 
 <p>
+
 ```bash
-[student<N>@ansible-1 ~]$ ansible-doc -l | grep -i yum
-[student<N>@ansible-1 ~]$ ansible-doc yum
-[student<N>@ansible-1 ~]$ ansible all -m yum -a 'name=vim state=latest' -b
+[{{< param "control_prompt" >}} ~]$ ansible-doc -l | grep -i yum
+[{{< param "control_prompt" >}} ~]$ ansible-doc yum
+[{{< param "control_prompt" >}} ~]$ ansible all -m yum -a 'name=vim state=latest' -b
 ```
+
 </p>
 </details>

@@ -217,6 +217,6 @@ Note how the workflow run is shown in the job view. In contrast to a normal job 
 
 After the job has finished, check if everything worked fine. In your code-server terminal, run:
 
-    curl http://node3/nodejs
+    [{{< param "control_prompt" >}} ~]$ curl http://node3/nodejs
 
 You should be greeted with a friendly `Hello World`
