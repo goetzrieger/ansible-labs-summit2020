@@ -14,7 +14,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Ansible Control Host | {{< param "internal_control" >}} |
 | Managed Host 1       | {{< param "internal_host1" >}} |
 | Managed Host 2       | {{< param "internal_host2" >}} |
-| Managed Host 2       | {{< param "internal_host3" >}} |
+| Managed Host 3       | {{< param "internal_host3" >}} |
 
 {{% notice warning %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
