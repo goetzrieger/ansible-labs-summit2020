@@ -21,17 +21,17 @@ The `ansible.posix.selinux` module which we want to use for this exercise, is pa
 
 Bring up a browser window with **code-server** and open a terminal. In the terminal run:
 
-    [student<X@>ansible-1 ~]$ ansible-galaxy collection install ansible.posix
+    [{{< param "control_prompt" >}} ~]$ ansible-galaxy collection install ansible.posix
 
 This will install the collection on your system, only if it wasn't installed before. To force the installation, for example to make sure you're on the latest version, you can add the force switch `-f`.
 
-    [student<X@>ansible-1 ~]$ ansible-galaxy collection install -f ansible.posix
+    [{{< param "control_prompt" >}} ~]$ ansible-galaxy collection install -f ansible.posix
 
 This will always download and install the latest version, even if it was already up to date. Ansible Collections can have dependencies for other Ansible Collections as well - if you want to make sure those dependencies are refreshed as well, you can use the `--force-with-deps` switch.
 
 By default the installation is stored in your local `~/.ansible` directory. This can be overwritten by using the `-p /path/to/collection` switch. Keep in mind though that `ansible-playbook` will only use that directory, if you change your `ansible.cfg` accordingly. To check your current configuration, you can dump your configuration and search for `collection`.
 
-    [student<X@>ansible-1 ~]$ ansible-config dump | grep -i collection
+    [{{< param "control_prompt" >}} ~]$ ansible-config dump | grep -i collection
 
 ## Step 2 - Documentation
 
@@ -39,12 +39,12 @@ The `ansible-doc` command only searches the system directories for documentation
 
 Let's have a look at the module documentation for the `selinux` module of the `ansible.posix` collection, which we are going to use in the next part of the exercise:
 
-    [student<X@>ansible-1 ~]$ ansible-doc ansible.posix.selinux
-    > SELINUX    (/home/student1/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/selinux.py)
+    [{{< param "control_prompt" >}} ~]$ ansible-doc ansible.posix.selinux
+    > SELINUX    (/home/student{{< param "student" >}}/.ansible/collections/ansible_collections/ansible/posix/plugins/modules/selinux.py)
 
 Note the start of the output, you can see the location of the module. For educational purposes run the `ansible-doc` again, but this time not specifying the collection:
 
-    [student<X@>ansible-1 ~]$ ansible-doc selinux
+    [{{< param "control_prompt" >}} ~]$ ansible-doc selinux
     > SELINUX    (/usr/lib/python3.6/site-packages/ansible/modules/system/selinux.py)
 
 You can see how the command this time pulled the documentation for the module that was installed with Ansible.
@@ -78,7 +78,7 @@ Make sure you save the playbook in your student users home directory.
 
 Noe let's run the Playbook and see what happens:
 
-    [student<X@>ansible-1 ~]$ ansible-playbook enforce-selinux.yml
+    [{{< param "control_prompt" >}} ~]$ ansible-playbook enforce-selinux.yml
 
 You should see output like this:
 

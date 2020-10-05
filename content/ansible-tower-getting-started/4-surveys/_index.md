@@ -126,7 +126,7 @@ Note how the two survey lines are shown to the left of the Job view as **Extra V
 After the job has completed, check the Apache homepage. In your code-server terminal, execute `curl` against `node1`:
 
 ```bash
-$ curl http://node1
+[{{< param "control_prompt" >}} ~]$ curl http://node1
 <body>
 <h1>Apache is running fine</h1>
 <h1>This is survey field "First Line": line one</h1>
