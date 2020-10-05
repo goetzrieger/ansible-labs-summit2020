@@ -30,7 +30,7 @@ Data content files can be in the same Git repository, each in its own directory 
 {{% /notice %}}
 
 {{% notice warning %}}
-Be careful to *not* have separate code repositories for each environment. It would go against the purpose of testing the *same* code as you push it through your life-cycle, only varying the data / inventory. If you have difficulties to keep the same code throughout all your environments we recommend to re-think the structure of cour code and what you put into your inventory.
+Be careful to *not* have separate code repositories for each environment. It would go against the purpose of testing the *same* code as you push it through your life-cycle, only varying the data / inventory. If you have difficulties to keep the same code throughout all your environments we recommend to re-think the structure of our code and what you put into your inventory.
 {{% /notice %}}
 
 ## Example repository
@@ -44,7 +44,7 @@ Since we want to store all content in a repository, we have to create a simplist
 [{{< param "control_prompt" >}} ~]$ ansible-playbook simple_git.yml
 ```
 
-Next we will clone the repository on the control host. To enable you to work with git on the commandline the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
+Next we will clone the repository on the control host. To enable you to work with git on the command line the SSH key for user *ec2-user* was already added to the Git user *git*. Next, clone the repository on the control machine:
 
     [{{< param "control_prompt" >}} ~]$ git clone {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}}
     # Message "warning: You appear to have cloned an empty repository." is OK and can be ignored
@@ -312,7 +312,7 @@ To make sure that the project based inventory worked, click on the **HOSTS** but
 Now create a template to execute the `site.yml` against both stages at the same time and associate the credentials.
 
 {{% notice tip %}}
-Please note that in a real world use case you might want to have different templates to address the different stages separatly.
+Please note that in a real world use case you might want to have different templates to address the different stages separably.
 
 ```bash
 [{{< param "control_prompt" >}} ~]# awx job_template create --name "Structured Content Execution" \

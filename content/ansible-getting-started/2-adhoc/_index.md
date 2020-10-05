@@ -151,7 +151,7 @@ Now let's see how we can run a good ol' fashioned Linux command and format the o
 ```bash
 [{{< param "control_prompt" >}} ~]$ ansible node1 -m command -a "id"
 node1 | CHANGED | rc=0 >>
-uid=1001(student{{< param "student" >}}) gid=1001(student{{ student }) Gruppen=1001(student{{< param "student" >}}) Kontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+uid=1001(student{{< param "student" >}}) gid=1001(student{{ student }) groups=1001(student{{< param "student" >}}) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
 
 In this case the module is called `command` and the option passed with `-a` is the actual command to run. Try to run this ad hoc command on all managed hosts using the `all` host pattern.
