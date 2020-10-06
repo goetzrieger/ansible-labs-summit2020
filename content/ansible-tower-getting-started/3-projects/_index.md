@@ -9,7 +9,7 @@ You should definitely keep your Playbooks under version control. In this lab weâ
 
 ## Setup Git Repository
 
-For this lab we will use playbooks stored in this Git repository, using the [proper tag/branch](https://github.com/ansible/workshop-examples/tree/summit_2020):
+For this lab we will use playbooks stored in this Git repository, using the [summit_2020 tag](https://github.com/ansible/workshop-examples/tree/summit_2020):
 
 [https://github.com/ansible/workshop-examples](https://github.com/ansible/workshop-examples)
 
