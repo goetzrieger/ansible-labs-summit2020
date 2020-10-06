@@ -3,34 +3,20 @@ title = "Creating Collections"
 weight = 5
 +++
 
-This exercise will help users understand how collections are installed, created and customized.
-Covered topics:
+In this exercise you will learn how to create your own custom collection.
 
-- Demonstrate the steps involved in the installation of an Ansible Collection from the command line using the `ansible-galaxy` utility.
+## Preparing the exercise environment
 
-- Demonstrate the steps involved in the creation of a new collection with the `ansible-galaxy` utility.
-
-- Demonstrate the creation of a custom role inside the newly created collection.
-
-- Demonstrate the creation of a new custom plugin (basic Ansible module) in the newly created collection.
-
-## Step 1: Preparing the exercise environment
-
-Ansible Collections can be searched and installed from Ansible Galaxy and Red Hat Automation Hub.
-Once installed, a collection can be used locally and its plugins, modules, and roles can be imported
-and executed in complex Ansible-based projects.
-
-### Preparing the exercise environment
-
-Create a directory in your lab named `dir_name` and cd into it. This directory will be used during the
-whole exercise.
+To keep the content of this exercise separated from the other exercises you've done, first create a directory in your lab named `exercise-05` and cd into it. This directory will be used during the
+whole exercise. In your VSCode terminal, run the following commands:
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ mkdir exercise-05
-[{{< param "control_prompt" >}} exercise-05 ]$ cd exercise-05
+[{{< param "control_prompt" >}} ~]$ cd exercise-05
+[{{< param "control_prompt" >}} exercise-05]$
 ```
 
-Collection have two default lookup paths that are searched:
+This was covered already in this lab, but it's important enough to state again: Collection have two default lookup paths that are searched.
 
 - User scoped path `/home/<username>/.ansible/collections`
 
@@ -40,9 +26,9 @@ Collection have two default lookup paths that are searched:
 Users can customized the collections path by modifying the `collections_path` key in the `ansible.cfg` file or by setting the environment variable `ANSIBLE_COLLECTIONS_PATHS` with the desired search path.
 {{% /notice %}}
 
-### Inspecting the contents of the collection
+## Inspecting the structure of a collection
 
-Collections have a standard structure that can can hold modules, plugins, roles and playbooks.
+Ansible Collections have a standard directory and file structure that can hold modules, plugins, roles and playbooks.
 
 ```bash
 collection/
@@ -66,7 +52,7 @@ collection/
 └── tests/
 ```
 
-A short description of the collection structure:
+Here is a short description of the collection structure:
 
 - The `plugins` folder holds plugins, modules, and module_utils that can be reused in playbooks and roles.
 
@@ -78,58 +64,58 @@ A short description of the collection structure:
 
 - The `galaxy.yml` file is a YAML text file that contains all the metadata used in the Ansible Galaxy hub to index the collection.  It is also used to list collection dependencies, if there are any.
 
-When a collection is downloaded with the `ansible-galaxy collection install` two more files are installed:
+## Creating a Collection
 
-- `MANIFEST.json`, holding additional Galaxy metadata in JSON format.
+Okay, with the introduction out of the way, let's create a custom collection and populate it with roles, playbook, plugins and modules. A scaffold for a user defined custom collection can be created manually or with the `ansible-galaxy collection init` command.
 
-- `FILES.json`, a JSON object containing all the files SHA256 checksum.
+### Create the Structure
 
-## Step 2: Creating collections from the command line
-
-Users can create their own collections and populate them with roles, playbook, plugins and modules.
-User defined collections skeleton can be created manually or it can be authored with the
-`ansible-galaxy collection init` command. This will create a standard skeleton that can be
-customized lately.
-
-Create the following collection:
+Let's get started, in your VSCode terminal create the initial structure for your new collection:
 
 ```bash
-[{{< param "control_prompt" >}} ~]$ ansible-galaxy collection init --init-path ansible_collections redhat.workshop_demo_collection
+[{{< param "control_prompt" >}} exercise-05]$ ansible-galaxy collection init --init-path ansible_collections redhat.workshop_demo_collection
 ```
 
 The `--init-path` flag is used to define a custom path in which the skeleton will be initialized.
 The collection name always follows the pattern `<namespace.collection>`. The above example creates
 the `workshop_demo_collection` in the `redhat` namespace.
 
-The command created the following skeleton:
+Have a look for yourself:
 
 ```bash
-[{{< param "control_prompt" >}} ~]$ tree ansible_collections/redhat/workshop_demo_collection/
-ansible_collections/redhat/workshop_demo_collection/
-├── docs
-├── galaxy.yml
-├── plugins
-│   └── README.md
-├── README.md
-└── roles
+[{{< param "control_prompt" >}} exercise-05]$ tree
+.
+└── ansible_collections
+    └── redhat
+        └── workshop_demo_collection
+            ├── docs
+            ├── galaxy.yml
+            ├── plugins
+            │   └── README.md
+            ├── README.md
+            └── roles
 ```
 
-The skeleton is really minimal. Besides the template README files, a template `galaxy.yml` file is created to define Galaxy metadata.
+You can see the namespace directory was created together with a top-level `ansible_collections` directory. The scaffold is pretty minimal, note the template README files and a template `galaxy.yml` file is created to define Galaxy metadata.
 
-## Step 3: Adding custom modules and plugins to the collection
+### Adding Content: Custom Modules and Plugins
 
-Collections can be customized with different kinds of plugins and modules. For a complete list please refer to the `README.md` file in the `plugins` folder.
+Now it's time to add content to our collection scaffold. Collections can include different kinds of plugins and modules. For a complete list of types please refer to the `README.md` file in the `plugins` folder.
 
-In this workshop we are going to create a minimal *Hello World* module and install it in the `plugins/modules` directory.
+In this lab we are going to create a minimal **Hello World** module and install it in the `plugins/modules` directory.
 
 First, create the `plugins/modules` directory:
 
 ```bash
-[{{< param "control_prompt" >}} ~]$ cd ansible_collections/redhat/workshop_demo_collection
+[{{< param "control_prompt" >}} exercise-05]$ cd ansible_collections/redhat/workshop_demo_collection
 [{{< param "control_prompt" >}} workshop_demo_collection}} ]$ mkdir plugins/modules
 ```
 
-Create the `demo_hello.py` module in the the new folder. The `demo_hello` module says Hello in different languages to custom defined users. Take your time to look at the module code and understand its behavior.
+Using the VSCode editor, create the file `demo_hello.py` with the content below in the `modules` folder. The `demo_hello` module says, well, "Hello" in different languages to a user defined through a parameter. This is not a lab about writing plugins, but take the time to look at the module code and understand its behavior.
+
+{{% notice tip %}}
+When doing copy/paste from your browser into the VSCode editor you might have to use `ctrl-v`.
+{{% /notice %}}
 
 ```bash
 #!/usr/bin/python
@@ -220,24 +206,23 @@ if __name__ == '__main__':
     main()
 ```
 
-An Ansible module is basically an implementation of the AnsibleModule class created and executed in a minimal function called `run_module()`. As you can see, a module has a `main()` function, like a plain Python executable. Anyway, it is
-not meant to be executed independently.
+An Ansible module is basically an implementation of the AnsibleModule class created and executed in a minimal function called `run_module()`. As you can see, a module has a `main()` function, like a plain Python executable. Anyway, it is not meant to be executed independently.
 
-## Step 4: Adding custom roles to the collection
+## Adding Content: Adding a Custom Role
 
-The last step of this exercise will be focused on a role creation inside the custom collection. We will simply write the greeting into the Message of the Day file `/etc/motd`.
+Ansible Collections are about bundling content that belongs together. So in the last step of this exercise we'll create a role inside the custom collection that utilizes the new module. To make things easy it will simply write the greeting into the Message of the Day file `/etc/motd`.
 
-Generate the new role skeleton using the `ansible-galaxy init` command:
+Generate the new role `hello_motd` using the `ansible-galaxy init` command:
 
 {{% notice tip %}}
-Make sure you are in the root directory of your ansible collection before executing this command.
+The `ansible-galaxy` command can be used to create initial directory structures for collections and roles. Make sure you are in the root directory of your ansible collection before executing this command.
 {{% /notice %}}
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy init --init-path roles hello_motd
 ```
 
-Create the following tasks in the `roles/hello_motd/tasks/main.yml` file:
+In the next step add the following role tasks in the `roles/hello_motd/tasks/main.yml` file:
 
 ```yaml
 ---
@@ -248,11 +233,10 @@ Create the following tasks in the `roles/hello_motd/tasks/main.yml` file:
   register: demo_greeting
 
 - name: store test in /etc/motd
-  lineinfile:
-    path: /etc/motd
-    line: "{{ demo_greeting.fact }}"
+  copy:
+    content: "{{ demo_greeting.fact }}\n"
+    dest: /etc/motd
   become: yes
-
 ```
 
 Notice the usage of the `demo_hello` module, installed in the collection, to generate the greeting string.
@@ -261,7 +245,7 @@ Notice the usage of the `demo_hello` module, installed in the collection, to gen
 When a collection role calls a module in the same collection namespace, the module is automatically resolved.
 {{% /notice %}}
 
-Create the following variables in the `roles/hello_motd/defaults/main.yml`:
+Every role should come with sensible defaults, add the following default variable to the `roles/hello_motd/defaults/main.yml` file to make it look like this:
 
 ```yaml
 ---
@@ -269,13 +253,13 @@ Create the following variables in the `roles/hello_motd/defaults/main.yml`:
 friend_name: "John Doe"
 ```
 
-The skeleton generates a complete structure files and folder. We can clean up the unused ones:
+Because `ansible-galaxy` creates a complete structure of directories and files, it's a good idea to clean up unused ones to keep it tidy:
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ rm -rf roles/demo_image_builder/{handlers,vars,tests}
 ```
 
-Customize the `roles/hello_motd/meta/main.yml` file to define Galaxy metadata and potential dependencies of the role. Use this sample minimal content:
+And as the final step customize the `roles/hello_motd/meta/main.yml` file to define Galaxy metadata and potential dependencies of the role. Use this sample minimal content:
 
 ```yaml
 galaxy_info:
@@ -291,29 +275,25 @@ galaxy_info:
 dependencies: []
 ```
 
-## Step 5: Building and installing collections
+## Build and Install your Custom Collection
 
-Once completed the creation task we can build the collection and generate a .tar.gz file that can be installed locally or uploaded to Galaxy.
-
-From the collection folder run the following command:
+Okay, you are done with creating your role. Now you'll build the collection and generate a .tar.gz file that can be installed locally or uploaded to Galaxy. From the collection folder run the following command:
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection build
 ```
 
-The above command will create the file `redhat-workshop_demo_collection-1.0.0.tar.gz`. Notice the semantic x.y.z versioning.
-
-Once created the file can be installed in the `COLLECTIONS_PATH` to be tested locally:
+The above command will create the file `redhat-workshop_demo_collection-1.0.0.tar.gz`. Notice the semantic x.y.z versioning. Once created the file can be installed in the `COLLECTIONS_PATH` to be tested locally:
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection install redhat-workshop_demo_collection-1.0.0.tar.gz
 ```
 
-By default the collection will be installed in the `~/.ansible/collections/ansible_collections` folder. Now the collection can be tested locally.
+By default the collection will be installed in the `~/.ansible/collections/ansible_collections` folder. Now the collection can be used locally!
 
-## Step 6: Testing collections locally
+## Testing your Collection
 
-Create the `exercise-05/collections_test` folder to execute the local test:
+Create the `exercise-05/collections_test` folder to hold the local test:
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ cd ~/exercise-05
@@ -321,7 +301,7 @@ Create the `exercise-05/collections_test` folder to execute the local test:
 [{{< param "control_prompt" >}} exercise-05 ]$ cd collections_test
 ```
 
-Create a basic `playbook.yml` file with the following contents:
+To test the collection you need a basic `playbook.yml` file, create it with the following content:
 
 ```bash
 [{{< param "control_prompt" >}} collections_test ]$ cat > playbook.yml << EOF
@@ -331,43 +311,31 @@ Create a basic `playbook.yml` file with the following contents:
   tasks:
   - import_role:
       name: redhat.workshop_demo_collection.hello_motd
+    vars:
+      friend_name: "Angry Potato"
 EOF
 ```
 
-### Running the test playbook
+### Running the Test Playbook
 
-Run the test playbook. Since some tasks require privilege escalation use the `-K` option to authenticate via sudo.
-
-TODO: Replace playbook output with correct output!
+Run the test playbook.
 
 ```bash
 [{{< param "control_prompt" >}} collections_test ]$ ansible-playbook playbook.yml
 
-PLAY [localhost] ********************************************************************************************
+PLAY [localhost] ************************************************************************************************************************************************************
 
-TASK [Gathering Facts] **************************************************************************************
+TASK [Gathering Facts] ******************************************************************************************************************************************************
 ok: [localhost]
 
-TASK [redhat.workshop_demo_collection.demo_image_builder : Ensure podman is present in the host] ************
+TASK [redhat.workshop_demo_collection.hello_motd : Generate greeting and store result] **************************************************************************************
 ok: [localhost]
 
-TASK [redhat.workshop_demo_collection.demo_image_builder : Generate greeting and store result] **************
-ok: [localhost]
-
-TASK [redhat.workshop_demo_collection.demo_image_builder : Create build directory] **************************
-ok: [localhost]
-
-TASK [redhat.workshop_demo_collection.demo_image_builder : Copy Dockerfile] *********************************
-ok: [localhost]
-
-TASK [redhat.workshop_demo_collection.demo_image_builder : Copy custom index.html] **************************
+TASK [redhat.workshop_demo_collection.hello_motd : store test in /etc/motd] *************************************************************************************************
 changed: [localhost]
 
-TASK [redhat.workshop_demo_collection.demo_image_builder : Build and Push OCI image] ************************
-changed: [localhost]
-
-PLAY RECAP **************************************************************************************************
-localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+PLAY RECAP ******************************************************************************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
 ## Takeaways
