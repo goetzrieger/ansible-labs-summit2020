@@ -15,7 +15,7 @@ In this lab you work in a pre-configured lab environment. You will have access t
 | Visual Code Web UI           | {{< param "external_code" >}}      |                                     |
 | Managed RHEL8 Host 1         |                                    | {{< param "internal_host1" >}}      |
 | Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
-| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
+| Managed RHEL8 Host 3         |                                    | {{< param "internal_host3" >}}      |
 
 {{% notice warning %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
@@ -47,7 +47,7 @@ Congrats, you now have a shell terminal on your Ansible control node. From here 
 
 Now in the terminal become root:
 
-    [{{< param "internal_control" >}} ~]$ sudo -i
+    [{{< param "control_prompt" >}} ~]$ sudo -i
 
 Most prerequisite tasks have already been done for you:
 
@@ -58,7 +58,7 @@ Most prerequisite tasks have already been done for you:
 Check Ansible has been installed correctly (your actual Ansible version might differ):
 
     [{{< param "internal_control" >}} ~]# ansible --version
-    ansible 2.9.6
+    ansible 2.9.13
     [...]
 
 Log out of the root account again:
@@ -75,27 +75,45 @@ In all subsequent exercises you should work as the student{{< param "student" >}
 Ansible Collections are a new distribution format for Ansible content that can include playbooks, roles, modules, and plugins. Modules are moved from the core Ansible repository into collections living in repositories outside of the core repository. This change in the content delivery process will allow Ansible to keep up the tremendous success and, coming with it, growth in content.
 
 - Before collections, module creators had to wait for their modules to be included in an upcoming Ansible release or had to add them to roles, which made consumption and management more difficult.
-- By distributing modules packaged in Ansible Content Collections along with roles, documentation and even Playbooks, content creators are now able to move as fast or conservative as the technology they manage demands.
+- By distributing modules packaged in Ansible Content Collections along with roles, documentation and even playbooks, content creators are now able to move as fast or conservative as the technology they manage demands.
 
-**Example**: A public cloud provider could make new functionality of an existing service available, that could be rolled out along with the ability to automate the new functionality with Ansible.
+**Example**: A public cloud provider could make new functionality of an existing service available, that could be rolled out along with the ability to automate the new functionality with Ansible. With Ansible Collections the author doesn't have to wait for the next Ansible release and can instead roll out the new content independently. Prior to Ansible Collections the author had to wait for the next Ansible release.
 
 For Ansible users, the benefit is that updated content can continuously be made available. Managing content this way also becomes easier as modules, plugins, roles, and docs that belong together are packaged together and versioned.
 
+## Fully qualified collection name
+
+Ansible Collection names are a combination of two components. The first part is the name of the author who wrote and maintains the Ansible Collection. The second part is the name of the Ansible Collection. This allows one author to have multiple Collections. It also allows multiple authors to have Ansible Collections with the same name.
+
+    <author>.<collection>
+
+These are examples for Ansible Collection names:
+
+- ansible.posix
+
+- geerlingguy.k8s
+
+- theforeman.foreman
+
+To identify a specific module in an Ansible Collection, we add the name of it as the third part:
+
+    <author>.<collection>.<module>
+
+Valid examples for a fully qualified Ansible Collection Name:
+
+- ansible.posix.selinux
+
+- geerlingguy.k8s.kubernetes
+
+- theforeman.foreman.user
+
 ## Understand Collections Lookup
 
-Ansible Collections use a simple method to define collection namespaces. Anyway, if
-your playbook loads collections using the `collections` key and one or more roles, then
-the roles will not inherit the collections set by the playbook.
+Ansible Collections use a simple method to define collection namespaces. If your playbook loads collections using the `collections` key and one or more roles, then the roles will not inherit the collections set by the playbook.
 
-This leads to the main topic of this exercise: roles have an independent collection
-loading method based on the role's metadata.
-To control collections search for the tasks inside the role, users can choose between
-two approaches:
+This leads to the main topic of this exercise: roles have an independent collection loading method based on the role's metadata. To control collections search for the tasks inside the role, users can choose between two approaches:
 
-- **Approach 1**: Pass a list of collections in the `collections` field inside the `meta/main.yml` file within the role.
-  This will ensure that the collections list searched by the role will have higher priority than
-  the collections list in the playbook. Ansible will use the collections list defined inside the role
-  even if the playbook that calls the role defines different collections in a separate `collections` keyword entry.
+- **Approach 1**: Pass a list of collections in the `collections` field inside the `meta/main.yml` file within the role. This will ensure that the collections list searched by the role will have higher priority than the collections list in the playbook. Ansible will use the collections list defined inside the role even if the playbook that calls the role defines different collections in a separate `collections` keyword entry.
 
   ```yaml
   # myrole/meta/main.yml
@@ -105,9 +123,7 @@ two approaches:
     - other_namespace.other_collection
   ```
 
-- **Approach 2**: Use the collection fully qualified collection name (FQCN) directly from a task in the role.
-  In this way the collection will always be called with its unique FQCN, and override any other
-  lookup in the playbook
+- **Approach 2**: Use the collection fully qualified collection name (FQCN) directly from a task in the role. In this way the collection will always be called with its unique FQCN, and override any other lookup in the playbook
 
   ```yaml
   - name: Create an EC2 instance using collection by FQCN
@@ -122,5 +138,10 @@ two approaches:
       assign_public_ip: yes
   ```
 
-Roles defined **within** a collection always implicitly search their own collection
-first, so there is no need to use the `collections` keyword in the role metadata to access modules, plugins, or other roles.
+Roles defined **within** a collection always implicitly search their own collection first, so there is no need to use the `collections` keyword in the role metadata to access modules, plugins, or other roles.
+
+In the following chapters of this lab you will learn how collections work and see different examples to see how it works.
+
+{{% notice tip %}}
+Since the Ansible Collection lookup could can deliver unexpected results, it is best practice to always use the fully qualified collection name.
+{{% /notice %}}

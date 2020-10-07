@@ -10,8 +10,8 @@ In this exercise you will learn how collections are used from within Ansible rol
 First and to keep you home directory tidy, create an exercise folder:
 
 ```bash
-mkdir exercise-03
-cd exercise--3
+[{{< param "control_prompt" >}} ~]$ mkdir exercise-03
+[{{< param "control_prompt" >}} ~]$ cd exercise-03
 ```
 
 For this lab, we will use the `ansible.posix` collection again, which contains a series of POSIX
@@ -19,6 +19,9 @@ oriented modules and plugins for systems management. You should have installed t
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ ansible-galaxy collection install ansible.posix
+Process install dependency map
+Starting collection install process
+Skipping 'ansible.posix' as it is already installed
 ```
 
 {{% notice tip %}}
@@ -27,16 +30,13 @@ See how the command didn't fail or complain if the collection was installed alre
 
 ### Approach 1: Collections loaded as metadata
 
-The first option is to specify the collection you want to use in your roles metadata.
-
-{{% notice tip %}}
-You can go through the exercise steps or copy the finished role from `solutions/selinux_manage_meta`.
-{{% /notice %}}
+There are two approaches to use Ansible Collections in your role. The first approach is to specify the collection you want to use in your roles metadata.
 
 First we'll create a simple role. Start with creating a new role scaffold using the `ansible-galaxy init` command (make sure you changed into your exercise folder):
 
 ```bash
 [{{< param "control_prompt" >}} exercise-03]$ ansible-galaxy init --init-path roles selinux_manage_meta
+- Role selinux_manage_meta was created successfully
 ```
 
 Now you have to edit a couple of files. First edit the role metadata in `roles/selinux_manage_meta/meta/main.yml` and append the following lines at the end of the file, don't change anything else:
@@ -89,7 +89,7 @@ sebooleans_disable: []
 As a last step clean up the unused folders of the role:
 
 ```bash
-rm -rf roles/selinux_manage_meta/{tests,vars,handlers,files,templates}
+[{{< param "control_prompt" >}} exercise-03]$ rm -rf roles/selinux_manage_meta/{tests,vars,handlers,files,templates}
 ```
 
 And you are done with the role! Run `tree` to check everything looks good:
@@ -152,10 +152,6 @@ localhost                  : ok=4    changed=2    unreachable=0    failed=0    s
 ### Approach 2: Collections loaded with FQCN
 
 The second approach to use collections in roles uses the collection FQCN to call the related modules and plugins. To better demonstrate the differences, we will implement a new version of the previous role with the FQCN approach without changing the inner logic.
-
-{{% notice tip %}}
-You can go though the exercise steps or copy the finished role from `solutions/selinux_manage_fqcn`.
-{{% /notice %}}
 
 To make this easy we'll just copy and edit the role we created above:
 

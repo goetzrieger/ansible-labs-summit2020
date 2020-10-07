@@ -16,14 +16,14 @@ whole exercise. In your VSCode terminal, run the following commands:
 [{{< param "control_prompt" >}} exercise-05]$
 ```
 
-This was covered already in this lab, but it's important enough to state again: Collection have two default lookup paths that are searched.
+This was covered already in this lab, but it's important enough to state again: Ansible Collections have two default lookup paths that are searched.
 
 - User scoped path `/home/<username>/.ansible/collections`
 
 - System scoped path `/usr/share/ansible/collections`
 
 {{% notice tip %}}
-Users can customized the collections path by modifying the `collections_path` key in the `ansible.cfg` file or by setting the environment variable `ANSIBLE_COLLECTIONS_PATHS` with the desired search path.
+Users can customize the collections path by modifying the `collections_path` key in the `ansible.cfg` file or by setting the environment variable `ANSIBLE_COLLECTIONS_PATHS` with the desired search path.
 {{% /notice %}}
 
 ## Inspecting the structure of a collection
@@ -74,10 +74,11 @@ Let's get started, in your VSCode terminal create the initial structure for your
 
 ```bash
 [{{< param "control_prompt" >}} exercise-05]$ ansible-galaxy collection init --init-path ansible_collections redhat.workshop_demo_collection
+- Collection redhat.workshop_demo_collection was created successfully
 ```
 
 The `--init-path` flag is used to define a custom path in which the skeleton will be initialized.
-The collection name always follows the pattern `<namespace.collection>`. The above example creates
+The collection name always follows the pattern `<namespace>.<collection>`. The above example creates
 the `workshop_demo_collection` in the `redhat` namespace.
 
 Have a look for yourself:
@@ -220,6 +221,7 @@ The `ansible-galaxy` command can be used to create initial directory structures 
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy init --init-path roles hello_motd
+- Role hello_motd was created successfully
 ```
 
 In the next step add the following role tasks in the `roles/hello_motd/tasks/main.yml` file:
@@ -281,12 +283,16 @@ Okay, you are done with creating your role. Now you'll build the collection and 
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection build
+Created collection for redhat.workshop_demo_collection at /home/student{{< param "student" >}}/exercise-05/ansible_collections/redhat/workshop_demo_collection/redhat-workshop_demo_collection-1.0.0.tar.gz
 ```
 
 The above command will create the file `redhat-workshop_demo_collection-1.0.0.tar.gz`. Notice the semantic x.y.z versioning. Once created the file can be installed in the `COLLECTIONS_PATH` to be tested locally:
 
 ```bash
 [{{< param "control_prompt" >}} workshop_demo_collection ]$ ansible-galaxy collection install redhat-workshop_demo_collection-1.0.0.tar.gz
+Process install dependency map
+Starting collection install process
+Installing 'redhat.workshop_demo_collection:1.0.0' to '/home/student{{< param "student" >}}/.ansible/collections/ansible_collections/redhat/workshop_demo_collection'
 ```
 
 By default the collection will be installed in the `~/.ansible/collections/ansible_collections` folder. Now the collection can be used locally!
@@ -303,8 +309,7 @@ Create the `exercise-05/collections_test` folder to hold the local test:
 
 To test the collection you need a basic `playbook.yml` file, create it with the following content:
 
-```bash
-[{{< param "control_prompt" >}} collections_test ]$ cat > playbook.yml << EOF
+```yaml
 ---
 - hosts: localhost
 
@@ -313,7 +318,6 @@ To test the collection you need a basic `playbook.yml` file, create it with the 
       name: redhat.workshop_demo_collection.hello_motd
     vars:
       friend_name: "Angry Potato"
-EOF
 ```
 
 ### Running the Test Playbook
@@ -337,6 +341,17 @@ changed: [localhost]
 PLAY RECAP ************************************************************************************************************
 localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
+
+Verify the result by viewing the content of `/etc/motd`:
+
+```bash
+[{{< param "control_prompt" >}} collections_test ]$ cat /etc/motd
+Hello Angry Potato!
+```
+
+{{% notice note %}}
+The Module is creating the text in a random language, so your greeting might differ from the example above.
+{{% /notice %}}
 
 ## Takeaways
 

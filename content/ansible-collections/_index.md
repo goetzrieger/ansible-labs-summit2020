@@ -10,7 +10,7 @@ weight = 4
 - [Exercise 3 - Collections from roles](3-using-collections-from-roles)
 - [Exercise 4 - Collections from tower](4-using-collections-from-tower)
 - [Exercise 5 - Creating Collections](5-creating-collections)
-- [Exercise 6 - Accessing Collections](6-automation-hub-and-galaxy)
+- [Exercise 6 - Use Automation Hub](6-automation-hub-and-galaxy)
 
 ## Additional Resources
 

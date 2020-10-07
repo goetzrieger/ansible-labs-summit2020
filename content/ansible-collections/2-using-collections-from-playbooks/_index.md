@@ -3,10 +3,6 @@ title = "Collections from Playbook"
 weight = 2
 +++
 
-Now with the introduction out of the way, you will learn how to use an Ansible Collection from a Playbook. To use a module from a specific Ansible Collection, we have to use the fully qualified collection name. This name is built from the name of the author, the name of the collection and the name of the module.
-
-    <author>.<collection>.<module>
-
 For the following exercise, we will use a collection written by the Ansible Core Team. The name of the author is therefore "ansible". You can find a list of all modules and collections written by the Ansible Core Team on [Ansible Galaxy](https://galaxy.ansible.com/ansible). Head over there and have a good look around!
 
 As you can see they maintain several collections and roles. One of their collections is called "posix" and we can find the documentation and additional details on the [Ansible Galaxy POSIX Collection](https://galaxy.ansible.com/ansible/posix) page.
@@ -29,9 +25,12 @@ This will install the collection on your system, only if it wasn't installed bef
 
 This will always download and install the latest version, even if it was already up to date. Ansible Collections can have dependencies for other Ansible Collections as well - if you want to make sure those dependencies are refreshed as well, you can use the `--force-with-deps` switch.
 
-By default the installation is stored in your local `~/.ansible` directory. This can be overwritten by using the `-p /path/to/collection` switch. Keep in mind though that `ansible-playbook` will only use that directory, if you change your `ansible.cfg` accordingly. To check your current configuration, you can dump your configuration and search for `collection`.
+By default the installation is stored in your local `~/.ansible` directory. This can be overwritten by using the `-p /path/to/collection` switch. Keep in mind though that `ansible-playbook` will only use this directory, if you change your `ansible.cfg` accordingly. To check your current configuration, you can dump your configuration and search for `collection`.
 
-    [{{< param "control_prompt" >}} ~]$ ansible-config dump | grep -i collection
+```bash
+[{{< param "control_prompt" >}} ~]$ ansible-config dump | grep -i collection
+COLLECTIONS_PATHS(default) = ['/home/student{{< param "student" >}}/.ansible/collections', '/usr/share/ansible/collections']
+```
 
 ## Step 2 - Documentation
 
@@ -49,8 +48,9 @@ Note the start of the output, you can see the location of the module. For educat
 
 You can see how the command this time pulled the documentation for the module that was installed with Ansible.
 
-> **NOTE**:
-> Depending on your screen resolution you might have to press `q` to leave the documentation viewer.
+{{% notice note %}}
+Depending on your screen resolution you might have to press `q` to leave the documentation viewer.
+{{% /notice %}}
 
 ## Step 3 - Write an Ansible Playbook
 
@@ -70,9 +70,11 @@ Let's write a simple playbook which enables SELinux and sets it to enforcing mod
       state: enforcing
 ```
 
-Make sure you save the playbook in your student users home directory.
+Make sure you save the playbook as `enforce-selinux.yml` in your student users home directory.
 
-> **NOTE**: Pay special attention to the module name. Typically you would see something like `selinux`, but since we are using a module provided by an Ansible Collection, we have to specify the fully qualified collection name.
+{{% notice note %}}
+Pay special attention to the module name. Typically you would see something like `selinux`, but since we are using a module provided by an Ansible Collection, we have to specify the fully qualified collection name.
+{{% /notice %}}
 
 ## Step 4 - Test the playbook
 
@@ -95,11 +97,11 @@ You should see output like this:
     PLAY RECAP ********************************************************************************************************
     localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
-If SELinux was not set to enforcing mode before, you might see "changed" instead of ok. If it did say "changed" and you run it a second time, you should now see "ok" - the magic of [Ansible idempotency](https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html).
+If SELinux was not set to enforcing mode before, you might see "changed" instead of "ok". If it did say "changed" and you run it a second time, you should now see "ok" - the magic of [Ansible idempotency](https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html).
 
 ## Step 5 - Simplify the namespace
 
-If you use many modules from Ansible Collections in your Playbook, the <author>.<collection> prefix can become quite annoying and reading your Playbook can become harder as well.
+If you use many modules from Ansible Collections in your Playbook, the \<author>.\<collection> prefix can become quite annoying and reading your Playbook can become harder as well.
 
 You can use the `collections` keyword to skip defining the namespace with every task. In your terminal edit the Playbook `enforce-selinux.yml` to look like this, basically adding the `collections:` section and changing the module name from FQCN to the simple module name:
 
@@ -128,5 +130,3 @@ Now run the Playbook again, you shouldn't see any difference in the output. As e
 {{% notice warning %}}
 We are explaining the `collections` keyword here for completeness. It is however recommended to always use the fully qualified collection name. The internal lookup can deliver unexpected results if there are many overlapping or overriding module names, which can be avoided by always using the full name. Since most modern code editors provide auto completion, it's not too much of an issue when typing the code either.
 {{% /notice %}}
-
-During the next chapter of this lab you'll learn more details on how the internal lookup works.
