@@ -5,15 +5,15 @@ weight = 4
 
 Red Hat Ansible Tower supports Ansible Collections starting with version 3.5 - earlier version will not automatically install and configure them for you. To make sure Ansible Collections are recognized by Red Hat Ansible Tower a requirements file is needed and has to be stored in the proper directory.
 
-Ansible Galaxy is already configured by default, however if you want your Red Hat Ansible Tower to prefer and fetch content from the Red Hat Automation Hub, additional configuration changes are required. They are addressed in a the chapter [Use Automation Hub](../7-use-automation-hub/) in this lab.
+Ansible Galaxy is already configured by default, however if you want your Red Hat Ansible Tower to prefer and fetch content from the Red Hat Automation Hub, additional configuration changes are required. They are addressed in a the chapter [Use Automation Hub](../6-automation-hub-and-galaxy/) in this lab.
 
-In this exercise you will learn how to define an Ansible Collection as a requirement in a format recognized by Red Hat Ansible Tower. We'll be using the **posix** collection again from Ansible Galaxy, but as you probably know for Tower to access the needed bits & pieces a version control system is needed. For the sake of keeping this lab setup easy, we'll set up a local Git server for this.
+In this exercise you will learn how to define an Ansible Collection as a requirement in a format recognized by Red Hat Ansible Tower. We'll be using the `ansible.posix` collection again from Ansible Galaxy. As you probably know for Ansible Tower to access the needed bits and pieces a version control system is needed. For the sake of keeping this lab setup easy, we'll set up a local Git server for this.
 
 ## Set up a Local Git Server
 
-So, let’s get started. We have to create a simplistic Git server on our control host. In a more typical environment, you would work with GitLab, Gitea, or any other commercial Git server.
+So, let’s get started. We have to create a simplistic Git server on our control host. Typically you would work with GitHub, GitLab, Gitea, or any other Git server.
 
-{{% notice tip %}}
+{{% notice warning %}}
 Make sure to run these steps from your users home directory!
 {{% /notice %}}
 
@@ -34,12 +34,12 @@ Next we will clone the repository on the control host. To enable you to work wit
 ```
 
 {{% notice tip %}}
-The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.
+The repository is currently empty. The three config commands are just there to avoid warnings from Git.
 {{% /notice %}}
 
 You now have a local Git server that can be accessed via SSH from Tower.
 
-## Create Content for the Tower Project
+## Create Content for the Ansible Tower Project
 
 Red Hat Ansible Tower can download and install Ansible Collections automatically before executing a Job Template. If a `collections/requirements.yml` exists in your project, it will be parsed and the Ansible Collections specified in this file will be automatically installed.
 
@@ -49,7 +49,7 @@ Starting with Red Hat Ansible Tower 3.6 the working directory for the Job Templa
 
 The format of the `requirements.yml` for Ansible Collections is very similar to the one for roles, however it is very important to store in the folder `collections`.
 
-Let's create the files needed to see how you can use collections in Tower. This is of course just a simple example. First create the `collections` directory in your Git repo (you should have changed into `tower_collections` already above):
+Let's create the files needed to see how you can use collections in Ansible Tower. This is of course just a simple example. First create the `collections` directory in your Git repo (you should have changed into `tower_collections` already above):
 
 ```bash
 [{{< param "control_prompt" >}} tower_collections]$ mkdir collections
@@ -57,18 +57,15 @@ Let's create the files needed to see how you can use collections in Tower. This 
 
 Then create the `requirements.yml` file listing the collection(s) you need:
 
-```bash
-[{{< param "control_prompt" >}} tower_collections]$ cat > collections/requirements.yml << EOF
+```yaml
 ---
 collections:
 - ansible.posix
-EOF
 ```
 
-As this is a simple example we'll just add a Playbook to the Git repo now. Normally you would have a lot more content in your project repository. So what could we do as an example using the **posix** collection again? Let's create a Playbook to configure an `at` job:
+As this is a simple example we'll just add a Playbook to the Git repo now. Normally you would have a lot more content in your project repository. So what could we do as an example instead of using the `ansible.posix` collection again? Let's create a Playbook to configure an `at` job:
 
-```bash
-[{{< param "control_prompt" >}} tower_collections]$ cat > configure_at_job.yml << EOF
+```yaml
 ---
 - name: Install AT Job
   hosts: all
@@ -84,8 +81,9 @@ As this is a simple example we'll just add a Playbook to the Git repo now. Norma
       command: ls -d / >/dev/null
       count: 20
       units: minutes
-EOF
 ```
+
+Save the file as `configure_at_job.yml`.
 
 {{% notice tip %}}
 Note the usage of the Fully Qualified Collection Name in the Playbook
@@ -111,9 +109,9 @@ So far you created the code only locally on the control host, now you are ready 
 
 ## Create the Project and Job Template
 
-Not it's time to access your Tower web UI if you haven't done so out of curiosity already. Point your browser to the URL you were given on the lab landing page, similar to `https://{{< param "external_tower1" >}}` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
+Now it's time to access your Ansible Tower web UI if you haven't done so out of curiosity already. Point your browser to the URL you were given on the lab landing page, similar to `https://{{< param "external_tower1" >}}` (replace `<N>` with your student number and `<LABID>` with the ID of this lab) and log in as `admin`. You can find the password again on the lab landing page.
 
-To run your new Playbook in Tower you have to configure a number of objects:
+To run your new Playbook in Ansible Tower you have to configure a number of objects:
 
 - An **Inventory** with the managed hosts
 - **Machine Credentials** to access the managed hosts
@@ -121,7 +119,7 @@ To run your new Playbook in Tower you have to configure a number of objects:
 - The Git repo as **Project**
 - A **Job Template** to run the Playbook
 
-We'll be a bit verbose for students new to Tower, if you are an Ansible Tower old-hand, just skip through and finish the configuration steps shown.
+We'll be a bit verbose for students new to Ansible Tower. If you are an Ansible Tower old-hand, just skip through and finish the configuration steps shown.
 
 ## Inventory and Machine Credentials
 
@@ -195,13 +193,13 @@ The last step is to create a Job Template to run the Playbook. Go to the **Templ
 
 You can start the job by directly clicking the blue **LAUNCH** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real time.
 
-After the Job has finished bring up your VSCode terminal, as the job was run on all three managed nodes and the control/Tower node, you can simply check the result here. Run `sudo at -l` and you should see your job was scheduled successfully.
+After the Job has finished bring up your VSCode terminal, as the job was run on all three managed nodes and the control/ Ansible Tower node, you can simply check the result here. Run `sudo at -l` and you should see your job was scheduled successfully.
 
 ## Troubleshooting
 
 Since Red Hat Ansible Tower does only check for updates in the repository in which you stored your Playbook, it might not do a refresh if there was a change in the Ansible Collection used by your Playbook. This happens particularly if you also combine Roles and Collections.
 
-In this case you should check the option **Delete on Update** (like you did in this lab) which will delete the entire local directory during a refresh.
+In this case you should check the option **Delete on Update** which will delete the entire local directory during a refresh.
 
 If there is a problem while parsing your `requirements.yml` it's worth testing it with the `ansible-galaxy` command. As a reminder, Red Hat Ansible Tower basically also just runs the command for you with the appropriate parameters, so testing this works manually makes a lot of sense.
 

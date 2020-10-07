@@ -1,5 +1,5 @@
 +++
-title = "Information: Accessing Collections"
+title = "Use Automation Hub"
 weight = 6
 +++
 
@@ -10,7 +10,7 @@ weight = 6
 Automation Hub is a service that is provided as part of the Red Hat SaaS offering to subscribers of Ansible Automation Platform. It is a central location where supported and certified Ansible Content Collections by Red Hat and its Partners can be found, downloaded and integrated into your Ansible automation. The support for Automation Hub is included with Red Hat Automation Platform subscription.
 
 {{% notice tip %}}
-Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub): requires Red Hat customer portal credentials and a valid Red Hat Automation Platform subscription.
+Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub) and requires Red Hat customer portal credentials and a valid and active Red Hat Automation Platform subscription.
 {{% /notice %}}
 
 ### Certified Content
@@ -19,11 +19,11 @@ In the portal of Automation Hub, users have direct access to certified content c
 
 ### Supported Automation
 
-Automation Hub is a one-stop-shop for Ansible content that is backed by support from Red Hat to deliver additional reassurance for customers. Additional supportability claims for these collections may be provided under the "Maintained and Supported By" one of Red Hat Partners.
+Automation Hub is a one-stop-shop for Ansible content that is backed by support from Red Hat to deliver additional reassurance for customers. Additional supportability claims for these collections may be provided under the "Maintained and Supported By" one of Red Hat Partners. A list of currently supported content can be found in the [Knowledge base](https://access.redhat.com/articles/3642632).
 
 ## Ansible Galaxy
 
-Ansible Galaxy is the upstream location for the Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be dropped into Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
+Ansible Galaxy is the upstream location for the Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be used from Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
 
 Ansible Galaxy resides on [https://galaxy.ansible.com/](https://galaxy.ansible.com/)
 
@@ -35,9 +35,7 @@ Ansible collections can be used and downloaded from multiple locations. They can
 This is not an exercise you can actually run in this environment because you would need to have an account to Ansible Automation Hub that comes with a subscription of Ansible Automation Platform. It is here for your information.
 {{% /notice %}}
 
-In the scope of this exercise, the focus is on how access content from Automation Hub. This requires an authentication token and authentication URL. To do, some configuration steps need to be done in Ansible Tower.
-
-## Authenticate Tower to Automation Hub
+## Authenticate Ansible Tower to Automation Hub
 
 ### Creating a token
 
@@ -71,10 +69,10 @@ It is recommended using Red Hat Automation Hub as primary Galaxy Server URL to e
 
 ### Using collections
 
-After authenticating Ansible Tower to access Automation Hub, using `collections/requirements.yml` file will automatically fetches the content collections from Automation Hub as first source.
+After authenticating Ansible Tower to access Automation Hub, using a `collections/requirements.yml` file automatically fetches the content collections from Automation Hub as first source.
 
 ## Takeaways
 
-- The Red Hat Automation Hub provides certified collections that supported by Red Hat and its Partners. It's available via Red Hat Ansible Automation Platform.
-- Ansible Galaxy hosts upstream community content collections.
-- Red Hat Ansible Tower can be configured to authenticate to Red Hat Automation Hub in order to fetch certified and supported content collections that are utilized in a given project within tower.
+- Ansible Galaxy hosts upstream community content.
+- The Red Hat Automation Hub provides certified collections that are supported by Red Hat and its Partners. It's a service provided by the Red Hat Ansible Automation Platform Subscription.
+- Red Hat Ansible Tower can be configured to authenticate to Red Hat Automation Hub in order to fetch certified and supported content collections that are utilized in a given project.
