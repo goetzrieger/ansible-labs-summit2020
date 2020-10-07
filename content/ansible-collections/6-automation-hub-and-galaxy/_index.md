@@ -3,11 +3,37 @@ title = "Information: Accessing Collections"
 weight = 6
 +++
 
-This is not an exercise you can actually run in this environment because you would need to have an account to Ansible Automation Hub that comes with a subscription of Ansible Automation Platform. It is here for your information.
+## Automation Hub and Ansible Galaxy
 
-## Accessing collections
+## Red Hat Automation Hub
+
+Automation Hub is a service that is provided as part of the Red Hat SaaS offering to subscribers of Ansible Automation Platform. It is a central location where supported and certified Ansible Content Collections by Red Hat and its Partners can be found, downloaded and integrated into your Ansible automation. The support for Automation Hub is included with Red Hat Automation Platform subscription.
+
+{{% notice tip %}}
+Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub): requires Red Hat customer portal credentials and a valid Red Hat Automation Platform subscription.
+{{% /notice %}}
+
+### Certified Content
+
+In the portal of Automation Hub, users have direct access to certified content collections from Red Hat and Partners. Certified collections are developed, tested, built, delivered, and supported by Red Hat and its Partners. To find more details about the scope of support, check the [Ansible Certified Content FAQ](https://access.redhat.com/articles/4916901),
+
+### Supported Automation
+
+Automation Hub is a one-stop-shop for Ansible content that is backed by support from Red Hat to deliver additional reassurance for customers. Additional supportability claims for these collections may be provided under the "Maintained and Supported By" one of Red Hat Partners.
+
+## Ansible Galaxy
+
+Ansible Galaxy is the upstream location for the Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be dropped into Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
+
+Ansible Galaxy resides on [https://galaxy.ansible.com/](https://galaxy.ansible.com/)
+
+## Accessing collections from Automation Hub
 
 Ansible collections can be used and downloaded from multiple locations. They can either be downloaded using a requirement file, statically included in the git repository or eventually installed separately in the virtual environment.
+
+{{% notice tip %}}
+This is not an exercise you can actually run in this environment because you would need to have an account to Ansible Automation Hub that comes with a subscription of Ansible Automation Platform. It is here for your information.
+{{% /notice %}}
 
 In the scope of this exercise, the focus is on how access content from Automation Hub. This requires an authentication token and authentication URL. To do, some configuration steps need to be done in Ansible Tower.
 
