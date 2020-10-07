@@ -340,11 +340,9 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 ## Takeaways
 
-- Collections can be installed from Galaxy of from Red Hat Automation Hub. Default collections search paths or custom paths can be used.
-
 - Collections can be created using the `ansible-galaxy collection init` command. Users can develop collections contents accordingly to their needs and business logic.
 
-- Collections plugins can be either any kind of Ansible plugins or modules. Modules are often developed inside collection to create an autonomous lifecycle from the main Ansible upstream.
+- Collections plugins can be either any kind of Ansible plugins or modules. Modules are developed inside collection to create an autonomous lifecycle from the main Ansible upstream.
 
 - Collection roles can use local collections plugins and modules.
 
