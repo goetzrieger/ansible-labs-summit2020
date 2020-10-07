@@ -9,12 +9,13 @@ This chapter will introduce you to your lab environment and introdoce you to the
 
 In this lab you work in a pre-configured lab environment. You will have access to the following hosts:
 
-| Role                 | Inventory name |
-| ---------------------| ---------------|
-| Ansible Control Host | {{< param "internal_control" >}} |
-| Managed Host 1       | {{< param "internal_host1" >}} |
-| Managed Host 2       | {{< param "internal_host2" >}} |
-| Managed Host 3       | {{< param "internal_host3" >}} |
+ Role                         | URL for External Access (if applicable)  | Hostname Internal                   |
+| ---------------------------- | ---------------------------------- | ----------------------------------- |
+| Ansible Tower                | {{< param "external_tower1" >}}    | {{< param "internal_tower1" >}}     |
+| Visual Code Web UI           | {{< param "external_code" >}}      |                                     |
+| Managed RHEL8 Host 1         |                                    | {{< param "internal_host1" >}}      |
+| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
+| Managed RHEL8 Host 2         |                                    | {{< param "internal_host2" >}}      |
 
 {{% notice warning %}}
 The lab environments in this session have a **\<LABID>** and are separated by numbered **student\<N>** accounts. Follow the instructions given by the lab facilitators to receive the values for **student\<N>** and **\<LABID>**!
@@ -69,11 +70,18 @@ Log out of the root account again:
 In all subsequent exercises you should work as the student{{< param "student" >}} user on the control node if not explicitly told differently.
 {{% /notice %}}
 
-## Introduction: what are collections and why should I care?
+## What are Collections and why should I care?
 
-TODO: Looks like something is missing here!
+Ansible Collections are a new distribution format for Ansible content that can include playbooks, roles, modules, and plugins. Modules are moved from the core Ansible repository into collections living in repositories outside of the core repository. This change in the content delivery process will allow Ansible to keep up the tremendous success and, coming with it, growth in content.
 
-## Understand collections lookup
+- Before collections, module creators had to wait for their modules to be included in an upcoming Ansible release or had to add them to roles, which made consumption and management more difficult.
+- By distributing modules packaged in Ansible Content Collections along with roles, documentation and even Playbooks, content creators are now able to move as fast or conservative as the technology they manage demands.
+
+**Example**: A public cloud provider could make new functionality of an existing service available, that could be rolled out along with the ability to automate the new functionality with Ansible.
+
+For Ansible users, the benefit is that updated content can continuously be made available. Managing content this way also becomes easier as modules, plugins, roles, and docs that belong together are packaged together and versioned.
+
+## Understand Collections Lookup
 
 Ansible Collections use a simple method to define collection namespaces. Anyway, if
 your playbook loads collections using the `collections` key and one or more roles, then
