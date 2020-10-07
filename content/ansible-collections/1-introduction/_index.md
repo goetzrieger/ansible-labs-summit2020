@@ -124,29 +124,3 @@ two approaches:
 
 Roles defined **within** a collection always implicitly search their own collection
 first, so there is no need to use the `collections` keyword in the role metadata to access modules, plugins, or other roles.
-
-## Automation Hub vs Galaxy
-
-Explain the concept of content repositories.
-
-### Red Hat Automation Hub
-
-It is a service that is provided as part of the Red Hat SaaS Offering. It consists of the location where to discover and download only supported and certified Ansible Content Collections by Red Hat and its Partners. These content collections contain ways to consume automation, how-to-guides to implement them in your infrastructure. The support for Automation Hub is included with Red Hat Automation Platform subscription.
-
-{{% notice tip %}}
-Red Hat Automation Hub resides on [https://cloud.redhat.com/ansible/automation-hub](https://cloud.redhat.com/ansible/automation-hub): requires Red Hat customer portal credentials and a valid Red Hat Automation Platform subscription.
-{{% /notice %}}
-
-### Certified Content
-
-In the portal of Automation Hub, users have direct access to trusted content collections from Red Hat and Certified Partners. Certified collections are developed, tested, built, delivered, and supported by Red Hat and its Partners. To find more details about the scope of support, check the [Ansible Certified Content FAQ](https://access.redhat.com/articles/4916901),
-
-### Supported Automation
-
-Automation Hub is a one-stop-shop for Ansible content that is backed by support from Red Hat to deliver additional reassurance for customers. Additional supportability claims for these collections may be provided under the "Maintained and Supported By" one of Red Hat Partners.
-
-### Ansible Galaxy
-
-It is the location for wider Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be dropped into Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
-
-Ansible Galaxy resides on [https://galaxy.ansible.com/](https://galaxy.ansible.com/)
