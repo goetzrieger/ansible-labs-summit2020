@@ -36,7 +36,6 @@ usage from playbooks, roles and Tower and an introduction to Ansible Automation 
 - [Exercise 4 - Collections from tower](4-using-collections-from-tower)
 - [Exercise 5 - Creating Collections](5-creating-collections)
 - [Exercise 6 - Accessing Collections](6-automation-hub-and-galaxy)
-- [Exercise 7 - Advanced Inventory Collections](7-advanced-inventory-collections)
 
 ## Additional Resources
 
