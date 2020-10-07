@@ -1,7 +1,9 @@
 +++
-title = "Accessing Collections"
+title = "Information: Accessing Collections"
 weight = 6
 +++
+
+This is not an exercise you can actually run in this environment because you would need to have an account to Ansible Automation Hub that comes with a subscription of Ansible Automation Platform. It is here for your information.
 
 ## Accessing collections
 
