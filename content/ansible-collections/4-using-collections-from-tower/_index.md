@@ -174,7 +174,6 @@ Now you need the URL to access the repo. You could get the URL in Github as **Cl
 - **SCM URL:** {{< param "git_user" >}}@{{< param "internal_control" >}}:projects/tower_collections
 - **GIT CREDENTIAL:** Click the magnifying glass and choose `Git Credential`, click **SELECT**
 - **SCM UPDATE OPTIONS:** Tick the first three boxes to always get a fresh copy of the repository and to update the repository when launching a job.
-
 - Click **SAVE**
 
 The new Project will be synced automatically after creation. If everything went fine, you should see a green icon to the left of the new Project.
@@ -213,10 +212,3 @@ ansible-galaxy collections install -r collections/requirements.yml -f
 {{% notice tip %}}
 The `-f` switch will forces a fresh installation of the specified Ansible Collections, otherwise `ansible-galaxy` will only install it, if it wasn't already installed. You can also use the `--force-with-deps` switch to make sure Ansible Collections which have dependencies to others are refreshed as well.
 {{% /notice %}}
-
-----
-**Navigation**
-<br>
-[Previous Exercise](../3-using-collections-from-roles/) - [Next Exercise](../5-creating-collections/)
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)

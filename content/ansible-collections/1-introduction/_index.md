@@ -150,10 +150,3 @@ Automation Hub is a one-stop-shop for Ansible content that is backed by support 
 It is the location for wider Ansible community that initially started to provide pre-packaged units of work known as Ansible roles. Roles can be dropped into Ansible Playbooks and immediately put to work. in a recent version of Galaxy started to provide Ansible content collections as well.
 
 Ansible Galaxy resides on [https://galaxy.ansible.com/](https://galaxy.ansible.com/)
-
-----
-**Navigation**
-<br>
-[Next Exercise](../2-using-collections-from-playbooks/)
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)

@@ -130,10 +130,3 @@ We are explaining the `collections` keyword here for completeness. It is however
 {{% /notice %}}
 
 During the next chapter of this lab you'll learn more details on how the internal lookup works.
-
-----
-**Navigation**
-<br>
-[Previous Exercise](../1-introduction/) - [Next Exercise](../3-using-collections-from-roles)
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)

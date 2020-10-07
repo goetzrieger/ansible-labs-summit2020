@@ -240,10 +240,3 @@ The Playbook should run in the same way with the same output like above, where y
 - Collections can be called from roles using the `collections` list defined in `meta/main.yml`.
 
 - Collections can be called from roles using their FQCN directly from the role tasks.
-
-----
-**Navigation**
-<br>
-[Previous Exercise](../2-using-collections-from-playbook/) - [Next Exercise](../4-using-collections-from-tower)
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)

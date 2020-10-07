@@ -345,10 +345,3 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 - Collections plugins can be either any kind of Ansible plugins or modules. Modules are developed inside collection to create an autonomous lifecycle from the main Ansible upstream.
 
 - Collection roles can use local collections plugins and modules.
-
-----
-**Navigation**
-<br>
-[Previous Exercise](../4-using-collections-from-tower/) - [Next Exercise](../6-automation-hub-and-galaxy/)
-
-[Click here to return to the Ansible for Red Hat Enterprise Linux Workshop](../README.md)
