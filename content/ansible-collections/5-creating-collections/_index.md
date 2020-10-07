@@ -114,7 +114,7 @@ First, create the `plugins/modules` directory:
 Using the VSCode editor, create the file `demo_hello.py` with the content below in the `modules` folder. The `demo_hello` module says, well, "Hello" in different languages to a user defined through a parameter. This is not a lab about writing plugins, but take the time to look at the module code and understand its behavior.
 
 {{% notice tip %}}
-When doing copy/paste from your browser into the VSCode editor you might have to use `ctrl-v`.
+When doing copy/paste from your browser into the VSCode editor you might have to use `Shift-Ctrl-V`.
 {{% /notice %}}
 
 ```bash
@@ -323,18 +323,18 @@ Run the test playbook.
 ```bash
 [{{< param "control_prompt" >}} collections_test ]$ ansible-playbook playbook.yml
 
-PLAY [localhost] ************************************************************************************************************************************************************
+PLAY [localhost] ******************************************************************************************************
 
-TASK [Gathering Facts] ******************************************************************************************************************************************************
+TASK [Gathering Facts] ************************************************************************************************
 ok: [localhost]
 
-TASK [redhat.workshop_demo_collection.hello_motd : Generate greeting and store result] **************************************************************************************
+TASK [redhat.workshop_demo_collection.hello_motd : Generate greeting and store result] ********************************
 ok: [localhost]
 
-TASK [redhat.workshop_demo_collection.hello_motd : store test in /etc/motd] *************************************************************************************************
+TASK [redhat.workshop_demo_collection.hello_motd : store test in /etc/motd] *******************************************
 changed: [localhost]
 
-PLAY RECAP ******************************************************************************************************************************************************************
+PLAY RECAP ************************************************************************************************************
 localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
