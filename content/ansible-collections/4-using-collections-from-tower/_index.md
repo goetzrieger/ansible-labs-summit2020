@@ -18,7 +18,7 @@ Make sure to run these steps from your users home directory!
 {{% /notice %}}
 
 ```
-[{{< param "control_prompt" >}} ~]$ wget https://raw.githubusercontent.com/ansible-labs-summit-crew/structured-content/master/simple_git.yml
+[{{< param "control_prompt" >}} ~]$ wget https://raw.githubusercontent.com/goetzrieger/ansible-labs-summit2020/master/content/ansible-collections/4-using-collections-from-tower/simple_git.yml
 [{{< param "control_prompt" >}} ~]$ ansible-playbook simple_git.yml -e "git_project=tower_collections"
 ```
 

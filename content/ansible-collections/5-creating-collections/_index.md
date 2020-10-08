@@ -45,10 +45,6 @@ collection/
 │   ├── role2/
 │   └── .../
 ├── playbooks/
-│   ├── files/
-│   ├── vars/
-│   ├── templates/
-│   └── tasks/
 └── tests/
 ```
 
