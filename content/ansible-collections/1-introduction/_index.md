@@ -81,7 +81,7 @@ Ansible Collections are a new distribution format for Ansible content that can i
 
 For Ansible users, the benefit is that updated content can continuously be made available. Managing content this way also becomes easier as modules, plugins, roles, and docs that belong together are packaged together and versioned.
 
-## Fully qualified collection name
+## Fully Qualified Collection Name
 
 Ansible Collection names are a combination of two components. The first part is the name of the author who wrote and maintains the Ansible Collection. The second part is the name of the Ansible Collection. This allows one author to have multiple Collections. It also allows multiple authors to have Ansible Collections with the same name.
 
