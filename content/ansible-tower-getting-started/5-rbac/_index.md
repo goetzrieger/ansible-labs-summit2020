@@ -31,11 +31,11 @@ Let’s create a user:
 
   - **USERNAME:** wweb
 
-  - **USER TYPE:** Normal User
-
   - **PASSWORD:** ansible
 
   - Confirm password
+
+  - **USER TYPE:** Normal User
 
 - Click **SAVE**
 
