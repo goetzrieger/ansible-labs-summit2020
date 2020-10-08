@@ -11,7 +11,7 @@ One of the modules provided by this collection allows us to manage [SELinux](htt
 
 You can find more details about [using collections](https://docs.ansible.com/ansible/latest/user_guide/collections_using.html) in the [Ansible Documentation](https://docs.ansible.com/).
 
-## Step 1 - Install the Ansible Collection
+## Install the Ansible Collection
 
 The `ansible.posix.selinux` module which we want to use for this exercise, is part of the `ansible.posix` collection. We have to install this collection first, before we can use its modules. The `ansible-galaxy` command line tool can be used to automate the installation. It is preconfigured to search for roles and collections on [Ansible Galaxy](https://galaxy.ansible.com/) so we can just specify the collection name and it will take care of the rest.
 
@@ -32,7 +32,7 @@ By default the installation is stored in your local `~/.ansible` directory. This
 COLLECTIONS_PATHS(default) = ['/home/student{{< param "student" >}}/.ansible/collections', '/usr/share/ansible/collections']
 ```
 
-## Step 2 - Documentation
+## Browse the Documentation
 
 The `ansible-doc` command only searches the system directories for documentation. You can still use it though to read up on modules you installed from Ansible Collections by using the fully qualified collection name.
 
@@ -52,7 +52,7 @@ You can see how the command this time pulled the documentation for the module th
 Depending on your screen resolution you might have to press `q` to leave the documentation viewer.
 {{% /notice %}}
 
-## Step 3 - Write an Ansible Playbook
+## Write an Ansible Playbook
 
 We want to use the SELinux module to make sure it is configured in enforcing mode. SELinux is a kernel feature which brings extra security to our Linux system and it is highly recommended to always keep it enabled and in enforcing mode. If you're new to SELinux, there is a nice article on [What is SELinux](https://www.redhat.com/en/topics/linux/what-is-selinux) to get you started.
 
@@ -76,7 +76,7 @@ Make sure you save the playbook as `enforce-selinux.yml` in your student users h
 Pay special attention to the module name. Typically you would see something like `selinux`, but since we are using a module provided by an Ansible Collection, we have to specify the fully qualified collection name.
 {{% /notice %}}
 
-## Step 4 - Test the playbook
+## Test the playbook
 
 Noe let's run the Playbook and see what happens:
 
@@ -99,7 +99,7 @@ You should see output like this:
 
 If SELinux was not set to enforcing mode before, you might see "changed" instead of "ok". If it did say "changed" and you run it a second time, you should now see "ok" - the magic of [Ansible idempotency](https://docs.ansible.com/ansible/latest/reference_appendices/glossary.html).
 
-## Step 5 - Simplify the namespace
+## Simplify the namespace
 
 If you use many modules from Ansible Collections in your Playbook, the \<author>.\<collection> prefix can become quite annoying and reading your Playbook can become harder as well.
 
@@ -123,7 +123,7 @@ You can use the `collections` keyword to skip defining the namespace with every 
 Although the syntax looks similar to how you specify roles, this works different. They keyword `roles` will execute the `tasks/main.yml` in each role. The `collections` keyword is merely a shortcut so you can skip the author and namespace every time you use a module in a task.
 {{% /notice %}}
 
-### Test the change
+## Test the change
 
 Now run the Playbook again, you shouldn't see any difference in the output. As explained before, the `collections` keyword only simplifies writing your Playbook!
 

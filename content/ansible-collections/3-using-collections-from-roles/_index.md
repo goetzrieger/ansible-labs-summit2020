@@ -5,7 +5,7 @@ weight = 3
 
 In this exercise you will learn how collections are used from within Ansible roles. As promised we'll explain the collection name resolution logic in more depth first. Then you'll see how to call a collection from an Ansible role using collection fully qualified collection name (FQCN).
 
-## Step 2: Running collections from an Ansible role
+## Running collections from an Ansible role
 
 First and to keep you home directory tidy, create an exercise folder:
 

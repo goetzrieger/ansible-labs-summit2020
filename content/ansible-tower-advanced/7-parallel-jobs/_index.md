@@ -23,7 +23,7 @@ The Playbooks can be found in the Github repository you already setup as a **Pro
 
 ## Prepare the Compliance Lab
 
-### First Step: Create three Templates
+### Create three Templates
 
 As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates and attach credentials using the `awx` CLI in the VSCode terminal:
 
