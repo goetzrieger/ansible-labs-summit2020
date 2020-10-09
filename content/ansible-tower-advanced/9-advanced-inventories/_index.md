@@ -21,7 +21,7 @@ Don’t get this wrong… we’ve chosen to use Bash to make it as simple as pos
 
 ### The Inventory Source
 
-First you need a source. In **real life** this would be your **cloud provider, your CMDB or what not**. For the sake of this lab we put a simple file into a Github repository.
+First you need a source. In **real life** this would be your cloud provider, your CMDB or what not. For the sake of this lab we put a simple file into a Github repository.
 
 Use curl to query your external inventory source:
 

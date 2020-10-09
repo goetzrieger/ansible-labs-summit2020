@@ -32,7 +32,7 @@ features of Tower. You’ll learn about:
 To be honest we got carried away slightly while trying to press all these cool features into a two-hours lab session. We decided to flag the last two chapters as "optional" instead of taking them out. If you find the time to run them, cool\! If not, the lab guide will stay where it is, feel free to go through these lab tasks later (you don’t  need a Tower cluster for this).
 {{% /notice %}}
 
-## Want to Use this Lab after Summit?
+## Want to Use this Lab after AnsibleFest?
 
 Definitely, the Markdown sources are available here:
 
