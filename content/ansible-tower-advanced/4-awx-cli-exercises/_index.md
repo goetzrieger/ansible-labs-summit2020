@@ -142,11 +142,12 @@ Verify that your script has all the pieces needed to properly configure Tower:
 The final script is also shown here:
 
     #!/bin/bash
+    set +e  # avoid exiting if an object already exists.
     awx -f human inventory create --name "Example Inventory" --organization "Default"
     awx -f human host create --name "{{< param "internal_host1" >}}" \
         --inventory "Example Inventory"
     awx -f human host create --name "{{< param "internal_host2" >}}" \
-      --inventory "Example Inventory"
+        --inventory "Example Inventory"
     awx -f human credential create --name "Example Credentials" \
         --organization "Default" \
         --credential_type "Machine" \
@@ -167,7 +168,7 @@ The final script is also shown here:
     awx -f human job_template associate --name "Install Apache" \
         --credential "Example Credentials"
 
-**And now: Run the script, and verify that all resources were properly created in the web UI.**
+**And now:** Run the script (make sure the `TOWER_` environment variables are defined), and verify that all resources were properly created in the web UI.
 
 ## Take away
 

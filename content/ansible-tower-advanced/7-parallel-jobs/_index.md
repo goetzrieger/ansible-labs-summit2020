@@ -120,7 +120,7 @@ To make it easier to spot where the jobs were run, let’s first empty the jobs 
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ sudo -i
-[{{< param "internal_control" >}} ~]# awx-manage cleanup_jobs  --days=0
+[{{< param "manage_prompt" >}} ~]# awx-manage cleanup_jobs  --days=0
 deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
 [...]
 notifications: 0 deleted, 0 skipped.
