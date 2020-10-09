@@ -27,7 +27,7 @@ The Playbooks can be found in the Github repository you already setup as a **Pro
 
 As mentioned the Github repository contains three Playbooks to enforce different compliance requirements. First create these three templates and attach credentials using the `awx` CLI in the VSCode terminal:
 
-    [{{< param "control_prompt" >}} ~]$ awx job_template create --name "Compliance STIG packages" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template create --name "Compliance STIG packages" \
                           --job-type run \
                           --inventory "Example Inventory" \
                           --project "Apache"  \
@@ -48,7 +48,7 @@ As mentioned the Github repository contains three Playbooks to enforce different
     [{{< param "control_prompt" >}} ~]$ awx -f human job_template associate --name "Compliance STIG config" \
                           --credential "Example Credentials"
 
-    [{{< param "control_prompt" >}} ~]$ awx job_template create --name "Compliance CIS" \
+    [{{< param "control_prompt" >}} ~]$ awx -f human job_template create --name "Compliance CIS" \
                           --job-type run  \
                           --inventory "Example Inventory" \
                           --project "Apache" \
@@ -90,6 +90,8 @@ To enable parallel execution of the tasks in these job templates, we will create
 
 You have configured a Workflow that is not going through templates one after the other but rather executes three templates in parallel.
 
+![compliance workflow](../../images/compliance-workflow.png)
+
 ## Execute and Watch
 
 Your workflow is ready to go, launch it.
@@ -106,6 +108,8 @@ Go to the **Instance Groups** view and find out how the jobs where distributed o
 
 - Because the Job Templates called in the workflow didn’t specify an instance group, they where distributed (more or less) evenly over the instances.
 
+## Deactivate a node
+
 Now deactivate instance **{{< param "internal_tower1" >}}** with the slider button and wait until it is shown as unavailable. Make a (mental) note of the **TOTAL JOBS** counter of the instance. Go back to the list of templates and launch the workflow **Compliance Workflow** again.
 
 Go back to the **Instance Groups** view, get back to the instance overview of instance group **tower** and verify that the three Playbooks where launched on the remaining instances and the **TOTAL JOBS** counter of instance **{{< param "internal_tower1" >}}** didn’t change.
@@ -120,7 +124,7 @@ To make it easier to spot where the jobs were run, let’s first empty the jobs 
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ sudo -i
-[{{< param "internal_control" >}} ~]# awx-manage cleanup_jobs  --days=0
+[{{< param "manage_prompt" >}} ~]# awx-manage cleanup_jobs  --days=0
 deleting "2020-04-08 15:43:12.121133+00:00-2-failed" (2 host summaries, 8 events)
 [...]
 notifications: 0 deleted, 0 skipped.
