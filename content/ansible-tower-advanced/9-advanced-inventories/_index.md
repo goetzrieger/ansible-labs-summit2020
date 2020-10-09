@@ -318,8 +318,7 @@ And to make this a bit more fun:
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ ssh ec2-user@{{< param "internal_host2" >}}
-[ec2-user@node2 ~]$ sudo -i
-[root@node2 ~]# sudo setenforce 0
+[ec2-user@node2 ~]$ sudo setenforce 0
 ```
 
 - Run the **Install Apache** template again to update the facts.

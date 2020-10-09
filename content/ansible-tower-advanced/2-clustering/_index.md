@@ -54,8 +54,8 @@ Your VSCode session is running on your Tower node 1. Again if not still open, op
 A terminal window opens at the bottom, become root:
 
 ```bash
-    [{{< param "pre_awx_prompt" >}} ~]$ sudo -i
-    [{{< param "awx_prompt" >}} ~]#
+    [{{< param "pre_mng_prompt" >}} ~]$ sudo -i
+    [{{< param "manage_prompt" >}} ~]#
 ```
 
 In the terminal run the following command:
@@ -63,7 +63,7 @@ In the terminal run the following command:
 > Your exact hostnames will differ, of course!
 
 ```bash
-    [{{< param "awx_prompt" >}} ~]# awx-manage list_instances
+    [{{< param "manage_prompt" >}} ~]# awx-manage list_instances
     [tower capacity=51]
         ansible-1 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:06:21"
         ansible-2 capacity=17 version=3.7.1 heartbeat="2020-08-27 09:05:58"

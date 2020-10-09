@@ -13,7 +13,7 @@ After boot-strapping the Tower configuration from bottom up you are ready to sta
 
 At first this is not different from a standard Tower setup. But as this is a cluster of active Tower instances every instance could have run the job.
 
-## So what Instance ran the Job?
+## So, which Instance did actually run the Job?
 
 There are a couple of ways to find the node that executed the job.
 

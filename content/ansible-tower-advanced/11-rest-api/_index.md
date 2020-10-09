@@ -83,8 +83,7 @@ And press the **PATCH** button.
 </p>
 </details>
 
-Now try to **PUT** **last\_name** "Smithy" using the same approach. What
-happens?
+Now try to **PUT** the **last\_name** "Smithy" using the same approach. What happens?
 
 <details><summary><b>Click here for Solution</b></summary>
 <p>

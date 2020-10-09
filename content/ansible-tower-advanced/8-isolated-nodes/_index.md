@@ -5,7 +5,7 @@ weight = 8
 
 Ansible is used to manage complex infrastructures with machines and networks living in multiple separate datacenters, servers behind firewalls or in cloud VPCs and remote locations only reachable over unstable links which may not survive the length of a job run. In cases like these it’s often better to run automation local to the nodes.
 
-To solve this, Tower provides **Isolated Nodes**:
+To address such requirements, Tower provides **Isolated Nodes**:
 
 - Isolated Nodes **don’t have a full installation of Tower**, but a minimal set of utilities used to run jobs.
 
@@ -70,7 +70,7 @@ ansible-2
 ansible-3
 
 [isolated_group_dmz]
-isonode ansible_host=isonode ansible_become=true
+isonode
 
 [isolated_group_dmz:vars]
 controller=tower
@@ -133,8 +133,7 @@ In the Tower web UI under **RESOURCES**, click **Inventories**:
 
   - **ORGANIZATION:** Default
 
-  - **INSTANCE GROUPS:** Pick the instance group you created in the last
-    step, `dmz`
+  - **INSTANCE GROUPS:** Pick the instance group you created in the last step, `dmz`
 
   - Click **SAVE**
 

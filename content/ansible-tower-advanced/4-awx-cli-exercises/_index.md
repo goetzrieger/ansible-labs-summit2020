@@ -53,7 +53,6 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
 ```bash
 #!/bin/bash
-set +e  # avoid exiting if an object already exists.
 awx -f human inventory create --name "Example Inventory" --organization "Default"
 awx -f human host create --name "{{< param "internal_host1" >}}" \
     --inventory "Example Inventory"
@@ -151,7 +150,6 @@ The final script is also shown here:
         --organization "Default" \
         --credential_type "Machine" \
         --inputs '{"username": "ec2-user", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
-
     awx -f human project create --name="Apache" \
         --scm_type=git \
         --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
@@ -167,7 +165,7 @@ The final script is also shown here:
     awx -f human job_template associate --name "Install Apache" \
         --credential "Example Credentials"
 
-**And now: Run the script, and verify that all resources were properly created in the web UI.**
+**And now:** Run the script (make sure the `TOWER_` environment variables are defined), and verify that all resources were properly created in the web UI.
 
 ## Take away
 
