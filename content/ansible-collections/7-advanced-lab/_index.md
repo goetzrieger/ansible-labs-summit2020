@@ -5,9 +5,7 @@ weight = 7
 
 This is an optional advanced lab for those who feel like they didn't learn enough. In this lab, we will use the previously created Ansible Collection and use it with Ansible Tower. For this we need to run through some additional steps:
 
-1. create a new project on the git server
-
-1. push the Ansible Collection into Git
+1. upload the collection
 
 1. add a requirements file to tell Ansible Tower from where to fetch the Ansible Collection
 
@@ -15,24 +13,13 @@ This is an optional advanced lab for those who feel like they didn't learn enoug
 
 Since this is an advanced lab, we will not go through all the steps in details. The following instructions will however still give you some clues.
 
-## Create a new git project
+## Upload the collection
 
-In a previous chapter of this lab, you downloaded a playbook called `simple_git.yml` to setup a local git server and an initial repository. You can run the same playbook to create a second git repository to push the newly created Ansible Collection.
-
-```bash
-[{{< param "control_prompt" >}} ~]$ ansible-playbook simple_git.yml -e git_project=demo_collection
-```
-
-## Push your Ansible Collection to git
-
-To be able to use the Ansible Collection from a playbook running on Ansible Tower, we have to initialize and push its content to the git repository.
+Ansible Tower can download and install Ansible Collections automatically. To use this feature, we have to provide the Ansible Collection by a method which is accessible for Ansible Tower. Since we already have a local web server running, we will simply copy the file into the document root of our existing and already running server.
 
 ```bash
-[{{< param "control_prompt" >}} workshop_demo_collection]$ git init
-[{{< param "control_prompt" >}} workshop_demo_collection]$ git add .
-[{{< param "control_prompt" >}} workshop_demo_collection]$ git remote add origin git@ansible-1:projects/demo_collection
-[{{< param "control_prompt" >}} workshop_demo_collection]$ git push --set-upstream origin master
-```
+
+sudo cp redhat-workshop_demo_collection-1.0.0.tar.gz /var/lib/awx/public/static/
 
 ## Add a requirements file
 
@@ -44,5 +31,6 @@ Change the `collections/requirements.yml` to look like the example below:
 ---
 collections:
 - ansible.posix
-- name: git+ssh://git@ansible-1/projects/demo_collection
+- name: redhat.demo_collection
+  source: git+ssh://git@ansible-1/projects/demo_collection.git
 ```
