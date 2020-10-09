@@ -27,7 +27,7 @@ Now add the hosts to the inventory in Tower:
 
 - In the inventory view of the Tower web UI click on your **Workshop Inventory**
 
-- Click on  the **HOSTS** button
+- Click on  the **HOSTS** button (the one at the top, _not_ the bottom one, which is read-only and shows all hosts in _all_ inventories)
 
 - To the right click the ![plus](../../images/green_plus.png?classes=inline) button.
 

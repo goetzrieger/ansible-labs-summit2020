@@ -82,7 +82,7 @@ ansible-4
 ```
 
 {{% notice warning %}}
-Only add the isolated_group settings, don't change the other groups and settings! **And replace student ID and password!**
+Only add the isolated_group settings, don't change the other groups and settings!
 {{% /notice %}}
 
 {{% notice tip %}}
