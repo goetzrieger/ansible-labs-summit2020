@@ -18,8 +18,26 @@ Since this is an advanced lab, we will not go through all the steps in details. 
 Ansible Tower can download and install Ansible Collections automatically. To use this feature, we have to provide the Ansible Collection by a method which is accessible for Ansible Tower. Since we already have a local web server running, we will simply copy the file into the document root of our existing and already running server.
 
 ```bash
+[{{< param "control_prompt" >}} ~]$ cd ~/exercise-05/ansible_collections/redhat/workshop_demo_collection/
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ sudo cp redhat-workshop_demo_collection-1.0.0.tar.gz /var/lib/awx/public/static/
+# verify the download works
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ wget -O /dev/null --no-check-certificate http://ansible-1/static/redhat-workshop_demo_collection-1.0.0.tar.gz
+--2020-10-09 08:29:23--  http://ansible-1/static/redhat-workshop_demo_collection-1.0.0.tar.gz
+Resolving ansible-1 (ansible-1)... 172.16.178.22
+Connecting to ansible-1 (ansible-1)|172.16.178.22|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://ansible-1:443/static/redhat-workshop_demo_collection-1.0.0.tar.gz [following]
+--2020-10-09 08:29:23--  https://ansible-1/static/redhat-workshop_demo_collection-1.0.0.tar.gz
+Connecting to ansible-1 (ansible-1)|172.16.178.22|:443... connected.
+The certificate's owner does not match hostname ‘ansible-1’
+HTTP request sent, awaiting response... 200 OK
+Length: 4067 (4.0K) [application/octet-stream]
+Saving to: ‘/dev/null’
 
-sudo cp redhat-workshop_demo_collection-1.0.0.tar.gz /var/lib/awx/public/static/
+/dev/null                                                100%[==================================================================================================================================>]   3.97K  --.-KB/s    in 0s
+
+2020-10-09 08:29:23 (310 MB/s) - ‘/dev/null’ saved [4067/4067]
+```
 
 ## Add a requirements file
 
@@ -32,5 +50,5 @@ Change the `collections/requirements.yml` to look like the example below:
 collections:
 - ansible.posix
 - name: redhat.demo_collection
-  source: git+ssh://git@ansible-1/projects/demo_collection.git
+  source: http://{{< param "external_tower1" >}}/static/redhat-workshop_demo_collection-1.0.0.tar.gz
 ```
