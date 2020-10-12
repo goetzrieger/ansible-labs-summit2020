@@ -163,11 +163,13 @@ Go to **Templates** in the **RESOURCES** section of the menu, click the ![plus](
 
 - **CREDENTIAL:** Example Credentials
 
-- **INSTANCE GROUPS:** `dmz`
-
 - We need to run the tasks as root so check **Enable privilege escalation**
 
 - Click **SAVE**
+
+{{% notice note %}}
+We could have set the instance group to dmz also at the job template level, but this would have been here unnecessary work, as we already did set it at the inventory level.
+{{% /notice %}}
 
 Next, launch the template:
 

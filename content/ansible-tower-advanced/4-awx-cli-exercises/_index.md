@@ -16,6 +16,7 @@ Remember how you used the **awx** help to get down to the needed command.
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 ```bash
@@ -27,6 +28,7 @@ You can work with multiple organizations in Tower. In this lab we’ll work in t
 {{% /notice %}}
 
 </p>
+<hr/>
 </details>
 
 ### Add Hosts to the Inventory using **awx**
@@ -35,6 +37,7 @@ Now that we have the empty inventory created, add your two managed hosts using t
 **awx**.
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 ```bash
@@ -43,6 +46,7 @@ Now that we have the empty inventory created, add your two managed hosts using t
 ```
 
 </p>
+<hr/>
 </details>
 
 ## Create script to contain this and all following awx commands
@@ -145,7 +149,7 @@ The final script is also shown here:
     awx -f human host create --name "{{< param "internal_host1" >}}" \
         --inventory "Example Inventory"
     awx -f human host create --name "{{< param "internal_host2" >}}" \
-      --inventory "Example Inventory"
+        --inventory "Example Inventory"
     awx -f human credential create --name "Example Credentials" \
         --organization "Default" \
         --credential_type "Machine" \

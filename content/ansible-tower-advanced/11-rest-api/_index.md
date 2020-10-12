@@ -35,6 +35,7 @@ through it:
     - At the bottom of the page, there is a new field which allows you to *post* a new object, so let’s do this and create a new user name John Smith (user name doesn’t matter)
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 The JSON should roughly look like this:
@@ -54,6 +55,7 @@ The JSON should roughly look like this:
 and the result should be a 201 telling you about your success. You can login with the password and see that you see… nothing, because you have no rights.
 
 </p>
+<hr/>
 </details>
 
 Now log in again as admin and go back to the list of users:
@@ -68,6 +70,7 @@ Now log in again as admin and go back to the list of users:
 So why not patch the user to be named "Johnny" instead of "John"?
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 Add this to the **CONTENT** field:
@@ -81,11 +84,13 @@ Add this to the **CONTENT** field:
 And press the **PATCH** button.
 
 </p>
+<hr/>
 </details>
 
 Now try to **PUT** the **last\_name** "Smithy" using the same approach. What happens?
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 Enter this into the **CONTENT** field and press **PUT**:
@@ -106,6 +111,7 @@ This will fail. In the case of **PUT** you need to enter all mandatory fields, e
 ```
 
 </p>
+<hr/>
 </details>
 
 When you’re done press the red **DELETE** button and remove Johnny Smithy.
