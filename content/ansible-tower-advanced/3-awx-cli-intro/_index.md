@@ -104,6 +104,7 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 ```bash
@@ -113,6 +114,7 @@ The configuration parameter is called **SESSION\_COOKIE\_AGE**
 ```
 
 </p>
+<hr/>
 </details>
 
 If you want to, go to the web UI of any node (not just the one you connected **awx** to) and check the setting under **ADMINISTRATION→Settings→System**.

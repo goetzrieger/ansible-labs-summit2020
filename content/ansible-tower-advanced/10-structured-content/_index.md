@@ -165,6 +165,7 @@ We also need to create a playbook to call the roles from. This is often call `si
 So we have prepared a basic structure for quite some content - call `tree` to look at it.
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 ``` bash
@@ -217,6 +218,7 @@ So we have prepared a basic structure for quite some content - call `tree` to lo
 In real life, you should remove the unnecessary roles sub-directories to keep the structure easier to understand and maintain.
 {{% /notice %}}
 </p>
+<hr/>
 </details>
 
 Since we so far created the code only locally on the control host, we need to add it to the repository and push it:

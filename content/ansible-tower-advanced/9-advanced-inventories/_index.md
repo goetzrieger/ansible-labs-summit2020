@@ -305,11 +305,15 @@ So a small challenge: Find out if all hosts have the SElinux mode set to "enforc
 - Save the new Smart Inventory
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
+
 The search string to use is:
-ansible_facts.ansible_selinux.mode:enforcing
+`ansible_facts.ansible_selinux.mode:enforcing`.
 It should return all hosts.
+
 </p>
+<hr/>
 </details>
 
 And to make this a bit more fun:
