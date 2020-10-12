@@ -261,7 +261,7 @@ Use the copy ad hoc command from above as a template and change the module and o
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
-
+<hr/>
 <p>
 
 ```bash
@@ -271,4 +271,5 @@ Use the copy ad hoc command from above as a template and change the module and o
 ```
 
 </p>
+<hr/>
 </details>

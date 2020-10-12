@@ -22,6 +22,7 @@ Remember privilege escalation…​
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 Your commands could look like these:
@@ -37,6 +38,7 @@ Your commands could look like these:
 ```
 
 </p>
+<hr/>
 </details>
 
 ## Bonus Lab: Templates and Variables

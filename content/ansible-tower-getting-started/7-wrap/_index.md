@@ -175,11 +175,13 @@ node3 | SUCCESS => {
 ## Solution
 
 <details><summary><b>Solution NOT below</b></summary>
+<hr/>
 <p>
 
 You have to figure this one out by yourself! ;-)
 
 </p>
+<hr/>
 </details>
 
 You have done all the required configuration steps in the lab already. If unsure, just refer back to the respective chapters.

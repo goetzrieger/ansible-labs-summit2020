@@ -60,6 +60,7 @@ Now you create a new Template that includes a survey.
 Try for yourself, the solution is below.
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 - **NAME:** Create index.html
@@ -79,6 +80,7 @@ Try for yourself, the solution is below.
 - Click **SAVE**
 
 </p>
+<hr/>
 </details>
 
 {{% notice warning %}}
