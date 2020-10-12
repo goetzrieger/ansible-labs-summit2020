@@ -36,16 +36,16 @@ It is important to have enough nodes in the `tower` group
 {{% /notice %}}
 
 {{% notice tip %}}
-Here is a great blog post going into Instance Groups with a lot more depth: <https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes>.
+There is a great [blog post](https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes) going into Instance Groups with a lot more depth.
 {{% /notice %}}
 
 ## Instance Group Setup
 
 Having the introduction out of the way, let’s get back to our lab and give Instance Groups a try.
 
-In a basic cluster setup like ours you just have the `[tower]` base group. So let’s go and setup two instance groups:
+In a basic cluster setup like ours you just have the `tower` base group. So let’s go and setup two instance groups:
 
-- In the **Instance Groups** add a new group by clicking the green **+** icon and then **CREATE INSTANCE GROUP**
+- In the **Instance Groups** add a new group by clicking the green ![plus](../../images/green_plus.png?classes=inline) icon and then **CREATE INSTANCE GROUP**
 
 - Name the new group **dev**
 

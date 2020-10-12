@@ -41,7 +41,7 @@ Right now we have only one instance group named **tower**. When you get more gro
 
 To dig deeper click on **INSTANCES** to get more information about the instances allocated to a group. In the instances view you can toggle nodes off/online and adjust the number of forks (don't do this now).
 
-> You’ll learn more about this later.
+You’ll learn more about this later.
 
 ## Access your Tower Cluster via Command line
 

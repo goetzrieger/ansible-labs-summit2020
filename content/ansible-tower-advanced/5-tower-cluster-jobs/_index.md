@@ -42,7 +42,7 @@ Make sure you choose a job with type "Playbook run".
 Bring up the terminal in your VSCode session and run:
 
 {{% notice warning %}}
-Replace **\<ID>** with the job ID you want to query!
+Replace **\<ID>** with the job ID you want to query and **{{< param "secret_password" >}}** with your actual password from the landing page.
 {{% /notice %}}
 
 ```bash

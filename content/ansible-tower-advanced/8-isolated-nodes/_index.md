@@ -53,11 +53,11 @@ You can see we have the tower base group and one for the database node. For the 
 The Ansible installer files in `/tmp/tower_install/` are owned by root, but your code-server/VSCode instance is running as your student{{< param "student" >}} user. To be able to edit the inventory file, you have to change the file permissions.
 {{% /notice %}}
 
-To edit the inventory file in VSCode editor change the permissions (don't do 777 in real life... ;-)):
+To edit the inventory file in VSCode editor change the permissions (don't do 666 in real life... ;-)):
 
 ```bash
 [{{< param "control_prompt" >}} ~]$ sudo -i
-[{{< param "internal_control" >}} ~]# chmod 777 /tmp/tower_install/inventory
+[{{< param "internal_control" >}} ~]# chmod 666 /tmp/tower_install/inventory
 [{{< param "internal_control" >}} ~]# exit
 ```
 
@@ -98,7 +98,7 @@ After editing the inventory, start the installer in the VSCode terminal to make 
 ```
 
 {{% notice note %}}
-The setup.sh script will take a couple of minutes to finish execution.
+The `setup.sh` script will take a couple of minutes to finish execution.
 {{% /notice %}}
 
 Sit down and watch the tasks flying by...
@@ -133,8 +133,7 @@ In the Tower web UI under **RESOURCES**, click **Inventories**:
 
   - **ORGANIZATION:** Default
 
-  - **INSTANCE GROUPS:** Pick the instance group you created in the last
-    step, `dmz`
+  - **INSTANCE GROUPS:** Pick the instance group you created in the last step, `dmz`
 
   - Click **SAVE**
 

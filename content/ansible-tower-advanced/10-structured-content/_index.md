@@ -57,7 +57,7 @@ Next we will clone the repository on the control host. To enable you to work wit
 The repository is currently empty. The three config commands are just there to avoid useless warnings from Git.
 {{% /notice %}}
 
-you are now going to add some default directories and files:
+You are now going to add some default directories and files:
 
     [{{< param "control_prompt" >}} structured-content]$ touch {staging,production}
 
@@ -256,7 +256,7 @@ The new repository needs to be added as project. Feel free to use the
 web UI or use **awx** like shown below.
 
 ```bash
-[{{< param "awx_prompt" >}} ~]# awx project create --name "Structured Content Repository" \
+[{{< param "awx_prompt" >}} ~]# awx -f human project create --name "Structured Content Repository" \
                     --organization Default \
                     --scm_type git \
                     --scm_url  {{< param "git_user" >}}@{{< param "internal_control" >}}:{{< param "content_git_uri" >}} \
@@ -311,7 +311,7 @@ Now create a template to execute the `site.yml` against both stages at the same 
 Please note that in a real world use case you might want to have different templates to address the different stages separably.
 
 ```bash
-[{{< param "control_prompt" >}} ~]# awx job_template create --name "Structured Content Execution" \
+[{{< param "control_prompt" >}} ~]# awx -f human job_template create --name "Structured Content Execution" \
                     --job_type run --inventory "Structured Content Inventory" \
                     --project "Structured Content Repository" \
                     --playbook "site.yml" \
@@ -350,6 +350,9 @@ To include it with the existing structured content, first we have to create a fi
 
 {{% notice warning %}}
 Make sure you work as user **student{{< param "student" >}}**
+{{% /notice %}}
+
+Let's create a `roles/requirements.yml` file:
 
 ```bash
 [{{< param "control_prompt" >}} structured-content]$ cat roles/requirements.yml
@@ -358,14 +361,9 @@ Make sure you work as user **student{{< param "student" >}}**
   version: master
 ```
 
-{{% /notice %}}
-
 {{% notice tip %}}
 In a production environment you may want to change the version to a fixed version or tag, to make sure that only tested and verified code is checked out and used. But this strongly depends on how you develop your code and which branching model you use.
 {{% /notice %}}
-
-Here we add the source for the role and identify the type of source
-control.
 
 Next, we reference the role itself in our playbook. Change the
 **site.yml** Playbook to look like this:

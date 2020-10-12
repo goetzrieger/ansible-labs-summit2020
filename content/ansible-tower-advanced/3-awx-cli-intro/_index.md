@@ -27,7 +27,7 @@ Please make sure to leave the root shell after installation of the package!
 After installing the tool, you have to configure authentication. The preferred way is to create a token and export it into an environment variable. After this you can seamlessly use **awx** commands in this shell. First set a number of environment variables to define your connection:
 
 {{% notice tip %}}
-Replace student number and labid!
+Replace student number and LABID!
 {{% /notice %}}
 
 ```bash

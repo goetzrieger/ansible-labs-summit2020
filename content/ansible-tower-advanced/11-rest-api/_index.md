@@ -35,23 +35,27 @@ through it:
     - At the bottom of the page, there is a new field which allows you to *post* a new object, so let’s do this and create a new user name John Smith (user name doesn’t matter)
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
+
 The JSON should roughly look like this:
 
 ```JSON
-    {
-        "username": "jsmith",
-        "first_name": "John",
-        "last_name": "Smith",
-        "email": "jsmith@example.com",
-        "is_superuser": false,
-        "is_system_auditor": false,
-        "password": "redhat"
-    }
+{
+    "username": "jsmith",
+    "first_name": "John",
+    "last_name": "Smith",
+    "email": "jsmith@example.com",
+    "is_superuser": false,
+    "is_system_auditor": false,
+    "password": "redhat"
+}
 ```
 
-and the result should be a 201 telling you about your success. You can log-in with the password and see that you see… nothing, because you have no rights.
+and the result should be a 201 telling you about your success. You can login with the password and see that you see… nothing, because you have no rights.
+
 </p>
+<hr/>
 </details>
 
 Now log in again as admin and go back to the list of users:
@@ -66,45 +70,48 @@ Now log in again as admin and go back to the list of users:
 So why not patch the user to be named "Johnny" instead of "John"?
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 Add this to the **CONTENT** field:
 
 ```JSON
-    {
-        "first_name": "Johnny"
-    }
+{
+    "first_name": "Johnny"
+}
 ```
 
 And press the **PATCH** button.
 
 </p>
+<hr/>
 </details>
 
-Now try to **PUT** the **last\_name** "Smithy" using the same approach. What
-happens?
+Now try to **PUT** the **last\_name** "Smithy" using the same approach. What happens?
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 Enter this into the **CONTENT** field and press **PUT**:
 
 ```JSON
-    {
-        "last_name": "Smithy"
-    }
+{
+    "last_name": "Smithy"
+}
 ```
 
 This will fail. In the case of **PUT** you need to enter all mandatory fields, even if you don’t want to modify them:
 
 ```JSON
-    {
-        "username": "jsmith",
-        "last_name": "Smithy"
-    }
+{
+    "username": "jsmith",
+    "last_name": "Smithy"
+}
 ```
 
 </p>
+<hr/>
 </details>
 
 When you’re done press the red **DELETE** button and remove Johnny Smithy.

@@ -53,7 +53,6 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
 ```bash
 #!/bin/bash
-set +e  # avoid exiting if an object already exists.
 awx -f human inventory create --name "Example Inventory" --organization "Default"
 awx -f human host create --name "{{< param "internal_host1" >}}" \
     --inventory "Example Inventory"
@@ -78,7 +77,7 @@ From now on we’ll explain the needed commands for each of the next steps and a
 ## Create Machine Credentials
 
 {{% notice tip %}}
-SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login. When you SSH into a host as user **student{{< param "student" >}}** from **{{< param "internal_control" >}}** you will become user **ec2-user** on the host you SSH-ed to.
+SSH keys have already been created and distributed in your lab environment and `sudo` has been setup on the managed hosts to allow password-less login. When you SSH into a host as user **student{{< param "student" >}}** from **{{< param "internal_control" >}}** you will become user **ec2-user** on the host you logged in.
 {{% /notice %}}
 
 Now we want to configure these credentials to access our managed hosts from Tower. Add the following to to **`setup-tower.sh`**, but don’t run the script yet:
@@ -91,7 +90,7 @@ Now we want to configure these credentials to access our managed hosts from Towe
 Don’t run the shell script yet, first go through the following steps to add all commands to it.
 
 {{% notice warning %}}
-As the **awx** commands get longer you’ll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \\ on one line, of course.
+As the **awx** commands get longer you’ll find we use the back-slash for line wraps to make the commands readable. You can copy the examples or use them without the \\ in one line, of course.
 {{% /notice %}}
 
 ## Create the Project
@@ -152,7 +151,6 @@ The final script is also shown here:
         --organization "Default" \
         --credential_type "Machine" \
         --inputs '{"username": "ec2-user", "ssh_key_data": "@~/.ssh/aws-private.pem"}'
-
     awx -f human project create --name="Apache" \
         --scm_type=git \
         --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
@@ -178,4 +176,4 @@ It’s easy to script Tower’s configuration using **awx**. This way you can bo
 
 We are working in a clustered environment. To verify that the resources were created on all instances properly, login to the other Tower nodes web UI's (You run the **awx** commands against your Tower node 1).
 
-Have a look around, everything we automatically configured on one Tower instance with our script was **synced automatically** to the other nodes. Inventory, credentials, projects, templates, all there.
+Have a look around, everything we automatically configured on one Tower instance with our script was **synchronized automatically** to the other nodes. Inventory, credentials, projects, templates, all there.
