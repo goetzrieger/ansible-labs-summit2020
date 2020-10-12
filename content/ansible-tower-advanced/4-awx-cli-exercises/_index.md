@@ -141,7 +141,6 @@ Verify that your script has all the pieces needed to properly configure Tower:
 The final script is also shown here:
 
     #!/bin/bash
-    set +e  # avoid exiting if an object already exists.
     awx -f human inventory create --name "Example Inventory" --organization "Default"
     awx -f human host create --name "{{< param "internal_host1" >}}" \
         --inventory "Example Inventory"
