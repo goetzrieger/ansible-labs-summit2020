@@ -72,6 +72,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
   - Do not allow branch overrides
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 - Create the project for web operations. In the **Projects** view click the green us button and fill in:
@@ -107,6 +108,7 @@ If you are still logged in as user **wweb**, log out of and log in as user **adm
 - Click **SAVE**
 
 </p>
+<hr/>
 </details>
 
 ## Set up Job Templates

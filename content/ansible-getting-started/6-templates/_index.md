@@ -68,6 +68,7 @@ Do a `grep -i` for kernel
 - Check motd by logging in to node1
 
 <details><summary> <b>Click here for Solution</b> </summary>
+<hr/>
 <p>
 
 - Find the fact:
@@ -90,4 +91,5 @@ running kernel {{ ansible_kernel }}.
 - Verify the new message via SSH login to `node1`.
 
 </p>
+<hr/>
 </details>

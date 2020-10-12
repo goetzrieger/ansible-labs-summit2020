@@ -165,6 +165,7 @@ Use grep to find the fact, then apply a filter to only print this fact.
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 ```bash
@@ -173,6 +174,7 @@ Use grep to find the fact, then apply a filter to only print this fact.
 ```
 
 </p>
+<hr/>
 </details>
 
 ## Using Facts in Playbooks

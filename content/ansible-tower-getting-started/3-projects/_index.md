@@ -144,6 +144,7 @@ What about `systemctl status httpd`?
 {{% /notice %}}
 
 <details><summary><b>Click here for Solution</b></summary>
+<hr/>
 <p>
 
 - Go to **Inventories** → **Workshop Inventory**
@@ -159,6 +160,7 @@ What about `systemctl status httpd`?
 - Click **LAUNCH**
 
 </p>
+<hr/>
 </details>
 
 It should all look good!
