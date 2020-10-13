@@ -171,7 +171,7 @@ It's time to set up the Tower Project pointing to your Git repository holding yo
 Now you need the URL to access the repo. You could get the URL in Github as **Clone URL**. Enter the URL into the Project configuration:
 
 - **SCM URL:** {{< param "git_user" >}}@{{< param "internal_control" >}}:projects/tower_collections
-- **GIT CREDENTIAL:** Click the magnifying glass and choose `Git Credential`, click **SELECT**
+- **SCM CREDENTIAL:** Click the magnifying glass and choose `Git Credential`, click **SELECT**
 - **SCM UPDATE OPTIONS:** Tick the first three boxes to always get a fresh copy of the repository and to update the repository when launching a job.
 - Click **SAVE**
 
