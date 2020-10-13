@@ -41,7 +41,7 @@ First we'll create a simple role. Start with creating a new role scaffold using 
 
 Now you have to edit a couple of files. First edit the role metadata in `roles/selinux_manage_meta/meta/main.yml` and append the following lines at the end of the file, don't change anything else:
 
-```yaml
+```
 # Collections list
 collections:
   - ansible.posix
@@ -49,7 +49,7 @@ collections:
 
 A role without some tasks is not too interesting, go and edit the `roles/selinux_manage_meta/tasks/main.yml` file and add the following tasks (make sure to keep the YAML start `---` in place):
 
-```yaml
+```
 ---
 # tasks file for selinux_manage_meta
 - name: Enable SELinux enforcing mode
@@ -78,7 +78,7 @@ We're using the simple module name. Ansible uses the information from the `colle
 
 Every well-written role should come with sensible defaults, edit the `roles/selinux_manage_meta/defaults/main.yml` to define default values for role variables:
 
-```yaml
+```
 ---
 # defaults file for selinux_manage_meta
 selinux_mode: enforcing
@@ -110,7 +110,7 @@ And you are done with the role! Run `tree` to check everything looks good:
 
 We can now test the new role with a basic playbook. Create the `playbook.yml` file in the exercise folder with the following content:
 
-```yaml
+```
 ---
 - hosts: localhost
   become: true
@@ -161,7 +161,7 @@ To make this easy we'll just copy and edit the role we created above:
 
 Now change the file `roles/selinux_manage_fqcn/tasks/main.yml` so it uses the FQCN for the modules. It should look like this:
 
-```yaml
+```
 ---
 # tasks file for selinux_manage_fqcn
 - name: Enable SELinux enforcing mode
@@ -190,7 +190,7 @@ Notice the usage of the modules FQCN in the role tasks. Ansible will directly lo
 
 The remaining files can stay unchanged. To test the FQCN role modify the previously created `playbook.yml` file to use the new role:
 
-```yaml
+```
 ---
 - hosts: localhost
   become: true

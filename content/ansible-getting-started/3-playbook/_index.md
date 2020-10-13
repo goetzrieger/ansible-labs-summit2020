@@ -73,7 +73,7 @@ Now use **code-server** to add a file called `apache.yml` with the following con
 If you are unsure how to use **code-server** (basically like VSCode), have a quick look at the [Visual Studio Code Server introduction](../../vscode-intro/)
 {{% /notice %}}
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: node1
@@ -94,7 +94,7 @@ You obviously need to use privilege escalation to install a package or run any o
 
 Now that we've defined the play, let's add a task to get something done. We will add a task in which yum will ensure that the Apache package is installed in the latest version. Modify the file so that it looks like the following listing using the **code-server** editor:
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: node1
@@ -173,7 +173,7 @@ The next part of the Playbook makes sure the Apache webserver is enabled and sta
 
 On the control host, as your student user, edit the file `~/ansible-files/apache.yml` again to add a second task using the `service` module. The Playbook should now look like this:
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: node1
@@ -236,7 +236,7 @@ You already used Ansible’s `copy` module to write text supplied on the command
 
 On the control node as your student user edit the file `~/ansible-files/apache.yml` and add a new task utilizing the `copy` module. It should now look like this:
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: node1
@@ -290,7 +290,7 @@ The IP addresses shown here are just examples, your nodes will have different IP
 
 Change the Playbook to point to the group `web`:
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: web

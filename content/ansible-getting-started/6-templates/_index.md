@@ -25,7 +25,7 @@ The template file contains the basic text that will later be copied over. It als
 
 Next we need a playbook to use this template. In the `~/ansible-files/` directory create the Playbook `motd-facts.yml`:
 
-```yaml
+```
 ---
 - name: Fill motd file with host data
   hosts: node1

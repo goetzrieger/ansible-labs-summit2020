@@ -11,7 +11,7 @@ Ansible supports variables to store values that can be used in Playbooks. Variab
 
 Variables are referenced in Playbooks by placing the variable name in double curly braces:
 
-```yaml
+```
 Here comes a variable {{ variable1 }}
 ```
 
@@ -41,14 +41,14 @@ Now create two files containing variable definitions. We’ll define a variable 
 
 - Create the file `~/ansible-files/group_vars/web` with this content:
 
-```yaml
+```
 ---
 stage: dev
 ```
 
 - Create the file `~/ansible-files/host_vars/node2` with this content:
 
-```yaml
+```
 ---
 stage: prod
 ```
@@ -89,7 +89,7 @@ Create a new Playbook called `deploy_index_html.yml` in the `~/ansible-files/` d
 Note how the variable "stage" is used in the name of the file to copy.
 {{% /notice %}}
 
-```yaml
+```
 ---
 - name: Copy index.html
   hosts: web
@@ -181,7 +181,7 @@ Use grep to find the fact, then apply a filter to only print this fact.
 
 Facts can be used in a Playbook like variables, using the proper naming, of course. Create this Playbook as `facts.yml` in the `~/ansible-files/` directory:
 
-```yaml
+```
 ---
 - name: Output facts within a playbook
   hosts: all

@@ -58,7 +58,7 @@ Let's create the files needed to see how you can use collections in Ansible Towe
 
 Then create the `requirements.yml` file listing the collection(s) you need:
 
-```yaml
+```
 ---
 collections:
 - ansible.posix
@@ -66,7 +66,7 @@ collections:
 
 As this is a simple example we'll just add a Playbook to the Git repo now. Normally you would have a lot more content in your project repository. So what could we do as an example instead of using the `ansible.posix` collection again? Let's create a Playbook to configure an `at` job:
 
-```yaml
+```
 ---
 - name: Install AT Job
   hosts: all

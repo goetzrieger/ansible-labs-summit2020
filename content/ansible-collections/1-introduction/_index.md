@@ -115,7 +115,7 @@ This leads to the main topic of this exercise: roles have an independent collect
 
 - **Approach 1**: Pass a list of collections in the `collections` field inside the `meta/main.yml` file within the role. This will ensure that the collections list searched by the role will have higher priority than the collections list in the playbook. Ansible will use the collections list defined inside the role even if the playbook that calls the role defines different collections in a separate `collections` keyword entry.
 
-  ```yaml
+  ```
   # myrole/meta/main.yml
   collections:
     - my_namespace.first_collection
@@ -125,7 +125,7 @@ This leads to the main topic of this exercise: roles have an independent collect
 
 - **Approach 2**: Use the collection fully qualified collection name (FQCN) directly from a task in the role. In this way the collection will always be called with its unique FQCN, and override any other lookup in the playbook
 
-  ```yaml
+  ```
   - name: Create an EC2 instance using collection by FQCN
     amazon.aws.ec2:
       key_name: mykey

@@ -15,7 +15,7 @@ For this lab we will use playbooks stored in this Git repository, using the [sum
 
 A Playbook to install the Apache webserver has already been committed to the directory **rhel/apache**, `apache_install.yml`, here for reference:
 
-```yaml
+```
 ---
 - name: Apache server installed
   hosts: all

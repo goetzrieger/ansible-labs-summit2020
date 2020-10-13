@@ -58,7 +58,7 @@ We want to use the SELinux module to make sure it is configured in enforcing mod
 
 Let's write a simple playbook which enables SELinux and sets it to enforcing mode on the local machine. In this lab you can use the visual **code-server** editor or run an editor of your choice from the terminal. Create the Playbook `enforce-selinux.yml` with the following content:
 
-```yaml
+```
 ---
 - name: set SELinux to enforcing
   hosts: localhost
@@ -105,7 +105,7 @@ If you use many modules from Ansible Collections in your Playbook, the \<author>
 
 You can use the `collections` keyword to skip defining the namespace with every task. In your terminal edit the Playbook `enforce-selinux.yml` to look like this, basically adding the `collections:` section and changing the module name from FQCN to the simple module name:
 
-```yaml
+```
 ---
 - name: set SELinux to enforcing
   hosts: localhost

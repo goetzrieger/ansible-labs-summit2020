@@ -91,7 +91,7 @@ Listen {{ listen_port }}
 
 Create a playbook called `apache_config_tpl.yml`:
 
-```yaml
+```
 ---
 - name: Apache httpd.conf
   hosts: web

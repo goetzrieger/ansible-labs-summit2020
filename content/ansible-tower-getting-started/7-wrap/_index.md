@@ -57,7 +57,7 @@ Here are the files for you to review (path is relative to the Github repository)
 Only the part deploying the template is shown
 {{% /notice %}}
 
-```yaml
+```
 [...]
 - name: Deploy index.html from template
   template:

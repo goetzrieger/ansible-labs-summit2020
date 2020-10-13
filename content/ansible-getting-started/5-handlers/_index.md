@@ -44,7 +44,7 @@ ansible ansible_host=44.55.66.77
 
 Next create the file `ftpserver.yml` on your control host in the `~/ansible-files/` directory:
 
-```yaml
+```
 ---
 - name: Install vsftpd on ftpservers
   hosts: all
@@ -92,7 +92,7 @@ httpd.conf
 
 Next, create the Playbook `httpd_conf.yml`. Make sure that you are in the directory `~/ansible-files`.
 
-```yaml
+```
 ---
 - name: manage httpd.conf
   hosts: web
@@ -150,7 +150,7 @@ Loops enable us to repeat the same task over and over again. For example, lets s
 
 To show the loops feature we will generate three new users on `node1`. For that, create the Playbook `loop_users.yml` in `~/ansible-files` on your control node as your student user and run it. We will use the `user` module to generate the user accounts.
 
-```yaml
+```
 ---
 - name: Ensure users
   hosts: node1
@@ -183,7 +183,7 @@ Understand the playbook and the output:
 
 As mentioned loops can also be over lists of hashes. Imagine that the users should be assigned to different additional groups:
 
-```yaml
+```
 - username: dev_user
   groups: ftp
 - username: qa_user
@@ -197,7 +197,7 @@ The `user` module has the optional parameter `groups` to list additional users. 
 Let's rewrite the playbook to create the users with additional user rights:
 
 <!-- {% raw %} -->
-```yaml
+```
 ---
 - name: Ensure users
   hosts: node1

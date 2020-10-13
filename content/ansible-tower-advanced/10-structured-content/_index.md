@@ -335,7 +335,7 @@ In enterprise environments it is common to share roles via internal git reposito
 
 To use external roles in a project, they need to be referenced in a file called [`roles/requirements.yml`](https://docs.ansible.com/ansible/latest/reference_appendices/galaxy.html#installing-multiple-roles-from-a-file), for example like this:
 
-```yaml
+```
 # Import directly from Galaxy
 - src: geerlingguy.nginx
 # Import from a local Git repository

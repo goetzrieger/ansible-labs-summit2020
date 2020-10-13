@@ -222,7 +222,7 @@ The `ansible-galaxy` command can be used to create initial directory structures 
 
 In the next step add the following role tasks in the `roles/hello_motd/tasks/main.yml` file:
 
-```yaml
+```
 ---
 # tasks file for hello_motd
 - name: Generate greeting and store result
@@ -245,7 +245,7 @@ When a collection role calls a module in the same collection namespace, the modu
 
 Every role should come with sensible defaults, add the following default variable to the `roles/hello_motd/defaults/main.yml` file to make it look like this:
 
-```yaml
+```
 ---
 # defaults file for hello_motd
 friend_name: "John Doe"
@@ -259,7 +259,7 @@ Because `ansible-galaxy` creates a complete structure of directories and files, 
 
 And as the final step customize the `roles/hello_motd/meta/main.yml` file to define Galaxy metadata and potential dependencies of the role. Use this sample minimal content:
 
-```yaml
+```
 galaxy_info:
   author: Ansible Workshop Team
   description: Hello world demo
@@ -305,7 +305,7 @@ Create the `exercise-05/collections_test` folder to hold the local test:
 
 To test the collection you need a basic `playbook.yml` file, create it with the following content:
 
-```yaml
+```
 ---
 - hosts: localhost
 
