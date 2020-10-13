@@ -53,6 +53,7 @@ Let's create the files needed to see how you can use collections in Ansible Towe
 
 ```bash
 [{{< param "control_prompt" >}} tower_collections]$ mkdir collections
+[{{< param "control_prompt" >}} tower_collections]$ cd collections
 ```
 
 Then create the `requirements.yml` file listing the collection(s) you need:
