@@ -254,7 +254,7 @@ friend_name: "John Doe"
 Because `ansible-galaxy` creates a complete structure of directories and files, it's a good idea to clean up unused ones to keep it tidy:
 
 ```bash
-[{{< param "control_prompt" >}} workshop_demo_collection ]$ rm -rf roles/demo_image_builder/{handlers,vars,tests}
+[{{< param "control_prompt" >}} workshop_demo_collection ]$ rm -rf roles/hello_motd/{handlers,vars,tests}
 ```
 
 And as the final step customize the `roles/hello_motd/meta/main.yml` file to define Galaxy metadata and potential dependencies of the role. Use this sample minimal content:
