@@ -1,0 +1,312 @@
+@charset "UTF-8";
+
+/* Override for use with "hugo-theme-learn", based on the 'red' variant
+ https://learn.netlify.app/en/basics/style-customization/
+
+Cascadia Code font license: https://github.com/microsoft/cascadia-code/blob/main/LICENSE
+
+The Lato font family is available as a free download under the SIL Open Font License 1.1 (http://scripts.sil.org/OFL). The fonts can be used without any limitations for commercial and non-commercial purposes. They can be also freely modified if the terms of the license are observed.
+ */
+
+
+:root{
+    
+    --MAIN-TEXT-color:#323232; /* Color of text by default */
+    --MAIN-TITLES-TEXT-color: #5e5e5e; /* Color of titles h2-h3-h4-h5 */
+    --MAIN-LINK-color:#f31c1c; /* Color of links */
+    --MAIN-LINK-HOVER-color:#d01616; /* Color of hovered links */
+    --MAIN-ANCHOR-color: #f31c1c; /* color of anchors on titles */
+
+    --MENU-HEADER-BG-color:#dc1010; /* Background color of menu header */
+    --MENU-HEADER-BORDER-color:#e23131; /*Color of menu header border */ 
+
+    --MENU-SEARCH-BG-color:#b90000; /* Search field background color (by default borders + icons) */
+    --MENU-SEARCH-BOX-color: #ef2020; /* Override search field border color */
+    --MENU-SEARCH-BOX-ICONS-color: #fda1a1; /* Override search field icons color */
+
+    --MENU-SECTIONS-ACTIVE-BG-color:#2b2020; /* Background color of the active section and its childs */
+    --MENU-SECTIONS-BG-color:#312525; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #ccc; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: #e6e6e6;  /* Color of links in menu, when hovered */
+    --MENU-SECTION-ACTIVE-CATEGORY-color: #777; /* Color of active category text */
+    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #fff; /* Color of background for the active category (only) */
+    
+    --MENU-VISITED-color: #ff3333; /* Color of 'page visited' icons in menu */
+    --MENU-SECTION-HR-color: #2b2020; /* Color of <hr> separator in menu */
+    --MAIN-TITLES-TEXT-font: 'LatoLatinWebBlack';
+    --MAIN-TEXT-font: 'LatoLatinWeb';
+}
+
+/* Webfont: Cascadia Code */@font-face {
+    font-family: 'Cascadia Code';
+    src: url('../fonts/CascadiaCode.woff2') format('woff2'), url('../fonts/CascadiaCode-Regular.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Black */@font-face {
+    font-family: 'LatoLatinWebBlack';
+    src: url('../fonts/LatoLatin-Black.eot');
+    src: url('../fonts/LatoLatin-Black.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Black.woff2') format('woff2'), url('../fonts/LatoLatin-Black.woff') format('woff'), url('../fonts/LatoLatin-Black.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-BlackItalic */@font-face {
+    font-family: 'LatoLatinWebBlack';
+    src: url('../fonts/LatoLatin-BlackItalic.eot');
+    src: url('../fonts/LatoLatin-BlackItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-BlackItalic.woff2') format('woff2'), url('../fonts/LatoLatin-BlackItalic.woff') format('woff'), url('../fonts/LatoLatin-BlackItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Bold */@font-face {
+    font-family: 'LatoLatinWeb';
+    src: url('../fonts/LatoLatin-Bold.eot');
+    src: url('../fonts/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Bold.woff2') format('woff2'), url('../fonts/LatoLatin-Bold.woff') format('woff'), url('../fonts/LatoLatin-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-BoldItalic */@font-face {
+    font-family: 'LatoLatinWeb';
+    src: url('../fonts/LatoLatin-BoldItalic.eot');
+    src: url('../fonts/LatoLatin-BoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-BoldItalic.woff2') format('woff2'), url('../fonts/LatoLatin-BoldItalic.woff') format('woff'), url('../fonts/LatoLatin-BoldItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Hairline */@font-face {
+    font-family: 'LatoLatinWebHairline';
+    src: url('../fonts/LatoLatin-Hairline.eot');
+    src: url('../fonts/LatoLatin-Hairline.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Hairline.woff2') format('woff2'), url('../fonts/LatoLatin-Hairline.woff') format('woff'), url('../fonts/LatoLatin-Hairline.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-HairlineItalic */@font-face {
+    font-family: 'LatoLatinWebHairline';
+    src: url('../fonts/LatoLatin-HairlineItalic.eot');
+    src: url('../fonts/LatoLatin-HairlineItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-HairlineItalic.woff2') format('woff2'), url('../fonts/LatoLatin-HairlineItalic.woff') format('woff'), url('../fonts/LatoLatin-HairlineItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Heavy */@font-face {
+    font-family: 'LatoLatinWebHeavy';
+    src: url('../fonts/LatoLatin-Heavy.eot');
+    src: url('../fonts/LatoLatin-Heavy.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Heavy.woff2') format('woff2'), url('../fonts/LatoLatin-Heavy.woff') format('woff'), url('../fonts/LatoLatin-Heavy.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-HeavyItalic */@font-face {
+    font-family: 'LatoLatinWebHeavy';
+    src: url('../fonts/LatoLatin-HeavyItalic.eot');
+    src: url('../fonts/LatoLatin-HeavyItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-HeavyItalic.woff2') format('woff2'), url('../fonts/LatoLatin-HeavyItalic.woff') format('woff'), url('../fonts/LatoLatin-HeavyItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Italic */@font-face {
+    font-family: 'LatoLatinWeb';
+    src: url('../fonts/LatoLatin-Italic.eot');
+    src: url('../fonts/LatoLatin-Italic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Italic.woff2') format('woff2'), url('../fonts/LatoLatin-Italic.woff') format('woff'), url('../fonts/LatoLatin-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Light */@font-face {
+    font-family: 'LatoLatinWebLight';
+    src: url('../fonts/LatoLatin-Light.eot');
+    src: url('../fonts/LatoLatin-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Light.woff2') format('woff2'), url('../fonts/LatoLatin-Light.woff') format('woff'), url('../fonts/LatoLatin-Light.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-LightItalic */@font-face {
+    font-family: 'LatoLatinWebLight';
+    src: url('../fonts/LatoLatin-LightItalic.eot');
+    src: url('../fonts/LatoLatin-LightItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-LightItalic.woff2') format('woff2'), url('../fonts/LatoLatin-LightItalic.woff') format('woff'), url('../fonts/LatoLatin-LightItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Medium */@font-face {
+    font-family: 'LatoLatinWebMedium';
+    src: url('../fonts/LatoLatin-Medium.eot');
+    src: url('../fonts/LatoLatin-Medium.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Medium.woff2') format('woff2'), url('../fonts/LatoLatin-Medium.woff') format('woff'), url('../fonts/LatoLatin-Medium.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-MediumItalic */@font-face {
+    font-family: 'LatoLatinWebMedium';
+    src: url('../fonts/LatoLatin-MediumItalic.eot');
+    src: url('../fonts/LatoLatin-MediumItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-MediumItalic.woff2') format('woff2'), url('../fonts/LatoLatin-MediumItalic.woff') format('woff'), url('../fonts/LatoLatin-MediumItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Regular */@font-face {
+    font-family: 'LatoLatinWeb';
+    src: url('../fonts/LatoLatin-Regular.eot');
+    src: url('../fonts/LatoLatin-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Regular.woff2') format('woff2'), url('../fonts/LatoLatin-Regular.woff') format('woff'), url('../fonts/LatoLatin-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Semibold */@font-face {
+    font-family: 'LatoLatinWebSemibold';
+    src: url('../fonts/LatoLatin-Semibold.eot');
+    src: url('../fonts/LatoLatin-Semibold.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Semibold.woff2') format('woff2'), url('../fonts/LatoLatin-Semibold.woff') format('woff'), url('../fonts/LatoLatin-Semibold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-SemiboldItalic */@font-face {
+    font-family: 'LatoLatinWebSemibold';
+    src: url('../fonts/LatoLatin-SemiboldItalic.eot');
+    src: url('../fonts/LatoLatin-SemiboldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-SemiboldItalic.woff2') format('woff2'), url('../fonts/LatoLatin-SemiboldItalic.woff') format('woff'), url('../fonts/LatoLatin-SemiboldItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-Thin */@font-face {
+    font-family: 'LatoLatinWebThin';
+    src: url('../fonts/LatoLatin-Thin.eot');
+    src: url('../fonts/LatoLatin-Thin.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-Thin.woff2') format('woff2'), url('../fonts/LatoLatin-Thin.woff') format('woff'), url('../fonts/LatoLatin-Thin.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+/* Webfont: LatoLatin-ThinItalic */@font-face {
+    font-family: 'LatoLatinWebThin';
+    src: url('../fonts/LatoLatin-ThinItalic.eot');
+    src: url('../fonts/LatoLatin-ThinItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/LatoLatin-ThinItalic.woff2') format('woff2'), url('../fonts/LatoLatin-ThinItalic.woff') format('woff'), url('../fonts/LatoLatin-ThinItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
+
+
+
+body {
+    color: var(--MAIN-TEXT-color) !important;
+}
+
+textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+h2, h3, h4, h5 {
+    color: var(--MAIN-TITLES-TEXT-color) !important;
+}
+
+a {
+    color: var(--MAIN-LINK-color);
+}
+
+.anchor {
+    color: var(--MAIN-ANCHOR-color);
+}
+
+a:hover {
+    color: var(--MAIN-LINK-HOVER-color);
+}
+
+#sidebar ul li.visited > a .read-icon {
+	color: var(--MENU-VISITED-color);
+}
+
+#body a.highlight:after {
+    display: block;
+    content: "";
+    height: 1px;
+    width: 0%;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+    background-color: var(--MAIN-LINK-HOVER-color);
+}
+#sidebar {
+	background-color: var(--MENU-SECTIONS-BG-color);
+}
+#sidebar #header-wrapper {
+    background: var(--MENU-HEADER-BG-color);
+    color: var(--MENU-SEARCH-BOX-color);
+    border-color: var(--MENU-HEADER-BORDER-color);
+}
+#sidebar .searchbox {
+	border-color: var(--MENU-SEARCH-BOX-color);
+    background: var(--MENU-SEARCH-BG-color);
+}
+#sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
+    background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+}
+#sidebar .searchbox * {
+    color: var(--MENU-SEARCH-BOX-ICONS-color);
+}
+
+#sidebar a {
+    color: var(--MENU-SECTIONS-LINK-color);
+}
+
+#sidebar a:hover {
+    color: var(--MENU-SECTIONS-LINK-HOVER-color);
+}
+
+#sidebar ul li.active > a {
+    background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
+    color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
+}
+
+#sidebar hr {
+    border-color: var(--MENU-SECTION-HR-color);
+}
+
+#body .tags a.tag-link {
+    background-color: var(--MENU-HEADER-BG-color);    
+}
+
+#body .tags a.tag-link:before {
+    border-right-color: var(--MENU-HEADER-BG-color);
+}
+
+h2, h3, h4, h5, h6, #chapter h3 {
+    font-family: "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; /* This is fallback font for old browsers */
+    font-family: var(--MAIN-TITLES-TEXT-font);
+    text-rendering: optimizeLegibility;
+}
+
+body, .tooltipped:after {
+    font-family: "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; /* This is fallback font for old browsers */
+    font-family: var(--MAIN-TEXT-font);
+    text-rendering: optimizeLegibility;
+}
+
+code, kbd, pre, samp {
+    font-family: "Cascadia Code", "Consolas", "Monaco", menlo, monospace;
+    font-size: 1rem;
+}

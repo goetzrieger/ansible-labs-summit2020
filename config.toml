@@ -23,7 +23,7 @@ home = [ "HTML", "RSS", "JSON"]
   Description = "Ansible and Ansible Tower Labs"
   Author = "Christian, Eric, Götz, Ismail, Joachim"
   Ganalytics = "XX-00000000-0"
-  themeVariant = "red"
+  themeVariant = "mine"
   disableInlineCopyToClipBoard = "false"
 
 ## Use those parameters with {{< param "param_name" >}}
