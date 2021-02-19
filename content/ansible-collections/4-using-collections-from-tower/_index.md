@@ -205,7 +205,7 @@ In this case you should check the option **Delete on Update** which will delete 
 If there is a problem while parsing your `requirements.yml` it's worth testing it with the `ansible-galaxy` command. As a reminder, Red Hat Ansible Tower basically also just runs the command for you with the appropriate parameters, so testing this works manually makes a lot of sense.
 
 ```bash
-ansible-galaxy collections install -r collections/requirements.yml -f
+ansible-galaxy collection install -r collections/requirements.yml -f
 ```
 
 {{% notice tip %}}
